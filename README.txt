@@ -1,0 +1,1 @@
+This is a repo of my participation @Telerik Academy - all courses are included
