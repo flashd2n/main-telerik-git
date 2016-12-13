@@ -1,0 +1,66 @@
+body {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    width: 650px;
+}
+
+main {
+    float: left;
+    border: 1px solid black;
+    width: 473px;
+}
+
+nav {
+    text-align: center;
+}
+
+nav a {
+    color: #00AEF0;
+    font-size: 20px;
+}
+
+.clearfix:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+fieldset {
+    width: 200px;
+    height: 110px;
+    margin-bottom: 10px;
+}
+
+fieldset img {
+    float: left;
+}
+
+fieldset div {
+    float: left;
+    margin-left: 5px;
+}
+
+.clear {
+    clear: both;
+}
+
+div.float {
+    float: left;
+}
+
+div.clear {
+    margin-left: 5px;
+}
+
+p span {
+    margin-left: 33px;
+}
+
+aside {
+    margin-top: 45px;
+    margin-left: 20px;
+    float: left;
+}

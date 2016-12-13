@@ -1,0 +1,170 @@
+html {
+    margin: 0px;
+    padding: 0px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+}
+
+html:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+body {
+    width: 100%;
+}
+
+body:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+nav {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+main {
+    width: 100%;
+}
+
+nav.navigation {
+    width: 100%;
+    background-color: #3c3c3c;
+    position: fixed;
+    z-index: 10;
+}
+
+nav.navigation ul {
+    list-style: none;
+    padding-left: 4px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+nav.navigation ul li {
+    display: inline-block;
+    color: lightgrey;
+    width: 100px;
+    height: 41px;
+}
+
+nav.navigation ul li:hover {
+    background-color: #80807c;
+}
+
+nav.navigation ul li.file-html::before {
+    background-image: url('imgs/html-icon.png');
+    background-size: 23px 23px;
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    content: "";
+    margin-right: 5px;
+}
+
+nav.navigation ul li.file-css::before {
+    background-image: url('imgs/css-icon.png');
+    background-size: 23px 23px;
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    content: "";
+    margin-right: 5px;
+}
+
+nav.navigation ul li.file-sass::before {
+    background-image: url('imgs/sass-icon.png');
+    background-size: 23px 23px;
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    content: "";
+    margin-right: 5px;
+}
+
+li.file {
+    text-align: center;
+    padding-top: 15px;
+    margin-left: -4px;
+}
+
+li.file-html, li.file-sass {
+    border: 1px solid grey;
+}
+
+nav.navigation ul li.selected {
+    background-color: #060606;
+    border-bottom: none;
+    height: 42px;
+}
+
+nav.navigation ul li.selected:hover {
+    background-color: #80807c;
+}
+
+main.container {
+    position: absolute;
+    top: 58px;
+    left: 0px;
+    background: #050505;
+    background: -moz-linear-gradient(top, #050505 0%, #535353 100%);
+    background: -webkit-linear-gradient(top, #050505 0%, #535353 100%);
+    background: linear-gradient(to bottom, #050505 0%, #535353 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#050505', endColorstr='#535353', GradientType=0);
+}
+
+ol.code-lines {
+    list-style: none;
+    counter-reset: li;
+}
+
+ol.code-lines li::before {
+    content: counter(li);
+    color: white;
+    display: inline-block;
+    width: 1em;
+    margin-left: -2em;
+    margin-right: 10px;
+}
+
+ol.code-lines li {
+    counter-increment: li;
+    color: white;
+}
+
+span.selector {
+    color: yellow;
+}
+
+span.property {
+    color: #03beb0;
+    padding-left: 20px;
+}
+
+span.punctuation {
+    color: darkgrey;
+}
+
+ol.code-lines li:hover {
+    background-color: rgba(255,255,255, 0.4);
+}
+
+ol.code-lines li:hover span.selector {
+    text-decoration: underline;
+    color: #ffff00;
+    font-weight: bold;
+}
+
+ol.code-lines li:hover span.property {
+    font-weight: bold;
+}

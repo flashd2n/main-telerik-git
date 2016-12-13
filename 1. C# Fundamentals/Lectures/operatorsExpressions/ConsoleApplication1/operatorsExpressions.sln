@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "checkOverFlow", "ConsoleApplication1\checkOverFlow.csproj", "{4BBF63BE-DF49-40E6-960B-4753839E46B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logicalOperators", "logicalOperators\logicalOperators.csproj", "{2BE6DD3F-8151-46D4-A788-FEEBE4BE808D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bitwiseOperators", "bitwiseOperators\bitwiseOperators.csproj", "{25D708CD-7D73-4E86-B9FD-703F92C6F6DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bitwiseShift", "bitwiseShift\bitwiseShift.csproj", "{95339B0B-C28B-4A9B-B22B-6D548E31CDAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BBF63BE-DF49-40E6-960B-4753839E46B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BBF63BE-DF49-40E6-960B-4753839E46B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BBF63BE-DF49-40E6-960B-4753839E46B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BBF63BE-DF49-40E6-960B-4753839E46B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BE6DD3F-8151-46D4-A788-FEEBE4BE808D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE6DD3F-8151-46D4-A788-FEEBE4BE808D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE6DD3F-8151-46D4-A788-FEEBE4BE808D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE6DD3F-8151-46D4-A788-FEEBE4BE808D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25D708CD-7D73-4E86-B9FD-703F92C6F6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25D708CD-7D73-4E86-B9FD-703F92C6F6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25D708CD-7D73-4E86-B9FD-703F92C6F6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25D708CD-7D73-4E86-B9FD-703F92C6F6DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95339B0B-C28B-4A9B-B22B-6D548E31CDAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95339B0B-C28B-4A9B-B22B-6D548E31CDAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95339B0B-C28B-4A9B-B22B-6D548E31CDAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95339B0B-C28B-4A9B-B22B-6D548E31CDAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

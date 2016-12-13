@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "Georgia", "Lucida Console", monospace;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 600px;
+    border-bottom: 1px solid grey;
+}
+
+th {
+    border-bottom: 1px solid grey;
+    border-right: 1px solid grey;
+    background: #5cc006;
+    background: -moz-linear-gradient(top, #5cc006 0%, #47a803 100%);
+    background: -webkit-linear-gradient(top, #5cc006 0%, #47a803 100%);
+    background: linear-gradient(to bottom, #5cc006 0%, #47a803 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#5cc006', endColorstr='#47a803', GradientType=0);
+    color: white;
+    font-weight: normal;
+    font-size: 13px;
+    text-align: left;
+    padding: 5px;
+}
+
+td {
+    padding: 5px;
+    text-align: left;
+    font-size: 13px;
+    border-right: 1px solid grey;
+}
+
+th.leftHeader {
+    border-right: none;
+}
+
+table tr:nth-child(odd) {
+    background-color: #ECECD8;
+}
+
+td.country img {
+    margin-right: 5px;
+    align-content: center;
+}
+
+td.country img, p {
+    vertical-align:bottom;
+}
+
+td.checkboxTD {
+    border-right: none;
+}
+

@@ -1,0 +1,42 @@
+@import url("sample.css");
+* {
+    color: white;
+}
+.special, p { /* (izbroqvane) vzemi vsi4ki klasove special i vsi4ki p */
+    color: red;
+}
+div p { /* (nesting) vzemi vsqko p koeto e v nqkakuv div */
+    text-decoration: underline;
+}
+div > p { /* (direct relation) vzemi vsqko p koeto e child na div */
+    color: aqua;
+}
+p + div { /* (direct neighbour) vzemi vsqko p i negoviq direkten sused div */
+    color: black
+}
+div {
+    background-color: red;
+    color: blue;
+}
+
+
+
+input[type=password] /* vzima vsi4ki type password input poleta */
+div[name="sth"] /* vzemi div-ove s name attr sth */
+div[name*="sth"] /* vzemi div-ove koito imat sth v name attr */
+div[name^="sth"] /* vzemi div-ove koito zapo4vat s sth v name attr */
+div[name$="sth"] /* vzemi div-ove koito svur6vat s sth v name attr */
+div > p.class /* vzemi klas class, koito e v p, koito e child na div */
+
+.one.two.three /* vzemi element, koito sudurjva klasove one two three */
+
+
+
+div:hover /* controlira hover efekt */
+table tr:nth-child(2n) /* vzima vseki 2-ri child na table tr */
+:visited -> za poseteni linkove
+:active -> natisnem i zadurjim link
+div:before { /* vkarva value-to na content predi div-a (cannot select added content) same with :after */
+    content: "text";
+}
+:first-line /* selects the first line of a p */

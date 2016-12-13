@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Registration Form</title>
+        <style>
+            table{
+                border-spacing: 0;
+                border-collapse: collapse;        
+            }
+            td{
+                border: 1px solid black;
+                padding: 2px;
+            }
+            input.smallInput{
+                width: 30px;
+            }
+            input.mediumInput{
+                width: 60px;
+            }
+            input.bigInput{
+                width: 300px;
+            }
+            input.stateInput{
+                width: 75px;
+            }
+            textarea{
+                width: 298px;
+                resize: none;
+            }
+            td.noborder{
+                border: none;
+            }
+            td.borderRight{
+                border: none;
+                border-left: 1px solid black;
+                border-right: 1px solid black
+            }
+            td.buttons{
+                background-color: lightblue;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="GET">
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        <strong>Last Name</strong>
+                    </td>
+                    <td>
+                        <input type="text" name="lastName" placeholder="Enter Last Name" value="Nakov" class="bigInput" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>First Name</strong>
+                    </td>
+                    <td>
+                        <input type="text" name="firstName" placeholder="Enter First Name" value="Svetlin" class="bigInput" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Address</strong>
+                    </td>
+                    <td>
+                        <textarea name="Address" placeholder="Enter Your Address" >17 Hristo Botev Str. floor 3, apt. 12</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>City</strong>
+                    </td>
+                    <td>
+                        <table>
+                        <tbody>
+                            <tr>
+                                <td class="noborder">
+                                    <input type="text" name="city" placeholder="Enter Your City" value="Kaspichan" />
+                                </td>
+                                <td class="borderRight">
+                                    <strong>State</strong>
+                                </td>
+                                <td class="noborder">
+                                    <input type="text" name="state" placeholder="Enter State" value="Sofia" class="stateInput" />
+                                </td>
+                            </tr>
+                        </tbody>    
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>ZIP/Postal Code</strong>
+                    </td>
+                    <td>
+                        <input type="number" name="postalCode" placeholder="Enter ZIP Code" value="9325">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Country</strong>
+                    </td>
+                    <td>
+                        <select name="Country">
+                            <option value="1">Bulgaria</option>
+                            <option value="2">Serbia</option>
+                            <option value="3">Romania</option>
+                            <option value="4">Greece</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Phone (country code, area code, number)</strong>
+                    </td>
+                    <td>
+                        (+
+                        <input type="number" name="countryCode" placeholder="Enter country code" value="359" class="smallInput">
+                        )
+                        <input type="number" name="areaCode" placeholder="Enter area code" value="88" class="smallInput">
+                        -
+                        <input type="number" name="number" placeholder="Enter number" value="8334343">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>E-mail</strong>
+                    </td>
+                    <td>
+                        <input type="text" name="email" placeholder="Enter E-mail" value="nakov@kaspichan.org" class="bigInput" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Birth Date</strong>
+                    </td>
+                    <td>
+                        Month
+                        <input type="number" name="Month" placeholder="Enter month" value="06" class="smallInput">
+                        Day
+                        <input type="number" name="Day" placeholder="Enter Day" value="14" class="smallInput">
+                        Year (4 digit)
+                        <input type="number" name="year" placeholder="Enter year" value="1980" class="mediumInput">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Gender</strong>
+                    </td>
+                    <td>
+                        <select name="Gender">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="O">Other</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Starting Date</strong>
+                    </td>
+                    <td>
+                        <input type="radio" id="spring" name="startingDate" value="springDateSelect">
+                        <label for="spring">Spring 2006</label>
+                        <input type="radio" id="summer" name="startingDate" value="summerDateSelect">
+                        <label for="summer">Summer 2006</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Comments/Questions</strong>
+                    </td>
+                    <td>
+                        <textarea name="commets" placeholder="Write Your Comments Here">Please send me more information about the lodging.</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center" class="buttons">
+                        <input type="submit" value="SUBMIT">
+                        <input type="reset" value="RESET">
+                    </td>
+                </tr>
+            </tbody>  
+            </table>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,179 @@
+html {
+    background-color: white;
+}
+
+body {
+    background-color: #F1F1F1;
+    border: 1px solid black;
+    padding: 3px;
+    width: 922px;
+}
+
+.clearfix:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+nav {
+    float: left;
+}
+
+h2 {
+    margin: 0px;
+    color: firebrick;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+nav h3 {
+    font-size: 14px;
+    margin: 0px;
+    line-height: 21px;
+}
+
+nav p {
+    margin: 0px;
+    width: 140px;
+}
+
+nav p a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+}
+
+nav p a:hover {
+    text-decoration: underline;
+}
+
+nav img {
+    float: left;
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
+
+main {
+    background-color: white;
+    border: 1px solid grey;
+    float: left;
+    width: 600px;
+    height: 725px;
+}
+
+hr {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+main h1 {
+    margin-left: 5px;
+}
+
+main h3 {
+    background-color: #808080;
+    color: white;
+    font-weight: normal;
+    padding-left: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+main img.button {
+    width: 100px;
+    height: 21px;
+}
+
+main img.firstImg {
+    margin-left: 5px;
+}
+
+main img.cssImage{
+    float: left;
+    width: 100px;
+    height: 89px;
+}
+
+main div {
+    float: left;
+    margin-left: 10px;
+    width: 480px;
+}
+
+main div p {
+    font-weight: bold;
+}
+
+main a {
+    color: firebrick;
+    font-size: 15px;
+}
+
+main > p {
+    margin-left: 5px;
+}
+
+.clear{
+    clear: both;
+}
+
+aside {
+    float: left;
+    margin-left: 2px;
+}
+
+section {
+    background-color: white;
+    border: 1px solid grey;
+    margin-bottom: 2px;
+    padding-bottom: 5px;
+    width: 175px;
+}
+
+section h3 {
+    margin: 0px;
+    background-color: #808080;
+    color: white;
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+}
+
+section a {
+    color: firebrick;
+    font-size: 15px;
+}
+
+section p {
+    text-align: center;
+    margin: 0px;
+    width: 169px;
+    margin-top: 2px;
+}
+
+section input[type=text] {
+    width: 115px;
+    margin-left: 10px;
+}
+
+section input[type=button] {
+    margin-right: 10px;
+}
+
+section input {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+section img {
+    margin-left: 35px;
+    margin-top: 4px;
+    width: 100px;
+    height: 31px;
+}

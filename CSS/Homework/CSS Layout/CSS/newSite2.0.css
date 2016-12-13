@@ -1,0 +1,134 @@
+.clearfix:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+html {
+    background-color: white;
+}
+
+body {
+    background-color: #1E3741;
+    border-radius: 10px;
+    width: 650px;
+    position: relative;
+}
+
+nav {
+    
+}
+
+nav ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 10px;
+    padding-top: 10px;
+}
+
+nav ul li {
+    float: left;
+    background-color: #4B5F67;
+    color: #92A39C;
+    padding: 10px;
+    margin-left: 1px;
+}
+
+nav ul li:hover {
+    text-decoration: underline;
+    background: none;
+    color: white;
+}
+
+li.active {
+    background: none;
+    color: white;
+    padding-left: 0px;
+}
+
+li.active:hover {
+    text-decoration: none;
+}
+
+main {
+    padding-top: 10px;
+    clear: both;
+    float: left;
+}
+
+main ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    width: 250px;
+}
+
+main ul li {
+    color: #92A39C;
+    padding: 10px 10px 10px 0;
+    border-bottom: 1px solid #92A39C;
+    padding-left: 10px;
+}
+
+main ul li:hover {
+    background-color: #00968C;
+    color: white;
+}
+
+main ul li.activeSub{
+    background-color: #00968C;
+    color: white;
+}
+
+main ul li.noBorder{
+    border: none;
+}
+
+main ul li.noBorder:hover{
+    background-color: #00968C;
+    color: white;
+    border-bottom-left-radius: 10px;
+}
+
+aside {
+    float: left;
+    padding-top: 10px;
+}
+
+aside img {
+    width: 360px;
+    height: 280px;
+}
+
+ul.hideMe {
+    width: 250px;
+    position: absolute;
+    top: 48px;
+    left: -11px;
+    display: none;
+}
+
+ul.hideMe li {
+    width: 235px;
+    color: #92A39C;
+    background-color: #1E3741;
+    padding-right: 5px;
+    border-bottom: 1px solid #92A39C;
+}
+
+ul.hideMe li.noBorder {
+    border-bottom-left-radius: 10px;
+}
+
+nav ul li:hover ul.hideMe {
+    display: block;
+}
+
+ul.hideMe li:hover {
+    background-color: #00968C;
+    color: white;
+}
+

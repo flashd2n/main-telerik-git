@@ -1,0 +1,128 @@
+div#wrapper {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-top: 15px;
+    width: 467px;   
+}
+
+div.header img {
+    width: 60px;
+    height: 60px;
+    float: left;
+    border: 1px solid lightgrey;
+}
+
+div.header>div {
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+div.header>div a {
+    text-decoration: none;
+}
+
+a.name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #365899;
+    font-family: Sans-Serif;
+}
+
+a.timestamp {
+    color: grey;
+}
+
+p {
+    clear: both;
+    color: grey;
+    padding-top: 10px;
+    width: 450px;
+}
+
+div.event {
+    width: 450px;
+    box-shadow: -1px 4px 23px -7px #242424;
+    -webkit-box-shadow: -1px 4px 23px -7px #242424;
+    -moz-box-shadow: -1px 4px 23px -7px #242424;
+    -o-box-shadow: -1px 4px 23px -7px #242424;
+}
+
+div.title {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 5px;
+    font-size: 23px;
+}
+
+div.author {
+    margin-left: 15px;
+    margin-top: 5px;
+    color: darkgrey;
+}
+
+div.capital {
+    margin-left: 15px;
+    margin-top: 7px;
+    color: darkgrey;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+}
+
+div.footer {
+    border-top: 2px solid lightgrey;
+    margin-top: 20px;
+    width: 450px;
+}
+
+div.footer a {
+    text-decoration: none;
+    color: #777777;
+    font-weight: bold;
+    font-family: Sans-Serif;
+}
+
+a.like::before {
+    content: url(imgs/like.png);
+    margin-right: 5px;
+}
+
+a.like {
+    display: inline-block;
+    width: 55px;
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+a.comment {
+    display: inline-block;
+    width: 95px;
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+a.share {
+    display: inline-block;
+    width: 75px;
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+a.comment::before {
+    content: url(imgs/comment.png);
+    margin-right: 5px;
+}
+
+a.share::before {
+    content: url(imgs/share.png);
+    margin-right: 5px;
+}

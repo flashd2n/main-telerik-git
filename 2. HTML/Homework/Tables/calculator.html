@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Calculator
+        </title>
+        <style>
+            table{
+                border-spacing: 0;
+                border-collapse: collapse;
+            }
+            td, tr{
+                border: 1px solid #09808A;
+                padding: 0px;
+            }
+            button {
+                height: 70px;
+                width: 75px;
+                font-size: 40px;
+                border: none;
+                background-color: #DDF9F6;
+                color: #77eff9;
+                text-shadow: 1px 1px 3px #000;
+            }
+            button.zero{
+                width: 151px;
+            }
+            textarea{
+                width: 299px;
+                height: 70px;
+                font-size: 50px;
+                border: none;
+                background-color: #DDF9F6;
+                resize: none;
+                direction: rtl;
+                color: #77eff9;
+                text-shadow: 1px 1px 3px #000;
+            }
+            button:hover{
+                background-color: #046A73;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <form action="">
+                <table>
+                    <tr>
+                        <td colspan="4">
+                            <textarea name="result" rows="1" style="display: block;">123</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit" value="1">1</button>
+                        </td>
+                        <td>
+                            <button type="submit" value="2">2</button>
+                        </td>
+                        <td>
+                            <button type="submit" value="3">3</button>
+                        </td>
+                        <td>
+                            <button type="submit" value="+">+</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit" value="4">4</button>
+                        </td>
+                        <td>
+                            <button type="submit" value="5">5</button>
+                        </td>
+                        <td>
+                            <button type="submit" value="6">6</button>
+                        </td>
+                        <td>
+                            <button type="submit" value="-">-</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit" value="7">7</button>
+                        </td>
+                        <td><button type="submit" value="8">8</button>
+                            
+                        </td>
+                        <td>
+                            <button type="submit" value="9">9</button>
+                        </td>
+                        <td>
+                            <button type="submit" value="*">*</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit" value="0" class="zero">0</button>
+                        </td>
+                        <td>
+                            <button type="submit" value=".">.</button>
+                        </td>
+                        <td>
+                            <button type="submit" value="/">/</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </main>
+    </body>
+</html>

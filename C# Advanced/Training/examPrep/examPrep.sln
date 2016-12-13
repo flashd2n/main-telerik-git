@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cryptoCS", "cryptoCS\cryptoCS.csproj", "{8FEE8754-7C8A-4017-8E3D-2F8BD36DBB9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kitty", "kitty\kitty.csproj", "{9276A572-9D4E-4A69-86E6-738FF990033C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "oneSystemToAnyOther", "..\..\Homework\NumeralSystems\numeralSystemsHW\oneSystemToAnyOther\oneSystemToAnyOther.csproj", "{CE05FFE0-268E-4BC4-8D05-8C68B9FE12D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fastArrayTraverse", "calc\fastArrayTraverse.csproj", "{D41BC2BB-2503-4F17-B7AD-E928ECD8AE1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FEE8754-7C8A-4017-8E3D-2F8BD36DBB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FEE8754-7C8A-4017-8E3D-2F8BD36DBB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FEE8754-7C8A-4017-8E3D-2F8BD36DBB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FEE8754-7C8A-4017-8E3D-2F8BD36DBB9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9276A572-9D4E-4A69-86E6-738FF990033C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9276A572-9D4E-4A69-86E6-738FF990033C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9276A572-9D4E-4A69-86E6-738FF990033C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9276A572-9D4E-4A69-86E6-738FF990033C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE05FFE0-268E-4BC4-8D05-8C68B9FE12D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE05FFE0-268E-4BC4-8D05-8C68B9FE12D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE05FFE0-268E-4BC4-8D05-8C68B9FE12D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE05FFE0-268E-4BC4-8D05-8C68B9FE12D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D41BC2BB-2503-4F17-B7AD-E928ECD8AE1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D41BC2BB-2503-4F17-B7AD-E928ECD8AE1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D41BC2BB-2503-4F17-B7AD-E928ECD8AE1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D41BC2BB-2503-4F17-B7AD-E928ECD8AE1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

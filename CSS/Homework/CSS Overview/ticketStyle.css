@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+	padding: 0;
+	border: 0;
+    font-family: "Courier New", "Lucida Console", monospace;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+    background-color: #595959;
+    width: 400px;
+}
+td {
+    padding-bottom: 10px;
+    padding-left: 1px;
+}
+
+#ticketHeading {
+    padding-top: 7px;
+    color: lightgray;
+    font-size: 17px;
+}
+
+.leftColumn {
+    color: #fff;
+    font-style: italic;
+    font-size: 13px;
+    column-width: 80px;
+}
+
+.circle:before {
+    content: ' \25CF';
+    font-size: 18px;
+    margin-right: 5px;
+    color: #71B47A;
+}
+
+.personalInfo {
+    color: #FAF298;
+    font-size: 13px;
+}
+
+.isActive {
+    color: red;
+    font-size: 12px;
+}
+
+.supportInfo{
+    color: darkgrey;
+    font-size: 13px;
+}
+
+td.personalInfo > a {
+    text-decoration: none;
+    color: #FAF298;
+    font-size: 13px;
+}
+
+.answerStatus{
+    color: coral;
+}
+

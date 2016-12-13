@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Grid Component</title>
+        <link rel="stylesheet" href="madCssSkills.css">
+    </head>
+    <body>
+        <form action="#" method="GET">
+            <table class="tBorder">
+                <tbody>
+                    <tr>
+                        <td colspan="6" class="header">
+                            Drag a colmn header and drop it here to group by that column
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            ProductID
+                        </th>
+                        <th class="productName">
+                            Product Name
+                        </th>
+                        <th class="unitPrice">
+                            Unit Price
+                        </th>   
+                        <th class="unitPrice">
+                            Quantity per unit
+                        </th>
+                        <th class="unitPrice">
+                            Units in stock
+                        </th>
+                        <th class="borderBtm">
+                            Discontinued
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="filters">
+                            <input type="number" class="firstInput">
+                        </td>
+                        <td class="filters">
+                            <input type="text">
+                        </td>
+                        <td class="filters">
+                            <div id="textButton">
+                            <input type="text" class="unitField">
+                            <input type="image" value="filter" src="filter.png" width="15px" height="15px" class="filter">
+                            </div>
+                        </td>
+                        <td class="filters">
+                            <input type="text" class="quantityInput">
+                        </td>
+                        <td class="filters">
+                            <div id="textButton">
+                            <input type="number" class="unitField">
+                            <input type="image" value="filter" src="filter.png" width="15px" height="15px" class="filter">
+                            </div>
+                        </td>
+                        <td class="filterLast">
+                            <div id="textButton">
+                            <input type="checkbox" name="something name" value="value 1">
+                            <input type="image" value="filter" src="filter.png" width="15x" height="15px" class="filter">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Chai
+                        </td>
+                        <td>
+                            $18.00
+                        </td>
+                        <td>
+                            10 boxes X 20 bags
+                        </td>
+                        <td>
+                            39
+                        </td>
+                        <td class="borderBtm">
+                            <input type="checkbox" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            Chang
+                        </td>
+                        <td>
+                            $19.00
+                        </td>
+                        <td>
+                            24 - 12 oz bottles
+                        </td>
+                        <td>
+                            17
+                        </td>
+                        <td class="borderBtm">
+                            <input type="checkbox" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            Aniseed Syrup
+                        </td>
+                        <td>
+                            $10.00
+                        </td>
+                        <td>
+                            12 - 550 ml bottles
+                        </td>
+                        <td>
+                            13
+                        </td>
+                        <td class="borderBtm">
+                            <input type="checkbox" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            4
+                        </td>
+                        <td>
+                            Chef Anton's Cajun Seasoning
+                        </td>
+                        <td>
+                            $22.00
+                        </td>
+                        <td>
+                            48 - 6 oz jars
+                        </td>
+                        <td>
+                            53
+                        </td>
+                        <td class="borderBtm">
+                            <input type="checkbox" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            5
+                        </td>
+                        <td>
+                            Chef Anton's Gumbo Mix
+                        </td>
+                        <td>
+                            $21.35
+                        </td>
+                        <td>
+                            36 boxes
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td class="borderBtm">
+                            <input type="checkbox" disabled="disabled" checked="checked">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            6
+                        </td>
+                        <td>
+                            Grandma's Boysenberry Spread
+                        </td>
+                        <td>
+                            $25.00
+                        </td>
+                        <td>
+                            12 - 8 oz jars
+                        </td>
+                        <td>
+                            120
+                        </td>
+                        <td class="borderBtm">
+                            <input type="checkbox" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            7
+                        </td>
+                        <td>
+                            Uncle Bob's Organic Dried Pears
+                        </td>
+                        <td>
+                            $30.00
+                        </td>
+                        <td>
+                            12 - 1 lb pkgs.
+                        </td>
+                        <td>
+                            15
+                        </td>
+                        <td class="borderBtm">
+                            <input type="checkbox" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            8
+                        </td>
+                        <td>
+                            Northwoods Cranberry Sauce
+                        </td>
+                        <td>
+                            $40.00
+                        </td>
+                        <td>
+                            12 - 12 oz jars
+                        </td>
+                        <td>
+                            6
+                        </td>
+                        <td class="borderBtm">
+                            <input type="checkbox" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            9
+                        </td>
+                        <td>
+                            Mishi Kobe Niku
+                        </td>
+                        <td>
+                            $97.00
+                        </td>
+                        <td>
+                            18 - 500 g pkgs.
+                        </td>
+                        <td>
+                            29
+                        </td>
+                        <td class="borderBtm">
+                            <input type="checkbox" disabled="disabled" checked="checked">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            10
+                        </td>
+                        <td>
+                            Ikura
+                        </td>
+                        <td>
+                            $31.00
+                        </td>
+                        <td>
+                            12 - 200 ml jars
+                        </td>
+                        <td>
+                            31
+                        </td>
+                        <td class="borderBtm">
+                            <input type="checkbox" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="noborderBottom">
+                            <table>
+                                <tbody>
+                                    <tr id="textButton">
+                                        <td class="noborderBottom">
+                                            <input type="image" value="first" src="first-icon.png" width="20px" height="20px" class="filter">
+                                            <input type="image" value="previous" src="previous-icon.png" width="20px" height="20px" class="filter">
+                                        </td>
+                                        <td class="firstFooter">
+                                            <a href="#">1</a>
+                                        </td>
+                                        <td class="noborderBottom">
+                                            <a href="#">2</a>
+                                        </td>
+                                        <td class="noborderBottom">
+                                            <a href="#">3</a>
+                                        </td>
+                                        <td class="noborderBottom">
+                                            <a href="#">4</a>
+                                        </td>
+                                        <td class="noborderBottom">
+                                            <a href="#">5</a>
+                                        </td>
+                                        <td class="noborderBottom">
+                                            <a href="#">6</a>
+                                        </td>
+                                        <td class="noborderBottom">
+                                            <a href="#">7</a>
+                                        </td>
+                                        <td class="noborderBottom">
+                                            <a href="#">8</a>
+                                        </td>
+                                        <td class="noborderBottom">
+                                            <a href="#">9</a>
+                                        </td>
+                                        <td class="noborderBottom">
+                                            ... 
+                                        </td>
+                                        <td class="noborderBottom">
+                                            <a href="#">10</a>
+                                        </td>
+                                        <td class="noborderBottom">
+                                            <input type="image" value="next" src="next-icon.png" width="20px" height="20px" class="filter">
+                                            <input type="image" value="last" src="last-icon.png" width="20px" height="20px" class="filter">
+                                        </td>
+                                        <td align="right" class="noborderBottom">
+                                            Page size:
+                                        </td>
+                                        <td class="noborderBottom">
+                                            <select name="pageSize">
+                                                <option value="1">10</option>
+                                                <option value="2">20</option>
+                                                <option value="3">30</option>
+                                                <option value="4">40</option>
+                                            </select>
+                                        </td>
+                                        <td align="right" class="lastNoborderBottom">
+                                            335104 items in 33511 pages
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </body>
+</html>

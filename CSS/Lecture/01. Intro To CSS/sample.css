@@ -1,0 +1,8 @@
+div > p {
+    background-color: greenyellow;
+    color: blue
+}
+
+div p { /* (nesting) vzemi vsqko p koeto e v nqkakuv div */
+    font-weight: bold;
+}

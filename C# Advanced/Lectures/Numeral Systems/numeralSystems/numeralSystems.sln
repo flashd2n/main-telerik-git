@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lectureIntro", "lectureIntro\lectureIntro.csproj", "{AD975BA2-944A-42A1-BA1B-39262CF0006B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fromDecimal", "fromDecimal\fromDecimal.csproj", "{964496DB-A70D-40FE-9717-CFDC592BD42E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD975BA2-944A-42A1-BA1B-39262CF0006B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD975BA2-944A-42A1-BA1B-39262CF0006B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD975BA2-944A-42A1-BA1B-39262CF0006B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD975BA2-944A-42A1-BA1B-39262CF0006B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{964496DB-A70D-40FE-9717-CFDC592BD42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964496DB-A70D-40FE-9717-CFDC592BD42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964496DB-A70D-40FE-9717-CFDC592BD42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964496DB-A70D-40FE-9717-CFDC592BD42E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,21 @@
+* {
+    margin: 0px;
+}
+
+p {
+    font-family: Consolas, Edwardian Script ITC;
+    color: #0094ff;
+    width: 1000px;
+    margin-left: 10px;
+    word-break: keep-all;
+    
+}
+
+.one {
+    font-weight: bold;
+}
+
+.bigL {
+    font-family: Edwardian Script ITC;
+    font-size: 40px;
+}

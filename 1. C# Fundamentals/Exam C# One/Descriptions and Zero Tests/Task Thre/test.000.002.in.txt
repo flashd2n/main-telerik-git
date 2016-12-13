@@ -1,0 +1,6 @@
+0
+1
+oh no!
+end
+0
+some other text that should be ignored

@@ -1,0 +1,22 @@
+ul{
+    list-style: none;
+}
+
+ul > li > ul {
+    color: darkgrey;
+    padding-left: 10px;
+    display: none;
+    text-decoration: none;
+}
+
+ul li:hover ul {
+    display: block;
+}
+
+span:hover {
+    text-decoration: underline;
+}
+
+ul > li > ul > li {
+    text-decoration: none;
+}

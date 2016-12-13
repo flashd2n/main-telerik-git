@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "decodeDecrypt", "decodeDecrypt\decodeDecrypt.csproj", "{CD85A9F1-9717-4E61-B3D9-50ADADD4BBDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "newDecr", "newDecr\newDecr.csproj", "{5D8C6476-E5AD-4CFA-8856-2F595F200CC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "taskTwo", "..\..\..\Training\stringsAndText\exercises\stringsEx\taskTwo\taskTwo.csproj", "{26066019-5882-4536-A55C-159F2ED6FD8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD85A9F1-9717-4E61-B3D9-50ADADD4BBDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD85A9F1-9717-4E61-B3D9-50ADADD4BBDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD85A9F1-9717-4E61-B3D9-50ADADD4BBDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD85A9F1-9717-4E61-B3D9-50ADADD4BBDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D8C6476-E5AD-4CFA-8856-2F595F200CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D8C6476-E5AD-4CFA-8856-2F595F200CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D8C6476-E5AD-4CFA-8856-2F595F200CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D8C6476-E5AD-4CFA-8856-2F595F200CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26066019-5882-4536-A55C-159F2ED6FD8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26066019-5882-4536-A55C-159F2ED6FD8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26066019-5882-4536-A55C-159F2ED6FD8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26066019-5882-4536-A55C-159F2ED6FD8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

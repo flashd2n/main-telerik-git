@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "taskSix", "taskSix\taskSix.csproj", "{0D5D9AEB-0A98-4F27-B4AB-132991744884}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "findLongestIncSubSeqMatrix", "findLongestIncSubSeqMatrix\findLongestIncSubSeqMatrix.csproj", "{9946F0B5-9C47-4BFD-A716-B34751F3032A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "taskFourteen", "taskSeven\taskFourteen.csproj", "{979B9285-F5EE-4854-A678-D22F9AEF5617}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D5D9AEB-0A98-4F27-B4AB-132991744884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5D9AEB-0A98-4F27-B4AB-132991744884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5D9AEB-0A98-4F27-B4AB-132991744884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5D9AEB-0A98-4F27-B4AB-132991744884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9946F0B5-9C47-4BFD-A716-B34751F3032A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9946F0B5-9C47-4BFD-A716-B34751F3032A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9946F0B5-9C47-4BFD-A716-B34751F3032A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9946F0B5-9C47-4BFD-A716-B34751F3032A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{979B9285-F5EE-4854-A678-D22F9AEF5617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{979B9285-F5EE-4854-A678-D22F9AEF5617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{979B9285-F5EE-4854-A678-D22F9AEF5617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{979B9285-F5EE-4854-A678-D22F9AEF5617}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
