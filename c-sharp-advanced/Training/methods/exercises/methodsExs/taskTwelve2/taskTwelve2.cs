@@ -8,19 +8,21 @@ namespace taskTwelve2
         static void Main()
         {
             string input = Console.ReadLine();
-            string expression = GetExpression(input);
+            var inputTrasform = input.Split(' ');
+            string workInput = string.Join("", inputTrasform);
+            string expression = GetExpression(workInput);
             List<string> elementsExpression = GetElements(expression);
             int highestPower = GetHighestPower(elementsExpression);
-            List<int> coefficients = PrepareList(highestPower);
+            List<double> coefficients = PrepareList(highestPower);
             coefficients = GetCoefficients(coefficients, elementsExpression);
             string result = CalculateResult(coefficients);
             Console.WriteLine(result);
         }
 
-        static string CalculateResult(List<int> coefficients)
+        static string CalculateResult(List<double> coefficients)
         {
             var tempResult = new List<string>();
-            int transform = 0;
+            double transform = 0;
             string build = null;
 
             for (int i = (coefficients.Count - 1); i >= 0; i--)
@@ -47,7 +49,7 @@ namespace taskTwelve2
                         }
                         else
                         {
-                            transform = coefficients[i] * (-1);
+                            transform = coefficients[i] * (-1D);
                             build = "- " + transform;
                             tempResult.Add(build);
                         }
@@ -64,6 +66,12 @@ namespace taskTwelve2
                     if (tempResult.Count == 0)
                     {
                         build = coefficients[i] + "x";
+
+                        if (coefficients[i] == 1)
+                        {
+                            build = "x";
+                        }
+
                         tempResult.Add(build);
                     }
                     else
@@ -75,7 +83,7 @@ namespace taskTwelve2
                         }
                         else
                         {
-                            transform = coefficients[i] * (-1);
+                            transform = coefficients[i] * (-1D);
                             build = "- " + transform + "x";
                             tempResult.Add(build);
                         }
@@ -96,7 +104,7 @@ namespace taskTwelve2
                     }
                     else
                     {
-                        transform = coefficients[i] * (-1);
+                        transform = coefficients[i] * (-1D);
                         build = "- " + transform + "x^" + i;
                         tempResult.Add(build);
                     }
@@ -123,11 +131,11 @@ namespace taskTwelve2
 
         }
 
-        static List<int> GetCoefficients(List<int> coefficients, List<string> elementsExpression)
+        static List<double> GetCoefficients(List<double> coefficients, List<string> elementsExpression)
         {
-            int coef = 0;
+            double coef = 0;
             int power = 0;
-             
+
             for (int i = 0; i < elementsExpression.Count; i++)
             {
                 coef = GetCoef(elementsExpression[i]);
@@ -140,7 +148,7 @@ namespace taskTwelve2
                 {
                     power = 0;
                 }
-                coefficients[power] += coef; 
+                coefficients[power] += coef;
 
 
             }
@@ -149,10 +157,10 @@ namespace taskTwelve2
 
         }
 
-        static int GetCoef(string expressionElement)
+        static double GetCoef(string expressionElement)
         {
             string counterString = null;
-            int count = 1;
+            double count = 1;
             if (expressionElement.IndexOf('x') == 0)
             {
                 return count;
@@ -169,11 +177,11 @@ namespace taskTwelve2
                     counterString = "-1";
                 }
 
-                count = int.Parse(counterString);
+                count = double.Parse(counterString);
             }
             else
             {
-                count = int.Parse(expressionElement);
+                count = double.Parse(expressionElement);
             }
 
             return count;
@@ -181,9 +189,9 @@ namespace taskTwelve2
 
 
 
-        static List<int> PrepareList(int highestPower)
+        static List<double> PrepareList(int highestPower)
         {
-            var coefficients = new List<int>();
+            var coefficients = new List<double>();
             for (int i = 0; i <= highestPower; i++)
             {
                 coefficients.Add(0);
@@ -194,7 +202,7 @@ namespace taskTwelve2
 
         static int GetHighestPower(List<string> elementsExpression)
         {
-            int highestPower = int.MinValue;
+            int highestPower = 0;
             int powerX = 1;
 
             for (int i = 0; i < elementsExpression.Count; i++)
@@ -275,7 +283,15 @@ namespace taskTwelve2
 
             if (indexOpenBrackets != 0)
             {
-                temp = input.Substring(0, indexOpenBrackets);
+                if (indexOpenBrackets == -1)
+                {
+                    temp = input;
+                }
+                else
+                {
+                    temp = input.Substring(0, indexOpenBrackets);
+                }
+
                 temp = temp.TrimEnd();
                 if (temp[temp.Length - 1] == '+')
                 {
@@ -285,7 +301,14 @@ namespace taskTwelve2
                 {
                     isNegative = true;
                 }
-                temp = temp.Remove(temp.Length - 2, 2);
+                if (indexOpenBrackets != -1)
+                {
+                    temp = temp.Remove(temp.Length - 1);
+                }
+
+
+
+                temp = SpaceOut(temp);
 
                 if (temp[0] == '-')
                 {
@@ -303,7 +326,7 @@ namespace taskTwelve2
             while (indexOpenBrackets != -1)
             {
                 temp = input.Substring(indexOpenBrackets + 1, (indexCloseBrackets - 1) - indexOpenBrackets);
-
+                temp = SpaceOut(temp);
                 if (isNegative)
                 {
                     temp = ReverseSign(temp);
@@ -340,6 +363,32 @@ namespace taskTwelve2
             }
             string result = string.Join(" ", expression);
             return result;
+        }
+
+        static string SpaceOut(string temp)
+        {
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if (i == 0)
+                {
+                    continue;
+                }
+                if (temp[i] == '+')
+                {
+                    temp = temp.Insert(i, " ");
+                    temp = temp.Insert(i + 2, " ");
+                    i += 3;
+                }
+
+                if (temp[i] == '-')
+                {
+                    temp = temp.Insert(i, " ");
+                    temp = temp.Insert(i + 2, " ");
+                    i += 3;
+                }
+            }
+            return temp;
+
         }
 
         static string ReverseSign(string temp)
