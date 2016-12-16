@@ -286,6 +286,17 @@ namespace taskTwelve2
                     isNegative = true;
                 }
                 temp = temp.Remove(temp.Length - 2, 2);
+
+                if (temp[0] == '-')
+                {
+                    temp = temp.Remove(0, 1);
+                    temp = "- " + temp;
+                }
+                else
+                {
+                    temp = "+ " + temp;
+                }
+
                 expression.Add(temp);
             }
 
