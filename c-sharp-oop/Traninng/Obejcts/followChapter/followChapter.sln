@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sysRng", "sysRng\sysRng.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{FF53FAE8-91E2-4AD1-AC15-2B2BAC4CA3AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "namespaces", "namespaces\namespaces.csproj", "{75F2F8E2-33A8-47C5-8BEF-380567C448B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{FF53FAE8-91E2-4AD1-AC15-2B2BAC4CA3AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF53FAE8-91E2-4AD1-AC15-2B2BAC4CA3AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF53FAE8-91E2-4AD1-AC15-2B2BAC4CA3AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75F2F8E2-33A8-47C5-8BEF-380567C448B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75F2F8E2-33A8-47C5-8BEF-380567C448B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F2F8E2-33A8-47C5-8BEF-380567C448B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75F2F8E2-33A8-47C5-8BEF-380567C448B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

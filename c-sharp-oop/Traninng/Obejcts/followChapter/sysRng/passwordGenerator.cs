@@ -50,7 +50,25 @@ namespace sysRng
 
             // populate 0-7 random chars
 
+            int length = rnd.Next(8);
+            for (int i = 0; i < length; i++)
+            {
+                character = GenerateChar(allChars);
+                InsertAtRandomPosition(password, character);
+            }
+
             Console.WriteLine(password);
+
+            string end = Console.ReadLine();
+
+            if (end == "end")
+            {
+
+            }
+            else
+            {
+                Main();
+            }
         }
 
         private static void InsertAtRandomPosition(StringBuilder password, char character)
