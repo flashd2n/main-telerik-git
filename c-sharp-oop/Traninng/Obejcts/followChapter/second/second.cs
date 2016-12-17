@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace init
+namespace second
 {
-    class init
+    class second
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            var firstCat = new Cat();
-            firstCat.Name = "Tony";
-            firstCat.SayMiau();
 
-            var secondCat = new Cat("Pepi", "red");
-            secondCat.SayMiau();
+            var myCat = new Cat();
+            myCat.Name = "Alfred";
 
-            Console.WriteLine($"Cat {secondCat.Name} is {secondCat.Color}");
-            
+            // access to property
+            Console.WriteLine($"My cat's name is {myCat.Name}");
+            // calling methods
+            myCat.SayMiau();
+
         }
     }
 
@@ -77,5 +77,4 @@ namespace init
             Console.WriteLine($"Cat {name} said: Miauuuuu!");
         }
     }
-
 }

@@ -4,21 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace init
+namespace third
 {
-    class init
+    class third
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            var firstCat = new Cat();
-            firstCat.Name = "Tony";
-            firstCat.SayMiau();
-
-            var secondCat = new Cat("Pepi", "red");
-            secondCat.SayMiau();
-
-            Console.WriteLine($"Cat {secondCat.Name} is {secondCat.Color}");
-            
+            var undefinedCat = new Cat();
+            var catOne = new Cat("Johnny", "brown");
+            undefinedCat.SayMiau();
+            catOne.SayMiau();
         }
     }
 
@@ -77,5 +72,4 @@ namespace init
             Console.WriteLine($"Cat {name} said: Miauuuuu!");
         }
     }
-
 }
