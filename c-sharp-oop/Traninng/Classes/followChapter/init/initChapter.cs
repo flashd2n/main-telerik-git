@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace taskNine
+namespace init
 {
-    class taskNine
+    class initChapter
     {
         static void Main()
         {
-            
+
+
+
         }
     }
 }

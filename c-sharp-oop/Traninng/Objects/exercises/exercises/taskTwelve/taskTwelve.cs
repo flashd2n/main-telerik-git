@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
-namespace taskNine
+namespace taskTwelve
 {
-    class taskNine
+    class taskTwelve
     {
         static void Main()
         {
-            
+            string input = Console.ReadLine();
+
+
+
+
         }
     }
 }
