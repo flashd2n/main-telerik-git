@@ -10,6 +10,7 @@ namespace init
     {
         static void Main()
         {
+            //Class1.Execute();
             string firstDogName = null;
             Console.WriteLine("Enter first dog name:");
             firstDogName = Console.ReadLine();
@@ -30,10 +31,13 @@ namespace init
                 dog.Bark();
             }
 
+            
+
         }
+
     }
 
-    public class Dog
+    class Dog
     {
         //Field declaration
         private string name;
