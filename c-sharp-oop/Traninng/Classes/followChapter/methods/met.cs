@@ -23,7 +23,9 @@ namespace methods
             Console.WriteLine(testTwo.GetAge());
             test.PrintAge();
             testTwo.PrintAge();
+            
         }
+        
 
         public int GetAge()
         {
