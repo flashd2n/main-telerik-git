@@ -30,5 +30,7 @@ namespace properties
             get { return coordinates[1]; }
             set { coordinates[1] = value; }
         }
+
+        
     }
 }

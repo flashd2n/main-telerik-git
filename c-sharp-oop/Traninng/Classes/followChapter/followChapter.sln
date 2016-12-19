@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReusingConstructors", "reus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "properties", "properties\properties.csproj", "{6B6C7CEB-A8A2-4553-85BD-A13E792DCA50}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Static", "Static\Static.csproj", "{40099FBA-F476-44D7-8CEF-C00E0CE7876E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticConstructors", "StaticConstructors\StaticConstructors.csproj", "{C5C45206-781C-421A-9322-DCD4820CCA8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{6B6C7CEB-A8A2-4553-85BD-A13E792DCA50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B6C7CEB-A8A2-4553-85BD-A13E792DCA50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B6C7CEB-A8A2-4553-85BD-A13E792DCA50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40099FBA-F476-44D7-8CEF-C00E0CE7876E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40099FBA-F476-44D7-8CEF-C00E0CE7876E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40099FBA-F476-44D7-8CEF-C00E0CE7876E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40099FBA-F476-44D7-8CEF-C00E0CE7876E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5C45206-781C-421A-9322-DCD4820CCA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C45206-781C-421A-9322-DCD4820CCA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C45206-781C-421A-9322-DCD4820CCA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C45206-781C-421A-9322-DCD4820CCA8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
