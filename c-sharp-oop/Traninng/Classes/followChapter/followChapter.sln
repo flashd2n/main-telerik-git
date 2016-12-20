@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Static", "Static\Static.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticConstructors", "StaticConstructors\StaticConstructors.csproj", "{C5C45206-781C-421A-9322-DCD4820CCA8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Structures", "Structures\Structures.csproj", "{0C7FC8AE-39D7-4315-8B80-9245958B4647}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enumerations", "Enumerations\Enumerations.csproj", "{49176336-25EB-47D4-804C-E806156E9B16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,14 @@ Global
 		{C5C45206-781C-421A-9322-DCD4820CCA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5C45206-781C-421A-9322-DCD4820CCA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5C45206-781C-421A-9322-DCD4820CCA8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C7FC8AE-39D7-4315-8B80-9245958B4647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C7FC8AE-39D7-4315-8B80-9245958B4647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C7FC8AE-39D7-4315-8B80-9245958B4647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C7FC8AE-39D7-4315-8B80-9245958B4647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49176336-25EB-47D4-804C-E806156E9B16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49176336-25EB-47D4-804C-E806156E9B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49176336-25EB-47D4-804C-E806156E9B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49176336-25EB-47D4-804C-E806156E9B16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
