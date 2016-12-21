@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DefiningClasses
 {
     class GSM
     {
+        // Fields
+
         private string model;
         private string manufacturer;
         private decimal price;
@@ -15,6 +14,10 @@ namespace DefiningClasses
         private Battery battery;
         private Display display;
         private static GSM iphone4S = new GSM("IPhone4S", "Apple", 1000, "Some Douche", new Battery("some battery model", 6.5, 2.5, BatteryType.LiIon), new Display(4.5, 16000000));
+        private List<Call> callHistory = new List<Call>();
+        private const decimal callprice = 0.37M;
+
+        // Properties
 
         public string Model
         {
@@ -46,6 +49,11 @@ namespace DefiningClasses
             }
             set
             {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Invalid Argument: Price cannot be a negative number.");
+                }
+
                 this.price = value;
             }
         }
@@ -89,9 +97,19 @@ namespace DefiningClasses
                 return iphone4S;
             }
         }
-        
+        public List<Call> CallHistory
+        {
+            get
+            {
+                return this.callHistory;
+            }
+            set
+            {
+                this.callHistory = value;
+            }
+        }
 
-
+        // Constructors
 
         public GSM(string model, string manufacturer) : this (model, manufacturer, 0.0M)
         {
@@ -119,9 +137,33 @@ namespace DefiningClasses
             this.Display = display;
         }
 
+        // Methods
+
         public void ShowInfo()
         {
-            Console.WriteLine($"MODEL: {this.Model}\nMANUFACTURER: {this.Manufacturer}\nPRICE: {this.Price}\nOWNER: {this.Owner}\nBATTERY: model -> {this.Battery.Model}; hours idle -> {this.Battery.HoursIdle}; hours talk -> {this.Battery.HoursTalk}\nDISPLAY: size -> {this.Display.Size}; number of colors -> {this.Display.ColorsCount}");
+            Console.WriteLine($"MODEL: {this.Model}\nMANUFACTURER: {this.Manufacturer}\nPRICE: {this.Price}\nOWNER: {this.Owner}\nBATTERY: model -> {this.Battery.Model}; hours idle -> {this.Battery.HoursIdle}; hours talk -> {this.Battery.HoursTalk}; battery type -> {this.Battery.BatteryType}\nDISPLAY: size -> {this.Display.Size}; number of colors -> {this.Display.ColorsCount}");
+        }
+        public void AddCall(DateTime dateAndtime, int duration, string dialledNumber)
+        {
+            this.CallHistory.Add(new Call(dateAndtime, duration, dialledNumber));
+        }
+        public void DeleteCall(int callIndex)
+        {
+            this.CallHistory.RemoveAt(callIndex);
+        }
+        public void ClearHistory()
+        {
+            this.CallHistory.Clear();
+        }
+        public decimal CalculateCallsPrice()
+        {
+            int totalSeconds = 0;
+            for (int i = 0; i < CallHistory.Count; i++)
+            {
+                totalSeconds += CallHistory[i].Duration;
+            }
+            decimal price = (totalSeconds / 60M) * callprice;
+            return price;
         }
     }
 }

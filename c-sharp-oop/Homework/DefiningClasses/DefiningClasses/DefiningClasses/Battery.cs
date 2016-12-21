@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DefiningClasses
 {
     class Battery
     {
+        // Fields
+
         private string model;
         private double hoursIdle;
         private double hoursTalk;
         private BatteryType batteryType;
+
+        // Properties
 
         public string Model
         {
@@ -25,7 +25,6 @@ namespace DefiningClasses
                 this.model = value;
             }
         }
-
         public double HoursIdle
         {
             get
@@ -35,10 +34,14 @@ namespace DefiningClasses
 
             set
             {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Invalid argument: Hours Idle must be a positive number");
+                }
+
                 this.hoursIdle = value;
             }
         }
-
         public double HoursTalk
         {
             get
@@ -48,10 +51,14 @@ namespace DefiningClasses
 
             set
             {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Invalid argument: Hours Talk must be a positive number");
+                }
+
                 this.hoursTalk = value;
             }
         }
-
         public BatteryType BatteryType
         {
             get
@@ -64,10 +71,11 @@ namespace DefiningClasses
             }
         }
 
+        // Constructors
+
         public Battery(string model, double hoursIdle, double hoursTalk) : this (model, hoursIdle, hoursTalk, new BatteryType())
         {
         }
-
         public Battery(string model, double hoursIdle, double hoursTalk, BatteryType batteryType)
         {
             this.Model = model;
