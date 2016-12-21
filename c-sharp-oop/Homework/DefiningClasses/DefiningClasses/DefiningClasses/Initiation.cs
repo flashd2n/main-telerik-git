@@ -17,7 +17,12 @@ namespace DefiningClasses
 
             myPhone.ShowInfo();
 
+            Console.WriteLine("======");
 
+            GSM.IPhone4S.ShowInfo();
+            Console.WriteLine("======");
+
+            Console.WriteLine($"{GSM.IPhone4S.Manufacturer}, {GSM.IPhone4S.Display.Size}, {GSM.IPhone4S.Battery.BatteryType}");
         }
     }
 }

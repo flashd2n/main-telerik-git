@@ -14,6 +14,7 @@ namespace DefiningClasses
         private string owner;
         private Battery battery;
         private Display display;
+        private static GSM iphone4S = new GSM("IPhone4S", "Apple", 1000, "Some Douche", new Battery("some battery model", 6.5, 2.5, BatteryType.LiIon), new Display(4.5, 16000000));
 
         public string Model
         {
@@ -81,6 +82,16 @@ namespace DefiningClasses
                 this.display = value;
             }
         }
+        public static GSM IPhone4S
+        {
+            get
+            {
+                return iphone4S;
+            }
+        }
+        
+
+
 
         public GSM(string model, string manufacturer) : this (model, manufacturer, 0.0M)
         {
