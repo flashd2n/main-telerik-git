@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Structures", "Structures\St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enumerations", "Enumerations\Enumerations.csproj", "{49176336-25EB-47D4-804C-E806156E9B16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnerClasses", "InnerClasses\InnerClasses.csproj", "{A46C3452-11C4-4099-B62F-4F4A5568CD79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{49176336-25EB-47D4-804C-E806156E9B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49176336-25EB-47D4-804C-E806156E9B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49176336-25EB-47D4-804C-E806156E9B16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A46C3452-11C4-4099-B62F-4F4A5568CD79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46C3452-11C4-4099-B62F-4F4A5568CD79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A46C3452-11C4-4099-B62F-4F4A5568CD79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A46C3452-11C4-4099-B62F-4F4A5568CD79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
