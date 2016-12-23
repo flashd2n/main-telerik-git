@@ -34,14 +34,14 @@ namespace InnerClasses
 
         }
 
-        static void Main()
-        {
-            var outerClass = new Program("Kalin");
-            var nestedClass = new Program.NestedClass(outerClass, "Gosho");
-            nestedClass.PrintNames();
+        //static void Main()
+        //{
+        //    var outerClass = new Program("Kalin");
+        //    var nestedClass = new Program.NestedClass(outerClass, "Gosho");
+        //    nestedClass.PrintNames();
 
 
-        }
+        //}
 
 
     }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A46C3452-11C4-4099-B62F-4F4A5568CD79}</ProjectGuid>
+    <ProjectGuid>{9BF6BAF2-BC69-4DEA-9A3B-E3A7D6ECC0E0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InnerClasses</RootNamespace>
-    <AssemblyName>InnerClasses</AssemblyName>
+    <RootNamespace>ModifiedShelter</RootNamespace>
+    <AssemblyName>ModifiedShelter</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Coffee.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="AnimalShelter.cs" />
+    <Compile Include="Cat.cs" />
+    <Compile Include="Dog.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
