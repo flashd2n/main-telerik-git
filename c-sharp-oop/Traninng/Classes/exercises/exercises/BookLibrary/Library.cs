@@ -9,12 +9,12 @@ namespace BookLibrary
     class Library
     {
         private string name;
-        private List<Book> collection;
+        private List<Book> collection = new List<Book>();
+        private static int usedSpaces;
         
         public Library(string name)
         {
             this.Name = name;
-            List<Book> collection = new List<Book>();
         }
 
         public string Name
@@ -34,26 +34,23 @@ namespace BookLibrary
             {
                 return this.collection;
             }
-
-            private set
-            {
-                this.collection = value;
-            }
         }
 
         public void AddToLibrary(Book book)
         {
             this.collection.Add(book);
+            ++usedSpaces;
         }
 
         public void RemoveFromLibrary(int index)
         {
-            Collection[index] = null;
+            
             for (int i = index; i < Collection.Count - 1; i++)
             {
-                Collection[i] = Collection[i + 1];
+                collection[i] = collection[i + 1];
             }
-
+            collection[Collection.Count - 1] = null;
+            --usedSpaces;
         }
 
         public Book SearchAuthor(string author)
@@ -61,17 +58,17 @@ namespace BookLibrary
             var foundBook = new Book();
             for (int i = 0; i < collection.Count; i++)
             {
-                if (author == Collection[i].Author)
+                if (author == collection[i].Author)
                 {
-                    foundBook = Collection[i];
+                    foundBook = collection[i];
                 }
             }
             return foundBook;
         }
 
-        public void DisplayInfoBook(Book book)
+        public void DisplayInfoBook(int index)
         {
-            Console.WriteLine($"Title: {book.Title}\nAuthor: {book.Author}\nPublisher: {book.Publisher}\nRelease Date: {book.ReleaseDate}\nISBN: {book.ISBN}");
+            Console.WriteLine($"Title: {collection[index].Title}\nAuthor: {collection[index].Author}\nPublisher: {collection[index].Publisher}\nRelease Date: {collection[index].ReleaseDate}\nISBN: {collection[index].ISBN}");
         }
 
     }
