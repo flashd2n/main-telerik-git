@@ -35,7 +35,6 @@ namespace School
             myClass.PrintInfo();
 
 
-
         }
     }
 }
