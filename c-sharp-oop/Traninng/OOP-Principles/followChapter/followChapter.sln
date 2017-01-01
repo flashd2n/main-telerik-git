@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "followChapter", "followChap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inheritance", "Inheritance\Inheritance.csproj", "{69B43B9C-9747-4B25-B634-9997C16B3A2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpCastingDownCasting", "UpCastingDownCasting\UpCastingDownCasting.csproj", "{AC826F7A-FED4-4EC3-B9CC-39AC18B16AB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{69B43B9C-9747-4B25-B634-9997C16B3A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69B43B9C-9747-4B25-B634-9997C16B3A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69B43B9C-9747-4B25-B634-9997C16B3A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC826F7A-FED4-4EC3-B9CC-39AC18B16AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC826F7A-FED4-4EC3-B9CC-39AC18B16AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC826F7A-FED4-4EC3-B9CC-39AC18B16AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC826F7A-FED4-4EC3-B9CC-39AC18B16AB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
