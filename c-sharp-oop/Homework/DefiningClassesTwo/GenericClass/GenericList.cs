@@ -10,8 +10,18 @@ namespace GenericClass
 
         public GenericList(int capacity)
         {
-            this.array = new T[capacity];
-            this.Capacity = capacity;
+            
+
+            if (capacity > 0)
+            {
+                this.array = new T[capacity];
+                this.Capacity = capacity;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("The list's capacity cannot be less than zero");
+            }
+
         }
 
         public int Count
@@ -129,7 +139,8 @@ namespace GenericClass
 
         public override string ToString()
         {
-            return string.Format(", ", this.array);
+            string result = string.Join(", ", this.array);
+            return result;
         }
 
         public T Min()
