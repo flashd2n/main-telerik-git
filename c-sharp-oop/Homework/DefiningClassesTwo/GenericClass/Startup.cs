@@ -2,7 +2,7 @@
 
 namespace GenericClass
 {
-    class Program
+    class Startup
     {
         static void Main()
         {
@@ -20,7 +20,8 @@ namespace GenericClass
             myList.Add(33);
             myList.Add(321);
             Console.WriteLine(myList);
-
+            myList.Clear();
+            Console.WriteLine(myList);
 
         }
     }
