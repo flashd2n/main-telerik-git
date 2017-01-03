@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inheritance", "Inheritance\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpCastingDownCasting", "UpCastingDownCasting\UpCastingDownCasting.csproj", "{AC826F7A-FED4-4EC3-B9CC-39AC18B16AB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{F4979026-51AC-4272-87F2-526E8F3537D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{AC826F7A-FED4-4EC3-B9CC-39AC18B16AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC826F7A-FED4-4EC3-B9CC-39AC18B16AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC826F7A-FED4-4EC3-B9CC-39AC18B16AB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4979026-51AC-4272-87F2-526E8F3537D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4979026-51AC-4272-87F2-526E8F3537D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4979026-51AC-4272-87F2-526E8F3537D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4979026-51AC-4272-87F2-526E8F3537D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,5 +13,13 @@ namespace UpCastingDownCasting
         {
 
         }
+        protected string MakeSound()
+        {
+            return "I made sound";
+        }
+        public void Something()
+        {
+            this.MakeSound();
+        }
     }
 }

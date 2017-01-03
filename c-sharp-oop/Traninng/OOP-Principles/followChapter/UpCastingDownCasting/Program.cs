@@ -25,11 +25,18 @@ namespace UpCastingDownCasting
 
             var animaltwo = new Animal();
             animaltwo.NumberLegs = 3;
-            Lion biglion = (Lion)animaltwo;
+            //Lion biglion = (Lion)animaltwo;  ne stava
+
+            var bigLion = new Lion();
 
             //var africanlion = new AfricanLion("pencho", 3);
 
-            
+            Console.WriteLine(bigLion.GetType().Name);
+            Console.WriteLine(animaltwo.GetType().Name);
+
+            animaltwo = bigLion;
+            Console.WriteLine(bigLion.GetType().Name);
+            Console.WriteLine(animaltwo.GetType().Name);
         }
     }
 }
