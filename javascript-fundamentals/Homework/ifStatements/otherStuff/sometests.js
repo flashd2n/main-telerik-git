@@ -1,0 +1,1 @@
+console.log(Math.trunc(567 / 100));
