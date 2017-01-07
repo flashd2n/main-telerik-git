@@ -8,9 +8,10 @@ namespace Init
 {
     public static class StringExtensions
     {
-        public static int WordCount(this string input)
+        public static int CountWords(this string input)
         {
-            var result = input.Split(new char[] { ' ', ',', '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            var words = input.Split(new char[] { ' ', ',', '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+            int result = words.Length;
             return result;
         }
 

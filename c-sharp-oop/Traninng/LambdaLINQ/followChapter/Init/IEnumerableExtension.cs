@@ -8,22 +8,19 @@ namespace Init
 {
     public static class IEnumerableExtension
     {
-        public static string ToString<T>(this IEnumerable<T> enumeration)
+        public static string ToString<T>(this IEnumerable<T> input)
         {
-            var result = new StringBuilder();
-            result.Append("[");
-            foreach (var item in enumeration)
+            var temp = new StringBuilder();
+            temp.Append("[");
+            foreach (var item in input)
             {
-                result.Append(item.ToString());
-                result.Append(", ");
+                temp.Append(item.ToString());
+                temp.Append(", ");
             }
-            if (result.Length > 1)
-            {
-                result.Remove(result.Length - 2, 2);
-            }
-            result.Append("]");
 
-            return result.ToString();
+            temp.Remove(temp.Length - 2, 2);
+            temp.Append("]");
+            return temp.ToString();
         }
 
     }

@@ -20,8 +20,21 @@ namespace GenericClass
             myList.Add(33);
             myList.Add(321);
             Console.WriteLine(myList);
+
+            Console.WriteLine(myList.Min());
+
             myList.Clear();
             Console.WriteLine(myList);
+
+            Console.WriteLine("==== new test");
+
+
+            var newlist = new GenericList<int>(4);
+            newlist.Add(43);
+            newlist.Add(32);
+            newlist.Add(23);
+            newlist.Add(54);
+            Console.WriteLine(newlist.Min());
 
         }
     }
