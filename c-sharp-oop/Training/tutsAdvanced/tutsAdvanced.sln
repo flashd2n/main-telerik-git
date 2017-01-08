@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegatesTwo", "DelegatesTw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnomMethodsLambda", "AnomMethodsLambda\AnomMethodsLambda.csproj", "{B4F33504-D80B-4E11-87C8-1E496684BA6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "Events\Events.csproj", "{9E16A099-6DB2-4BD4-B8F0-EB3CF24AC395}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionMethods", "ExtensionMethods\ExtensionMethods.csproj", "{573A7AF5-D779-411C-B70E-C857BD1C6AA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{B4F33504-D80B-4E11-87C8-1E496684BA6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4F33504-D80B-4E11-87C8-1E496684BA6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4F33504-D80B-4E11-87C8-1E496684BA6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E16A099-6DB2-4BD4-B8F0-EB3CF24AC395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E16A099-6DB2-4BD4-B8F0-EB3CF24AC395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E16A099-6DB2-4BD4-B8F0-EB3CF24AC395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E16A099-6DB2-4BD4-B8F0-EB3CF24AC395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{573A7AF5-D779-411C-B70E-C857BD1C6AA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{573A7AF5-D779-411C-B70E-C857BD1C6AA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{573A7AF5-D779-411C-B70E-C857BD1C6AA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{573A7AF5-D779-411C-B70E-C857BD1C6AA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
