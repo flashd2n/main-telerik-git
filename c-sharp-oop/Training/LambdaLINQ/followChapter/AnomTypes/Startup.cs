@@ -11,21 +11,10 @@ namespace AnomTypes
         static void Main()
         {
 
-            var myCar = new { brand = "BMW", model = "M3", year = 2006};
-            var myOtherCar = new { brand = "BMW", model = "M5", year = 2006 };
-            Console.WriteLine(myCar.Equals(myOtherCar));
+            var myCar = new { Brand = "Citroen", Model = "C3", Year = 2007, Engine = "1.4 TDI" };
 
-            var array = new[]
-            {
-                new { brand = "BMW", model = "M6", year = 2015},
-                new { brand = "AUDI", model = "RS7", year = 2016},
-                new { brand = "PORSCHE", model = "Panamera Turbo S", year = 2017}
-            };
+            Console.WriteLine(myCar.ToString()/*.IndexOf("Brand")*/);
 
-            foreach (var item in array)
-            {
-                Console.WriteLine(item.model);
-            }
 
         }
     }

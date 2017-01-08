@@ -8,12 +8,14 @@ namespace Init
 {
     public static class IListExtentions
     {
-        public static void IncreaseWith(this IList<int> listInput, int incremention)
+        public static void IncreaseBy<T, K>(this IList<T> input, K increment)
         {
-            for (int i = 0; i < listInput.Count; i++)
+            for (int i = 0; i < input.Count; i++)
             {
-                listInput[i] += incremention;
+                input[i] += (dynamic)increment;
             }
+
+
         }
     }
 }

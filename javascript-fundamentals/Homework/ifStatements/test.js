@@ -1,1 +1,1 @@
-console.log(-1.1 < -0.5);
+console.log(`something ${2 + 3} is not 6`);

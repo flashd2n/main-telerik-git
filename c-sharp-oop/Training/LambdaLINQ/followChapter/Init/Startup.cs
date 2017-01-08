@@ -10,17 +10,24 @@ namespace Init
     {
         static void Main()
         {
-            string testing = "Hello, this is my first extension method!";
-            int count = testing.WordCount();
-            Console.WriteLine(count);
+            string testString = "this is my super, duper! awesome? bugged string";
+            Console.WriteLine(testString.CountWords());
 
-            Console.WriteLine("=====");
 
-            var myList = new List<int>() { 1, 2, 3, 4, 5, 6};
-            myList.IncreaseWith(3);
-            Console.WriteLine(string.Join("-", myList));
+            Console.WriteLine("===next case====");
 
-            Console.WriteLine(myList.ToString<int>());
+            var myList = new List<double>() { 2.3, 3.2, 4.1, 5.3, 6.4 };
+
+            myList.IncreaseBy(5.3);
+
+            Console.WriteLine(string.Join(" - ", myList));
+
+            Console.WriteLine(myList.ToString<double>());
+
+            var myStack = new Stack<int>();
+            myStack.Push(4);
+            Console.WriteLine(myStack.ToString<int>());
+
         }
     }
 }
