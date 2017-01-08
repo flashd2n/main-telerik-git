@@ -1,3 +1,5 @@
+'use strict';
+
 function solve(args){
     let highest = Number.MIN_SAFE_INTEGER;
     
