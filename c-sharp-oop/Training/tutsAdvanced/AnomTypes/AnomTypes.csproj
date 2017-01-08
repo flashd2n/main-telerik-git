@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{573A7AF5-D779-411C-B70E-C857BD1C6AA7}</ProjectGuid>
+    <ProjectGuid>{0B0393A8-47B4-4751-B9E1-AB1D19793695}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExtensionMethods</RootNamespace>
-    <AssemblyName>ExtensionMethods</AssemblyName>
+    <RootNamespace>AnomTypes</RootNamespace>
+    <AssemblyName>AnomTypes</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extentions.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

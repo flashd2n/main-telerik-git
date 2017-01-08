@@ -10,9 +10,10 @@ namespace ExtensionMethods
     {
         static void Main()
         {
+            var person = new Person("gosho", 45);
+            var personTwo = new Person("goshka", 44);
 
-
-
+            person.SayHello(personTwo);
         }
     }
 }
