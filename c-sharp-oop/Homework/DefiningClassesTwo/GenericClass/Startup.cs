@@ -29,12 +29,13 @@ namespace GenericClass
             Console.WriteLine("==== new test");
 
 
-            var newlist = new GenericList<int>(4);
-            newlist.Add(43);
-            newlist.Add(32);
-            newlist.Add(23);
-            newlist.Add(54);
+            var newlist = new GenericList<int>(8);
+            newlist.Add(-43);
+            newlist.Add(-1);
+            newlist.Add(-23);
+            newlist.Print();
             Console.WriteLine(newlist.Min());
+            Console.WriteLine(newlist.Max());
 
         }
     }

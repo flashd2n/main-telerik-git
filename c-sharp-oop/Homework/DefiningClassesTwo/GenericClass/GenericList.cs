@@ -157,7 +157,7 @@ namespace GenericClass
             {
                 T minValue = array[0];
 
-                for (int i = 1; i < array.Length; i++)
+                for (int i = 1; i < this.Count; i++)
                 {
 
                     if (minValue.CompareTo(array[i]) > 0)
@@ -184,7 +184,7 @@ namespace GenericClass
             {
                 T maxValue = array[0];
 
-                for (int i = 1; i < array.Length; i++)
+                for (int i = 1; i < this.Count; i++)
                 {
 
                     if (maxValue.CompareTo(array[i]) < 0)
