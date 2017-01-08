@@ -25,4 +25,3 @@ function solve(args) {
         console.log(`no real roots`);
     }
 }
-
