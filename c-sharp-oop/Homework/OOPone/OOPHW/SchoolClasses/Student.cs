@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SchoolClasses.Interfaces;
 
 namespace SchoolClasses
 {
-    class Student : People
+    class Student : People, IStudent
     {
         private readonly int classNum;
         private static int count = 1;

@@ -1,12 +1,9 @@
-﻿using System;
+﻿using SchoolClasses.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolClasses
 {
-    class Teacher : People
+    class Teacher : People, ITeacher
     {
         private List<Disciplines> disciplines;
 

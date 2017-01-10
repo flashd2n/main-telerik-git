@@ -1,12 +1,9 @@
-﻿using System;
+﻿using SchoolClasses.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolClasses
 {
-    class Class : Comment
+    class Class : Comment, IClass
     {
         private string textID;
         private List<Teacher> teachers;

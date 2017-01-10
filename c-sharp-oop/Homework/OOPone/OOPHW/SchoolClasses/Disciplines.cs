@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SchoolClasses.Interfaces;
 
 namespace SchoolClasses
 {
-    class Disciplines : Comment
+    class Disciplines : Comment, IDiscipline
     {
         private string name;
         private int numLectures;

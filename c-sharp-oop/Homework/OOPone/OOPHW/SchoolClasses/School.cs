@@ -1,12 +1,9 @@
-﻿using System;
+﻿using SchoolClasses.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolClasses
 {
-    class School
+    class School : ISchool
     {
         private List<Class> schoolClas;
 

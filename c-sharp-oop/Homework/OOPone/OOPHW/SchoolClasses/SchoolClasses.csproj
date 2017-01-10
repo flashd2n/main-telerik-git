@@ -46,6 +46,13 @@
     <Compile Include="Class.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Disciplines.cs" />
+    <Compile Include="Interfaces\IClass.cs" />
+    <Compile Include="Interfaces\IComment.cs" />
+    <Compile Include="Interfaces\IDiscipline.cs" />
+    <Compile Include="Interfaces\IPeople.cs" />
+    <Compile Include="Interfaces\ISchool.cs" />
+    <Compile Include="Interfaces\IStudent.cs" />
+    <Compile Include="Interfaces\ITeacher.cs" />
     <Compile Include="People.cs" />
     <Compile Include="School.cs" />
     <Compile Include="Startup.cs" />
