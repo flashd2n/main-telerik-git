@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TimerEvents
 {
-    public delegate void EventHandlerTimer();
+    public delegate void EventHandlerTimer(object sender, MyTimerArgs arg);
 
     class Timer
     {
@@ -49,10 +49,14 @@ namespace TimerEvents
             for (int i = 0; i < this.NumberOfExecutions; i++)
             {
                 Thread.Sleep(this.Interval);
-                this.timerEvent();
+                this.timerEvent(this, new MyTimerArgs { Something = "somthing"});
             }
         }
-
-
     }
+
+    public class MyTimerArgs : EventArgs
+    {
+        public string Something { get; set; }
+    }
+
 }
