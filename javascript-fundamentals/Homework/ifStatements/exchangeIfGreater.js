@@ -1,3 +1,5 @@
+'use strict';
+
 function solve(args) {
     let numOne = Number(args[0]),
         numTwo = Number(args[1]),
