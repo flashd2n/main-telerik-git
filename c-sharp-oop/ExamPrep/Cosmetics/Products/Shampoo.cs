@@ -18,7 +18,7 @@ namespace Cosmetics.Products
         {
             this.Name = name;
             this.Brand = brand;
-            this.Price = price;
+            this.Price = price * milliliters;
             this.Gender = gender;
             this.Milliliters = milliliters;
             this.Usage = usage;
@@ -33,7 +33,14 @@ namespace Cosmetics.Products
             }
             set
             {
-                this.name = value;
+                if (value.Length >= 3 && value.Length <= 10)
+                {
+                    this.name = value;
+                }
+                else
+                {
+                    Console.WriteLine("Product name must be between 3 and 10 symbols long!");
+                }
             }
         }
 
@@ -46,7 +53,14 @@ namespace Cosmetics.Products
             protected set
             {
 
-                this.brand = value;
+                if (value.Length >= 2 && value.Length <= 10)
+                {
+                    this.brand = value;
+                }
+                else
+                {
+                    Console.WriteLine("Product brand must be between 2 and 10 symbols long!");
+                }
             }
         }
 
@@ -71,7 +85,12 @@ namespace Cosmetics.Products
 
         public string Print()
         {
-            throw new NotImplementedException();
+            string result = $@"- {this.Brand} - {this.Name}:
+    * Price: {this.Price:C2}
+    * For gender: {this.Gender}
+    * Quantity: {this.Milliliters} ml
+    * Usage: {this.Usage}";
+            return result;
         }
     }
 }

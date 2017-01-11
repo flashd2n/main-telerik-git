@@ -61,11 +61,11 @@ namespace SchoolClasses
             studentOne.AddComment("STUDENT ONE COMMENT");
             Console.WriteLine($"Student comment: {string.Join(", ", studentOne.MyComments)}");
             myClass.AddComment("CLASS COMMENT");
-            Console.WriteLine($"Student comment: {string.Join(", ", myClass.MyComments)}");
+            Console.WriteLine($"Class comment: {string.Join(", ", myClass.MyComments)}");
             teacherOne.AddComment("TEACHER ONE COMMENT");
-            Console.WriteLine($"Student comment: {string.Join(", ", teacherOne.MyComments)}");
+            Console.WriteLine($"Teacher comment: {string.Join(", ", teacherOne.MyComments)}");
             disciplineOne.AddComment("DISCIPLINE ONE COMMENT");
-            Console.WriteLine($"Student comment: {string.Join(", ", disciplineOne.MyComments)}");
+            Console.WriteLine($"Discipline comment: {string.Join(", ", disciplineOne.MyComments)}");
 
         }
     }

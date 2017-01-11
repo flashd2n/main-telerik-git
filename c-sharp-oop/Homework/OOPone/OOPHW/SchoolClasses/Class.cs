@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 namespace SchoolClasses
 {
-    class Class : Comment, IClass
+    class Class : IClass, IComment
     {
         private string textID;
         private List<Teacher> teachers;
         private List<Student> students;
+        private List<string> myComments;
 
         public string TextID
         {
@@ -24,9 +25,21 @@ namespace SchoolClasses
             get { return this.students; }
             set { this.students = value; }
         }
+        public List<string> MyComments
+        {
+            get { return this.myComments; }
+            set { this.myComments = value; }
+        }
+
+        public void AddComment(string comment)
+        {
+            this.MyComments.Add(comment);
+        }
+
         public Class(string textID) : base()
         {
             this.TextID = textID;
+            this.MyComments = new List<string>();
             this.Teachers = new List<Teacher>();
             this.Students = new List<Student>();
         }

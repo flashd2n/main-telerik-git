@@ -24,22 +24,28 @@ namespace Cosmetics.Cart
 
         public void AddProduct(IProduct product)
         {
-            throw new NotImplementedException();
+            this.productList.Add(product);
         }
 
         public void RemoveProduct(IProduct product)
         {
-            throw new NotImplementedException();
+            this.productList.Remove(product);
         }
 
         public bool ContainsProduct(IProduct product)
         {
-            throw new NotImplementedException();
+            var isAvail = this.productList.Contains(product);
+            return isAvail;
         }
 
         public decimal TotalPrice()
         {
-            throw new NotImplementedException();
+            decimal totalPrice = 0;
+            foreach (var product in this.ProductList)
+            {
+                totalPrice += product.Price;
+            }
+            return totalPrice;
         }
     }
 }
