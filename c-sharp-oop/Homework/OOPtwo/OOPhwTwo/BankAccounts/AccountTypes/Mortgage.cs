@@ -1,10 +1,4 @@
 ﻿using BankAccounts.Interfaces;
-using BankAccounts.AccountTypes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankAccounts.AccountTypes
 {
@@ -22,7 +16,7 @@ namespace BankAccounts.AccountTypes
         {
             double result = 0;
 
-            if (this.AccountCustomer.GetType().ToString() == "Company")
+            if (this.AccountCustomer.GetType().Name.Equals("Company"))
             {
                 if (numberOfMonths <= 12)
                 {
@@ -34,7 +28,7 @@ namespace BankAccounts.AccountTypes
                 }
             }
 
-            if (this.AccountCustomer.GetType().ToString() == "Individual")
+            if (this.AccountCustomer.GetType().Name.Equals("Individual"))
             {
                 if (numberOfMonths <= 6)
                 {
