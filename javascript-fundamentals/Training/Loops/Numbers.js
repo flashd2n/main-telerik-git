@@ -5,11 +5,11 @@ function solve(args){
         result = ``;
 
     for(let i  = 1; i <= number; i += 1){
-        if(i === number){
-            result += `${i}`;
-        } else{
+        
             result += `${i} `;
-        }
     }
     console.log(result);
 }
+
+let arr = ['1'];
+solve(arr);
