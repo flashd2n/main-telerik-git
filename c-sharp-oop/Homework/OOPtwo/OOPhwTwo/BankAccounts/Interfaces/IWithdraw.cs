@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankAccounts
+namespace BankAccounts.Interfaces
 {
-    class Program
+    public interface IWithdraw
     {
-        static void Main(string[] args)
-        {
-        }
+        void WithdrawFunds(decimal amount);
     }
 }

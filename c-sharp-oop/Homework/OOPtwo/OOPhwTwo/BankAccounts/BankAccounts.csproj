@@ -43,7 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AccountTypes\Account.cs" />
+    <Compile Include="AccountTypes\Deposit.cs" />
+    <Compile Include="AccountTypes\Loan.cs" />
+    <Compile Include="AccountTypes\Mortgage.cs" />
+    <Compile Include="CustomerTypes\Company.cs" />
+    <Compile Include="CustomerTypes\Customer.cs" />
+    <Compile Include="CustomerTypes\Individual.cs" />
+    <Compile Include="Interfaces\IAccount.cs" />
+    <Compile Include="Interfaces\ICustomer.cs" />
+    <Compile Include="Interfaces\IDeposit.cs" />
+    <Compile Include="Interfaces\IWithdraw.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
