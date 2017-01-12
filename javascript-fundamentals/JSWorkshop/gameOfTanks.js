@@ -2,7 +2,7 @@
 
 function solve(args){
     let fieldSizes = args[0].split(' ').map(Number);
-    // build field
+    // get field size
     let field = [];
     // get debris
     let debrisCoordsInput = args[1].split(`;`);

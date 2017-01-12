@@ -2,7 +2,7 @@
 
 function solve(args){
 
-    let input = args.split(' ');
+    let input = args[0].split(' ');
     let bigger = GetMax(GetMax(+input[0], +input[1]), +input[2]);
 
     console.log(bigger);
