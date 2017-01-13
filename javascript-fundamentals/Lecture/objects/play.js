@@ -14,7 +14,7 @@ console.log(person.age);
 person.getOlder();
 console.log(person.age);
 
-// define objectBuilder
+// define object constructor
 
 function MakePerson(name, age){
     return {

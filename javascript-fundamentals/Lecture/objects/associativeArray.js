@@ -15,3 +15,15 @@ let geno = MakePerson(`geno genov`, 12);
 
 console.log(tosho.name); // access property of object with DOT operator
 console.log(tosho[`name`]); // access property of object with indexing -> pass property name as string
+
+let someVar = 'name';
+
+console.log(tosho[someVar]);
+
+console.log('====');
+
+console.log(tosho.getOlder.name);
+
+console.log(`=====`);
+
+
