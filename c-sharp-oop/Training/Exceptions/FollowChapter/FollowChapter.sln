@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "init", "init\init.csproj", "{42793AB0-1897-45E6-A15F-ED0AAF90BC8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RangeExceptions", "..\..\..\Homework\OOPtwo\OOPhwTwo\RangeExceptions\RangeExceptions.csproj", "{222234A3-F2DA-463D-8869-98436597AC65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chainedExceptions", "chainedExceptions\chainedExceptions.csproj", "{019B6948-754F-47E3-BD9F-4749B42A756D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42793AB0-1897-45E6-A15F-ED0AAF90BC8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42793AB0-1897-45E6-A15F-ED0AAF90BC8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42793AB0-1897-45E6-A15F-ED0AAF90BC8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42793AB0-1897-45E6-A15F-ED0AAF90BC8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{222234A3-F2DA-463D-8869-98436597AC65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222234A3-F2DA-463D-8869-98436597AC65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{222234A3-F2DA-463D-8869-98436597AC65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{222234A3-F2DA-463D-8869-98436597AC65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{019B6948-754F-47E3-BD9F-4749B42A756D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{019B6948-754F-47E3-BD9F-4749B42A756D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{019B6948-754F-47E3-BD9F-4749B42A756D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{019B6948-754F-47E3-BD9F-4749B42A756D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

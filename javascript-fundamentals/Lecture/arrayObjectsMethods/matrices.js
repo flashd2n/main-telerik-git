@@ -20,4 +20,4 @@ field[rows - 1][cols - 2] = 5;
 field[rows - 1][cols - 3] = 6;
 field[rows - 1][cols - 4] = 7;
 
-console.log(field);
+console.log(field
