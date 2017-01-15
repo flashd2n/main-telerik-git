@@ -25,7 +25,17 @@ namespace taskSeven
                 Console.WriteLine("Good bye");
             }
 
+            var testit = new testingType();
 
+
+        }
+
+        class testingType
+        {
+            public testingType()
+            {
+                Console.WriteLine(this.GetType().Name);
+            }
         }
     }
 }
