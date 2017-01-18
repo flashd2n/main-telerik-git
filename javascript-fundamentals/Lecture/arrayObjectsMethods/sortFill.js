@@ -11,4 +11,4 @@ array.sort((x, y) => x - y); // ascending as numbers
 console.log(array);
 
 console.log(array.fill(12, 1, 3)); // modifies the current array
-console.log(array);
+// console.log(array);
