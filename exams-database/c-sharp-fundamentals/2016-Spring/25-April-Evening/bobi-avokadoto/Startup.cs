@@ -10,7 +10,15 @@ namespace bobi_avokadoto
     {
         static void Main()
         {
+            uint bobiHead = uint.Parse(Console.ReadLine());
+            int numberOfCombs = int.Parse(Console.ReadLine());
 
+            for (int i = 0; i < numberOfCombs; i++)
+            {
+
+
+
+            }
 
 
         }
