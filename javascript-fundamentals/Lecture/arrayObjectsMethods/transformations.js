@@ -8,4 +8,3 @@ console.log(array);
 console.log(array.map(x => x * 2)); // returns new array
 console.log(array);
 
-
