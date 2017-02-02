@@ -15,3 +15,4 @@ function mainFunction(x, y, z){
 
 mainFunction(1, 2, 3, 4);
 console.log(mainFunction.length); // the number of parameters defined in the function definition
+
