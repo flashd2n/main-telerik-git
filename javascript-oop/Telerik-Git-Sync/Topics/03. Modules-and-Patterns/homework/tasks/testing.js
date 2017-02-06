@@ -3,26 +3,11 @@
 var Course = (function(){
     let courseTitle = '';
     let coursePresentations = [];
-    let students = [];    
-
+    let students = [];
+    
     function init(title, presentations){
-      if(presentations === undefined || presentations === null || presentations.length === 0){
-        throw new Error ('Missing presentations');
-      }
-      if(title.length === 0 || title === undefined || title === '' || title === null){
-        throw new Error ('Title cannot be empty');
-      }
-      if(title[0] === ' ' || title[title.length - 1] === ' '){
-        throw new Error ('Title cannot start or end with an empty space');
-      }
-      presentations.forEach(function(x){
-        if(x === ''){
-          throw new Error('presentation title cannot be empty');
-        }
-        if(/\s{2,}/.test(x)){
-          throw new Error('presentation cannot contain more than one consecutive whitespaces');
-        }
-      });
+
+      validateInit(title, presentations);
 
       courseTitle = title;
       coursePresentations = presentations;
@@ -32,12 +17,8 @@ var Course = (function(){
     function addStudent(name){
       let nameInput = name.split(' ');
 
-      if(nameInput.length !== 2){
-        throw new Error ('Invalid name count');
-      }
-      if(!/^[A-Z]/.test(nameInput[0]) || !/^[A-Z]/.test(nameInput[1])){
-        throw new Error ('Missing capital letter');
-      }
+      validateAddStudent(nameInput);
+
       let studentID = students.length + 1;
       students.push({
         firstname: nameInput[0] + '',
@@ -63,24 +44,13 @@ var Course = (function(){
                 ID: students[i].ID
             });
         }
-
         return result;
-
     }
 
     function submitHomework(studentID, homeworkID){
 
       validateStudentID(studentID);
-
-      if(homeworkID === 0){
-        throw new Error ('cannot have a homework with id 0');
-      }
-      if(homeworkID % 1 !== 0){
-        throw new Error ('id cannot be a floating point number');
-      }
-      if(homeworkID > coursePresentations.length){
-        throw new Error ('invalid homeworkID')
-      }
+      validateHomeworkID(homeworkID);      
 
       for(let i = 0; i < students.length; i++){
         if(studentID === students[i].ID){
@@ -88,47 +58,23 @@ var Course = (function(){
             break;
         }
       }
-
+      return this;
     }
 
     function pushExamResults(results){
-      let tempIds = [];
-      // perform array checks
-      if(results === undefined || results === null){
-        throw new Error('results cannot be empty');
-      }
-      if(!Array.isArray(results)){
-        throw new Error('results is not an array');
-      }
-      
 
-      results.forEach(function(x){
-        validateStudentID(x.StudentID);
-        if(tempIds.includes(x.StudentID)){
-          throw new Error ('cheater');
-        }
-        if(!x.hasOwnProperty('score')){
-          throw new Error('results does not contain a score value');
-        }
-        if(isNaN(x.score)){
-          throw new Error('results constains invalid score value');
-        }
-        tempIds.push(x.StudentID);
-      });
+      validateExamResults(results);
 
       for(let i = 0; i < results.length; i++){
-
         for(let j = 0; j < students.length; j++){
 
             if(results[i].StudentID === students[i].ID){
                 students[i].examResult = results[i].score;
                 break;
             }
-
-
         }
-
       }
+      return this;
     }
 
     function getTopStudents(){
@@ -157,6 +103,10 @@ var Course = (function(){
 
     }
 
+    function getAllStudentData(){
+        return students;
+    }
+
     function validateStudentID(studentID){
       if(studentID === 0){
         throw new Error ('cannot have a student with id 0');
@@ -175,10 +125,73 @@ var Course = (function(){
       }
     }
 
-    function getAllStudentData(){
-        return students;
+
+    function validateInit(title, presentations){
+      if(presentations === undefined || presentations === null || presentations.length === 0){
+        throw new Error ('Missing presentations');
+      }
+      if(title.length === 0 || title === undefined || title === '' || title === null){
+        throw new Error ('Title cannot be empty');
+      }
+      if(title[0] === ' ' || title[title.length - 1] === ' '){
+        throw new Error ('Title cannot start or end with an empty space');
+      }
+      presentations.forEach(function(x){
+        if(x === ''){
+          throw new Error('presentation title cannot be empty');
+        }
+        if(/\s{2,}/.test(x)){
+          throw new Error('presentation cannot contain more than one consecutive whitespaces');
+        }
+      });
     }
 
+    function validateAddStudent(nameInput){
+      if(nameInput.length !== 2){
+        throw new Error ('Invalid name count');
+      }
+      if(!/^[A-Z]/.test(nameInput[0]) || !/^[A-Z]/.test(nameInput[1])){
+        throw new Error ('Missing capital letter');
+      }
+    }
+
+    function validateHomeworkID(homeworkID){
+      if(homeworkID === 0){
+        throw new Error ('cannot have a homework with id 0');
+      }
+      if(homeworkID % 1 !== 0){
+        throw new Error ('id cannot be a floating point number');
+      }
+      if(homeworkID > coursePresentations.length){
+        throw new Error ('invalid homeworkID')
+      }
+    }
+
+    function validateExamResults(results){
+      let tempIds = [];
+      // perform array checks
+      if(results === undefined || results === null){
+        throw new Error('results cannot be empty');
+      }
+      if(!Array.isArray(results)){
+        throw new Error('results is not an array');
+      }
+      
+
+      results.forEach(function(x){
+        validateStudentID(x.StudentID);
+        if(tempIds.includes(x.StudentID)){
+          throw new Error ('cheater');
+        }
+        if(!x.hasOwnProperty('score')){
+          throw new Error('results does not contain a score value');
+        }
+        if(isNaN(x.score)){
+          throw new Error('results constains invalid score value');
+        }
+        tempIds.push(x.StudentID);
+      });
+    }
     return{
 		  init: init,
 		  addStudent: addStudent,
@@ -186,7 +199,8 @@ var Course = (function(){
 		  submitHomework: submitHomework,
 		  pushExamResults: pushExamResults,
 		  getTopStudents: getTopStudents,
-      getAllStudentData: getAllStudentData
+      getAllStudentData: getAllStudentData,
+      thisObj: this
 	  };
   }());
 
@@ -243,3 +257,6 @@ console.log('---- TESTING FINAL METHOD');
 console.log(myCourse.getTopStudents());
 console.log('----course Two----');
 console.log(myCourseTwo.getAllStudents());
+
+console.log('THIS');
+console.log(this);
