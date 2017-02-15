@@ -1,5 +1,6 @@
 ﻿namespace ArmyOfCreatures.Logic.Battles
 {
+    using Creatures;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -9,13 +10,13 @@
     {
         private const string LogFormat = "--- {0} - {1}";
 
-        private readonly ICollection<ICreaturesInBattle> firstArmyCreatures;
+        protected readonly ICollection<ICreaturesInBattle> firstArmyCreatures;
 
-        private readonly ICollection<ICreaturesInBattle> secondArmyCreatures;
+        protected readonly ICollection<ICreaturesInBattle> secondArmyCreatures;
 
-        private readonly ICreaturesFactory creaturesFactory;
+        protected readonly ICreaturesFactory creaturesFactory;
 
-        private readonly ILogger logger;
+        protected readonly ILogger logger;
 
         public BattleManager(ICreaturesFactory creaturesFactory, ILogger logger)
         {
@@ -25,7 +26,39 @@
             this.logger = logger;
         }
 
-        public void AddCreatures(CreatureIdentifier creatureIdentifier, int count)
+        public ILogger GetLogger
+        {
+            get
+            {
+                return this.logger;
+            }
+        }
+
+        public ICreaturesFactory GetCreaturesFactory
+        {
+            get
+            {
+                return this.creaturesFactory;
+            }
+        }
+
+        public ICollection<ICreaturesInBattle> GetFirstArmyCreatures
+        {
+            get
+            {
+                return this.firstArmyCreatures;
+            }
+        }
+
+        public ICollection<ICreaturesInBattle> GetSecondArmyCreatures
+        {
+            get
+            {
+                return this.secondArmyCreatures;
+            }
+        }
+
+        public void AddCreatures(ICreatureIdentifier creatureIdentifier, int count)
         {
             if (creatureIdentifier == null)
             {
@@ -33,7 +66,7 @@
             }
 
             var creature = this.creaturesFactory.CreateCreature(creatureIdentifier.CreatureType);
-            var creaturesInBattle = new CreaturesInBattle(creature, count);
+            var creaturesInBattle = GetCreaturesInBattle(creature, count);
             this.AddCreaturesByIdentifier(creatureIdentifier, creaturesInBattle);
 
             this.logger.WriteLine(
@@ -44,7 +77,12 @@
                     creature));
         }
 
-        public void Attack(CreatureIdentifier attackerIdentifier, CreatureIdentifier defenderIdentifier)
+        public CreaturesInBattle GetCreaturesInBattle(ICreatures creature, int count)
+        {
+            return new CreaturesInBattle(creature, count);
+        } 
+
+        public void Attack(ICreatureIdentifier attackerIdentifier, ICreatureIdentifier defenderIdentifier)
         {
             var attackerCreature = this.GetByIdentifier(attackerIdentifier);
             if (attackerCreature == null)
@@ -91,7 +129,7 @@
             this.logger.WriteLine(string.Format(CultureInfo.InvariantCulture, LogFormat, "Defender after", defenderCreature));
         }
 
-        public void Skip(CreatureIdentifier creatureIdentifier)
+        public void Skip(ICreatureIdentifier creatureIdentifier)
         {
             var creature = this.GetByIdentifier(creatureIdentifier);
             if (creature == null)
@@ -110,7 +148,7 @@
             this.logger.WriteLine(string.Format(CultureInfo.InvariantCulture, LogFormat, "After skip", creature));
         }
         
-        protected virtual void AddCreaturesByIdentifier(CreatureIdentifier creatureIdentifier, ICreaturesInBattle creaturesInBattle)
+        protected virtual void AddCreaturesByIdentifier(ICreatureIdentifier creatureIdentifier, ICreaturesInBattle creaturesInBattle)
         {
             if (creatureIdentifier == null)
             {
@@ -137,7 +175,7 @@
             }
         }
 
-        protected virtual ICreaturesInBattle GetByIdentifier(CreatureIdentifier identifier)
+        protected virtual ICreaturesInBattle GetByIdentifier(ICreatureIdentifier identifier)
         {
             if (identifier == null)
             {

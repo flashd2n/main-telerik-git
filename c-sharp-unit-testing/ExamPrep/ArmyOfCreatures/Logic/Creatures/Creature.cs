@@ -6,7 +6,7 @@
 
     using ArmyOfCreatures.Logic.Specialties;
 
-    public abstract class Creature
+    public abstract class Creature : ICreatures
     {
         private readonly ICollection<Specialty> specialtiesList;
 
@@ -19,13 +19,13 @@
             this.specialtiesList = new List<Specialty>();
         }
 
-        public int Attack { get; private set; }
+        public int Attack { get; set; }
 
-        public int Defense { get; private set; }
+        public int Defense { get; set; }
 
-        public int HealthPoints { get; private set; }
+        public int HealthPoints { get; set; }
 
-        public decimal Damage { get; private set; }
+        public decimal Damage { get; set; }
 
         public IEnumerable<Specialty> Specialties
         {
@@ -60,7 +60,7 @@
             return result;
         }
 
-        protected void AddSpecialty(Specialty specialtyToAdd)
+        public void AddSpecialty(Specialty specialtyToAdd)
         {
             this.specialtiesList.Add(specialtyToAdd);
         }

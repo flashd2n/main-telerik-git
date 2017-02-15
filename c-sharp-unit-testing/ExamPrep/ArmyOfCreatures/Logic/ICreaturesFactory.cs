@@ -4,6 +4,6 @@
 
     public interface ICreaturesFactory
     {
-        Creature CreateCreature(string name);
+        ICreatures CreateCreature(string name);
     }
 }

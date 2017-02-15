@@ -6,7 +6,7 @@
 
     public class ExtendedCreaturesFactory : CreaturesFactory
     {
-        public override Creature CreateCreature(string name)
+        public override ICreatures CreateCreature(string name)
         {
             switch (name)
             {

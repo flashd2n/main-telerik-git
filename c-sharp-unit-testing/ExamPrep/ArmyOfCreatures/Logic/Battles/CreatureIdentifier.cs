@@ -3,7 +3,7 @@
     using System;
     using System.Globalization;
 
-    public sealed class CreatureIdentifier
+    public sealed class CreatureIdentifier : ICreatureIdentifier
     {
         private CreatureIdentifier(string creatureType, int armyNumber)
         {
@@ -11,9 +11,9 @@
             this.ArmyNumber = armyNumber;
         }
 
-        public string CreatureType { get; private set; }
+        public string CreatureType { get; set; }
 
-        public int ArmyNumber { get; private set; }
+        public int ArmyNumber { get; set; }
 
         public static CreatureIdentifier CreatureIdentifierFromString(string valueToParse)
         {

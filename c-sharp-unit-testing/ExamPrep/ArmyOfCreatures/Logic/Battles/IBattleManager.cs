@@ -2,10 +2,10 @@
 {
     public interface IBattleManager
     {
-        void AddCreatures(CreatureIdentifier creatureIdentifier, int count);
+        void AddCreatures(ICreatureIdentifier creatureIdentifier, int count);
 
-        void Attack(CreatureIdentifier attackerIdentifier, CreatureIdentifier defenderIdentifier);
+        void Attack(ICreatureIdentifier attackerIdentifier, ICreatureIdentifier defenderIdentifier);
 
-        void Skip(CreatureIdentifier creatureIdentifier);
+        void Skip(ICreatureIdentifier creatureIdentifier);
     }
 }

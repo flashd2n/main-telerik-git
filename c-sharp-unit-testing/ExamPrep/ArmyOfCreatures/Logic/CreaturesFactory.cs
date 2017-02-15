@@ -7,7 +7,7 @@
 
     public class CreaturesFactory : ICreaturesFactory
     {
-        public virtual Creature CreateCreature(string name)
+        public virtual ICreatures CreateCreature(string name)
         {
             switch (name)
             {

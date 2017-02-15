@@ -9,7 +9,7 @@
 
     public class BattleManagerWithThreeArmies : BattleManager
     {
-        private readonly ICollection<ICreaturesInBattle> thirdArmyCreatures;
+        protected readonly ICollection<ICreaturesInBattle> thirdArmyCreatures;
 
         public BattleManagerWithThreeArmies(ICreaturesFactory creaturesFactory, ILogger logger)
             : base(creaturesFactory, logger)
@@ -17,7 +17,15 @@
             this.thirdArmyCreatures = new List<ICreaturesInBattle>();
         }
 
-        protected override void AddCreaturesByIdentifier(CreatureIdentifier creatureIdentifier, ICreaturesInBattle creaturesInBattle)
+        public ICollection<ICreaturesInBattle> GetThirdArmyCreatures
+        {
+            get
+            {
+                return this.thirdArmyCreatures;
+            }
+        }
+
+        protected override void AddCreaturesByIdentifier(ICreatureIdentifier creatureIdentifier, ICreaturesInBattle creaturesInBattle)
         {
             if (creatureIdentifier == null)
             {
@@ -39,7 +47,7 @@
             }
         }
 
-        protected override ICreaturesInBattle GetByIdentifier(CreatureIdentifier identifier)
+        protected override ICreaturesInBattle GetByIdentifier(ICreatureIdentifier identifier)
         {
             if (identifier == null)
             {

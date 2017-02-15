@@ -4,7 +4,7 @@
 
     public interface ICreaturesInBattle
     {
-        Creature Creature { get; }
+        ICreatures Creature { get; }
 
         int CurrentAttack { get; set; }
 

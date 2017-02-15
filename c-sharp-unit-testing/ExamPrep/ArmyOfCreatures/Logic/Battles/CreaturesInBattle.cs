@@ -11,7 +11,7 @@
 
         private int totalHitPoints;
 
-        internal CreaturesInBattle(Creature creature, int count)
+        internal CreaturesInBattle(ICreatures creature, int count)
         {
             this.Creature = creature;
             this.PermanentAttack = creature.Attack;
@@ -20,7 +20,7 @@
             this.StartNewTurn();
         }
 
-        public Creature Creature { get; private set; }
+        public ICreatures Creature { get; private set; }
 
         public int CurrentAttack { get; set; }
 

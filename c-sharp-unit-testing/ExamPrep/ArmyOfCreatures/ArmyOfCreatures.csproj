@@ -65,6 +65,7 @@
     <Compile Include="Logic\Battles\CreatureIdentifier.cs" />
     <Compile Include="Logic\Battles\CreaturesInBattle.cs" />
     <Compile Include="Logic\Battles\IBattleManager.cs" />
+    <Compile Include="Logic\Battles\ICreatureIdentifier.cs" />
     <Compile Include="Logic\Battles\ICreaturesInBattle.cs" />
     <Compile Include="Logic\CreaturesFactory.cs" />
     <Compile Include="Logic\Creatures\Angel.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Logic\Creatures\Behemoth.cs" />
     <Compile Include="Logic\Creatures\Creature.cs" />
     <Compile Include="Logic\Creatures\Devil.cs" />
+    <Compile Include="Logic\Creatures\ICreatures.cs" />
     <Compile Include="Logic\ICreaturesFactory.cs" />
     <Compile Include="Logic\ILogger.cs" />
     <Compile Include="Logic\Specialties\AddDefenseWhenSkip.cs" />
