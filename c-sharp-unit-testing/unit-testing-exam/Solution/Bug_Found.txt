@@ -1,0 +1,4 @@
+PackageRepository line 137 -> 139 and method AddPackage()
+
+The code hidden in the region adds a new package in every invokation of the GetAll method.
+This is a bug, because the method will return a package, which it shouldn't.
