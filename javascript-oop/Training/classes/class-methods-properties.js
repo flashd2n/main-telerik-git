@@ -12,7 +12,7 @@ class Cat{
     }
     // REAL READ-ONLY PROPERTY
     set name(newName){
-        Object.defineProperty(Cat.prototype, `_name`, {
+        Object.defineProperty(this, `_name`, {
             value: newName,
             writable: false,
             enumerable: false
@@ -63,5 +63,5 @@ console.log(myCat.age);
 myCat.age = 5;
 console.log(myCat.age);
 console.log(myCat._name);
-// myCat._name = 'gosho';
+myCat._name = 'gosho';
 console.log(myCat._name);
