@@ -11,15 +11,13 @@ function solve() {
     })();
 
     const VALIDATOR = {
-        validateDescription: function (description) {
+        validateString: function (description) {
             if (typeof description !== `string` || description === `` || description === null) {
                 throw new Error(`Description must be a string and cannot be empty`);
             }
         },
         validateIsStringAndLength: function (string, min, max) {
-            if (typeof string !== `string` || string === null || string === '') {
-                throw new Error(`String must be a string`);
-            }
+            this.validateString(string);
             if (string.length < min || string.length > max) {
                 throw new Error(`String is outside length boundaries`);
             }
@@ -71,7 +69,7 @@ function solve() {
         }
 
         set description(value) {
-            VALIDATOR.validateDescription(value);
+            VALIDATOR.validateString(value);
             this._description = value;
         }
 
@@ -171,7 +169,7 @@ function solve() {
                 }
 
                 VALIDATOR.validateIsStringAndLength(x.name, 2, 40);
-                VALIDATOR.validateDescription(x.description);
+                VALIDATOR.validateString(x.description);
                 VALIDATOR.validateNumberRange(x.id, 0);
             });
 
@@ -232,8 +230,7 @@ function solve() {
         }
 
         getGenres(){
-
-            return this.items.map(x => x.genre.toLowerCase()).sort().filter((genre, index, array) => genre !== array[index - 1]);
+            return this.items.map(x => x.genre.toLowerCase()).slice().sort().filter((genre, index, array) => genre !== array[index - 1]);
         }
 
         find(criteria){
@@ -301,18 +298,16 @@ function solve() {
             });
         }
 
-		find(arg) {
-			if(typeof arg === 'object') {
-				const medias = super.find(arg);
-				if(arg.hasOwnProperty('rating')) {
-					return medias.filter(media => media.rating === arg.rating);
+		find(criteria) {
+			if(typeof criteria === 'object') {
+				const medias = super.find(criteria);
+				if(criteria.hasOwnProperty('rating')) {
+					return medias.filter(media => media.rating === criteria.rating);
 				}
 				return medias;
 			}
-
-			return super.find(arg);
+			return super.find(criteria);
 		}
-
     }
 
     return {
@@ -330,8 +325,3 @@ function solve() {
         }
     };
 }
-
-
-
-
-module.exports = solve;

@@ -124,5 +124,3 @@ function solve() {
         Product, ShoppingCart
     };
 }
-
-module.exports = solve;

@@ -2,7 +2,7 @@
 var expect = require('chai').expect,
     //     result = require("../tasks/solution-es2015-doncho")();
 
-    result = require("../tasks/solution-es2015-doncho")();
+    result = require("../tasks/solution")();
 
 /* beforeach: start */
 var utils = (function() {
@@ -790,7 +790,7 @@ describe('Academy Catalogs', function() {
             // test 11
             beforeEach(function(done) {
                 //     result = require("../tasks/solution-es2015-doncho")();
-                result = require("../tasks/solution-es2015-doncho")();
+                result = require("../tasks/solution")();
                 done();
             });
             it('expect getBookCatalog to exist, to be a function and to return object with properties name and unique id and methods: add(), find() with 1 param and search() with 1 param', function() {
@@ -1108,7 +1108,7 @@ describe('Academy Catalogs', function() {
         describe('Invalid tests', function() {
             // test 18
             beforeEach(function(done) {
-                    result = require("../tasks/solution-es2015-doncho")();
+                    result = require("../tasks/solution")();
                 done();
             });
             it('Expect bookCatalog.search() to throw if pattern is undefined, null or empty string ', function() {
@@ -1260,7 +1260,7 @@ describe('Academy Catalogs', function() {
         describe('Valid tests', function() {
             // test 21
             beforeEach(function(done) {
-                    result = require("../tasks/solution-es2015-doncho")();
+                    result = require("../tasks/solution")();
                 done();
             });
             it('expect getMediaCatalog to exist, to be a function and to return object with properties name and unique id and methods: add(), find() with 1 param and search() with 1 param', function() {
@@ -1596,7 +1596,7 @@ describe('Academy Catalogs', function() {
         describe('Invalid tests', function() {
             // test 28
             beforeEach(function(done) {
-                    result = require("../tasks/solution-es2015-doncho")();
+                    result = require("../tasks/solution")();
                 done();
             });
             it('Expect mediaCatalog.search() to throw if pattern is undefined, null or empty string ', function() {
