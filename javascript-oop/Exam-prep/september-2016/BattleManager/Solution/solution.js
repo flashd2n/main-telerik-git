@@ -379,4 +379,63 @@ function solve() {
     return new Battlemanager();
 }
 
-module.exports = solve;
+
+let myBattlemanager = solve();
+
+let armyUnitOne = myBattlemanager.getArmyUnit({ name: 'ZergTest', alignment: 'evil', damage: 50, speed: 40, health: 30, count: 100 });
+let commanderOne = myBattlemanager.getCommander('name', 'good', 42);
+let commanderTwo = myBattlemanager.getCommander('nameTwo', 'good', 42);
+myBattlemanager.addCommanders(commanderOne, commanderTwo);
+myBattlemanager.addArmyUnitTo('name', armyUnitOne);
+console.log(myBattlemanager.allCommanders);
+console.log(myBattlemanager.allCommanders[0]);
+
+console.log('==== TEST SPELLS ====');
+const openVim = myBattlemanager.getSpell('Open vim', 10, target => target.damage -= 5),
+    haste = myBattlemanager.getSpell('Haste', 5, target => target.speed += 5),
+    callReinforcements = myBattlemanager.getSpell('Reinforcements', 10, target => target.count += 5);
+myBattlemanager.addSpellsTo('name', openVim, haste, callReinforcements);
+console.log(myBattlemanager.allCommanders[0]);
+
+console.log('==== TEST FIND COMMANDERS ====');
+myBattlemanager.addCommanders(
+    myBattlemanager.getCommander('Cyki', 'evil', 50),
+    myBattlemanager.getCommander('Koce', 'evil', 50),
+    myBattlemanager.getCommander('John', 'good', 40)
+);
+console.log(myBattlemanager.findCommanders({ alignment: 'good' }));
+
+console.log('==== TEST FIND ARMYUNIT ID ====');
+console.log(myBattlemanager.findArmyUnitById(1));
+
+console.log('==== TEST FIND ARMYUNITS QUERY ====');
+
+const units = {
+    zerg: myBattlemanager.getArmyUnit({
+        name: 'Zerg', alignment: 'evil', damage: 50,
+        speed: 40, health: 30, count: 100
+    }),
+    programmers: myBattlemanager.getArmyUnit({
+        name: 'Devs', alignment: 'good', damage: 40,
+        speed: 30, health: 150, count: 130
+    }),
+    goodTrainers: myBattlemanager.getArmyUnit({
+        name: 'Trainers', alignment: 'good', damage: 80,
+        speed: 40, health: 40, count: 4
+    }),
+    evilTrainers: myBattlemanager.getArmyUnit({
+        name: 'Trainers', alignment: 'evil', damage: 90,
+        speed: 30, health: 40, count: 4
+    })
+};
+
+myBattlemanager
+    .addArmyUnitTo('Cyki', units.programmers)
+    .addArmyUnitTo('Cyki', units.goodTrainers)
+    .addArmyUnitTo('Koce', units.zerg);
+
+console.log(myBattlemanager.findArmyUnits({ name: 'Trainers' }));
+
+console.log('==== TEST BATTLE PARTICIPANTS VALIDATION ====');
+
+myBattlemanager.battle(units.zerg, units.programmers);
