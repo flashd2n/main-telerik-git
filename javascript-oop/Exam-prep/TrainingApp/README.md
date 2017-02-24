@@ -6,10 +6,10 @@ Implement functionality for a training planner app. Implement the given classes.
 
 ### `class Exercise`
 - constructor or init method:
-    - takes
-Properties (name, description, rest, trainingPartner, personalRating, improvementStats)
-Name
-Must be string
+    - takes `name`, `description`, `rest`, `trainingPartner`, `personalRating` and `improvementStats` as parameters
+- Properties
+ - Name:
+  - Must be string
 Length between 1 and 30 (inclusive)
 Symbols allowed: Latin letters and whitespaces
 If invalid, throw error
