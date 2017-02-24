@@ -155,13 +155,20 @@ strength = strength + (performanceGain / 50)
 take into account all the exercises of each day of the week for “count” number of weeks
 return the updated personalData
 
-SOLUTION TEMPLATE
 
+
+
+## SOLUTION TEMPLATE
+
+```javascript
 function solve() {
-    // Your classes
+	// Your classes
 
-    return createTrainingPlanner(personalData){
-// returns new training planner object
-}
+	return createTrainingPlanner(personalData){
+        // returns new training planner object
+    };
 }
 
+// Submit the code above this line in bgcoder.com
+module.exports = solve;
+```
