@@ -25,16 +25,15 @@ Implement functionality for a training planner app. Implement the given classes.
         - Symbols allowed: Latin letters and whitespaces
     - PersonalRating
         - Must be an integer, positive, less than 10 inclusive
-    - ImprovementStats {caloriesBurn: num, performanceGain: num}
-        - An object with listed properties: 
-caloriesBurn -> non negative integer
-performanceGain -> non negative integer
-If invalid, throw error
-Methods
-Update(object)
-Passed parameter is an object. Mandatory property - “name”.
-The object will have the properties that must be updated
-If the passed object’s properties are not valid, throw error
+    - ImprovementStats `{caloriesBurn: num, performanceGain: num}`
+        - An object with properties:
+            - caloriesBurn -> non negative integer
+            - performanceGain -> non negative integer
+- Methods
+    - Update(object)
+        - Passed parameter is an object. Mandatory property - “name”.
+        - The object will have the properties that must be updated
+        - If the passed object’s properties are not valid, **throw error**
 Gym Exercise extends Exercise
 Properties (name, description, rest, trainingPartner, personalRating, improvementStats, numberOfSets, primaryMuscleGroup, secondaryMuscleGroup, bestWeight)
 NumberOfSets
