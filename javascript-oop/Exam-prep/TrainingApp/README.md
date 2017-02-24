@@ -7,30 +7,15 @@ Implement functionality for a training planner app. Implement the given classes.
 ### `class Exercise`
 - constructor or init method:
     - takes `name`, `description`, `rest`, `trainingPartner`, `personalRating` and `improvementStats` as parameters
+    - **Throws** if any of them are not valid!
 - Properties
- - Name:
-  - Must be string
-Length between 1 and 30 (inclusive)
-Symbols allowed: Latin letters and whitespaces
-If invalid, throw error
-Description
-Must be non-empty string
-Less than 160 symbols
-If invalid, throw error
-Rest
-Represents rest time after exercise in seconds
-Must be an integer
-Positive and less than 120 – nobody can rest for more than 2 minutes (exclusive)
-If invalid, throw error
-TrainingPartner
-Must be a string
-Symbols allowed: Latin letters and whitespaces
-If invalid, throw error
-PersonalRating
-Must be an integer, positive, less than 10 inclusive
-If invalid, throw error
-ImprovementStats {caloriesBurn: num, performanceGain: num}
-An object with listed properties: 
+    - Name: Must be string; Length between 1 and 30 (inclusive); Symbols allowed: Latin letters and whitespaces
+    - Description: Must be non-empty string; Less than 160 symbols
+    - Rest: Represents rest time after exercise in seconds; Must be an integer; Positive and less than 120 – nobody can rest for more than 2 minutes (exclusive)
+    - TrainingPartner: Must be a string; Symbols allowed: Latin letters and whitespaces
+    - PersonalRating: Must be an integer, positive, less than 10 inclusive
+    - ImprovementStats {caloriesBurn: num, performanceGain: num}
+        - An object with listed properties: 
 caloriesBurn -> non negative integer
 performanceGain -> non negative integer
 If invalid, throw error
