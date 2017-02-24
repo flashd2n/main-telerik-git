@@ -2,9 +2,9 @@
 
 function solve() {
 
-	const uploadOrderGenerator = (function () {
+	const uploadOrderGenerator = (function(){
 		let order = 0;
-		return function () {
+		return function(){
 			return ++order;
 		}
 	})();
@@ -59,9 +59,9 @@ function solve() {
 			if (!(input instanceof App)) {
 				throw new Error('Passed App is not an instance of App class');
 			}
-			// if(input.hasOwnProperty('_apps')){
-			// 	throw new Error('Passed App is not an instance of App class');
-			// }
+			if(input.hasOwnProperty('_apps')){
+				throw new Error('Passed App is not an instance of App class');
+			}
 		},
 		validateHostName: function (input) {
 			this.validateString(input);
@@ -83,6 +83,7 @@ function solve() {
 		}
 	};
 
+
 	class App {
 		constructor(name, description, version, rating) {
 			this.name = name;
@@ -92,7 +93,7 @@ function solve() {
 			this._upload = -1;
 		}
 
-		get upload() {
+		get upload(){
 			return this._upload;
 		}
 
@@ -166,9 +167,8 @@ function solve() {
 			let foundApp = this.apps.find(x => x.name === app.name);
 
 			if (foundApp === undefined) {
-				let appToUpload = new App(app.name, app.description, app.version, app.rating);
-				appToUpload._upload = uploadOrderGenerator();
-				this.apps.push(appToUpload);
+				this.apps.push(app);
+				app._upload = uploadOrderGenerator();
 				return this;
 			}
 
@@ -287,13 +287,13 @@ function solve() {
 			let result = [];
 			let isAdded = -1;
 
-			for (let i = 0; i < appsToReturn.length; i++) {
+			for(let i = 0; i < appsToReturn.length; i++){
 
 				isAdded = result.findIndex(x => x.name === appsToReturn[i].name);
 
-				if (isAdded >= 0) {
-
-					if (result[isAdded].version < appsToReturn[i].version) {
+				if(isAdded >= 0){
+					
+					if(result[isAdded].version < appsToReturn[i].version){
 						result[isAdded].version = appsToReturn[i].version;
 					}
 
@@ -311,6 +311,7 @@ function solve() {
 
 			let foundApps = [];
 			let allStores = this.apps.filter(x => x.hasOwnProperty('_apps'));
+			let allInstalledApps = this.apps.filter(x => !x.hasOwnProperty('_apps'));
 
 			allStores.forEach(function (store) {
 				store.apps.forEach(function (app) {
@@ -330,7 +331,7 @@ function solve() {
 
 			let appToInstall = foundApps[0];
 
-			if (this.apps.some(x => x.name === appToInstall.name)) {
+			if (allInstalledApps.some(x => x.name === appToInstall.name)) {
 				return this;
 			}
 
@@ -353,10 +354,10 @@ function solve() {
 					indexToRemove = i;
 					break;
 				}
-
+				
 			}
 
-			if (indexToRemove < 0) {
+			if(indexToRemove < 0){
 				throw new Error('no such app is found');
 			}
 
@@ -367,7 +368,7 @@ function solve() {
 
 		listInstalled() {
 
-			return this.apps.slice().sort(function (x, y) {
+			return this.apps.filter(x => !x.hasOwnProperty('_apps')).sort(function (x, y) {
 				if (x.name > y.name) {
 					return 1;
 				} else if (x.name < y.name) {
@@ -384,13 +385,13 @@ function solve() {
 			let allStores = this.apps.filter(x => x.hasOwnProperty('_apps'));
 			let allInstalledApps = this.apps.filter(x => !x.hasOwnProperty('_apps'));
 
-			allInstalledApps.forEach(function (app) {
+			allInstalledApps.forEach(function(app){
 
-				allStores.forEach(function (store) {
+				allStores.forEach(function(store){
 
-					store.apps.forEach(function (appInStore) {
+					store.apps.forEach(function(appInStore){
 
-						if (appInStore.name === app.name && appInStore.version > app.version) {
+						if(appInStore.name === app.name && appInStore.version > app.version){
 							app.version = appInStore.version;
 						}
 					});
@@ -420,3 +421,155 @@ function solve() {
 
 // Submit the code above this line in bgcoder.com
 module.exports = solve;
+
+// let exam = solve();
+
+// console.log('==== TESTING APP CLASS ====');
+
+// let appOne = exam.createApp('kalin', 'description', 1, 1);
+// let appTwo = exam.createApp('KalinTwo', 'better description', 2, 2);
+// let appThree = exam.createApp('gosho', 'description', 1, 1);
+// let appFour = exam.createApp('tosho', 'better description', 2, 2);
+// console.log(appOne);
+
+// // appOne.release(0.5);
+
+// console.log(appOne);
+
+// // appOne.release({version: 1, description: 'new description', rating: 5});
+
+// console.log(appOne);
+
+// console.log('==== TESTING STORE CLASS ====');
+
+// let storeOne = exam.createStore('play store', 'play description', 1.5, 1);
+// let storeTwo = exam.createStore('play store', 'play description', 1.5, 1);
+// console.log(storeOne);
+
+// console.log('==== TESTING STORE UPLOAD ====');
+
+
+// storeOne.uploadApp(appOne);
+// console.log(storeOne);
+// storeOne.uploadApp(appTwo);
+// storeOne.uploadApp(appThree);
+// storeOne.uploadApp(appFour);
+// console.log(storeOne);
+
+// console.log('==== TESTING STORE TAKEDOWNAPP ====');
+
+// console.log(storeOne);
+
+// console.log('==== TESTING STORE SEARCH ====');
+
+// console.log(storeOne.search('kal'));
+
+// console.log('==== TESTING STORE LIST RECENT APPS ====');
+
+// console.log(storeOne);
+
+// console.log(storeOne.listMostRecentApps(9));
+
+// console.log('==== TESTING STORE LIST POPULAR APPS ====');
+
+// console.log(storeOne.listMostPopularApps(2));
+
+// // let myApp = exam.createApp('aname', 'description', 1, 1);
+// // let myAppTwo = exam.createApp('bNameTwo', 'descriptionTwo', 10, 5);
+// // let myAppThree = exam.createApp('something', 'descriptionThree', 2, 6);
+// // console.log(myApp);
+
+// // myApp.release(2);
+// // console.log(myApp);
+
+// // console.log('=== TESTING RELEASE BY OPTIONS ====');
+
+// // myApp.release({ version: 3, rating: 5, description: 'askdak' });
+// // console.log(myApp);
+
+// // console.log('=== TESTING UPLOAD APP ====');
+
+// // let myStore = exam.createStore('my store', 'my description', 10, 2);
+// // console.log(myStore);
+
+// // myStore.uploadApp(myApp);
+// // myStore.uploadApp(myAppTwo);
+// // myStore.uploadApp(myAppThree);
+// // console.log(myStore);
+
+// // console.log('=== TESTING TAKEDOWN APP ====');
+
+// // // myStore.takedownApp('nameTwo');
+// // // console.log(myStore);
+// // // WORKS AND RESET
+
+// // console.log('=== TESTING SEARCH ====');
+
+// // // console.log(myStore.search(''));
+
+// // console.log('=== TESTING LIST MOST RECENT APPS ====');
+
+// // // console.log(myStore.listMostRecentApps(1));
+
+// // console.log('=== TESTING LIST MOST POPULAR APPS ====');
+
+// // // console.log(myStore.listMostPopularApps(7));
+
+// // console.log('=== TESTING DEVICE CREATION ====');
+// // let myAppOne = exam.createApp('name', 'description', 1, 1);
+// // let myAppTwo = exam.createApp('notname', 'description', 2, 1);
+
+
+
+// // // store one
+
+// // let myAppForStoreOne = exam.createApp('namekalin', 'description', 3, 1);
+// // let myAppOneToUpdate = exam.createApp('name', 'description', 9, 1);
+
+// // // store two
+
+// // let myAppTwoToUpdate = exam.createApp('notname', 'description', 9, 1);
+// // let myAppForStoreTwo = exam.createApp('namekalin', 'description', 4, 1);
+// // let myAppForStoreTwoUpdate = exam.createApp('namekalin', 'description', 9, 1);
+
+
+
+// // let myStoreOne = exam.createStore('my store', 'my description', 10, 2);
+// // let myStoreTwo = exam.createStore('my store', 'my description', 10, 2);
+
+// // myStoreOne.uploadApp(myAppForStoreOne);
+// // myStoreOne.uploadApp(myAppOneToUpdate);
+
+// // myStoreTwo.uploadApp(myAppForStoreTwo);
+// // myStoreTwo.uploadApp(myAppTwoToUpdate);
+// // myStoreTwo.uploadApp(myAppForStoreTwoUpdate);
+
+// // let myDevice = exam.createDevice('apple', [myAppOne, myAppTwo, myStoreOne, myStoreTwo]);
+
+// // console.log(myDevice);
+
+// // console.log('=== TESTING DEVICE SEARCH ====');
+
+// // console.log(myDevice.search('name'));
+
+// // console.log('=== TESTING DEVICE INSTALL ====');
+
+// // myDevice.install('namekalin');
+// // console.log(myDevice);
+// // myDevice.install('namekalin');
+
+// // // WORKS!!
+
+// // console.log('=== TESTING DEVICE UNINSTALL ====');
+
+// // // myDevice.uninstall('namekalin');
+// // console.log(myDevice);
+
+// // console.log('=== TESTING DEVICE LISTINSTALLED ====');
+
+// // // console.log(myDevice.listInstalled());
+
+// // console.log('=== TESTING DEVICE UPDATE ====');
+
+// // myDevice.update();
+// // console.log(myDevice);
