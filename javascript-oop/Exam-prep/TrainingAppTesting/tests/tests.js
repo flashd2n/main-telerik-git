@@ -1,7 +1,7 @@
 const {expect} = require('chai');
 const result = require('../task/task')();
 
-describe('Behaviour tests', function () {
+describe('Training Planner tests', function () {
 
 	describe('Solution template tests', function () {
 		it('expect createApp to be a function with 4 parameters', function () {
