@@ -15,7 +15,7 @@ Implement functionality for a training planner app. Implement the given classes.
         - Symbols allowed: Latin letters and whitespaces
     - Description:
         - Must be non-empty string
-        - Less than 160 symbols
+        - Less than 160 symbols (exclusive)
     - Rest:
         - Represents rest time after exercise in seconds
         - Must be an integer
@@ -25,7 +25,7 @@ Implement functionality for a training planner app. Implement the given classes.
         - Symbols allowed: Latin letters and whitespaces
         - Must be a readonly property: you can set it once, but **Throw** error if anyone tries to change it afterwards
     - PersonalRating:
-        - Must be an integer, positive, less than 10 inclusive
+        - Must be an integer, positive, less than 10 (inclusive)
     - ImprovementStats: `{caloriesBurn: num, performanceGain: num}`
         - An object with properties:
             - caloriesBurn -> non negative integer
@@ -46,11 +46,11 @@ Implement functionality for a training planner app. Implement the given classes.
         - Must be an integer
         - Non negative, less than 10 exclusive
     - PrimaryMuscleGroup:
-        - Must be a string, non-empty, less than 50 symbols, only Latin letters and whitespaces
+        - Must be a string, non-empty, less than 50 symbols, only Latin letters and whitespaces (inclusive)
     - SecondaryMuscleGroup:
-        - Must be a string, non-empty, less than 75 symbols, only Latin letters and whitespaces
+        - Must be a string, non-empty, less than 75 symbols, only Latin letters and whitespaces (inclusive)
     - BestWeight:
-        - Must be an integer, non-negative, less than 100
+        - Must be an integer, non-negative, less than 100 (inclusive)
 - Methods
     - Extend Update(object):
         - Extends the base class method to add support for: numberOfSets, primaryMuscleGroup, secondaryMuscleGroup and bestWeight
@@ -77,7 +77,7 @@ Implement functionality for a training planner app. Implement the given classes.
 - Properties
     - personalData: **{weight: num, fatPercentage: num, endurance: num, strength: num}**
         - weight must be an non negative integer
-        - fatPercentage must be a non-negative integer less than 40 inclusive
+        - fatPercentage must be a non-negative integer less than 40 (inclusive)
         - endurance must be a non-negative integer
         - strength must be a non-negative integer
         - **Throw** if any of the data is invalid
