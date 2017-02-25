@@ -56,6 +56,7 @@ Implement functionality for a training planner app. Implement the given classes.
         - Extends the base class method to add support for: numberOfSets, primaryMuscleGroup, secondaryMuscleGroup and bestWeight
         - If the passed bestWeight is less than the current, **throw error** with message ‘Train harder, you weakling!’
         - **Throw** if invalid data is passed
+
 ### `class PoleDancing`
 - Extends Exercise
 - constructor or init method:
@@ -71,6 +72,7 @@ Implement functionality for a training planner app. Implement the given classes.
     - Extend Update(object)
         - Extend the base class to add support for: difficulty and type
         - **Throw** if invalid data is passed
+
 ### `class TrainingPlanner`
 - constructor or init method:
     - Takes `personalData`
