@@ -1,8 +1,13 @@
-function solve() {
-	// Your classes
+'use strict';
 
-	return createTrainingPlanner(personalData){
-        // returns new training planner object
+function solve() {
+
+    // Your classes
+
+    return {
+        createTrainingPlanner(personalData) {
+            // return new instance of Training Planner
+        }
     };
 }
 

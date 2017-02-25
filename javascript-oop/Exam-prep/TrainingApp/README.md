@@ -177,13 +177,10 @@ Implement functionality for a training planner app. Implement the given classes.
 
 ```javascript
 function solve() {
-    
-    // Your classes
+	// Your classes
 
-    return {
-        createTrainingPlanner(personalData) {
-            return 5;
-        }
+	return createTrainingPlanner(personalData){
+        // returns new training planner object
     };
 }
 

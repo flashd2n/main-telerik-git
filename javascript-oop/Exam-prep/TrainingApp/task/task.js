@@ -1,15 +1,14 @@
-'use strict'
+'use strict';
 
 function solve() {
+
     // Your classes
 
     return {
         createTrainingPlanner(personalData) {
-            return 5;
+            // return new instance of Training Planner
         }
     };
-
-
 }
 
 // Submit the code above this line in bgcoder.com
