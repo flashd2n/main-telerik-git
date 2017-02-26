@@ -6,7 +6,7 @@ function solve() {
 		let order = 0;
 		return function () {
 			return ++order;
-		}
+		};
 	})();
 
 	const VALIDATOR = {
@@ -382,9 +382,9 @@ function solve() {
 		update() {
 
 			let allStores = this.apps.filter(x => x.hasOwnProperty('_apps'));
-			let allInstalledApps = this.apps.filter(x => !x.hasOwnProperty('_apps'));
+			// let allInstalledApps = this.apps.filter(x => !x.hasOwnProperty('_apps'));
 
-			allInstalledApps.forEach(function (app) {
+			this.apps.forEach(function (app) {
 
 				allStores.forEach(function (store) {
 

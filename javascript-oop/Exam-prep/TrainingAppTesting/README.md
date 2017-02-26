@@ -62,10 +62,10 @@ Implement functionality for a training planner app. Implement the given classes.
 - constructor or init method:
     - Takes `name`, `description`, `rest`, `trainingPartner`, `personalRating`, `improvementStats`, `difficulty` and `type`
 - Properties
-    - Difficulty:
+    - difficulty:
         - Must be a string
         - Allowed values are: “easy”, “intermediate”, “advanced”, “expert”, “dorylevel”
-    - Type:
+    - type:
         - Must be a string
         - Allowed values are: “dance” and “strength”
 - Methods
@@ -83,12 +83,14 @@ Implement functionality for a training planner app. Implement the given classes.
         - endurance must be a non-negative integer
         - strength must be a non-negative integer
         - **Throw** if any of the data is invalid
-    - Exercise Database:
+    - exerciseDatabase:
         - Array with all exercises
-    - Schedule:
+    - schedule:
         - Array of seven objects
             - One for each day of the week
-            - Each object has property “day” with value equal to the day of the week (all lowercase) and an array of exercises. 
+            - Each object has the following properties:
+                - `day` with value equal to the day of the week (all lowercase)
+                - `dailyExercises` and an array of exercises. 
 - Methods
     - createExercise(object)
         - Accepts a single parameter – an object with the appropriate properties for a Gym or Pole dancing exercise
