@@ -92,6 +92,62 @@ function solve() {
             if (input !== 'dance' && input !== 'strength') {
                 throw new Error('Invalid type');
             }
+        },
+        validateUpdateExercisePassedObject: function (input) {
+            if (typeof input !== 'object') {
+                throw new Error('The passed parameter is not an object');
+            }
+            if (!input.hasOwnProperty('name')) {
+                throw new Error('The passed object does not have property name');
+            }
+            this.validateStringLength(input.name, 1, 30);
+            this.validateStringSymbolsOnlyLettersAndWhiteSpaces(input.name);
+            if (input.hasOwnProperty('trainingPartner')) {
+                throw new Error('Cannot change trainingPartner property');
+            }
+            if (input.hasOwnProperty('description')) {
+                this.validateStringLength(input.description, 0, 159);
+            }
+            if (input.hasOwnProperty('rest')) {
+                this.validateIntegerSize(input.rest, 1, 119);
+            }
+            if (input.hasOwnProperty('personalRating')) {
+                this.validateIntegerSize(input.personalRating, 1, 10);
+            }
+            if (input.hasOwnProperty('improvementStats')) {
+                this.validateImprovementStats(input.improvementStats);
+            }
+        },
+        validateUpdateGymPassedObject: function (input, currentBestWeight) {
+            this.validateUpdateExercisePassedObject(input);
+            if (input.hasOwnProperty('numberOfSets')) {
+                this.validateNumberRange(input.numberOfSets, 0, 9);
+            }
+            if (input.hasOwnProperty('primaryMuscleGroup')) {
+                this.validateStringLength(input.primaryMuscleGroup, 1, 50);
+                this.validateStringSymbolsOnlyLettersAndWhiteSpaces(input.primaryMuscleGroup);
+            }
+            if (input.hasOwnProperty('secondaryMuscleGroup')) {
+                this.validateStringLength(input.secondaryMuscleGroup, 1, 75);
+                this.validateStringSymbolsOnlyLettersAndWhiteSpaces(input.secondaryMuscleGroup);
+            }
+            if (input.hasOwnProperty('bestWeight')) {
+                this.validateIntegerSize(input.bestWeight, 0, 100);
+                if (input.bestWeight < currentBestWeight) {
+                    throw new Error('Train harder, you weakling!');
+                }
+            }
+        },
+        validateUpdatePoleDancingPassedObject: function (input) {
+            this.validateUpdatePassedObject(input);
+            if (input.hasOwnProperty('difficulty')) {
+                this.validateDifficulty(input.difficulty);
+
+            }
+            if (input.hasOwnProperty('type')) {
+                this.validateType(input.type);
+
+            }
         }
     }
 
@@ -154,7 +210,10 @@ function solve() {
         }
 
         update(option) {
-            // TODO
+            VALIDATION.validateUpdatePassedObject(option);
+            //TODO implementation
+
+
         }
     }
 
@@ -200,7 +259,8 @@ function solve() {
 
 
         update(option) {
-            // TODO EXTEND
+            VALIDATION.validateUpdateGymPassedObject(option, this.bestWeight);
+            //TODO: implementation
         }
     }
 
@@ -229,7 +289,8 @@ function solve() {
 
 
         update(option) {
-            // TODO EXTEND
+            VALIDATION.validateUpdatePoleDancingPassedObject(option);
+            // TODO implementation
         }
     }
 
@@ -265,43 +326,43 @@ function solve() {
             return new GymExercise(exercise.name, exercise.description, exercise.rest, exercise.trainingPartner, exercise.personalRating, exercise.improvementStats, exercise.numberOfSets, exercise.primaryMuscleGroup, exercise.secondaryMuscleGroup, exercise.bestWeight);
         }
 
-        addExerciseToDatabase(...exercises){
+        addExerciseToDatabase(...exercises) {
 
         }
 
-        addExercisetoSchedule(day, ...exercises){
+        addExercisetoSchedule(day, ...exercises) {
 
         }
 
-        updateExercise(exercise){
+        updateExercise(exercise) {
 
         }
 
-        getAllExercises(){
+        getAllExercises() {
 
         }
 
-        searchExercises(obj){
+        searchExercises(obj) {
 
         }
 
-        listExercises(count, property){
+        listExercises(count, property) {
 
         }
 
-        getProgram(query){
+        getProgram(query) {
 
         }
 
-        getWeeklySchedule(){
+        getWeeklySchedule() {
 
         }
 
-        train(day){
+        train(day) {
 
         }
 
-        trainWeeks(count){
+        trainWeeks(count) {
 
         }
 
