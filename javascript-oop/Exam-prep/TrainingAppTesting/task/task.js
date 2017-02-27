@@ -139,7 +139,7 @@ function solve() {
             }
         },
         validateUpdatePoleDancingPassedObject: function (input) {
-            this.validateUpdatePassedObject(input);
+            this.validateUpdateExercisePassedObject(input);
             if (input.hasOwnProperty('difficulty')) {
                 this.validateDifficulty(input.difficulty);
 
@@ -210,9 +210,13 @@ function solve() {
         }
 
         update(option) {
-            VALIDATION.validateUpdatePassedObject(option);
-            //TODO implementation
+            VALIDATION.validateUpdateExercisePassedObject(option);
 
+            let properties = Object.keys(option);
+
+            properties.forEach(x => this[x] = option[x]);
+
+            return this;
 
         }
     }
@@ -260,7 +264,7 @@ function solve() {
 
         update(option) {
             VALIDATION.validateUpdateGymPassedObject(option, this.bestWeight);
-            //TODO: implementation
+            super.update(option);
         }
     }
 
@@ -290,7 +294,7 @@ function solve() {
 
         update(option) {
             VALIDATION.validateUpdatePoleDancingPassedObject(option);
-            // TODO implementation
+            super.update(option);
         }
     }
 
@@ -320,13 +324,49 @@ function solve() {
 
         createExercise(exercise) {
             VALIDATION.validateExercise(exercise);
-            if (exercise.hasOwnProperty('difficulty')) {
+            if (exercise.hasOwnProperty('difficulty') || exercise.hasOwnProperty('_difficulty')) {
                 return new PoleDancing(exercise.name, exercise.description, exercise.rest, exercise.trainingPartner, exercise.personalRating, exercise.improvementStats, exercise.difficulty, exercise.type);
             }
             return new GymExercise(exercise.name, exercise.description, exercise.rest, exercise.trainingPartner, exercise.personalRating, exercise.improvementStats, exercise.numberOfSets, exercise.primaryMuscleGroup, exercise.secondaryMuscleGroup, exercise.bestWeight);
         }
 
         addExerciseToDatabase(...exercises) {
+
+            if (Array.isArray(exercises[0])) {
+                exercises = exercises[0];
+            }
+
+            if (exercises.length === 1) {
+                let exerciseToAdd;
+                try {
+                    exerciseToAdd = this.createExercise(exercises[0]);
+                } catch (error) {
+                    throw new Error('The passed parameter is not an object');
+                }
+
+                if (this.exerciseDatabase.some(x => x.name === exerciseToAdd.name)) {
+                    throw new Error('This exercise is already added');
+                }
+
+                this.exerciseDatabase.push(exerciseToAdd);
+                return this;
+            }
+
+            for (let i = 0; i < exercises.length; i++) {
+
+                let exerciseToAdd;
+                try {
+                    exerciseToAdd = this.createExercise(exercises[i]);
+                } catch (error) {
+                    continue;
+                }
+                if (this.exerciseDatabase.some(x => x.name === exerciseToAdd.name)) {
+                    continue;
+                }
+                this.exerciseDatabase.push(exerciseToAdd);
+            }
+
+            return this;
 
         }
 
@@ -375,7 +415,22 @@ function solve() {
     };
 }
 
+// const validTrainingPlannerObject = { weight: 20, fatPercentage: 10, endurance: 30, strength: 40 };
+// const validExercise = { name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 } };
+// const validGym = { name: 'Valid Name Gym', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 };
+// const validPoleDance = { name: 'Valid Name Pole Dance', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'dance' };
+
+
 // const result = solve();
+
+// const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+// const gymExercise = myTrainingPlanner.createExercise(validGym);
+// const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
+
+// myTrainingPlanner.addExerciseToDatabase([gymExercise, myPoleDanceExercise]);
+
+// console.log(myTrainingPlanner.exerciseDatabase);
+
 
 // Submit the code above this line in bgcoder.com
 module.exports = solve;

@@ -2,8 +2,8 @@ const {expect} = require('chai');
 const result = require('../task/task')();
 const validTrainingPlannerObject = { weight: 20, fatPercentage: 10, endurance: 30, strength: 40 };
 const validExercise = { name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 } };
-const validGym = { name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 };
-const validPoleDance = { name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'dance' };
+const validGym = { name: 'Valid Name Gym', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 };
+const validPoleDance = { name: 'Valid Name Pole Dance', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'dance' };
 
 
 describe('Training Planner Tests', function () {
@@ -634,6 +634,45 @@ describe('Training Planner Tests', function () {
 
 			});
 
+			it('expect update to not throw an error when the passed parameter is valid, but no property needs updating', function () {
+
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const myGymExercise = myTrainingPlanner.createExercise(validGym);
+				const toUpdate = { name: validGym.name, description: validGym.description, rest: validGym.rest };
+
+				myGymExercise.update(toUpdate);
+
+				expect(myGymExercise.name).to.equal('Valid Name Gym');
+				expect(myGymExercise.description).to.equal('Valid Description');
+				expect(myGymExercise.rest).to.equal(60);
+			});
+
+			it('expect update to correctly update a gym exercise when only one property needs updating', function () {
+
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const myGymExercise = myTrainingPlanner.createExercise(validGym);
+				const toUpdate = { name: validGym.name, rest: 90 };
+
+				myGymExercise.update(toUpdate);
+
+				expect(myGymExercise.name).to.equal('Valid Name Gym');
+				expect(myGymExercise.rest).to.equal(90);
+
+			});
+
+			it('expect update to correctly update a gym exercise when multiple properties needs updating', function () {
+
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const myGymExercise = myTrainingPlanner.createExercise(validGym);
+				const toUpdate = { name: validGym.name, rest: 20, personalRating: 2 };
+
+				myGymExercise.update(toUpdate);
+
+				expect(myGymExercise.name).to.equal('Valid Name Gym');
+				expect(myGymExercise.rest).to.equal(20);
+				expect(myGymExercise.personalRating).to.equal(2);
+			});
+
 		});
 
 		describe('Pole Dancing Exercise Update Tests', function () {
@@ -645,7 +684,7 @@ describe('Training Planner Tests', function () {
 				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
 
 				const toUpdate = { name: 'Valid Name', description: 'Valid Description', rest: 60, personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'dance' };
-				
+
 				expect(() => myPoleDanceExercise.update(true)).to.throw();
 
 			});
@@ -655,8 +694,8 @@ describe('Training Planner Tests', function () {
 
 				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
 
-				const toUpdate = {description: 'Valid Description', rest: 60, personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'dance' };
-				
+				const toUpdate = { description: 'Valid Description', rest: 60, personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'dance' };
+
 				expect(() => myPoleDanceExercise.update(toUpdate)).to.throw();
 
 			});
@@ -668,7 +707,7 @@ describe('Training Planner Tests', function () {
 				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
 
 				const toUpdate = { name: 'Valid Name', description: 'Valid Description', rest: 60, personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'dancee' };
-				
+
 				expect(() => myPoleDanceExercise.update(toUpdate)).to.throw();
 
 			});
@@ -680,7 +719,7 @@ describe('Training Planner Tests', function () {
 				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
 
 				const toUpdate = { name: 'Valid Name', description: 'Valid Description', rest: 60, personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'notdorylevel', type: 'dance' };
-				
+
 				expect(() => myPoleDanceExercise.update(toUpdate)).to.throw();
 
 			});
@@ -691,8 +730,8 @@ describe('Training Planner Tests', function () {
 
 				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
 
-				const toUpdate = { name: 'Valid Name', description: 'Valid Description', rest: 60, personalRating: 10, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'dance' };
-				
+				const toUpdate = { name: 'Valid Name', description: 'Valid Description', rest: 60, personalRating: 11, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'dance' };
+
 				expect(() => myPoleDanceExercise.update(toUpdate)).to.throw();
 
 			});
@@ -704,31 +743,180 @@ describe('Training Planner Tests', function () {
 				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
 
 				const toUpdate = { name: '', description: 'Valid Description', rest: 60, personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'dance' };
-				
+
 				expect(() => myPoleDanceExercise.update(toUpdate)).to.throw();
 
 			});
 
-		});
+			it('expect update to not throw an error when the passed parameter is valid, but no property needs updating', function () {
 
-		// HERE
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
+				const toUpdate = { name: validPoleDance.name, description: validPoleDance.description, difficulty: validPoleDance.difficulty };
+				myPoleDanceExercise.update(toUpdate);
+
+				expect(myPoleDanceExercise.name).to.equal('Valid Name Pole Dance');
+				expect(myPoleDanceExercise.description).to.equal('Valid Description');
+				expect(myPoleDanceExercise.difficulty).to.equal('dorylevel');
+			});
+
+			it('expect update to correctly update a gym exercise when only one property needs updating', function () {
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
+				const toUpdate = { name: validPoleDance.name, description: 'much better description' };
+				myPoleDanceExercise.update(toUpdate);
+
+				expect(myPoleDanceExercise.name).to.equal('Valid Name Pole Dance');
+				expect(myPoleDanceExercise.description).to.equal('much better description');
+			});
+
+			it('expect update to correctly update a gym exercise when multiple properties needs updating', function () {
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
+				const toUpdate = { name: validPoleDance.name, difficulty: 'easy', type: 'strength' };
+				myPoleDanceExercise.update(toUpdate);
+
+				expect(myPoleDanceExercise.name).to.equal('Valid Name Pole Dance');
+				expect(myPoleDanceExercise.difficulty).to.equal('easy');
+				expect(myPoleDanceExercise.type).to.equal('strength');
+			});
+
+		});
 
 		describe('addExerciseToDatabase() Tests', function () {
-			it('Skeleton Test', function () {
-				expect(() => result.createApp(0, 'description', 0.1, 4)).to.throw();
-				expect(() => result.createApp('', 'description', 0.1, 4)).to.throw();
-				expect(() => result.createApp('1234567890123456789012345', 'description', 0.1, 4)).to.throw();
-				expect(() => result.createApp('+++', 'description', 0.1, 4)).to.throw();
+
+			it('expect addExerciseToDatabase to throw when the passed parameter is not an object', function () {
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+
+				expect(() => myTrainingPlanner.addExerciseToDatabase(true)).to.throw();
+
+			});
+
+			it('expect addExerciseToDatabase to throw when the passed parameter is not an valid object', function () {
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+
+				expect(() => myTrainingPlanner.addExerciseToDatabase({ name: 'something', description: 'very cool' })).to.throw();
+			});
+
+			it('expect addExerciseToDatabase to throw when there is already an exercise with the same name in the database', function () {
+
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const gymExercise = myTrainingPlanner.createExercise(validGym);
+
+				myTrainingPlanner.addExerciseToDatabase(gymExercise);
+
+				expect(() => myTrainingPlanner.addExerciseToDatabase(gymExercise)).to.throw();
+
+			});
+
+			it('expect addExerciseToDatabase to successfully add the exercise to the database', function () {
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const gymExercise = myTrainingPlanner.createExercise(validGym);
+				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
+
+				myTrainingPlanner.addExerciseToDatabase(gymExercise);
+
+				expect(myTrainingPlanner.exerciseDatabase).to.be.instanceof(Array);
+				expect(myTrainingPlanner.exerciseDatabase).to.have.length(1);
+				expect(myTrainingPlanner.exerciseDatabase[0].name).to.equal(gymExercise.name);
+
+			});
+
+			it('expect addExerciseToDatabase to successfully add all exercises to the database when there is one invalid and one valid exercise passed', function () {
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const gymExercise = myTrainingPlanner.createExercise(validGym);
+
+				myTrainingPlanner.addExerciseToDatabase([gymExercise, { name: 'lalala', description: 'uuuhaaaaaa' }]);
+
+				expect(myTrainingPlanner.exerciseDatabase).to.be.instanceof(Array);
+				expect(myTrainingPlanner.exerciseDatabase).to.have.length(1);
+				expect(myTrainingPlanner.exerciseDatabase[0].name).to.equal(gymExercise.name);
+			});
+
+			it('expect addExerciseToDatabase to successfully add all exercises to the database when there are two valid exercises passed', function () {
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const gymExercise = myTrainingPlanner.createExercise(validGym);
+				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
+
+				myTrainingPlanner.addExerciseToDatabase([gymExercise, myPoleDanceExercise]);
+
+				expect(myTrainingPlanner.exerciseDatabase).to.be.instanceof(Array);
+				expect(myTrainingPlanner.exerciseDatabase).to.have.length(2);
+				expect(myTrainingPlanner.exerciseDatabase[0].name).to.equal(gymExercise.name);
+				expect(myTrainingPlanner.exerciseDatabase[1].name).to.equal(myPoleDanceExercise.name);
+			});
+
+			it('expect addExerciseToDatabase to successfully add all exercises to the database when there are two valid exercises, but one of them is already in the database', function () {
+
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const gymExercise = myTrainingPlanner.createExercise(validGym);
+				const myPoleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
+
+				myTrainingPlanner.addExerciseToDatabase(gymExercise);
+				myTrainingPlanner.addExerciseToDatabase([gymExercise, myPoleDanceExercise]);
+
+				expect(myTrainingPlanner.exerciseDatabase).to.be.instanceof(Array);
+				expect(myTrainingPlanner.exerciseDatabase).to.have.length(2);
+				expect(myTrainingPlanner.exerciseDatabase[0].name).to.equal(gymExercise.name);
+				expect(myTrainingPlanner.exerciseDatabase[1].name).to.equal(myPoleDanceExercise.name);
+
 			});
 		});
 
+		//HERE
+
 		describe('addExercisetoSchedule() Tests', function () {
-			it('Skeleton Test', function () {
-				expect(() => result.createApp(0, 'description', 0.1, 4)).to.throw();
-				expect(() => result.createApp('', 'description', 0.1, 4)).to.throw();
-				expect(() => result.createApp('1234567890123456789012345', 'description', 0.1, 4)).to.throw();
-				expect(() => result.createApp('+++', 'description', 0.1, 4)).to.throw();
+
+			it('expect addExercisetoSchedule to throw when the passed day is not valid', function () {
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const gymExercise = myTrainingPlanner.createExercise(validGym);
+
+				expect(() => myTrainingPlanner.addExercisetoSchedule('blaaa', gymExercise)).to.throw();
+
 			});
+
+			it('expect addExercisetoSchedule to throw when the passed exercise is not valid', function () {
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+
+				expect(() => myTrainingPlanner.addExercisetoSchedule('monday', { name: 'some name', description: 'uuuhaa' })).to.throw();
+			});
+
+			it('expect addExercisetoSchedule to throw when multiple exercises are passed and one of them is not valid', function () {
+
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const gymExercise = myTrainingPlanner.createExercise(validGym);
+
+				expect(() => myTrainingPlanner.addExercisetoSchedule('monday', [gymExercise, { name: 'some name', description: 'uuuhaa' }])).to.throw();
+
+			});
+
+			it('expect addExercisetoSchedule to add the correct exercise to the correct day', function () {
+
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const gymExercise = myTrainingPlanner.createExercise(validGym);
+
+				myTrainingPlanner.addExercisetoSchedule('monday', gymExercise);
+
+				expect(myTrainingPlanner.schedule).to.be.instanceof(Array);
+				expect(myTrainingPlanner.schedule).to.have.length(1);
+				expect(myTrainingPlanner.schedule[0].dailyExercises[0].name).to.be.equal(gymExercise.name)
+
+			});
+
+			it('expect addExercisetoSchedule to add all exercise to the correct day when all passed exercises are valid', function () {
+				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
+				const gymExercise = myTrainingPlanner.createExercise(validGym);
+				const poleDanceExercise = myTrainingPlanner.createExercise(validPoleDance);
+
+				myTrainingPlanner.addExercisetoSchedule('monday', [gymExercise, poleDanceExercise]);
+
+				expect(myTrainingPlanner.schedule).to.be.instanceof(Array);
+				expect(myTrainingPlanner.schedule).to.have.length(2);
+				expect(myTrainingPlanner.schedule[0].dailyExercises[0].name).to.be.equal(gymExercise.name)
+				expect(myTrainingPlanner.schedule[0].dailyExercises[1].name).to.be.equal(poleDanceExercise.name)
+			});
+
+
 		});
 
 		describe('updateExercise() Tests', function () {

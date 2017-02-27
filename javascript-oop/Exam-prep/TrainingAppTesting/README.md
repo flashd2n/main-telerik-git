@@ -102,8 +102,8 @@ Implement functionality for a training planner app. Implement the given classes.
         - Adds the exercise to the database
         - **Throws** if an exercise with the same name already exists
         - Provides chaining
-    - addExerciseToDatabase(exercise1, exercise2, exercise3)
-        - Accepts a random number of exercise objects
+    - addExerciseToDatabase([exercise1, exercise2, exercise3])
+        - Accepts an array with random number of exercise objects
         - These objects can be Gym/Pole dancing/Gym-like/Pole dancing-like instances/objects
         - If there is an invalid object, you **do not add it to the database, but you add all other valid objects**.
         - If there is an exercise with the same name, you skip that object, but add all unique and valid objects
@@ -115,11 +115,11 @@ Implement functionality for a training planner app. Implement the given classes.
         - **Throws** if any data is invalid
         - Add the exercise to the correct day from the schedule
         - Provide chaining
-    - addExercisetoSchedule(day, exercise1, exercise2, exercise3)
+    - addExercisetoSchedule(day, [exercise1, exercise2, exercise3])
         - Accepts as a first parameters a day, which must be a string and a valid day of the week (all lower case)
-        - Random number of objects, which can be instances of Gym or Pole dancing or Gym-like/Pole dancing-like objects
+        - An array with random number of objects, which can be instances of Gym or Pole dancing or Gym-like/Pole dancing-like objects
         - If the day is invalid – **throw** new error
-        - If any of the objects is invalid do not add any exercises to the schedule
+        - If any of the objects is invalid do not add any exercises to the schedule and **Throw** an error.
         - More than one exercise can be added to the day
         - Provides chaining
     - updateExercise(exercise)
