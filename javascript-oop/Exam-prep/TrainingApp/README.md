@@ -62,10 +62,10 @@ Implement functionality for a training planner app. Implement the given classes.
 - constructor or init method:
     - Takes `name`, `description`, `rest`, `trainingPartner`, `personalRating`, `improvementStats`, `difficulty` and `type`
 - Properties
-    - Difficulty:
+    - difficulty:
         - Must be a string
         - Allowed values are: “easy”, “intermediate”, “advanced”, “expert”, “dorylevel”
-    - Type:
+    - type:
         - Must be a string
         - Allowed values are: “dance” and “strength”
 - Methods
@@ -83,12 +83,14 @@ Implement functionality for a training planner app. Implement the given classes.
         - endurance must be a non-negative integer
         - strength must be a non-negative integer
         - **Throw** if any of the data is invalid
-    - Exercise Database:
+    - exerciseDatabase:
         - Array with all exercises
-    - Schedule:
+    - schedule:
         - Array of seven objects
             - One for each day of the week
-            - Each object has property “day” with value equal to the day of the week (all lowercase) and an array of exercises. 
+            - Each object has the following properties:
+                - `day` with value equal to the day of the week (all lowercase)
+                - `dailyExercises` and an array of exercises. 
 - Methods
     - createExercise(object)
         - Accepts a single parameter – an object with the appropriate properties for a Gym or Pole dancing exercise
@@ -100,8 +102,8 @@ Implement functionality for a training planner app. Implement the given classes.
         - Adds the exercise to the database
         - **Throws** if an exercise with the same name already exists
         - Provides chaining
-    - addExerciseToDatabase(exercise1, exercise2, exercise3)
-        - Accepts a random number of exercise objects
+    - addExerciseToDatabase([exercise1, exercise2, exercise3])
+        - Accepts an array with random number of exercise objects
         - These objects can be Gym/Pole dancing/Gym-like/Pole dancing-like instances/objects
         - If there is an invalid object, you **do not add it to the database, but you add all other valid objects**.
         - If there is an exercise with the same name, you skip that object, but add all unique and valid objects
@@ -113,17 +115,17 @@ Implement functionality for a training planner app. Implement the given classes.
         - **Throws** if any data is invalid
         - Add the exercise to the correct day from the schedule
         - Provide chaining
-    - addExercisetoSchedule(day, exercise1, exercise2, exercise3)
+    - addExercisetoSchedule(day, [exercise1, exercise2, exercise3])
         - Accepts as a first parameters a day, which must be a string and a valid day of the week (all lower case)
-        - Random number of objects, which can be instances of Gym or Pole dancing or Gym-like/Pole dancing-like objects
+        - An array with random number of objects, which can be instances of Gym or Pole dancing or Gym-like/Pole dancing-like objects
         - If the day is invalid – **throw** new error
-        - If any of the objects is invalid do not add any exercises to the schedule
+        - If any of the objects is invalid do not add any exercises to the schedule and **Throw** an error.
         - More than one exercise can be added to the day
         - Provides chaining
     - updateExercise(exercise)
         - Accepts an instance of Gym or Pole dancing
         - **Throws** if invalid
-        - Finds the correct exercise from the database and updates it
+        - Finds the correct exercise from the database by `name` and updates it
         - If the exercise is not found, add it to the database
         - Provide chaining
     - getAllExercises()
@@ -138,7 +140,7 @@ Implement functionality for a training planner app. Implement the given classes.
             - count is an integer, which defaults to 10
             - property is an exercise property, cannot be “name”
         - **Throws** if invalid property is passed
-        - Returns `count` number of exercises sorted by `property` in ascending order
+        - Returns an array with `count` number of exercises sorted by `property` in ascending order
     - getProgram(day)
         - Accepts a single parameter – a day of the week
         - The passed parameter must a valid day of the week, all lowercase
@@ -146,11 +148,10 @@ Implement functionality for a training planner app. Implement the given classes.
         - Returns an array of exercises which are assigned to that day of the week in the schedule
     - getProgram(object)
         - Accepts an object with random number of parameters which must be valid exercise parameters
-        - **Throws** if an invalid combination of parameters is passed
-        - **Throws** if any of the parameters is invalid
+        - **Throws** if an invalid combination of parameters is passed, **throws** if there is a `name` property in the object
         - Returns an array of strings -> days, which contain at least one exercise that match the query
     - getWeeklySchedule()
-        - Returns the schedule sorted by the combined personal ratings of all exercises in the each day in descending order
+        - Returns the schedule sorted by the combined personal ratings of all exercises in the each day in ascending order
     - train(day)
         - Accepts a single parameter – a valid day of the week, all lowercase
         - **Throws** if invalid data is passed
@@ -158,18 +159,18 @@ Implement functionality for a training planner app. Implement the given classes.
             - `weight` = weight – (weight/caloriesBurn)
             - `fatPercentage` = fatPercentage – (fatPercentage/ caloriesBurn)
             - `endurance` = endurance + (performanceGain / 100)
-            - `strength` = strength + (performanceGain / 50) 
-        - Take into account all the exercises of the passed day
+            - `strength` = strength + (performanceGain / 100) 
+        - hint: calculate the total number of caloriesBurn-ed and performanceGain-ed that day and then apply the formula
         - Returns the updated personalData
     - trainWeeks(count)
         - Accepts a single parameter – a non-negative integer without a floating point
-        - **Throws** if invalid data is passed
+        - **Throws** if `count` is not a positive integer
         - calculate the changes to the personal stats using the formulae:
             - weight = weight – (weight/caloriesBurn)
             - fatPercentage = fatPercentage – (fatPercentage/ caloriesBurn)
             - endurance = endurance + (performanceGain / 100)
             - strength = strength + (performanceGain / 50) 
-        - Take into account all the exercises of each day of the week for “count” number of weeks
+        - hint: calculate the total number of caloriesBurn-ed and performanceGain-ed in a day and then apply the formula for each day of the week
         - Returns the updated personalData
 
 
