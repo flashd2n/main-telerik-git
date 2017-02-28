@@ -1,4 +1,4 @@
-# Training Planner
+﻿# Training Planner
 
 Implement functionality for a training planner app. Implement the given classes.
 
@@ -170,7 +170,7 @@ Implement functionality for a training planner app. Implement the given classes.
             - fatPercentage = fatPercentage – (fatPercentage/ caloriesBurn)
             - endurance = endurance + (performanceGain / 100)
             - strength = strength + (performanceGain / 50) 
-        - hint: calculate the total number of caloriesBurn-ed and performanceGain-ed in a day and then apply the formula for each day of the week
+        - hint: calculate the changes to the personalData after each day of the week
         - Returns the updated personalData
 
 
