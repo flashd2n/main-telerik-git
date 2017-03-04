@@ -1,4 +1,4 @@
-const {expect} = require('chai');
+const { expect } = require('chai');
 const result = require('../task/task')();
 const validTrainingPlannerObject = { weight: 20, fatPercentage: 10, endurance: 30, strength: 40 };
 const validExercise = { name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 } };
@@ -28,11 +28,9 @@ describe('Training Planner Tests', function () {
 			it('expect createTrainingPlanner with invalid weigth to throw', function () {
 
 				expect(() => result.createTrainingPlanner({ weight: NaN, fatPercentage: 20, endurance: 20, strength: 20 })).to.throw();
-
-			});
-
-			it('expect createTrainingPlanner with invalid weigth to throw 2', function () {
-
+				expect(() => result.createTrainingPlanner({ weight: undefined, fatPercentage: 20, endurance: 20, strength: 20 })).to.throw();
+				expect(() => result.createTrainingPlanner({ weight: null, fatPercentage: 20, endurance: 20, strength: 20 })).to.throw();
+				expect(() => result.createTrainingPlanner({ weight: -1, fatPercentage: 20, endurance: 20, strength: 20 })).to.throw();
 				expect(() => result.createTrainingPlanner({ weight: '2', fatPercentage: 20, endurance: 20, strength: 20 })).to.throw();
 
 			});
@@ -40,37 +38,30 @@ describe('Training Planner Tests', function () {
 			it('expect createTrainingPlanner with invalid fatPercentage to throw', function () {
 
 				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 41, endurance: 20, strength: 20 })).to.throw();
-
-			});
-
-			it('expect createTrainingPlanner with invalid fatPercentage to throw 2', function () {
-
 				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: undefined, endurance: 20, strength: 20 })).to.throw();
+				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: NaN, endurance: 20, strength: 20 })).to.throw();
+				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: null, endurance: 20, strength: 20 })).to.throw();
+				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: '23', endurance: 20, strength: 20 })).to.throw();
+				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: -1, endurance: 20, strength: 20 })).to.throw();
 
 			});
 
 			it('expect createTrainingPlanner with invalid endurance to throw', function () {
 
+				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 20, endurance: NaN, strength: 20 })).to.throw();
+				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 20, endurance: undefined, strength: 20 })).to.throw();
 				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 20, endurance: null, strength: 20 })).to.throw();
-
-			});
-
-			it('expect createTrainingPlanner with invalid endurance to throw 2', function () {
-
 				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 20, endurance: -1, strength: 20 })).to.throw();
-
+				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 20, endurance: '2', strength: 20 })).to.throw();
 			});
 
 			it('expect createTrainingPlanner with invalid strength to throw', function () {
 
 				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 20, endurance: 20, strength: NaN })).to.throw();
-
-			});
-
-			it('expect createTrainingPlanner with invalid strength to throw 2', function () {
-
-				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 20, endurance: 20, strength: true })).to.throw();
-
+				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 20, endurance: 20, strength: undefined })).to.throw();
+				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 20, endurance: 20, strength: null })).to.throw();
+				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 20, endurance: 20, strength: -1 })).to.throw();
+				expect(() => result.createTrainingPlanner({ weight: 50, fatPercentage: 20, endurance: 20, strength: '2' })).to.throw();
 			});
 
 			it('expect new traininPlanner object to have valid properties', function () {
@@ -128,43 +119,26 @@ describe('Training Planner Tests', function () {
 
 
 		describe('Exercise Creation Tests', function () {
-			it('expect createExercise with invalid passed parameter to throw', function () {
+			it('expect createExercise with invalid passed parameter type to throw', function () {
 
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
 				expect(() => myTrainingPlanner.createExercise('object')).to.throw();
-
-			});
-
-			it('expect createExercise with invalid passed parameter to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
 				expect(() => myTrainingPlanner.createExercise(true)).to.throw();
+				expect(() => myTrainingPlanner.createExercise(undefined)).to.throw();
+				expect(() => myTrainingPlanner.createExercise(42)).to.throw();
+
 
 			});
 
-			it('expect createExercise with invalid passed parameter combination to throw', function () {
+			it('expect createExercise with invalid properties to throw', function () {
 
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 3, type: 'dance' })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid gym requirements to throw', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', difficulty: 'dorylevel' })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid poledance requirements to throw', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
-				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, primaryMuscleGroup: 'dorylevel', type: 'dance' })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', primaryMuscleGroup: 'dorylevel' })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 } })).to.throw();
 
 			});
 
@@ -172,16 +146,11 @@ describe('Training Planner Tests', function () {
 
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
-				expect(() => myTrainingPlanner.createExercise({ name: 'gosho#pencho', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid name to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
+				expect(() => myTrainingPlanner.createExercise({ name: undefined, description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: null, description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 				expect(() => myTrainingPlanner.createExercise({ name: '', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
+				expect(() => myTrainingPlanner.createExercise({ name: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'gosho#pencho', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 			});
 
 			it('expect createExercise with invalid description to throw', function () {
@@ -189,15 +158,9 @@ describe('Training Planner Tests', function () {
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: undefined, rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid description to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: { description: 'something' }, rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: '', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'qazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcrqazwsxedcr', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 			});
 
 			it('expect createExercise with invalid rest to throw', function () {
@@ -205,15 +168,10 @@ describe('Training Planner Tests', function () {
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: NaN, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid rest to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 120, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: undefined, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 0, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: '32', trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 			});
 
 			it('expect createExercise with invalid trainingPartner to throw', function () {
@@ -221,40 +179,29 @@ describe('Training Planner Tests', function () {
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: null, personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid trainingPartner to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gos%ho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 
 			});
-
 
 			it('expect createExercise with invalid personalRating to throw', function () {
 
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: -1, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid personalRating to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: null, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: NaN, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 11, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 			});
 
 			it('expect createExercise with invalid improvementStats: caloriesBurn to throw', function () {
 
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: NaN, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: undefined, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: null, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: -1, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: '2', performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 			});
 
 			it('expect createExercise with invalid improvementStats: performanceGain to throw', function () {
@@ -262,6 +209,10 @@ describe('Training Planner Tests', function () {
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: NaN }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: undefined }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: null }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: -1 }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: '2' }, numberOfSets: 5, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 
 			});
 		});
@@ -273,13 +224,9 @@ describe('Training Planner Tests', function () {
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: NaN, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid numberOfSets to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: undefined, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: '2', primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: -1, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 10, primaryMuscleGroup: 'Chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 
 			});
@@ -289,14 +236,11 @@ describe('Training Planner Tests', function () {
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'che$st', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid primaryMuscleGroup to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: '', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: { chest: 'chest' }, secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: undefined, secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: false, secondaryMuscleGroup: 'Triceps', bestWeight: 75 })).to.throw();
 
 			});
 
@@ -304,14 +248,11 @@ describe('Training Planner Tests', function () {
 
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: 'che$st', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: undefined, bestWeight: 75 })).to.throw();
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: '', bestWeight: 75 })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid secondaryMuscleGroup to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', bestWeight: 75 })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: true, bestWeight: 75 })).to.throw();
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: NaN, bestWeight: 75 })).to.throw();
 
 			});
@@ -320,14 +261,9 @@ describe('Training Planner Tests', function () {
 
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: 'Triceps', bestWeight: -1 })).to.throw();
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: 'Triceps', bestWeight: 101 })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid bestWeight to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: 'Triceps', bestWeight: NaN })).to.throw();
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: 'Triceps', bestWeight: undefined })).to.throw();
 
 			});
@@ -336,7 +272,7 @@ describe('Training Planner Tests', function () {
 
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
-				const gymExercise = myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: 'Triceps', bestWeight: 75 });
+				const gymExercise = myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, numberOfSets: 5, primaryMuscleGroup: 'chest', secondaryMuscleGroup: 'Triceps', bestWeight: 0 });
 
 				expect(gymExercise.name).to.equal('Valid Name');
 				expect(gymExercise.description).to.equal('Valid Description');
@@ -351,7 +287,7 @@ describe('Training Planner Tests', function () {
 				expect(gymExercise.numberOfSets).to.equal(5);
 				expect(gymExercise.primaryMuscleGroup).to.equal('chest');
 				expect(gymExercise.secondaryMuscleGroup).to.equal('Triceps');
-				expect(gymExercise.bestWeight).to.equal(75);
+				expect(gymExercise.bestWeight).to.equal(0);
 
 
 
@@ -375,14 +311,10 @@ describe('Training Planner Tests', function () {
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'pesholevel', type: 'dance' })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid difficulty to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 42, type: 'dance' })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: undefined, type: 'dance' })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'easy#', type: 'dance' })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: '', type: 'dance' })).to.throw();
 
 			});
 
@@ -391,14 +323,10 @@ describe('Training Planner Tests', function () {
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'dances' })).to.throw();
-
-			});
-
-			it('expect createExercise with invalid type to throw 2', function () {
-
-				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
-
 				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: undefined })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: NaN })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: true })).to.throw();
+				expect(() => myTrainingPlanner.createExercise({ name: 'Valid Name', description: 'Valid Description', rest: 60, trainingPartner: 'Gosho', personalRating: 5, improvementStats: { caloriesBurn: 50, performanceGain: 50 }, difficulty: 'dorylevel', type: 'strenght' })).to.throw();
 
 			});
 
@@ -1488,8 +1416,8 @@ describe('Training Planner Tests', function () {
 		});
 
 		describe('trainWeeks() Tests', function () {
-			
-			it('expect trainWeeks to throw when invalid count is passed', function(){
+
+			it('expect trainWeeks to throw when invalid count is passed', function () {
 
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 
@@ -1497,8 +1425,8 @@ describe('Training Planner Tests', function () {
 
 			});
 
-			it('expect trainWeeks to return correct personalData when there are exercises in every day of the week', function(){
-				
+			it('expect trainWeeks to return correct personalData when there are exercises in every day of the week', function () {
+
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 				const gymExercise = myTrainingPlanner.createExercise(validGym);
 
@@ -1520,7 +1448,7 @@ describe('Training Planner Tests', function () {
 
 			});
 
-			it('expect trainWeeks to return correct personalData when there days with no exercise', function(){
+			it('expect trainWeeks to return correct personalData when there days with no exercise', function () {
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 				const gymExercise = myTrainingPlanner.createExercise(validGym);
 

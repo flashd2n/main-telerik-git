@@ -1,4 +1,4 @@
-﻿# Training Planner
+# Training Planner
 
 Implement functionality for a training planner app. Implement the given classes.
 
@@ -18,18 +18,18 @@ Implement functionality for a training planner app. Implement the given classes.
         - Less than 160 symbols (exclusive)
     - Rest:
         - Represents rest time after exercise in seconds
-        - Must be an integer
+        - Must be an number
         - Positive and less than 120 – nobody can rest for more than 2 minutes (exclusive)
     - TrainingPartner:
         - Must be a string
         - Symbols allowed: Latin letters and whitespaces
         - Must be a readonly property: you can set it once, but **Throw** error if anyone tries to change it afterwards
     - PersonalRating:
-        - Must be an integer, positive, less than 10 (inclusive)
+        - Must be an number, positive, less than 10 (inclusive)
     - ImprovementStats: `{caloriesBurn: num, performanceGain: num}`
         - An object with properties:
-            - caloriesBurn -> non negative integer
-            - performanceGain -> non negative integer
+            - caloriesBurn -> non negative number
+            - performanceGain -> non negative number
 - Methods
     - Update(object)
         - Passed parameter is an object. Mandatory property - “name”.
@@ -43,14 +43,14 @@ Implement functionality for a training planner app. Implement the given classes.
     - **Throws** if any of them is not valid!
 - Properties
     - NumberOfSets:
-        - Must be an integer
+        - Must be an number
         - Non negative, less than 10 exclusive
     - PrimaryMuscleGroup:
         - Must be a string, non-empty, less than 50 symbols, only Latin letters and whitespaces (inclusive)
     - SecondaryMuscleGroup:
         - Must be a string, non-empty, less than 75 symbols, only Latin letters and whitespaces (inclusive)
     - BestWeight:
-        - Must be an integer, non-negative, less than 100 (inclusive)
+        - Must be an number, non-negative, less than 100 (inclusive)
 - Methods
     - Extend Update(object):
         - Extends the base class method to add support for: numberOfSets, primaryMuscleGroup, secondaryMuscleGroup and bestWeight
@@ -78,10 +78,10 @@ Implement functionality for a training planner app. Implement the given classes.
     - Takes `personalData`
 - Properties
     - personalData: **{weight: num, fatPercentage: num, endurance: num, strength: num}**
-        - weight must be an non negative integer
-        - fatPercentage must be a non-negative integer less than 40 (inclusive)
-        - endurance must be a non-negative integer
-        - strength must be a non-negative integer
+        - weight must be an non negative number
+        - fatPercentage must be a non-negative number less than 40 (inclusive)
+        - endurance must be a non-negative number
+        - strength must be a non-negative number
         - **Throw** if any of the data is invalid
     - exerciseDatabase:
         - Array with all exercises
@@ -137,7 +137,7 @@ Implement functionality for a training planner app. Implement the given classes.
         - Returns an array of exercises, which match the passed query object
     - listExercises(count, property)
         - Accepts two parameters:
-            - count is an integer, which defaults to 10
+            - count is an number, which defaults to 10
             - property is an exercise property, cannot be “name”
         - **Throws** if invalid property is passed
         - Returns an array with `count` number of exercises sorted by `property` in ascending order
@@ -163,14 +163,14 @@ Implement functionality for a training planner app. Implement the given classes.
         - hint: calculate the total number of caloriesBurn-ed and performanceGain-ed that day and then apply the formula
         - Returns the updated personalData
     - trainWeeks(count)
-        - Accepts a single parameter – a non-negative integer without a floating point
-        - **Throws** if `count` is not a positive integer
+        - Accepts a single parameter – a non-negative number without a floating point
+        - **Throws** if `count` is not a positive number
         - calculate the changes to the personal stats using the formulae:
             - weight = weight – (weight/caloriesBurn)
             - fatPercentage = fatPercentage – (fatPercentage/ caloriesBurn)
             - endurance = endurance + (performanceGain / 100)
             - strength = strength + (performanceGain / 50) 
-        - hint: calculate the changes to the personalData after each day of the week
+        - hint: calculate the total number of caloriesBurn-ed and performanceGain-ed in a day and then apply the formula for each day of the week
         - Returns the updated personalData
 
 
