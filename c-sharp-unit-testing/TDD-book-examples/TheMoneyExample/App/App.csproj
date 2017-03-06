@@ -55,9 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dollar.cs" />
+    <Compile Include="Bank.cs" />
+    <Compile Include="Expression.cs" />
+    <Compile Include="Money.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sum.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

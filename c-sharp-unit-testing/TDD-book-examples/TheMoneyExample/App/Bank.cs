@@ -6,19 +6,12 @@ using System.Threading.Tasks;
 
 namespace App
 {
-    public class Dollar
+    public class Bank
     {
-        public int amount = 10;
 
-        public Dollar(int amount)
+        public Money Reduce(Expression source, string to)
         {
-
+            return source.Reduce(to);
         }
-
-        public void times(int multiplier)
-        {
-
-        }
-
     }
 }
