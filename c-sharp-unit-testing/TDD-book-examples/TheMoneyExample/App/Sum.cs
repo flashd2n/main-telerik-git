@@ -16,7 +16,7 @@ namespace App
             this.Augend = augend;
             this.Added = added;
         }
-        public Money Reduce(string to)
+        public Money Reduce(Bank bank, string to)
         {
             var amount = Augend.Amount + Added.Amount;
             return new Money(amount, to);

@@ -82,5 +82,14 @@ namespace AppTests
             Assert.AreEqual(Money.MakeDollar(1), result);
         }
 
+        [Test]
+        public void TestReduceMoneyDifferentCurrency()
+        {
+            var bank = new Bank();
+            bank.AddRate("CHF", "USD", 2);
+            var result = bank.Reduce(Money.MakeFranc(2), "USD");
+            Assert.AreEqual(Money.MakeDollar(1), result);
+        }
+
     }
 }

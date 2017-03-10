@@ -1393,15 +1393,14 @@ describe('Training Planner Tests', function () {
 				expect(product.endurance).to.equal(30.8);
 				expect(product.strength).to.equal(40.8);
 
-
 			});
 
 			it('expect train to return the correct personalData when multiple exercises are present that day', function () {
-
 				const myTrainingPlanner = result.createTrainingPlanner(validTrainingPlannerObject);
 				const gymExercise = myTrainingPlanner.createExercise(validGym);
 
 				myTrainingPlanner.addExercisetoSchedule('monday', [gymExercise, gymExercise]);
+
 
 				let product = myTrainingPlanner.train('monday');
 

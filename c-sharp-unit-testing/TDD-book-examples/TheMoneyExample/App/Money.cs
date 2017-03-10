@@ -71,9 +71,10 @@ namespace App
         {
             return new Sum(this, added);
         }
-        public Money Reduce(string to)
+        public Money Reduce(Bank bank, string to)
         {
-            return this;
+            int rate = bank.Rate(currency, to);
+            return new Money(this.Amount / rate, to);
         }
     }
 }
