@@ -1,0 +1,53 @@
+NOTES ENHANCING THE DOM
+
+-> console.time ---> console.timeEnd -> timing stuff in between
+-> console.ward / console.error / console.assert --> other ways to visualize stuff in the browser console
+
+-> node.nodeType -> returns the node type value: "1" for element, "2" for attribute, "3" for text
+-> node.nodeName -> returns the name of the node (the tag, if it is an element; the name of the attribute if it is an attribute)
+-> node.nodeValue -> useful to access and edit the text node inside of another node.
+
+-> node.parentNode -> selects the parent NODE of the current node
+
+
+
+---- easier to use these methods when the html attribute is a JS reserved keyword ------
+
+-> node.getAttribute('someAttribute') -> returns the attribute like dot notation, but can be easier in some cases
+-> node.setAttribute('someAttribute', 'new attribute value') -> set the value of an attribute, can be easier than dot notation i some cases
+-> node.hasAttribute('someAttribute') -> returns bool
+-> node.removeAttribute('someAttribute') -> deletes the attribute entirely
+
+
+---- working with classes ----
+
+-> node.classList -> gets list of applied classes
+-> node.classList.add() -> adds (can be used even when class attribute is not defined)
+-> node.classList.remove() -> removes (when removing the last class, this doesn't delete the class attribute)
+-> node.classList.toggle() -> toggles on/off (returns true when ON, returns false when OFF)
+-> node.classList.length() -> gets number of applied classes
+-> node.classList.contains() -> returns bool
+
+---- inserting/deleting nodes ----
+
+document.createElement('tag') -> creates an element with no attributes
+node.appendChild(elementToInsert) -> inserts the element
+
+let pNode = document.createElement('p')
+let pContent = document.createTextNode('some very cool content')
+p.Node.appendChild(pContent) -----> this creates a <p> with content inside
+
+parentNode.insertBefore(nodeToInsert, parentNode.childBeforeWhichToInsert); 
+
+
+---- cloning and removing nodes ----
+
+let newNode = existingNode.cloneNode(true/false) ---> if true -> copy the node AND all children; if false -> copy only the node
+
+*/ get the node to remove; select its parent; then call remove */
+
+nodeToRemove.parentNode.removeChild(nodeToRemove);
+
+*/ kind of the same thing happens when replacing */
+
+replaceNode.parentNode.replaceChild(newNode, replaceNode);
