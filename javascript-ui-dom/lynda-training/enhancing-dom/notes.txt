@@ -18,6 +18,18 @@ NOTES ENHANCING THE DOM
 -> node.hasAttribute('someAttribute') -> returns bool
 -> node.removeAttribute('someAttribute') -> deletes the attribute entirely
 
+-> !important difference <-
+
+node.src -----> returns the FULL URL to the source
+node.getAttribute('src') ---> returns only the portion of the URL which is set in the attribute!!
+
+
+---- dataset -----
+
+node.dataset.myAwesomeAttribute = 'very awesome attribute value'; ---> sets a custom data-myAwesomeAttribute
+
+valid html5, can be used to set and get stuff from the html -> like src urls for audio or whaterver
+
 
 ---- working with classes ----
 
