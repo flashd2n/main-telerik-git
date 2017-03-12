@@ -1,0 +1,32 @@
+JS EVENTS NOTES
+
+---- event object info -----
+
+-> type -> the type of event, e.g. "click"
+-> timestamp -> when the event happned (in milliseconds after load)
+-> defaultPrevented -> bool if default action is prevented (URL block for example)
+-> currentTarget -> the element the current event was assigned to
+
+Targeting
+
+-> target, srcElement, currentTarget, fromElement, toElement
+
+Coordinates
+
+-> screen, client, page, offset, layer (X, Y)
+
+
+Key/ Mouse
+
+-> keyCode, altKey (bool), ctrlKey (bool), shiftKey (bool), button
+
+
+---- propagation ----
+
+-> allows to listen for events on childNodes
+
+-> addEventListener(... false) -> default bubble propagation
+-> addEventListener(... true) -> capture propagation
+
+passedEventObject.stopPropagation() -> prevents propagating the event
+
