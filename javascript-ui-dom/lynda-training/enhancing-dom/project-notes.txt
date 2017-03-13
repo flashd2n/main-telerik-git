@@ -1,0 +1,5 @@
+// TO REVISING POSITIONING WITH CSS -> position absolute, relative, etc
+
+window.innerWidth + window.innerHeight ---> size of the USEABLE window in pixels
+window.outerWidth + window.outerHeight ---> size of the ENTIRE window in pixels (+ bookmarksbar, etc)
+window.pageYOffset + window.pageXOffset ---> offset in pixels from the top left corner of the screen
