@@ -1,0 +1,11 @@
+body{
+    background-color: #e4f8f7;
+    margin: 0px;
+    padding: 0px;
+    width: 1000px;
+    height: 1000px;
+}
+
+[draggable] {
+    cursor: move;
+}
