@@ -4,9 +4,18 @@
 <head>
     <title>Using Child, Visibility, and Content Filters</title>
     <link rel="stylesheet" type="text/css" href="../style.css" />
-    <script type="text/javascript" src="../jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="../jquery-3.1.1.js"></script>
     <script type="text/javascript">
         $("document").ready(function() {
+
+            // $('p:contains("3")').css('border', '3px solid red'); // select all p which contain the string '3'
+            // $('p:parent').css('border', '3px solid red'); // select all p which are parents of another element or a textNode
+            // $('div:has("p[class=a]")').css('border', '3px solid red'); // select all div which have atleast one p with class a assigned to them
+            // $('div p:first-child').css('border', '3px solid red'); // select p which are inside a div AND are the first child of their div element
+            // $('div p:last-of-type').css('border', '3px solid red'); // select the last p inside a div
+            // $('div p:nth-child(3)').css('border', '3px solid red'); // select all p which are inside a div and are the third child of their parent ONE-BASED INDEX SELECTOR
+            
+
         });
     </script>
 </head>

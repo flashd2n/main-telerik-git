@@ -4,9 +4,33 @@
 <head>
     <title>Using jQuery Document Traversal</title>
     <link rel="stylesheet" type="text/css" href="../style.css" />
-    <script type="text/javascript" src="../jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="../jquery-3.1.1.js"></script>
     <script type="text/javascript">
         $("document").ready(function() {
+
+            // $('#example').children().css('border', '3px solid red');
+            // var elem = $('#para1');
+            // elem.prev().css('border', '3px solid red');
+            // elem.next().css('border', '3px solid green');
+            // // elem.parents().css('border', '3px solid blue');
+            // // elem.parentsUntil('body').css('border', '3px solid blue');
+            // elem.parentsUntil($('body')).css('border', '3px solid blue');
+
+            // $('#example').find('#para4').css('border', '3px solid red');  // start from #example and select the element with id para4
+
+            var leftMargin = 0;
+            var border = 3;
+
+            $('#example p').each(function(index, element){ //this gets a reference to the dom element NOT jQuery element
+
+                $(element).css('border', border + 'px solid red') // this wraps the reference in a jQuery object to use jQuery functions on it
+                        .css('margin-left', leftMargin);
+                border += 2;
+                leftMargin += 10;
+
+            })
+
+
         });
     </script>
 </head>

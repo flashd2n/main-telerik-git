@@ -8,7 +8,11 @@
     <script type="text/javascript">
         $("document").ready(function() {
 
-            $('div > p').css('border', '3px solid red');
+            // $('div > p').css('border', '3px solid red');
+            // $('div p.a').css('border', '3px solid red');
+            // $('ul + div').css('border', '3px solid red'); // select all divs that are DIRECT next siblings of ul
+            // $('#para1 ~ p').css('border', '3px solid red'); // select all p that are next siblings of @para1
+            $('.a ~ p').css('border', '3px solid red');
 
 
         });
