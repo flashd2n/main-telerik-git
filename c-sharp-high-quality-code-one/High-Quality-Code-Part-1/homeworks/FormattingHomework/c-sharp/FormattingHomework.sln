@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BunniesTask", "BunniesTask\BunniesTask.csproj", "{5BC3CC2A-BA87-4D85-B04C-81BC56497674}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsTask", "EventsTask\EventsTask.csproj", "{E5A2BBF5-BA34-417A-88FC-3FC32BC9DAB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BC3CC2A-BA87-4D85-B04C-81BC56497674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BC3CC2A-BA87-4D85-B04C-81BC56497674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BC3CC2A-BA87-4D85-B04C-81BC56497674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BC3CC2A-BA87-4D85-B04C-81BC56497674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5A2BBF5-BA34-417A-88FC-3FC32BC9DAB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A2BBF5-BA34-417A-88FC-3FC32BC9DAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5A2BBF5-BA34-417A-88FC-3FC32BC9DAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5A2BBF5-BA34-417A-88FC-3FC32BC9DAB6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
