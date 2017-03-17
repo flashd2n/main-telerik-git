@@ -4,14 +4,22 @@
 <head>
     <title>Using the Data Methods</title>
     <link rel="stylesheet" href="../style.css" />
-    <script type="text/javascript" src="../jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="../jquery-3.1.1.js"></script>
     <script>
         $("document").ready(function() {
             document.getElementById("show").addEventListener("click", function (evt) {
+                console.log($('#example').data());
             });
             document.getElementById("store").addEventListener("click", function (evt) {
+
+                $('#example').data('key1', 1234);
+                $('#example').data('key2', 'some awesome string');
+
             });
             document.getElementById("remove").addEventListener("click", function (evt) {
+
+                $('#example').removeData('key2');
+
             });
         });
     </script>

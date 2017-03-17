@@ -4,22 +4,43 @@
 <head>
     <title>CSS Properties and Class Manipulation</title>
     <link rel="stylesheet" href="../style.css" />
-    <script type="text/javascript" src="../jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="../jquery-3.1.1.js"></script>
     <script type="text/javascript">
         $("document").ready(function() {
             $("#setProp").click(function(evt) {
+
+                // $('#example p').css('text-decoration', 'overline')
+                //                 .css('font-size', function(){
+                //     let font = $(this).css('font-size');
+                //     font = Number(font.replace('px', ''));
+                //     ++font;
+                //     return font + 'px';
+                // })
+
+                $('#example p').css('text-decoration', 'overline')
+                            .css('font-size', '+=1px');
             });
 
             $("#setProps").click(function(evt) {
+
+                $('#example p').css({
+                    'font-weight': 'bold',
+                    'color': 'red',
+                    'text-decoration': 'underline'
+                });
+
             });
 
             $("#addCl").click(function(evt) {
+                $('#example p').addClass('pClass');
             });
 
             $("#rmCl").click(function(evt) {
+                $('#example p').removeClass('pClass');
             });
 
             $("#toggleCl").click(function(evt) {
+                $('#example p').toggleClass('pClass');
             });
         });
     </script>

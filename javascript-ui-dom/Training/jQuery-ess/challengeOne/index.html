@@ -8,11 +8,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="../jquery-3.1.1.js"></script>
   <script type="text/javascript">
-    $('document').ready(function(){
+    $('document').ready(function () {
 
+
+      // my solution
       $('h2[data-type=vitamin]').css('background-color', 'green');
       $('h2[data-type=mineralwater]').css('background-color', 'blue');
       $('h2[data-type=proteinbar]').css('background-color', 'purple');
+
+      // my solution
+      $('input[type=checkbox]').attr('checked', 'checked');
+
+      $('input').change(function (event) {
+
+        $('h2.product-name').each(function () {
+
+          if ($(this).data('type') === event.target.name) {
+
+            if ($(this).parent().css('display') === 'none') {
+
+              $(this).parent().css('display', '');
+
+            } else {
+
+              $(this).parent().css('display', 'none');
+
+            }
+          }
+        });
+      });
+
+      $('li.product-item img').each(function(){
+
+        var prodName = encodeURIComponent($(this).siblings('h2').text());
+        var prodID = encodeURIComponent($(this).parent().data('prod_id'));
+        
+        $(this).wrap('<a href="./product.html?prodName=' + prodName + '&prodID=' + prodID + '">');
+
+      });
+
+
 
 
     });
@@ -57,7 +92,8 @@
         <p>His quest began while training for his <em>first 5K marathon</em>, after recovering from a <em>lengthy injury</em>          that left him with residual aches, pains, and decreased athletic performance. He yearned for <em>simple and natural ingredients</em>,
           in their purest form, instead of labels with <em>lengthy chemical names</em> and disclaimers. When no products
           lived up to his strict requirements, Henry set his sights on <em>creating products</em> that catered to his own
-          vision.</p>
+          vision.
+        </p>
         <p>Today that vision has become H+ Sport…offering a variety of <a href="#products">supplements, energy bars and rehydration solutions</a>.
           At the foundation of H+ Sports are products backed by scientific and performance data.</p>
       </div>
@@ -72,6 +108,11 @@
       <h2 class="headline">Products</h2>
       <p>H+ Sport is <em>dedicated to creating</em> eco-friendly, high-quality, nutrient-rich, nutritional products that <em>enhance active lifestyles</em>.
         We <a href="#guarantee">guarantee</a> it. Take a look at some of our products.</p>
+      <p>Show:
+        <label><input type="checkbox" name='vitamin'> Vitamins</label>
+        <label><input type="checkbox" name='mineralwater'> Mineral Water</label>
+        <label><input type="checkbox" name='proteinbar'> Protein Bars</label>
+      </p>
     </div>
     <!-- container -->
     <ul class="product-list">
