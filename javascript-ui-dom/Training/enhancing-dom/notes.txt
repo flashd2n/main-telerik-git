@@ -1,7 +1,7 @@
 NOTES ENHANCING THE DOM
 
 -> console.time ---> console.timeEnd -> timing stuff in between
--> console.ward / console.error / console.assert --> other ways to visualize stuff in the browser console
+-> console.warn / console.error / console.assert --> other ways to visualize stuff in the browser console
 
 -> node.nodeType -> returns the node type value: "1" for element, "2" for attribute, "3" for text
 -> node.nodeName -> returns the name of the node (the tag, if it is an element; the name of the attribute if it is an attribute)
