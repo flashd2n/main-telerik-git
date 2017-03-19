@@ -11,7 +11,7 @@
         // $('#example p').wrap('<div style="color: red;">');
         // $('#example p').wrapAll('<div style="color: red;">');
         // $('#example').empty();
-        // $('#example p.a, #example p.b').remove(); // removes everything including the embedded data and event handlers
+        // $('#example p.a, #example p.b, p#para1').remove(); // removes everything including the embedded data and event handlers
         // $('#example p.a, #example p.b').detach(); // remains the embedded data and event handlers
 
         // $('<div>Replaced</div>').replaceAll('#example p[id]');
@@ -21,7 +21,7 @@
         function replacementFn(){
             
             if($(this).text().indexOf('1') !== -1){
-                return '<p>This is paragraph UNO!</p>'
+                return $('<p>This is paragraph UNO!</p>');
             } else {
                 return this.outerHTML;
             }
@@ -49,6 +49,7 @@
             <li><code>replaceWith()</code>: replaces matched elements with content or the results of a callback function</li>
         </ul>
         <div id="example">
+            <p class="a">This is paragraph 1</p>
             <p class="a">This is paragraph 1</p>
             <p id="para1">This is paragraph 2</p>
             <p class="b">This is paragraph 3</p>

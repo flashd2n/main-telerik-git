@@ -1,0 +1,10 @@
+---- INSTALLING ----
+
+in browser console -> jQuery.fn.jquery -> returns the installed version of jQuery for the website
+
+CDN -> copy-paste the script code from the CDN
+Local -> <script>window.jQuery || document.write('<script src = "path/jquery.js"><\/script>')</script>
+
+USE BOTH
+
+

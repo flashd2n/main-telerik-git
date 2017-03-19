@@ -1,0 +1,117 @@
+---- FILTERING ----
+
+$('#theID p:first') ---> selects the first paragraph in theID
+	   :last
+	   :even ---> even numbered paragraphs (odd indexes) in theID
+$('#theID p:not(p:eq(2))') ---> selects all paragraphs inside theID without the second one (index one)
+
+---- ATTR FILTERING ----
+
+$('p[class]') ----> select all p that have a class
+$('p[id=para1]') ---> select all p with attribute id with value para1
+$('p[id^=para]') ---> select all p with attribute id and value that starts with para
+$('p[id^=para][lang*=en-]') ---> select all p with attribute id with value that STARTS with para AND a lang attribute that CONTAINS en-
+
+---- CHILD SELECTION ---
+
+$('p:contains("3")') ----> select all p which contain the string '3'
+$('p:parent') ---> select all p which are parents of another element or a textNode
+$('div:has("p[class=a]")') ----> select all div which have atleast one p with class 'a' assigned to them
+$('div p:first-child') ---> select p which are inside a div AND are the first child of their div element
+$('div p:last-of-type') ---> select the last p inside a div
+$('div p:nth-child(3)') ---> select all p which are inside a div and are the third child of their parent ONE-BASED INDEX SELECTOR
+$('#example').find('#para4') ---> selects a child of #example that has is 'para4'
+
+
+---- MODIFYING CONTENT ----
+
+$('#example p').wrap('<div style="color: red;">') ---> wraps each individual p inside #example in this div
+$('#example p').wrapAll('<div style="color: red;">') ---> wraps all p inside #example in this div
+$('#example').empty() ----> deletes everything inside #example
+$('#example p.a, #example p.b').remove(); ----> removes everything including the embedded data and event handlers
+
+$('#example p.a, #example p.b').detach(); ----> remains the embedded data and event handlers
+$('#example p[id]').replaceWith('<div>Replaced</div>');  ---> replaces the contents of all p that have an id in #example with the passed parameter // accepts strings and jQuery obj
+$('#example p').replaceWith(replacementFn) ---> same as above, acceps a function that returns a string or a jQuery obj
+
+---- ATTRIBUTES ----
+$('#example').after('<p id="alts">') ---> creates a p with id 'alts' after #example
+$(this).attr('alt') ---> returns the value of the 'alt' attribute
+$('a').attr('target', '_blank') ---> sets the value of the 'targer' attribute
+$('a').removeAttr('href') ---> deletes the href attribute
+$('img').attr({
+ 
+	src: 'images/Spring.jpg',
+	title: 'Spring all the things'
+
+}); ----> uses an object to set multiple attributes at once
+
+---- HTML5 DATA ----
+
+$('#example').data() ---> returns an object with keys (names of data attributes) and values (value of the data attribute)
+$('#example').data('key1', 1234); ---> sets the value of a 'data-key1' to 1234
+$('#example').removeData() ----> removes all data-attr stored // can accept a parameter -> name of data attr to delete
+
+---- INSERTING ----
+
+$('#example p').append() ---> appends the contents to the end of the INSIDE of the p // accepts strings and string-like DOM elements
+		.preprend() ---> does the same only the begining of the p
+$('<p>NEW PARA</p>').appendTo('#example p:first');  ---> does the same as above // works only with string-like DOM elements
+		    .prependTo() ---> the same as above only in the beginning
+$('#example p').after('--')  ---> appends the contents AFTER the p // works with strings and string-like DOM elements
+	       .before() ---> does the same as above only before
+$('<p>New Para after</p>').insertAfter('#example p:first') ---> does the same as AFTER, but works only with string-like DOM elements
+			  .insertBefore() ---> same as above only before
+
+---- CLASSES AND PROPERTIES ----
+$('#example p').addClass('pClass') ---> add a class
+	       .removeClass() ---> removes a class
+	       .toggleClass() ---> toggles a class on/off
+$('#example p').css('font-size', '+=1px') ----> increases font-size with 1 px
+	       .css({}) ----> can accept an object with keys (property name as string) and value (value for the property as a string)
+
+
+---- WORKING WITH EVENTS ----
+
+$('#evtTarget').on('mouseover mouseleave', highlight); ---> executes function highlight on mouseover and mouseleave
+$('#evtTarget').off('mouseover mouseleave', highlight); ----> removes a predefined event
+$("#Div1").on("click dblclick", { name: "Div 1" }, evtHandler) ---> the object creates new data for the event obj ---> can be accessed by event.data.name
+$('#evtTarget').one('click', evtHandler) ---> executes the event only once
+event.stopPropagation() ----> stops the event from bubbling to any parent event handlers
+
+---- ANIMATIONS ----
+
+$('#theDiv').hide() ---> sets display: none to theDiv
+	    .show() ---> removes the display: none from theDiv
+	    .show/hide(1000, 'swing/linear') --> accepts as first parameter milliseconds to execute and second parameter swing or linear way of execution
+	    .toggle() ---> toggles display: none
+	    .show(1000, completionFunction) ---> the completion function will be executed when the animation is complete
+
+$('#theDiv').fadeIn(1000) ---> gradually (determined by milliseconds as parameter) reduces opacity until display: none
+	    .fadeOut(1000) ---> the opposite of above
+	    .fadeTo(1000, 0.3)  ----> takes two parameters (milliseconds to execute, target percentage)
+
+$('#theDiv').slideUp() ---> does the same as hide/show, but smoother
+            .slideDown()
+            .slideToggle()
+
+$('#theDiv').animate({
+
+	'left': '+=500',
+
+	'font-size': '24pt',
+
+	'width': '500px'
+
+	},
+1000, 'swing', onCompletion); ----> custom animation ---> takes an object with properties to change, duration, type and onCompletionFn
+
+
+
+
+
+
+
+
+
+
