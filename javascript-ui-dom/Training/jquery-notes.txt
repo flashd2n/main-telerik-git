@@ -1,3 +1,13 @@
+---- INSTALLING ----
+
+in browser console -> jQuery.fn.jquery -> returns the installed version of jQuery for the website
+
+CDN -> copy-paste the script code from the CDN
+Local -> <script>window.jQuery || document.write('<script src = "path/jquery.js"><\/script>')</script>
+<script src='myscript.js'></script>
+
+USE BOTH
+
 ---- FILTERING ----
 
 $('#theID p:first') ---> selects the first paragraph in theID
@@ -21,6 +31,11 @@ $('div p:first-child') ---> select p which are inside a div AND are the first ch
 $('div p:last-of-type') ---> select the last p inside a div
 $('div p:nth-child(3)') ---> select all p which are inside a div and are the third child of their parent ONE-BASED INDEX SELECTOR
 $('#example').find('#para4') ---> selects a child of #example that has is 'para4'
+$('#example').find('à') ---> selects all 'a' tags inside #example
+$('#example').children() ---> selects all immediate children of the #example // can take a selector to filter the children
+$('#example').parents() ---> works the same as above and can take a parameter as above
+$('#example').siblings() ---> works the same as above and can take a parameter as above
+$('#example').find(':nth-child(2)') ---> get the second child of the #example element
 
 
 ---- MODIFYING CONTENT ----
@@ -35,6 +50,7 @@ $('#example p[id]').replaceWith('<div>Replaced</div>');  ---> replaces the conte
 $('#example p').replaceWith(replacementFn) ---> same as above, acceps a function that returns a string or a jQuery obj
 
 ---- ATTRIBUTES ----
+
 $('#example').after('<p id="alts">') ---> creates a p with id 'alts' after #example
 $(this).attr('alt') ---> returns the value of the 'alt' attribute
 $('a').attr('target', '_blank') ---> sets the value of the 'targer' attribute
@@ -45,6 +61,16 @@ $('img').attr({
 	title: 'Spring all the things'
 
 }); ----> uses an object to set multiple attributes at once
+('#myCheckbox').prop('checked') ---> use this to get a bool value if the checkbox is checked or not
+('#myRadiobutton:checked') ---> gets the active radio button
+('#myRadiobutton:checked').val() --> gets either 'Yes' or 'No' depending if the value was checked
+$('#backpack').prop({
+
+	'checked': true,
+
+	'disabled': true
+
+}); ----> prop can take an object with keys (properties) and value (values)
 
 ---- HTML5 DATA ----
 
@@ -62,6 +88,10 @@ $('#example p').after('--')  ---> appends the contents AFTER the p // works with
 	       .before() ---> does the same as above only before
 $('<p>New Para after</p>').insertAfter('#example p:first') ---> does the same as AFTER, but works only with string-like DOM elements
 			  .insertBefore() ---> same as above only before
+$('#example').remove() ---> removes everything from #example
+$('#example').find('selector').remove() ---> refines what to remove
+$('#example').find('selector').clone() ---> copies an element
+
 
 ---- CLASSES AND PROPERTIES ----
 $('#example p').addClass('pClass') ---> add a class
@@ -69,6 +99,15 @@ $('#example p').addClass('pClass') ---> add a class
 	       .toggleClass() ---> toggles a class on/off
 $('#example p').css('font-size', '+=1px') ----> increases font-size with 1 px
 	       .css({}) ----> can accept an object with keys (property name as string) and value (value for the property as a string)
+$('#example').hasClass('class') --> returns bool
+
+
+---- WORKING WITH VALUES ----
+
+$('#example').html() -> gets/sets all the html inside #example as a string
+$('#example').text() -> gets/sets only the text inside #example
+$('#example').text().trim() -> useful chaning to remove whitespaces when getting text or html values
+$('#example').val() -> gets/sets the value of an input field with #example // if not value -> empty string // if no field -> undefined
 
 
 ---- WORKING WITH EVENTS ----
