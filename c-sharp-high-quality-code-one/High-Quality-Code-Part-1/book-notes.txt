@@ -1,0 +1,111 @@
+HQC BOOK CHAPTER NOTES
+
+-> coding convention -> a set of rules, used inside an organization or a project or globally
+-> naming delegates -> should end with 'Delegate' or 'EventHandler'
+-> constants -> PascalCase (official Microsoft) or UPPERCASE /w underscores
+-> 'tmp' and 'temp' are acceptable, but it is better choose a better value
+
+--- formatting
+
+-> leave one empty line between methods
+-> a single whitespace only after a keyword (while, if, for, switch) and before the '('
+-> Class Contents Order
+	1) public constants / static fields
+	2) protected constants / static fields
+	3) private constants / static fields
+	4) non-static public
+	5) non-static protected
+	6) non-static private
+	7) constructor
+	8) properties
+	9) methods (grouped by functionality, not access level)
+-> when a statement does not fit on a single line -> carry it over to the next and indent it once
+
+--- high quality classes
+
+-> answer the question 'Should this be in this class?'
+-> the interface of a class should be simple and should not have over time, unlike the class
+-> inheritance -> do not hide methods (use 'new' or 'override', if virtual)
+-> move common methods at high in the inheritance tree as possible
+-> a single successor is highly suspicious
+-> start by marking all members as private, if necessary then mark some protected, and then if necessary mark some public
+-> hide all inner-implementations -> a user of the class should not know HOW the class works, only WHAT it does and HOW it is used
+-> always hide fields behind properties, CONSTANTS ARE AN EXCEPTION
+-> initialize all members in the constructor in the order they are defined
+
+--- high quality methods
+
+-> do only what its name says
+-> do not return a false value due to invalid parameters
+-> reduces complexity and introduces code reusability
+-> in public methods -> either do work correctly or throw error
+-> in private methods -> a compromise can be made, because the validity of the parameters can be checked elsewhere in the program
+-> do only one job (strong cohesion)
+-> ideally depend only on its parameters and NOT on other methods or fields/properties
+	-> exception can be made when working with private members
+-> first list the most important parameters, then the secondary
+-> do not change the parameters -> create new variables and then change them
+-> document when making assumptions like radians or degrees or pixels
+-> consider passing an object instead of a million parameters
+
+--- variables
+
+-> when returning a result from a method -> save it in a varianble, do not return the result of an expression
+-> initialize variables explicitly
+-> declare variables as late as possible, immediately before using them and initialize them as the time of declaration
+-> variable should have a single purpose
+
+--- expressions
+
+-> do not use overly complicated expressions
+-> only one operation per line
+
+--- constants
+
+-> used to eliminate magic numbers and strings
+-> should be used everytime a number or a string is used more than once
+
+--- flow control statements
+
+-> always use curly braces
+-> extract parts of the code into methods to reduce deep nesting
+-> do not change the value of the counter inside the body of a for loop
+-> when using ifs -> place the highest propability on top
+-> when using switch -> arrange in asceding order (if numbers) or alphabetically (if strings/chars)
+
+--- defensive programming
+
+-> defending the code from incorrect data
+-> checks validity of all input data
+-> assertions cannot be caught and terminate the program
+	-> should be used in development and tuned off at production
+	-> should be used only to indicate a bug in the program
+
+--- code documentation
+
+-> well written code is self-documenting, additional comments only compliment it
+-> bad code should not be commented, it should be rewritten
+-> a self-documenting code should do everything written in the chapter
+-> good comments clarify the idea of the code, do not repeat it and do not explain it line by line
+-> write comments at the time of writing the code, not after that
+-> XML tags: summary, param name='', returns, exception cref='', seealso cref='', remarks, example
+
+--- code refactoring
+
+-> used to eliminate duplication
+	-> done via methods or moving common behaviour up in the inheritance hierarchy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
