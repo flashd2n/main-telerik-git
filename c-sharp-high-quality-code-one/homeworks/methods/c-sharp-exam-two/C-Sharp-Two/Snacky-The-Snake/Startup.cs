@@ -11,11 +11,9 @@ namespace snakeMorning
             List<int> dimentions = Console.ReadLine().Split('x').Select(int.Parse).ToList();
             var den = new char[dimentions[0], dimentions[1]];
             den = SetDen(den);
-            //den is set properly
+            
             var directionsInput = Console.ReadLine().Split(',');
-            string temp = string.Join("", directionsInput);
-
-            char[] directions = temp.ToCharArray();
+            var directions = string.Join("", directionsInput).ToCharArray();
 
             int row = GetStartRow(den);
             int col = GetStartCol(den);

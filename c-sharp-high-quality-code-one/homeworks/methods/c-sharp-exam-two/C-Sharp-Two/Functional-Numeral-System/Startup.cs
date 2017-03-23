@@ -6,14 +6,17 @@ namespace functionalNumeralSystem
 {
     class Program
     {
-        static string[] keys = new string[] { "standardml", "ocaml", "ml", "commonlisp", "lisp", "haskell", "scala", "f#", "rust", "clojure", "erlang", "racket", "elm", "mercury", "scheme", "curry" };
-        static string[] value = new string[] { "9", "0", "6", "D", "4", "1", "2", "3", "5", "7", "8", "A", "B", "C", "E", "F" };
+        static string[] keys = new string[] { "standardml", "ocaml", "ml",
+            "commonlisp", "lisp", "haskell", "scala", "f#",
+            "rust", "clojure", "erlang", "racket", "elm",
+            "mercury", "scheme", "curry" };
+        static string[] value = new string[] { "9", "0", "6", "D", "4", "1",
+            "2", "3", "5", "7", "8", "A", "B", "C", "E", "F" };
 
         static void Main()
         {
             string[] separator = new string[] { ", " };
             var words = Console.ReadLine().Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            BigInteger temp = new BigInteger();
             BigInteger result = new BigInteger();
             result = 1;
 
@@ -24,8 +27,7 @@ namespace functionalNumeralSystem
 
             for (int i = 0; i < words.Length; i++)
             {
-                temp = ConvertToDec(words[i]);
-                result *= temp;
+                result *= ConvertToDec(words[i]);
             }
             Console.WriteLine(result);
         }
@@ -34,7 +36,7 @@ namespace functionalNumeralSystem
         {
             byte baseInput = 16;
             string input = word;
-            BigInteger inputDec = 0;
+            BigInteger inputIntoDec = 0;
             byte hexValue;
 
             for (int i = 0; i < input.Length; i++)
@@ -42,24 +44,26 @@ namespace functionalNumeralSystem
                 if (input[i] >= 65)
                 {
                     hexValue = (byte)(input[i] - 55);
-                    inputDec = inputDec * baseInput + hexValue;
+                    inputIntoDec = inputIntoDec * baseInput + hexValue;
                 }
                 else
                 {
-                    inputDec = inputDec * baseInput + (input[i] - 48);
+                    inputIntoDec = inputIntoDec * baseInput + (input[i] - 48);
                 }
             }
 
-            return inputDec;
+            return inputIntoDec;
         }
 
         static string CovertToClassicHex(string word)
         {
-
+            var wordToHex = word;
             for (int i = 0; i < keys.Count(); i++)
             {
-                word = word.Replace(keys[i], value[i]);
+                wordToHex = wordToHex.Replace(keys[i], value[i]);
             }
 
-            return word;
+            return wordToHex;
         }
+    }
+}
