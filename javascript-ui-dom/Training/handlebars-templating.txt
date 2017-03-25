@@ -1,0 +1,49 @@
+1. Get the template content
+
+	let template = $('#template').html();
+
+2. Render the template
+
+	let renderer = Handlebars.compile(template);
+
+3. Populate the Data
+
+	let result = renderer({
+        	item: 'some item',
+        	description: 'some description',
+        	price: 'very many moneys'
+    	});
+
+4. Insert the element into the document
+
+	$('#container').html(result);
+
+
+---- Iterating through data ----
+
+1. put an array of objects as a value of a key of the renderer parameter object
+2. inside the template wrap the template code with {{each theKey}} .... {{/each}}
+
+
+---- basic conditionals ----
+
+1. inside the template wrap the conditional template with {{#if parameter}} ..... {{else}} .... {{/if}}
+1.1. falsy conditionals {{#unless key}} ... {{/unless}} --> executres only of FALSE
+
+---- helpers -----
+
+{{#with key}} .... {{/with}} ---> reduces the scope of the renderer object parameter
+
+-> register helper
+
+1. in the js code -> Handlebars.registerHelper('myHelper', function(param) {//do stuff});
+2. in the template -> use the helper by {{myHelper param}}
+
+
+---- precompiling ----- (removing the template from the html into a js file)
+
+1. make precompile.handlebars file with the template
+2. run handlebars precompile.handlebars -f precompile.js
+3. include the new .js file in the html
+4. get renderer just by let renderer = Handlebars.templates['precomp'];
+5. then rest is normal

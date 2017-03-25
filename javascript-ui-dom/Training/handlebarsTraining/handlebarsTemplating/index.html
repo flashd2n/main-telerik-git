@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <div id='container'></div>
+
+    <!--<script type='text/template' id='itemTemplate'>-->
+
+        <!--{{#each employees}}
+
+            <div class='itemTemplateWrapper'>
+
+                {{! Handlebars comment}}
+
+                <div><span>Item: </span><span>{{item}}</span></div>
+                <div><span>Description: </span><span>{{description}}</span></div>
+                <div><span>Price: </span><span>{{price}}</span></div>
+                {{#if fulltime}}
+                <div>Full Time True</div>
+                {{else}}
+                <div>Part Time True</div>
+                {{/if}}
+                {{#if cool}}
+                <div>COOL</div>
+                {{else}}
+                <div>NOTCOOL</div>
+                {{/if}}
+            </div>
+
+            {{/each}}-->
+<!--
+        <div class='itemTemplateWrapper'>
+
+            <div><span>Item: </span><span>{{item}}</span></div>
+            <div><span>Description: </span><span>{{description}}</span></div>
+            {{#with data}}
+                <div><span>Price: </span><span>{{price}}</span></div>
+                    {{#unless inStock}}
+                    <div>We are out of this shit</div>
+                    {{/unless}}
+            {{/with}}
+
+            <div>{{prodQuantity data}}</div>
+
+        </div>-->
+
+
+    <!--</script>-->
+    <script src='..\bower_components\jquery\dist\jquery.min.js'></script>
+    <script src='..\bower_components\handlebars\handlebars.min.js'></script>
+    <script src='precomp.js'></script>
+    <script src='script.js'></script>
+</body>
+
+</html>

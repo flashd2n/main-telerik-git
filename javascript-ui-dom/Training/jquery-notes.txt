@@ -146,7 +146,53 @@ $('#theDiv').animate({
 1000, 'swing', onCompletion); ----> custom animation ---> takes an object with properties to change, duration, type and onCompletionFn
 
 
+---- PLUGINS ----
 
+(function($){
+	
+	$.fn.myPlugin = function(){
+
+		this ---> the object upon which the action is performed
+		return this; ----> do not forget the chaining
+	}
+	
+}(jQuery));  ---> plugin declaration
+
+
+let opts = $.extend(true, {}, {
+		key: 'value'
+	}, options) -----> handy jQuery function for setting defaults for options // true sets deep merge of objects // good idea to add empty {} as second paramter in order no to override the defaults
+
+
+-> useful plugin params validation
+
+1. move defaults into a new obj
+	let defaults = {....}
+2. set the new extend function
+	let opts = $.extend(true, {}, defaults, options) ---> options is the plugins parameter
+3. do validation
+	$.each(opts, function (key, value){
+	
+	// do validation checks
+	// if check fails
+	// set the current value to the default value for the kay
+
+	})
+
+<- END
+
+-> set event in plugin
+
+1. create some kind of a default function inside the default options of the plugin
+	let defaults = {.... onSomethingCool: $.noop}
+2. Fire the event at the propriate time 
+	//...something cool happens
+	opts.onSomethingCool(params)
+3. Define the callback function when invoking the plugin
+	$('...').myCoolPlugin({
+		....
+		onSomethingCool: function(params){...do...stufff...}	
+	})	
 
 
 

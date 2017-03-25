@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Templating</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        
+        
+        <div id='container'></div>
+
+        <script src='jquery-3.2.0.min.js'></script>
+        <script src='jquery.loadTemplate.min.js'></script>
+        <script type='text/html' id='itemTemplate'>
+
+            <div class='itemTemplateWrapper'>
+                <div data-content='name'></div>
+                <div data-content='title' data-format='UpperCaseFormatter'></div>
+                <div data-content='email'></div>
+                <div data-content='phone'></div>
+            </div>
+
+        </script>
+        <script src='script.js'></script>
+    </body>
+</html>
