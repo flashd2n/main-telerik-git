@@ -108,6 +108,7 @@ describe('Forum task', function() {
 					var $post = x.children('div');
 					expect($post.hasClass('post')).to.be.true;
 					expect($post.children('p').hasClass('author')).to.be.true;
+					console.log('here');
 					if(data.posts[i].author) {
 						expect($post.children('p').children('a').hasClass('user')).to.be.true;
 						expect($post.children('p').children('a').hasClass('anonymous')).to.be.false;
@@ -205,7 +206,7 @@ describe('Forum task', function() {
 			structureTestLevel0($root, data);
 			structureTestLevel1($root, data);
 			structureTestLevel2($root, data);
-
+			// console.log('here');
 			attributeTestLevel1($root, data);
 			attributeTestLevel2($root, data);
 

@@ -18,54 +18,54 @@
 
 	// Sample test 1
 
-	var data = {
-		title: 'Conspiracy Theories',
-		posts: [{
-			author: '',
-			text: 'Dear God,',
-			comments: [{
-				author: 'G',
-				text: 'Yes, my child?'
-			}, {
-				author: '',
-				text: 'I would like to file a bug report.'
-			}]
-		}, {
-			author: 'Cuki',
-			text: '<a href="https://xkcd.com/258/">link</a>',
-			comments: []
-		}]
-	};
-
-	// Sample test 2
-
 	// var data = {
-	// 	title: 'JS UI & DOM 2016',
+	// 	title: 'Conspiracy Theories',
 	// 	posts: [{
-	// 		author: 'Cuki',
-	// 		text: 'Hello guys',
+	// 		author: '',
+	// 		text: 'Dear God,',
 	// 		comments: [{
-	// 			author: 'Kon',
-	// 			text: 'Hello'
+	// 			author: 'G',
+	// 			text: 'Yes, my child?'
 	// 		}, {
-	// 			text: 'Hello'
+	// 			author: '',
+	// 			text: 'I would like to file a bug report.'
 	// 		}]
 	// 	}, {
 	// 		author: 'Cuki',
-	// 		text: 'This works',
-	// 		comments: [{
-	// 			author: 'Cuki',
-	// 			text: 'Well, ofcourse!\nRegards'
-	// 		}, {
-	// 			text: 'You are fat',
-	// 			deleted: true
-	// 		}]
-	// 	}, {
-	// 		author: 'Pesho',
-	// 		text: 'Is anybody out <a href="https://facebook.com/">there</a>?',
+	// 		text: '<a href="https://xkcd.com/258/">link</a>',
 	// 		comments: []
 	// 	}]
 	// };
+
+	// Sample test 2
+
+	var data = {
+		title: 'JS UI & DOM 2016',
+		posts: [{
+			author: 'Cuki',
+			text: 'Hello guys',
+			comments: [{
+				author: 'Kon',
+				text: 'Hello'
+			}, {
+				text: 'Hello'
+			}]
+		}, {
+			author: 'Cuki',
+			text: 'This works',
+			comments: [{
+				author: 'Cuki',
+				text: 'Well, ofcourse!\nRegards'
+			}, {
+				text: 'You are fat',
+				deleted: true
+			}]
+		}, {
+			author: 'Pesho',
+			text: 'Is anybody out <a href="https://facebook.com/">there</a>?',
+			comments: []
+		}]
+	};
 
 	document.getElementById('forum-container')
 		.innerHTML = template(data);
