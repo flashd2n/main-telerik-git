@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Drawing Bezier and Quadratic Curves</title>
+		<style type="text/css">
+			#Canvas1 {
+				border: dotted 1px black;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var theCanvas = document.getElementById('Canvas1');
+				if (theCanvas && theCanvas.getContext) {
+					var ctx = theCanvas.getContext("2d");
+					if (ctx) {
+
+						ctx.strokeStyle = 'blue';
+						ctx.lineWidth = 5;
+
+						// bezier curve
+						ctx.beginPath();
+						ctx.moveTo(50, 200);
+						ctx.bezierCurveTo(50, 100, 200, 100, 200, 150);
+						ctx.stroke();
+
+						// bezier curve control points
+
+						ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)';
+						ctx.lineWidth = 1;
+						ctx.beginPath();
+						ctx.moveTo(50, 200);
+						ctx.lineTo(50, 100); // go to control point one
+						ctx.lineTo(200, 100); // go to control point two
+						ctx.lineTo(200, 150); // go to end
+						ctx.stroke();
+
+						// quadratic curve
+						ctx.strokeStyle = 'green';
+						ctx.lineWidth = 5;
+						ctx.beginPath();
+						ctx.moveTo(400, 200);
+						ctx.quadraticCurveTo(400, 100, 600, 150);
+						ctx.stroke();
+
+						// quadratic curve control point
+
+						ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)';
+						ctx.lineWidth = 1;
+						ctx.moveTo(400, 200);
+						ctx.lineTo(400, 100);
+						ctx.lineTo(600, 150);
+						ctx.stroke();
+
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Drawing Bezier and Quadratic Curves</h1>
+		<p>This example will draw bezier and quadratic curves, along with their control points 
+		so you can see how the curve is affected by the control point.</p>
+		<canvas id="Canvas1" width="700" height="300">Your browser does not support canvas.</canvas>
+	</body>
+</html>

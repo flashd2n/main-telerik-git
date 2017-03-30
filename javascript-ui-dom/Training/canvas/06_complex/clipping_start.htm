@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Clipping Paths</title>
+		<style type="text/css">
+			#Canvas1 {
+				border: dotted 1px black;
+			}
+		</style>
+		<script>
+		    window.onload = function () {
+		        var theCanvas = document.getElementById('Canvas1');
+		        if (theCanvas && theCanvas.getContext) {
+		            var ctx = theCanvas.getContext("2d");
+		            if (ctx) {
+		            }
+		        }
+		    }
+		</script>
+	</head>
+	<body>
+		<h1>Clipping Paths</h1>
+		<p>Clipping paths restrict drawing to a particular area of the canvas. Think of clipping paths as masks - 
+        areas where the mask is empty show through, while areas where the mask is opaque do not.</p>
+        <p>Any path can be a clipping path. You simply draw the path as normal and then call the context's clip() 
+        function to create one.</p>
+		<canvas id="Canvas1" width="700" height="300">Your browser does not support canvas.</canvas>
+		<img id="img1" src="images/emerald_bay.jpg" width="715" height="315" style="display:none;">
+	</body>
+</html>

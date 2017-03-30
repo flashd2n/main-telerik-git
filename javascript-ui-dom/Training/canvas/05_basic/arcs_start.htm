@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Drawing Arcs</title>
+		<style type="text/css">
+			#Canvas1 {
+				border: dotted 1px black;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var theCanvas = document.getElementById('Canvas1');
+				if (theCanvas && theCanvas.getContext) {
+					var ctx = theCanvas.getContext("2d");
+					if (ctx) {
+
+						ctx.strokeStyle = 'blue';
+						ctx.fillStyle = 'red';
+						ctx.lineWidth = 5;
+
+						//quarter arcs
+						// ctx.beginPath();
+						// ctx.arc(50, 150, 100, 1.5 * Math.PI, 2 * Math.PI);
+						// ctx.stroke();
+
+						// three-quarter arc, anti-clockwise
+						// ctx.beginPath();
+						// ctx.arc(300, 150, 100, 0, 1.5 * Math.PI, false);
+						// ctx.stroke();
+
+						// circle
+						// ctx.beginPath();
+						// ctx.arc(550, 150, 100, 0, 2 * Math.PI);
+						// ctx.fill();
+						// ctx.stroke();
+
+						// circle with degrees
+						var endDegrees = 360;
+						var endRadians = (Math.PI / 180) * endDegrees;
+						ctx.beginPath();
+						ctx.arc(550, 150, 100, 0, endRadians);
+						ctx.fill();
+						ctx.stroke();
+
+						// three-quarter arc, anti-clockwise with degrees
+						endDegrees = 270;
+						endRadians = (Math.PI / 180) * endDegrees;
+						ctx.beginPath();
+						ctx.arc(300, 150, 100, 0, endRadians, false);
+						ctx.stroke();
+
+						// quarter arc degrees
+						var startDegree = 270;
+						var startRadians = (Math.PI / 180) * startDegree;
+						ctx.beginPath();
+						ctx.arc(50, 150, 100, startRadians, 0);
+						ctx.stroke();
+
+
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Drawing Arcs</h1>
+		<p>This example will draw arcs, both open and closed</p>
+		<canvas id="Canvas1" width="700" height="300">Your browser does not support canvas.</canvas>
+	</body>
+</html>

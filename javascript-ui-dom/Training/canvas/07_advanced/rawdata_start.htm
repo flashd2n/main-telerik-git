@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Accessing Raw Pixel Data</title>
+		<style type="text/css">
+			#Canvas1 {
+				border: dotted 1px black;
+			}
+		</style>
+		<script type="text/javascript">
+		    window.onload = function () {
+		        var theCanvas = document.getElementById('Canvas1');
+		        if (theCanvas && theCanvas.getContext) {
+		            var ctx = theCanvas.getContext("2d");
+		            if (ctx) {
+		            }
+		        }
+		    }
+		</script>
+	</head>
+	<body>
+		<h1>Accessing Raw Pixel Data</h1>
+		<p>A very powerful feature of the canvas API is the ability to directly access the individual pixels of the image. 
+		This demo shows how to retrieve the pixel data from a canvas, manipulate it, and put it back into the canvas.</p>
+		<canvas id="Canvas1" width="715" height="315">Your browser does not support canvas.</canvas>
+		
+		<!-- source images used in this example -->
+		<img id="img1" src="images/tulips.jpg" width="715" height="315">
+	</body>
+</html>

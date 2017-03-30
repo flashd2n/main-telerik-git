@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Drawing Lines</title>
+		<style type="text/css">
+			canvas {
+				border: dotted 1px black;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var theCanvas = document.getElementById('Canvas1');
+				if (theCanvas && theCanvas.getContext) {
+					var ctx = theCanvas.getContext("2d");
+					if (ctx) {
+
+						ctx.fillStyle = 'green';
+						ctx.fillRect(20, 20, 100, 100);
+
+						ctx.fillStyle = 'blue';
+						ctx.fillRect(200, 20, 100, 100);
+
+						ctx.fillRect(350, 20, 100, 100);
+
+						ctx.lineWidth = 10;
+						ctx.strokeStyle = 'rgba(0, 0, 255, 0.5)';
+						ctx.strokeRect(15, 15, 110, 110);
+
+						ctx.clearRect(15, 15, 10, 10);
+
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Drawing With Colors and Styles</h1>
+		<p>This example shows how to set the drawing style</p>
+		<canvas id="Canvas1" width="500" height="200">Your browser does not support canvas.</canvas>
+	</body>
+</html>

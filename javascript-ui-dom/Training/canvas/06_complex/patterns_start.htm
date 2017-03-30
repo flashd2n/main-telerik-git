@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Drawing Patterns</title>
+	<style type="text/css">
+		#Canvas1 {
+			border: dotted 1px black;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			var theCanvas = document.getElementById('Canvas1');
+			if (theCanvas && theCanvas.getContext) {
+				var ctx = theCanvas.getContext("2d");
+				if (ctx) {
+
+					// image pattern
+					// var myImage = new Image();
+					// myImage.src = 'images/desert_desc_bug.gif';
+
+					// myImage.addEventListener('load', function () {
+					// 	ctx.fillStyle = ctx.createPattern(myImage, 'no-repeat');
+					// 	ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+					// }, false);
+
+					// video pattern
+
+					// setTimeout(function () {
+					// 	var myVideo = document.getElementById('vidEl');
+
+					// 	// var theCanvas = document.getElementById('Canvas1');
+					// 	// var ctx = theCanvas.getContext('2d');
+
+					// 	var pattern = ctx.createPattern(myVideo, 'repeat');
+					// 	ctx.fillStyle = pattern;
+					// 	ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+						
+					// }, 3000);
+
+					// pattern from another canvas
+
+					var patternCanvas = document.getElementById('patCan');
+					var patternContext = patternCanvas.getContext('2d');
+					patternContext.lineWidth = 1;
+					patternContext.strokeStyle = 'red';
+					patternContext.beginPath();
+					patternContext.moveTo(0, 0);
+					patternContext.lineTo(25, 25);
+					patternContext.stroke();
+
+
+					var pattern = ctx.createPattern(patternCanvas, 'repeat');
+					ctx.fillStyle = pattern;
+					ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+				}
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<h1>Drawing Patterns</h1>
+	<p>Patterns can be created from images, videos, or even other canvas elements.</p>
+	<canvas id="Canvas1" width="700" height="300">Your browser does not support canvas.</canvas>
+	<canvas id="patCan" width="25" height="25"></canvas>
+	<video id="vidEl" src="video/podcast_teaser.mp4" controls style="display:none"></video>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Drawing with the Global Alpha</title>
+		<style type="text/css">
+			#Canvas1 {
+				border: dotted 1px black;
+			}
+		</style>
+		<script type="text/javascript">
+		    window.onload = function () {
+		        var theCanvas = document.getElementById('Canvas1');
+		        if (theCanvas && theCanvas.getContext) {
+		            var ctx = theCanvas.getContext("2d");
+		            if (ctx) {
+		            }
+		        }
+		    }
+		</script>
+	</head>
+	<body>
+		<h1>Drawing with the Global Alpha</h1>
+		<p>The canvas' globalAlpha setting allows you to set the opacity level of all objects drawn on the canvas at once. In
+		This example, the globalAlpha is gradually reduced from 1.0 (the default) down to 0.1.</p>
+		<canvas id="Canvas1" width="700" height="300">Your browser does not support canvas.</canvas>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Drawing Shadows</title>
+		<style type="text/css">
+			#Canvas1 {
+				border: dotted 1px black;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var theCanvas = document.getElementById('Canvas1');
+				if (theCanvas && theCanvas.getContext) {
+					var ctx = theCanvas.getContext("2d");
+					if (ctx) {
+
+						ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+						ctx.save();
+						// set show settings
+						ctx.shadowColor = '#000000';
+						ctx.shadowOffsetX = 10;
+						ctx.shadowOffsetY = 10;
+						ctx.shadowBlur = 10;
+
+						ctx.fillRect(20, 20, 200, 100);
+						ctx.restore();
+
+						// ctx.fillRect(300, 20, 200, 100);
+
+						// add text shadowBlur
+
+						var stringToRender = 'This is a sample text';
+						ctx.fillStyle = 'green';
+						ctx.font = '25pt Georgia';
+						ctx.shadowColor = 'rgba(0, 100, 100, 0.5)';
+						ctx.shadowOffsetX = 5;
+						ctx.shadowOffsetY = 5;
+						ctx.shadowBlur = 5;
+						ctx.fillText(stringToRender, 250, 75);
+
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Drawing Shadows</h1>
+		<p>All drawing operations can produce shadows. This example shows how to make shadows on a variety of canvas operations.</p>
+		<canvas id="Canvas1" width="700" height="300">Your browser does not support canvas.</canvas>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Canvas Test Using Double Buffering</title>
+		<script type="text/javascript">
+
+			var canvas = null;
+			var context = null;
+			var bufferCanvas = null;
+			var bufferCanvasCtx = null;
+			var flakeArray = [];
+			var flakeTimer = null;
+			var maxFlakes = 200;
+
+			function init(){
+
+				canvas = document.getElementById('testCanvas');
+				context = canvas.getContext('2d');
+
+				bufferCanvas = document.createElement('canvas');
+				bufferCanvasCtx = bufferCanvas.getContext('2d');
+				bufferCanvasCtx.canvas.width = context.canvas.width;
+				bufferCanvasCtx.canvas.height = context.canvas.height;
+
+
+				flakeTimer = setInterval(addFlake, 200);
+
+				Draw();
+
+				setInterval(animate, 30);
+
+			}
+
+			function addFlake(){
+
+				flakeArray[flakeArray.length] = new Flake();
+				if(flakeArray.length === maxFlakes){
+					clearInterval(flakeTimer);
+				}
+
+			}
+
+			function blank(){
+				bufferCanvasCtx.fillStyle = '#330033';
+				bufferCanvasCtx.fillRect(0, 0, bufferCanvasCtx.canvas.width, bufferCanvasCtx.canvas.height);
+			}
+
+			function animate(){
+				Update();
+				Draw();
+			}
+
+			
+
+
+
+		</script>
+	</head>
+	<body onload="init()">
+		<canvas id="testCanvas" width="800" height="800">
+			Canvas not supported
+		</canvas>
+	</body>
+</html>
