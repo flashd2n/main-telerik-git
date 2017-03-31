@@ -48,49 +48,90 @@ function solve() {
 
 		// table built functionality next
 
-		// selection
+		var row;
 
-		var $allHeadersTop = $('.spreadsheet-table > tr:first th');
+		var cellsMatrix = new Array(rows + 1);
+		for (var i = 0; i <= rows; i++) {
+
+			cellsMatrix[i] = new Array(columns + 1);
+
+		}
+
+		for (var i = 0; i <= rows; i++) {
+
+			row = $(`table tr:eq(${i})`);
+
+			for (var j = 0; j <= columns; j++) {
+
+				var $cell = row.find('.spreadsheet-item').eq(j);
+
+				cellsMatrix[i][j] = $cell;
+			}
+		}
+
+		// selection
+		var startCol;
+		var startRow;
+		var $cellStart;
+
+		var down = false;
+		$(document).mousedown(function (event) {
+
+			$cellStart = $(event.target);
+
+			startCol = findCelCol($cellStart);
+			startRow = findCelRow($cellStart);
+
+
+			down = true;
+		}).mouseup(function () {
+			down = false;
+		});
+
+		var dragTargetNew;
+		var dragTargetPrevious;
+
+		var $allItems = $('.spreadsheet-item');
+		$allItems.on('mousemove', function (event) {
+
+
+			dragTargetNew = event.target;
+
+			if (down && (dragTargetNew !== dragTargetPrevious)) {
+
+				var element = $(dragTargetNew);
+
+
+				if ($cellStart.hasClass('spreadsheet-cell')) {
+
+					multipleCellSelection(this);
+
+				} else {
+
+					multipleHeaderSelection(this);
+
+				}
+
+			}
+
+			dragTargetPrevious = event.target;
+
+		});
 
 		// single cell selection
 		var $allCells = $('.spreadsheet-cell');
 		$allCells.on('mousedown', function () {
 
-			var $allSelectedElements = $('.selected').removeClass('selected');
-
-
-			var $cell = $(this).selectCell();
-
-			// selectCell($cell);
-
+			cellSelection(this);
 
 		});
 
+
+
 		var $allTableHeaders = $('.spreadsheet-header');
-		$allTableHeaders.on('mousedown', function (event) {
+		$allTableHeaders.on('mousedown', function () {
 
-			var $allSelectedElements = $('.selected').removeClass('selected');
-			var $header = $(this);
-			var isLetter = checkHeader($header);
-
-			if (!isLetter) {
-
-				var $entireRow = $header.siblings();
-				$entireRow.each(function (cell) {
-
-					var $cell = $(this).selectCell();
-
-				});
-			} else {
-
-				var headerIndex = $header.index();
-				var $entireCol = $('tr').find('td:eq(' + (headerIndex - 1) + ')');
-				$entireCol.each(function () {
-
-					var $cell = $(this).selectCell();
-
-				});
-			}
+			headerSelection(this);
 
 		});
 
@@ -109,6 +150,7 @@ function solve() {
 
 			var $cell = $(this);
 			$cell.addClass('editing');
+			$cell.children('input').focus();
 
 			var $span = $cell.children('span');
 			var currentValue = $span.text();
@@ -125,76 +167,140 @@ function solve() {
 
 		});
 
-		// FUCK THIS
 
-		var table = $("table");
 
-		var isMouseDown = false;
-		var startRowIndex = null;
-		var startCellIndex = null;
+		$.fn.selectCell = function (cellRow, cellCol) {
 
-		function selectTo(cell) {
+			cellsMatrix[cellRow][cellCol].addClass('selected');
+			cellsMatrix[0][cellCol].addClass('selected');
+			cellsMatrix[cellRow][0].addClass('selected');
 
-			var row = cell.parent();
-			var cellIndex = cell.index();
-			var rowIndex = row.index();
+			return this;
+		}
 
-			var rowStart, rowEnd, cellStart, cellEnd;
+		function cellSelection(context) {
 
-			if (rowIndex < startRowIndex) {
-				rowStart = rowIndex;
-				rowEnd = startRowIndex;
-			} else {
-				rowStart = startRowIndex;
-				rowEnd = rowIndex;
+			$('.selected').removeClass('selected');
+			var $currentCell = $(context);
+
+			var cellRow = findCelRow($currentCell);
+			var cellCol = findCelCol($currentCell);
+
+			$(context).selectCell(cellRow, cellCol);
+		}
+
+		function multipleHeaderSelection(context) {
+			var $currentHeader = $(context);
+			// startCol
+			var headerCol = $currentHeader.index();
+			var headerRow = findHeaderRow($currentHeader);
+
+			if (headerRow === -1) {
+
+				if (startCol > headerCol) {
+
+					for (var i = headerCol; i <= startCol; i++) {
+
+						PureHeaderSelection(cellsMatrix[0][i]);
+
+					}
+				} else {
+					for (var i = startCol; i <= headerCol; i++) {
+
+						PureHeaderSelection(cellsMatrix[0][i]);
+
+					}
+				}
+			} else if(headerRow >= 1) {
+				PureHeaderSelection(cellsMatrix[headerRow][0]);
+				
 			}
 
-			if (cellIndex < startCellIndex) {
-				cellStart = cellIndex;
-				cellEnd = startCellIndex;
+
+		}
+
+		function multipleCellSelection(context) {
+			// startCol
+			// startRow
+			var $currentCell = $(context);
+			var currentCellRow = findCelRow($currentCell);
+			var currentCellCol = findCelCol($currentCell);
+
+
+			$currentCell.selectCell(currentCellRow, currentCellCol);
+
+
+
+			if (startRow > currentCellRow && startCol !== currentCellCol) {
+
+				for (var i = currentCellRow; i <= startRow; i++) {
+					cellsMatrix[i][currentCellCol].selectCell(i, currentCellCol);
+				}
+
 			} else {
-				cellStart = startCellIndex;
-				cellEnd = cellIndex;
+				for (var i = startRow; i <= currentCellRow; i++) {
+					cellsMatrix[i][currentCellCol].selectCell(i, currentCellCol);
+				}
+
 			}
 
-			for (var i = rowStart; i <= rowEnd; i++) {
-				var rowCells = table.find("tr").eq(i).find("td");
-				for (var j = cellStart; j <= cellEnd; j++) {
-					rowCells.eq(j - 1).selectCell();
+			if (startCol > currentCellCol && startRow !== currentCellRow) {
+
+				for (var i = currentCellCol; i <= startCol; i++) {
+					cellsMatrix[currentCellRow][i].selectCell(currentCellRow, i);
+				}
+
+			} else {
+
+				for (var i = startCol; i <= currentCellCol; i++) {
+					cellsMatrix[currentCellRow][i].selectCell(currentCellRow, i);
+				}
+
+			}
+
+		}
+
+		function headerSelection(context) {
+
+			$('.selected').removeClass('selected');
+			var $header = $(context);
+			var headerRow = findHeaderRow($header);
+			var headerCol = $header.index();
+			var isLetter = checkHeader($header);
+
+			if (!isLetter) {
+
+				for (var i = 0; i < columns; i++) {
+					cellsMatrix[headerRow][i].selectCell(headerRow, i);
+				}
+
+			} else {
+
+				for (var i = 0; i < rows; i++) {
+					cellsMatrix[i][headerCol].selectCell(i, headerCol);
 				}
 			}
 		}
 
-		table.find("td").mousedown(function (e) {
-			isMouseDown = true;
-			var cell = $(this);
+		function PureHeaderSelection(context) {
+			var $header = $(context);
+			var headerRow = findHeaderRow($header);
+			var headerCol = $header.index();
+			var isLetter = checkHeader($header);
 
-			table.find(".selected").removeClass("selected"); // deselect everything
+			if (!isLetter) {
 
-			if (e.shiftKey) {
-				selectTo(cell);
+				for (var i = 0; i < columns; i++) {
+					cellsMatrix[headerRow][i].selectCell(headerRow, i);
+				}
+
 			} else {
-				cell.selectCell();
-				startCellIndex = cell.index();
-				startRowIndex = cell.parent().index();
+
+				for (var i = 0; i < rows; i++) {
+					cellsMatrix[i][headerCol].selectCell(i, headerCol);
+				}
 			}
-
-			return false; // prevent text selection
-		})
-			.mouseover(function () {
-				if (!isMouseDown) return;
-				table.find(".selected").removeClass("selected");
-				selectTo($(this));
-			})
-			.bind("selectstart", function () {
-				return false;
-			});
-
-		$(document).mouseup(function () {
-			isMouseDown = false;
-		});
-
-		// FUCK THIS
+		}
 
 		function checkHeader($header) {
 
@@ -204,15 +310,29 @@ function solve() {
 			} return false;
 		}
 
-		$.fn.selectCell = function () {
+		function findCelRow($cell) {
 
-			var $cell = $(this);
-			$cell.addClass('selected');
-			var $numberHeader = $cell.parent().children().first();
-			$numberHeader.addClass('selected');
-			var cellIndex = $cell.index();
-			$allHeadersTop.eq(cellIndex).addClass('selected');
-			return this;
+			var $currentHeader = $cell;
+			var currentHeaderIndex = $currentHeader.index();
+			var $currentEntireCol = $('tr').find('td:eq(' + (currentHeaderIndex - 1) + ')');
+
+			var cellRow = 1 + ($currentEntireCol.index($cell));
+
+			return cellRow;
+		}
+
+		function findCelCol($cell) {
+			return $cell.index();
+		}
+
+		function findHeaderRow($header) {
+			var $currentHeader = $header;
+			var currentHeaderIndex = $currentHeader.index();
+			var $currentEntireCol = $('tr').find('th:eq(' + (currentHeaderIndex - 1) + ')');
+
+			var cellRow = $currentEntireCol.index($header);
+
+			return cellRow;
 		}
 
 	};

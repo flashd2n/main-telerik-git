@@ -1,133 +1,35 @@
 'use strict';
 
-function solve() {
+let rows = 42;
+let columns = 20;
 
-	return function (selector, rows, columns) {
-
-		var $container = $(selector);
-
-		var $table = $('<table>').addClass('spreadsheet-table');
-
-		for (var i = 0; i <= rows; i++) {
-
-			var $tableRow = $('<tr>');
-
-			for (var j = 0; j <= columns; j++) {
-
-				if (i === 0) {
-					var $tableHeader = $('<th>').addClass('spreadsheet-header').addClass('spreadsheet-item');
-
-					if (j === 0) {
-						$tableHeader.appendTo($tableRow);
-						continue;
-					}
-
-					$tableHeader.text(String.fromCharCode(65 + (j - 1)));
-					$tableHeader.appendTo($tableRow);
-					continue;
-				}
-
-				if (j === 0) {
-					var $tableHeader = $('<th>').addClass('spreadsheet-header').addClass('spreadsheet-item');
-					$tableHeader.text(i);
-					$tableHeader.appendTo($tableRow);
-					continue;
-				}
-
-				var $tableCell = $('<td>').addClass('spreadsheet-cell').addClass('spreadsheet-item');
-				var $tableCellInput = $('<input>');
-				$tableCellInput.appendTo($tableCell);
-				var $tableCellSpan = $('<span>');
-				$tableCellSpan.appendTo($tableCell);
-				$tableCell.appendTo($tableRow);
-			}
-
-			$tableRow.appendTo($table);
-		}
-		$table.appendTo($container);
-
-		// table built functionality next
-
-		// selection
-
-		var $allHeadersTop = $('.spreadsheet-table > tr:first th');
-
-		// single cell selection
-		var $allCells = $('.spreadsheet-cell');
-		$allCells.on('mousedown', function () {
-
-			var $allSelectedElements = $('.selected').removeClass('selected');
+// let cellsMatrix = Array.from({length: rows});
+// cellsMatrix.fill(Array.from({length: columns}));
 
 
-			var $cell = $(this).selectCell();
+let cellsMatrix = new Array(rows);
+for(let i = 0; i < rows; i++){
 
-			// selectCell($cell);
+	cellsMatrix[i] = new Array(columns);
 
-
-		});
-
-		var $allTableHeaders = $('.spreadsheet-header');
-		$allTableHeaders.on('mousedown', function (event) {
-
-			var $allSelectedElements = $('.selected').removeClass('selected');
-			var $header = $(this);
-			var isLetter = checkHeader($header);
-
-			if (!isLetter) {
-
-				var $entireRow = $header.siblings();
-				$entireRow.each(function (cell) {
-
-					var $cell = $(this).selectCell();
-
-				});
-			} else {
-
-				var headerIndex = $header.index();
-				var $entireCol = $('tr').find('td:eq(' + (headerIndex - 1) + ')');
-				$entireCol.each(function () {
-
-					var $cell = $(this).selectCell();
-
-				});
-			}
-
-		});
-
-		var $topLeftCell = $('.spreadsheet-table tr:first').find('th:first');
-		$topLeftCell.on('mousedown', function(){
-
-			var $allItems = $('.spreadsheet-item')
-			$allItems.addClass('selected');
-
-		});
-
-
-
-		function checkHeader($header) {
-
-			var $cellSiblings = $header.siblings('td');
-			if ($cellSiblings.length === 0) {
-				return true;
-			} return false;
-		}
-
-		$.fn.selectCell = function () {
-
-			var $cell = $(this);
-			$cell.addClass('selected');
-			var $numberHeader = $cell.parent().children().first();
-			$numberHeader.addClass('selected');
-			var cellIndex = $cell.index();
-			$allHeadersTop.eq(cellIndex).addClass('selected');
-			return this;
-		}
-
-	};
 }
 
-// SUBMIT THE CODE ABOVE THIS LINE
+		var testMatrix = [];
 
-if (typeof module !== 'undefined') {
-	module.exports = solve;
-}
+		for(let i = 0; i < rows; i++){
+
+			// row = $(`table tr:eq(${i + 1})`);
+			
+			// testMatrix.push(row);
+
+			for(let j = 0; j < columns; j++){
+
+				// var $cell = row.find('td').eq(j);
+
+				cellsMatrix[i][j] = `${i} : ${j}`;
+
+			}
+
+		}
+
+console.log(cellsMatrix);
