@@ -48,90 +48,49 @@ function solve() {
 
 		// table built functionality next
 
-		var row;
-
-		var cellsMatrix = new Array(rows + 1);
-		for (var i = 0; i <= rows; i++) {
-
-			cellsMatrix[i] = new Array(columns + 1);
-
-		}
-
-		for (var i = 0; i <= rows; i++) {
-
-			row = $(`table tr:eq(${i})`);
-
-			for (var j = 0; j <= columns; j++) {
-
-				var $cell = row.find('.spreadsheet-item').eq(j);
-
-				cellsMatrix[i][j] = $cell;
-			}
-		}
-
 		// selection
-		var startCol;
-		var startRow;
-		var $cellStart;
 
-		var down = false;
-		$(document).mousedown(function (event) {
-
-			$cellStart = $(event.target);
-
-			startCol = findCelCol($cellStart);
-			startRow = findCelRow($cellStart);
-
-
-			down = true;
-		}).mouseup(function () {
-			down = false;
-		});
-
-		var dragTargetNew;
-		var dragTargetPrevious;
-
-		var $allItems = $('.spreadsheet-item');
-		$allItems.on('mousemove', function (event) {
-
-
-			dragTargetNew = event.target;
-
-			if (down && (dragTargetNew !== dragTargetPrevious)) {
-
-				var element = $(dragTargetNew);
-
-
-				if ($cellStart.hasClass('spreadsheet-cell')) {
-
-					multipleCellSelection(this);
-
-				} else {
-
-					multipleHeaderSelection(this);
-
-				}
-
-			}
-
-			dragTargetPrevious = event.target;
-
-		});
+		var $allHeadersTop = $('.spreadsheet-table > tr:first th');
 
 		// single cell selection
 		var $allCells = $('.spreadsheet-cell');
 		$allCells.on('mousedown', function () {
 
-			cellSelection(this);
+			var $allSelectedElements = $('.selected').removeClass('selected');
+
+
+			var $cell = $(this).selectCell();
+
+			// selectCell($cell);
+
 
 		});
 
-
-
 		var $allTableHeaders = $('.spreadsheet-header');
-		$allTableHeaders.on('mousedown', function () {
+		$allTableHeaders.on('mousedown', function (event) {
 
-			headerSelection(this);
+			var $allSelectedElements = $('.selected').removeClass('selected');
+			var $header = $(this);
+			var isLetter = checkHeader($header);
+
+			if (!isLetter) {
+
+				var $entireRow = $header.siblings();
+				$entireRow.each(function (cell) {
+
+					var $cell = $(this).selectCell();
+
+				});
+			} else {
+
+				var headerIndex = $header.index();
+				var $entireCol = $('tr').find('td:eq(' + (headerIndex - 1) + ')');
+				$entireCol.each(function () {
+
+					var $cell = $(this).selectCell();
+
+				});
+			}
 
 		});
 
@@ -150,7 +109,6 @@ function solve() {
 
 			var $cell = $(this);
 			$cell.addClass('editing');
-			$cell.children('input').focus();
 
 			var $span = $cell.children('span');
 			var currentValue = $span.text();
@@ -167,140 +125,29 @@ function solve() {
 
 		});
 
+		// FUCK THIS
 
-
-		$.fn.selectCell = function (cellRow, cellCol) {
-
-			cellsMatrix[cellRow][cellCol].addClass('selected');
-			cellsMatrix[0][cellCol].addClass('selected');
-			cellsMatrix[cellRow][0].addClass('selected');
-
-			return this;
-		}
-
-		function cellSelection(context) {
-
-			$('.selected').removeClass('selected');
-			var $currentCell = $(context);
-
-			var cellRow = findCelRow($currentCell);
-			var cellCol = findCelCol($currentCell);
-
-			$(context).selectCell(cellRow, cellCol);
-		}
-
-		function multipleHeaderSelection(context) {
-			var $currentHeader = $(context);
-			// startCol
-			var headerCol = $currentHeader.index();
-			var headerRow = findHeaderRow($currentHeader);
-
-			if (headerRow === -1) {
-
-				if (startCol > headerCol) {
-
-					for (var i = headerCol; i <= startCol; i++) {
-
-						PureHeaderSelection(cellsMatrix[0][i]);
-
-					}
-				} else {
-					for (var i = startCol; i <= headerCol; i++) {
-
-						PureHeaderSelection(cellsMatrix[0][i]);
-
-					}
+		var isMouseDown = false;
+		$('.spreadsheet-item')
+			.mousedown(function () {
+				isMouseDown = true;
+				$(this).selectCell();
+				return false; // prevent text selection
+			})
+			.mouseover(function () {
+				if (isMouseDown) {
+					$(this).selectCell();
 				}
-			} else if(headerRow >= 1) {
-				PureHeaderSelection(cellsMatrix[headerRow][0]);
-				
-			}
+			})
+			.bind("selectstart", function () {
+				return false; // prevent text selection in IE
+			});
 
+		$(document)
+			.mouseup(function () {
+				isMouseDown = false;
+			});
 
-		}
-
-		function multipleCellSelection(context) {
-			// startCol
-			// startRow
-			var $currentCell = $(context);
-			var currentCellRow = findCelRow($currentCell);
-			var currentCellCol = findCelCol($currentCell);
-
-
-			$currentCell.selectCell(currentCellRow, currentCellCol);
-
-
-
-			if (startRow > currentCellRow && startCol !== currentCellCol) {
-
-				for (var i = currentCellRow; i <= startRow; i++) {
-					cellsMatrix[i][currentCellCol].selectCell(i, currentCellCol);
-				}
-
-			} else {
-				for (var i = startRow; i <= currentCellRow; i++) {
-					cellsMatrix[i][currentCellCol].selectCell(i, currentCellCol);
-				}
-
-			}
-
-			if (startCol > currentCellCol && startRow !== currentCellRow) {
-
-				for (var i = currentCellCol; i <= startCol; i++) {
-					cellsMatrix[currentCellRow][i].selectCell(currentCellRow, i);
-				}
-
-			} else {
-
-				for (var i = startCol; i <= currentCellCol; i++) {
-					cellsMatrix[currentCellRow][i].selectCell(currentCellRow, i);
-				}
-
-			}
-
-		}
-
-		function headerSelection(context) {
-
-			$('.selected').removeClass('selected');
-			var $header = $(context);
-			var headerRow = findHeaderRow($header);
-			var headerCol = $header.index();
-			var isLetter = checkHeader($header);
-
-			if (!isLetter) {
-
-				for (var i = 0; i < columns; i++) {
-					cellsMatrix[headerRow][i].selectCell(headerRow, i);
-				}
-
-			} else {
-
-				for (var i = 0; i < rows; i++) {
-					cellsMatrix[i][headerCol].selectCell(i, headerCol);
-				}
-			}
-		}
-
-		function PureHeaderSelection(context) {
-			var $header = $(context);
-			var headerRow = findHeaderRow($header);
-			var headerCol = $header.index();
-			var isLetter = checkHeader($header);
-
-			if (!isLetter) {
-
-				for (var i = 0; i < columns; i++) {
-					cellsMatrix[headerRow][i].selectCell(headerRow, i);
-				}
-
-			} else {
-
-				for (var i = 0; i < rows; i++) {
-					cellsMatrix[i][headerCol].selectCell(i, headerCol);
-				}
-			}
-		}
 
 		function checkHeader($header) {
 
@@ -310,29 +157,15 @@ function solve() {
 			} return false;
 		}
 
-		function findCelRow($cell) {
+		$.fn.selectCell = function () {
 
-			var $currentHeader = $cell;
-			var currentHeaderIndex = $currentHeader.index();
-			var $currentEntireCol = $('tr').find('td:eq(' + (currentHeaderIndex - 1) + ')');
-
-			var cellRow = 1 + ($currentEntireCol.index($cell));
-
-			return cellRow;
-		}
-
-		function findCelCol($cell) {
-			return $cell.index();
-		}
-
-		function findHeaderRow($header) {
-			var $currentHeader = $header;
-			var currentHeaderIndex = $currentHeader.index();
-			var $currentEntireCol = $('tr').find('th:eq(' + (currentHeaderIndex - 1) + ')');
-
-			var cellRow = $currentEntireCol.index($header);
-
-			return cellRow;
+			var $cell = $(this);
+			$cell.addClass('selected');
+			var $numberHeader = $cell.parent().children().first();
+			$numberHeader.addClass('selected');
+			var cellIndex = $cell.index();
+			$allHeadersTop.eq(cellIndex).addClass('selected');
+			return this;
 		}
 
 	};
