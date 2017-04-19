@@ -1,0 +1,41 @@
+#root,
+body {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+#theButton {
+    background-color: blue;
+    padding: 10px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 25px;
+    margin: 20px;
+    ;
+}
+
+#theButton:hover {
+    background-color: lightblue;
+    color: black;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+#popupContainer {
+    position: absolute;
+    width: 500px;
+    height: 150px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 30px;
+}

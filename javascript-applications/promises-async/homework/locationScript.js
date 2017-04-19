@@ -36,7 +36,7 @@
         function geolocationSuccess(position) {
 
             let mapImage = document.createElement('img');
-            mapImage.src = 'https://maps.googleapis.com/maps/api/staticmap?center=' + position.coords.latitude + ',' + position.coords.longitude + '&zoom=13&size=500x400&sensor=false&markers=' + position.coords.latitude + ',' + position.coords.longitude;
+            mapImage.src = 'https://maps.googleapis.com/maps/api/staticmap?center=' + position.coords.latitude + ',' + position.coords.longitude + '&zoom=13&size=800x800&sensor=false&markers=' + position.coords.latitude + ',' + position.coords.longitude;
             container.appendChild(mapImage);
 
         }
