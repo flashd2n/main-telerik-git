@@ -21,7 +21,8 @@
   "globals":       {
     "$": true,
     "document": true,
-    "window": true
+    "window": true,
+    "navigator": true
   },
   "globalstrict":  true,
   "immed":         true,
