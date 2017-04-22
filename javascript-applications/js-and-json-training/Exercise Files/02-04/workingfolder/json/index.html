@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>JavaScript And JSON</title>
+</head>
+
+<body>
+
+    <h2>Links</h2>
+    <ul id="links">
+    </ul>
+
+    <script>
+        var info = {
+            "full_name": "Ray Villalobos",
+            "title": "Staff Author",
+            "links": [{
+                    "blog": "http://iviewsource.com"
+                },
+                {
+                    "facebook": "http://facebook.com/iviewsource"
+                },
+                {
+                    "podcast": "http://feeds.feedburner.com/authoredcontent"
+                },
+                {
+                    "twitter": "http://twitter.com/planetoftheweb"
+                },
+                {
+                    "youtube": "http://www.youtube.com/planetoftheweb"
+                }
+            ]
+        };
+
+        let output = '';
+
+        for (value of info.links) {
+
+            output += '<li><a href="' + Object.values(value)[0] + '">' + Object.keys(value)[0] + '</a></li>';
+
+        }
+
+        document.getElementById('links').innerHTML = output;
+
+    </script>
+</body>
+
+</html>

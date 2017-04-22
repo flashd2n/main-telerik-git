@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>JSON Carousel</title>
+    <link href="mystyle.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div id="speakerbox">
+        <a href="#" id="prev_btn">&laquo;</a>
+        <a href="#" id="next_btn">&raquo;</a>
+        <div id="carousel"></div>
+    </div>
+
+
+
+    <script id="speakerstpl" type="text/template">
+
+
+        {{#speakers}}
+        <div class="speaker">
+            <img src="images/{{shortname}}_tn.jpg" alt="Photo of {{name}}">
+            <h3>{{name}}</h3>
+            <h4>{{reknown}}</h4>
+            <p>{{bio}}</p>
+        </div>
+        {{/speakers}}
+
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle/3.0.3/jquery.cycle.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <script>
+        $(function() {
+
+            $.getJSON('data.json', function(data) {
+
+                let template = $('#speakerstpl').html();
+                let html = Mustache.to_html(template, data);
+
+                $('#carousel').html(html);
+
+                $("#carousel").cycle({
+                    fx: 'fade',
+                    pause: 1,
+                    next: '#next_btn',
+                    previous: '#prev_btn',
+                    speed: 500,
+                    timeout: 10000,
+                    cleartypeNoBg: true
+                });
+            });
+        });
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+--- parsing JSON
+
+var info = JSON.parse(data) ---> converts the JSON into JS object ---> better than eval for security
+var infostring = JSON.stringify(info) -> does the opposite of the above
+
+---> use arrays to make sure the order is kept
+
+---- JSONP ----
+
+-> use to load JSON from external domains in order to avoid access-control error
+
+1. modify the JSON to look like a function call
+
+	myData({JSON CONTENT});
+
+2. modify the script.js to add a function that accepts the JSON like an object and do the logic
+	
+	function myData(info){
+	// do stuff with the info object - no need to use JSON.parse now
+	}
+
+3. add the new JSON file as .js file in the html -> <script src="myjson.json"></script> AFTER the script.js
+
+
+---- JSON JQUERY ----
+
+1. load the .json with $.getJSON('path-to-file', function(objectFromFile){
+	// do logic with ready js object -> no need to JSON.parse
+})
