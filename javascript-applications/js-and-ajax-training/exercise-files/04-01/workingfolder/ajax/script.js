@@ -13,7 +13,7 @@ $.getJSON('data.json', function(data){
         $('<p>').html(value.bio).appendTo(item);
 
         item.appendTo(allItems);
-
+\
     });
 
     $('#update').append(allItems);

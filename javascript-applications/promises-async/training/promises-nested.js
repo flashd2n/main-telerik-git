@@ -24,31 +24,33 @@ let performActionThree = function () {
 
 };
 
+console.log(performActionOne());
 
-Promise.race([performActionOne(), performActionTwo(), performActionTwo()]).then(function () {
 
-    console.log('one of the actions has completed without caring for the rest');
+// Promise.race([performActionOne(), performActionTwo(), performActionTwo()]).then(function () {
 
-});
+//     console.log('one of the actions has completed without caring for the rest');
 
-performActionOne().then(function () {
+// });
 
-    return performActionTwo();
+// performActionOne().then(function () {
 
-}).then(function () {
+//     return performActionTwo();
 
-    return performActionThree();
+// }).then(function () {
 
-}).then(function () {
+//     return performActionThree();
 
-    console.log('all actions are completed with dependencies');
+// }).then(function () {
 
-});
+//     console.log('all actions are completed with dependencies');
 
-// IMPORTANT: in this case the promise.all is executed before the chained promises, even though the promises are the same
+// });
 
-Promise.all([performActionOne(), performActionTwo(), performActionTwo()]).then(function () {
+// // IMPORTANT: in this case the promise.all is executed before the chained promises, even though the promises are the same
 
-    console.log('all actions completed without dependencies');
+// Promise.all([performActionOne(), performActionTwo(), performActionTwo()]).then(function () {
 
-});
+//     console.log('all actions completed without dependencies');
+
+// });
