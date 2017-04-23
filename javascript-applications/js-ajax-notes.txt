@@ -2,7 +2,7 @@
 
 let request = new XMLHttpRequest();
 
-// create the request -> request.open('GET/POST', 'path-to-file', true->sets async);
+// create the request -> request.open('GET/POST', 'path-to-file');
 
 // set event handler for when the request is ready -> request.onreadystatechange = function() {//check for readyState === 4 and status === 200 and do stuff}
 // send the request to the server -> request.send();
