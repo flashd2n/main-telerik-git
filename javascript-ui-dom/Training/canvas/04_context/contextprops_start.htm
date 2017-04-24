@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Using Canvas Properties and Methods</title>
+		<style type="text/css">
+			#Canvas1 {
+				border: dotted 3px black;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var theCanvas = document.getElementById('Canvas1');
+				theCanvas.width = 150;
+				theCanvas.height = 150;
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Using Canvas Properties</h1>
+		<p>The canvas properties such as height and width can be manipulated. Use the 
+		toDataURL() and getContext() methods to perform operations on the canvas.</p>
+		<canvas id="Canvas1" width="400" height="300">Your browser does not support canvas.</canvas>
+	</body>
+</html>

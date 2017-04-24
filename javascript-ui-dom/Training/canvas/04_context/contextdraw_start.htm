@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Drawing Into the 2D Context</title>
+		<style type="text/css">
+			#Canvas1 {
+				border: dotted 1px black;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var theCanvas = document.getElementById('Canvas1');
+				if(theCanvas && theCanvas.getContext){
+
+					var canvasContext = theCanvas.getContext('2d');
+
+					if(canvasContext){
+						canvasContext.fillStyle = 'lightGray';
+						canvasContext.fillRect(0, 0, canvasContext.canvas.width, canvasContext.canvas.height);
+						console.log(canvasContext);
+					}
+
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Drawing Into the 2D Context</h1>
+		<p>After retrieving the canvas context, you can use the drawing methods to create content</p>
+		<canvas id="Canvas1" width="400" height="300">Your browser does not support canvas.</canvas>
+	</body>
+</html>

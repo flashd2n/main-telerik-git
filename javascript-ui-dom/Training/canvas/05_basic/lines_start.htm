@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Drawing Lines</title>
+	<style type="text/css">
+		canvas {
+			border: dotted 1px black;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			// draw lines of varying widths
+			var theCanvas = document.getElementById('Canvas1');
+			if (theCanvas && theCanvas.getContext) {
+				var ctx = theCanvas.getContext("2d");
+				if (ctx) {
+					for (var i = 0; i < 10; i++) {
+						ctx.beginPath();
+						ctx.lineWidth = 1 + i;
+						ctx.moveTo(25, 25 + i * 20);
+						ctx.lineTo(475, 25 + i * 20);
+						ctx.stroke();
+					}
+				}
+			}
+
+			var theCanvas2 = document.getElementById('Canvas2');
+			if (theCanvas2 && theCanvas2.getContext) {
+				var ctx2 = theCanvas2.getContext("2d");
+				if (ctx2) {
+
+					// set up guidelines
+
+					ctx2.beginPath();
+					ctx2.lineWidth = 1;
+					ctx2.strokeStyle = 'cyan';
+					ctx2.moveTo(50, 25);
+					ctx2.lineTo(50, 175);
+					ctx2.moveTo(450, 25);
+					ctx2.lineTo(450, 175);
+					ctx2.stroke();
+
+					// lines using lineCap
+
+					ctx2.strokeStyle = 'black';
+					ctx2.lineWidth = 25;
+					ctx.lineCap = 'butt';
+					ctx2.beginPath();
+					ctx2.moveTo(50, 50);
+					ctx2.lineTo(450, 50);
+					ctx2.stroke();
+
+					ctx2.lineCap = 'round';
+					ctx2.beginPath();
+					ctx2.moveTo(50, 100);
+					ctx2.lineTo(450, 100);
+					ctx2.stroke();
+
+					ctx2.lineCap = 'square';
+					ctx2.beginPath();
+					ctx2.moveTo(50, 150);
+					ctx2.lineTo(450, 150);
+					ctx2.stroke();
+
+				}
+			}
+
+			var theCanvas3 = document.getElementById('Canvas3');
+			if (theCanvas3 && theCanvas3.getContext) {
+				var ctx3 = theCanvas3.getContext("2d");
+				if (ctx3) {
+
+					ctx3.lineWidth = 15;
+					ctx3.strokeStyle = 'black';
+
+					ctx3.lineJoin = 'round';
+					ctx3.beginPath();
+					ctx3.moveTo(25, 150);
+					ctx3.lineTo(75, 50);
+					ctx3.lineTo(125, 150);
+					ctx3.stroke();
+
+					ctx3.lineJoin = 'bevel';
+					ctx3.beginPath();
+					ctx3.moveTo(175, 150);
+					ctx3.lineTo(225, 50);
+					ctx3.lineTo(275, 150);
+					ctx3.stroke();
+
+					ctx3.lineJoin = 'miter';
+					ctx3.beginPath();
+					ctx3.moveTo(325, 150);
+					ctx3.lineTo(375, 50);
+					ctx3.lineTo(425, 150);
+					ctx3.stroke();
+
+				}
+			}
+
+		}
+	</script>
+</head>
+
+<body>
+	<h1>Drawing Lines</h1>
+	<p>This example will draw several styles of lines. First: basic line width</p>
+	<canvas id="Canvas1" width="500" height="200">Your browser does not support canvas.</canvas>
+
+	<p>Next: different settings for lineCap</p>
+	<canvas id="Canvas2" width="500" height="200">Your browser does not support canvas.</canvas>
+
+	<p>Next: different settings for lineJoin</p>
+	<canvas id="Canvas3" width="500" height="200">Your browser does not support canvas.</canvas>
+</body>
+
+</html>

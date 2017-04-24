@@ -1,0 +1,126 @@
+---- Styles
+
+ctx.fillStyle ---> used for fillRect
+ctx.strokeStyle ---> used for StrokeRect
+ctx.lineWidth ---> used for StrokeRect
+
+---- Rectangles
+
+ctx.fillRect(x, y, wid, hei);
+ctx.strokeRect(x, y, wid, hei);
+
+
+---- Lines
+
+basic line draw sequence:
+	0. Can start with lineCap = 'butt/round/square' or lineJoin = 'miter/round/bevel';
+	1. ctx.beginPath();
+	2. ctx.moveTo(x, y);
+	3. ctx.lineTo(x, y);
+	// steps 2 and 3 can repeat within the beingPath-stroke sequence to draw multiple lines
+	// can chain one MoveTo with several LineTo and linejoin to create a line sequence
+	4. ctx.stroke();
+
+-> ctx.fill() -> fills the inside of a path-drawn element
+-> ctx.closePath() -> connects the end and the beginning
+
+
+--- arcs and circles
+
+-> sequence:
+	1. ctx.beginPath()
+	2. ctx.arc()
+	3. ctx.stroke() and/or ctx.fill()
+
+-> ctx.arc(x.circleCenter, y.circleCenter, radius, startradian, endRadian, true/fase -> clockwise)
+-> can use the following conversion to make working with radians more intuitive:
+	1. var degrees = 123;
+	2. var radians = (Math.PI / 180) * degrees;
+	3. use the variable radians in the arc function
+
+---- Advanced curves
+
+-> bezier curve:
+	1. ctx.beginPath()
+	2. ctx.moveTo() ---> start of the curve
+	3. ctx.bezierCurveTo(cx1, cy1, cx2, cy2, endx, endy)
+	4. ctx.stroke()
+
+-> quadratic curve:
+	1. ctx.beginPath()
+	2. ctx.moveTo() ---> start of the curve
+	3. ctx.quadraticCurveTo(cx, cy, endx, endy)
+	4. ctx.stroke()
+
+---- Text
+
+-> simple text
+	1. ctx.fillText('text to draw', x, y); ---> point(x, y) is the bottom left point of the start of the text
+
+
+---- Adding shadow
+
+1. add shadow to context properties
+	-> ctx.shadowColor = '#000000';
+	-> 
+ctx.shadowOffsetX = 10;
+	-> 
+ctx.shadowOffsetY = 10;
+	-> 
+ctx.shadowBlur = 10;
+	
+2. then do the normal stuff like fillRect/ fillText / draw lines/curves / arcs
+
+
+---- Patterns
+
+1. get source (image/video) -> var myImage = image element
+2. execute stuff when the source loads, so add event listener for load
+3. when loads:
+	-> ctx.fillStyle = ctx.createPattern(myImage, 'no-repeat');
+	-> ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+
+-> for Video -> set time out function, then get the video element, create pattern, add it to fillStyle and fillRect
+
+-> for canvas -> works just like the others -> get the canvas, use it in the createPattern, set fillStyle and fillRect
+
+-> all of those can be used as a strokeStyle with lineWidth and strokeRect
+
+
+TODO: gradients, clipping paths, draw images
+
+
+---- Translate 
+
+-> resets the 0, 0 of the canvas
+
+-> ctx.translate(newX, newY)
+	-> now everything draw at (0, 0) will be at newX and newY
+
+!useful to use ctx.save() and ctx.restore()
+
+
+---- Scale
+
+
+-> sets new dimenstions when drawing
+
+-> call ctx.scale(newWidth, newHeight);
+-> now when drawing a rect with set 100 width will be 100 * newWidth and the same for height
+
+-> very important to use save and restore
+
+
+
+
+
+
+
+
+
+
+
+
+
+
