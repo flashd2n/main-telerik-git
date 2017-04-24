@@ -1,0 +1,5 @@
+JS ENHANCING THE DOM NOTES
+
+-> timing --> console.time("SomeLabel"); do stuff ; console.timeEnd("SomeLabel");
+-> console.warn --- console.error --- console.asser(*/ assert a condition /*);
+
