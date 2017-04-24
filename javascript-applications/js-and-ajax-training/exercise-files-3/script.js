@@ -1,12 +1,12 @@
 'use strict';
 
-$('#load').on('click', function(event){
+$('#load').on('click', function (event) {
     event.preventDefault();
 
     $.ajax({
         url: 'file.txt',
         cache: false,
-        data:{
+        data: {
             name: 'Kalin',
             age: 42
         },
@@ -15,10 +15,10 @@ $('#load').on('click', function(event){
     });
 });
 
-function onSuccess(data){
+function onSuccess(data) {
     $('#contents').html(data);
 }
 
-function onError(error){
+function onError(error) {
     console.log(error);
 }
