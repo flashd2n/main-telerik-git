@@ -49,7 +49,7 @@ $.get(URL)
 	cache: false (true by default) -> turns of the caching functionality of the browser for the request, so I can display changed content without reloading the page...might be good or not
 	type: 'POST/GET/Other' -> use POST to send data to the server
 	data: and object with key-> value pairs. If used with POST, the data is send as "form data"; if used with GET, the data is send in the URL as query string
-
+	dataType: 'json', 'xml', 'html' or 'script' -> defines the expected data type from the request
 })
 
 
