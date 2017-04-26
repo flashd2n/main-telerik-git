@@ -3,9 +3,10 @@
 let request = new XMLHttpRequest();
 
 // set up the request -> request.open('GET/POST', 'path-to-file // URL');
-
+// *optional set request headers -> request.setRequestHeader('header', value); ---> request.setRequestHeader('Content-type', 'application/json');
 // set event handler for when the request is ready -> request.onreadystatechange = function() {//check for readyState === 4 and status === 200 and do stuff}
 // send the request to the server -> request.send();
+// when sending POST -> request.send(*body of the request*) -> must be text -> maybe XML, maybe JSON.stringify
 
 readyState codes: 
 	0 -> request not yet initialized
