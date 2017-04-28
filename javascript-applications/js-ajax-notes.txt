@@ -51,6 +51,7 @@ $.get(URL)
 	type: 'POST/GET/Other' -> use POST to send data to the server
 	data: and object with key-> value pairs. If used with POST, the data is send as "form data"; if used with GET, the data is send in the URL as query string
 	dataType: 'json', 'xml', 'html' or 'script' -> defines the expected data type from the request
+	contentType: 'application/json' -> sets the type of the data being sent to the server
 })
 
 
