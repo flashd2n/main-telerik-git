@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace SimpleMathTests
 {
-
+    /// <summary>
+    /// Tests the performance of adding in c#
+    /// </summary>
+    /// 
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// throws when invalid argument
+    /// </exception>
     public static class AddTester
     {
         private const int NUMBER_OF_STEPS = 60000;
