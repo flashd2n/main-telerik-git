@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Pl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaygroundTests", "PlaygroundTests\PlaygroundTests.csproj", "{CC1582CB-F5AF-44E7-9619-CF39C363FB4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticClassDependencyInversion", "StaticClassDependencyInversion\StaticClassDependencyInversion.csproj", "{AEC2E807-2118-407C-8B6C-5BD80DB40151}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertPlay", "AssertPlay\AssertPlay.csproj", "{71E7E754-3419-4766-BAA4-D64ADA48145C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{CC1582CB-F5AF-44E7-9619-CF39C363FB4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC1582CB-F5AF-44E7-9619-CF39C363FB4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC1582CB-F5AF-44E7-9619-CF39C363FB4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEC2E807-2118-407C-8B6C-5BD80DB40151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC2E807-2118-407C-8B6C-5BD80DB40151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC2E807-2118-407C-8B6C-5BD80DB40151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEC2E807-2118-407C-8B6C-5BD80DB40151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71E7E754-3419-4766-BAA4-D64ADA48145C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71E7E754-3419-4766-BAA4-D64ADA48145C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71E7E754-3419-4766-BAA4-D64ADA48145C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71E7E754-3419-4766-BAA4-D64ADA48145C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
