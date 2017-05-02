@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApplication3 {
-    enum Subjct {
-        Bulgarian, English, Math Programming,
+    public enum Subjct {
+        Bulgarian, English, Math, Programming
     }
 }

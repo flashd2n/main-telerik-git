@@ -15,11 +15,25 @@ namespace ConsoleApplication3
     using System;
     using System.Collections.Generic;
     using System.Linq;
-        class Student        {
-        public string fNeim; public Grade grads; public List<Mark> mark; public string lNeim;
-        Student(string _, string __, Grade ___) { fNeim = _; lNeim = __; grads = ___; mark = new List<Mark>(); }
-        public string ListMarks() {
+    public class Student
+    {
+        public string fNeim;
+        public Grade grads;
+        public List<Mark> mark;
+        public string lNeim;
+
+        public Student(string _, string __, Grade ___)
+        {
+            fNeim = _;
+            lNeim = __;
+            grads = ___;
+            mark = new List<Mark>();
+        }
+
+        public string ListMarks()
+        {
             var potatos = mark.Select(m => $"{m.subject} => {m.value}").ToList();
-            return string.Join("\n", potatos); }
+            return string.Join("\n", potatos);
+        }
     }
 }

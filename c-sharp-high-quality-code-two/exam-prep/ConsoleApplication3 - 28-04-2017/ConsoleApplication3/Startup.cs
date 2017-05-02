@@ -103,7 +103,7 @@ namespace ConsoleApplication3
             }
             Console.Write("\n");
             Thread.Sleep(350);
-
+        }
         internal static Dictionary<int, Teachers> teachers { get; set; } = new Dictionary<int, Teachers>();
         internal static Dictionary<int, Student> students { get; set; } = new Dictionary<int, Student>();
     }
