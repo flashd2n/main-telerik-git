@@ -2,17 +2,18 @@
 {
     public enum Grade
     {
-        One,
-        Two,
-        Three,
-        Four,
-        Five,
-        Six,
-        Seven,
-        Eight,
-        Nine,
-        Ten,
-        Eleven,
-        Twenlve
+        Zero,
+        First,
+        Second,
+        Third,
+        Forth,
+        fifth,
+        Sixth,
+        Seventh,
+        Eighth,
+        Ninth,
+        Tenth,
+        Eleventh,
+        Twelfth
     }
 }

@@ -4,16 +4,16 @@ namespace SchoolManagementSystem
 {
     public class Mark : IMark
     {
-        private int markValue;
+        private float markValue;
         private Subject markSubject;
 
-        public Mark(Subject markSubject, int markValue)
+        public Mark(Subject markSubject, float markValue)
         {
             this.MarkSubject = markSubject;
             this.MarkValue = markValue;
         }
 
-        public int MarkValue
+        public float MarkValue
         {
             get
             {
@@ -38,7 +38,5 @@ namespace SchoolManagementSystem
                 this.markSubject = value;
             }
         }
-
-
     }
 }

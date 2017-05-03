@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SchoolManagementSystem.Commands
 {
     internal class TeacherAddMarkCommand : ICommand
     {
-        public string Execute(IList<string> prms)
+        public string Execute(IList<string> commandParameters)
         {
-            var teecherid = int.Parse(prms[0]);
-            var studentid = int.Parse(prms[1]);
-            // Please work
-            var student = Engine.students[teecherid];
-            var adhyaapak = Engine.teachers[studentid];
-            adhyaapak.AddMark(student, float.Parse(prms[2]));
-            return $"Teacher {adhyaapak.fName} {adhyaapak.lName} added mark {float.Parse(prms[2])} to student {student.fNeim} {student.lNeim} in {adhyaapak.subject}.";
+            var teacherId = int.Parse(commandParameters[0]);
+            var studentid = int.Parse(commandParameters[1]);
+            var markValue = float.Parse(commandParameters[2]);
+            
+            var teacher = Engine.Teachers[teacherId];
+            var student = Engine.Students[studentid];
+
+            var markToAdd = new Mark(teacher.Subject, markValue);
+
+            teacher.AddMark(student, markToAdd);
+
+            var successMessage = $"Teacher {teacher.FirstName} {teacher.LastName} added mark {markValue} to student {student.FirstName} {student.LastName} in {teacher.Subject}.";
+
+            return successMessage;
         }
     }
 }

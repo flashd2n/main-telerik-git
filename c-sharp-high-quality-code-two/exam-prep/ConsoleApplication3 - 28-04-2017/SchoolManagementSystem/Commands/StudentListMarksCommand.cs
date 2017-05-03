@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SchoolManagementSystem.Commands
 {
     internal class StudentListMarksCommand : ICommand
     {
-        public string Execute(IList<string> parameters)
+        public string Execute(IList<string> commandParameters)
         {
-            return Engine.students[int.Parse(parameters[0])].ListMarks();
+            var studentId = int.Parse(commandParameters[0]);
+
+            var student = Engine.Students[studentId];
+
+            var studentMarks = student.ListMarks();
+
+            return studentMarks;
         }
     }
 }

@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SchoolManagementSystem.Commands
 {
     internal class RemoveStudentCommand : ICommand
     {
-        public string Execute(IList<string> paras)
+        public string Execute(IList<string> commandParameters)
         {
-            Engine.students.Remove(int.Parse(paras[0]));
-            return $"Student with ID {int.Parse(paras[0])} was sucessfully removed.";
+            var studentID = int.Parse(commandParameters[0]);
+
+            Engine.Students.Remove(studentID);
+
+            var successMessage = $"Student with ID {studentID} was sucessfully removed.";
+
+            return successMessage;
         }
     }
 }

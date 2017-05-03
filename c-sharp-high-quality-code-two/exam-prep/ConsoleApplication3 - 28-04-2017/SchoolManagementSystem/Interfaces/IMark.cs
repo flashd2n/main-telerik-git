@@ -2,7 +2,7 @@
 {
     public interface IMark
     {
-        int MarkValue { get; }
+        float MarkValue { get; }
 
         Subject MarkSubject { get; }
     }

@@ -1,80 +1,84 @@
-﻿using System;
+﻿using SchoolManagementSystem.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace SchoolManagementSystem
 {
     public class Engine
     {
-        internal static Dictionary<int, Teachers> teachers { get; set; } = new Dictionary<int, Teachers>();
-        internal static Dictionary<int, Student> students { get; set; } = new Dictionary<int, Student>();
-
-        // TODO: change param to IReader instead ConsoleReaderProvider
-        public Engine(ConsoleReaderProvider readed)
+        private static StringBuilder currentMessages = new StringBuilder();
+        private IReader reader;
+        private IPrinter printer;
+        
+        public Engine(IReader reader, IPrinter printer)
         {
-            read = readed;
+            if (reader == null)
+            {
+                throw new ArgumentNullException("The passed reader object is null");
+            }
+
+            if (printer == null)
+            {
+                throw new ArgumentNullException("The passed printer object is null");
+            }
+
+            this.reader = reader;
+            this.printer = printer;
         }
 
-        public void BrumBrum()
+        internal static Dictionary<int, Teacher> Teachers { get; set; } = new Dictionary<int, Teacher>();
+
+        internal static Dictionary<int, Student> Students { get; set; } = new Dictionary<int, Student>();
+
+        public void Start()
         {
-            while (true)
+            var input = this.reader.ReadLine();
+
+            while (input != "End")
             {
                 try
                 {
-                    var cmd = Console.ReadLine();
-                    if (cmd == "End")
-                    {
-                        break;
-                    }
+                    var commandName = input.Split(' ')[0];
 
-                    var aadeshName = cmd.Split(' ')[0];
-
-                    // When I wrote this, only God and I understood what it was doing
-                    // Now, only God knows
-                    var assembli = GetType().GetTypeInfo().Assembly;
-                    var tpyeinfo = assembli.DefinedTypes
+                    var currentAssembly = GetType().GetTypeInfo().Assembly;
+                    var targetType = currentAssembly.DefinedTypes
                         .Where(type => type.ImplementedInterfaces.Any(inter => inter == typeof(ICommand)))
-                        .Where(type => type.Name.ToLower().Contains(aadeshName.ToLower()))
+                        .Where(type => type.Name.ToLower().Contains(commandName.ToLower()))
                         .FirstOrDefault();
-                    if (tpyeinfo == null)
+
+                    if (targetType == null)
                     {
-                        // throw exception when typeinfo is null
                         throw new ArgumentException("The passed command is not found!");
                     }
-                    var aadesh = Activator.CreateInstance(tpyeinfo) as ICommand;
-                    var paramss = cmd.Split(' ').ToList();
-                    paramss.RemoveAt(0);
-                    WriteLine(aadesh.Execute(paramss));
+
+                    var command = Activator.CreateInstance(targetType) as ICommand;
+
+                    var parameters = input.Split(' ').ToList();
+                    parameters.RemoveAt(0);
+
+                    this.LogMessage(command.Execute(parameters));
+
+                    input = this.reader.ReadLine();
                 }
                 catch (Exception ex)
                 {
-                    WriteLine(ex.Message);
+                    this.LogMessage(ex.Message);
+
+                    input = this.reader.ReadLine();
                 }
             }
+
+            var outputMessage = currentMessages.ToString().Trim();
+
+            this.printer.PrintOutput(outputMessage);
         }
 
-        private ConsoleReaderProvider read;
-
-        void WriteLine(string m)
+        private void LogMessage(string message)
         {
-            var p = m.Split(); var s = string.Join(" ", p); var c = 0d;
-            for (double i = 0; i < 0x105; i++)
-            {
-                try
-                {
-                    Console.Write(s[int.Parse(i.ToString())]);
-                }
-                catch (Exception)
-                {
-                    //who cares?
-                }
-            }
-            Console.Write("\n");
-            Thread.Sleep(350);
+            currentMessages.Append(message + "\n");
         }
     }
 }

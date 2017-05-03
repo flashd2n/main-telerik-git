@@ -1,11 +1,14 @@
-﻿namespace SchoolManagementSystem
+﻿using SchoolManagementSystem.Core;
+using SchoolManagementSystem.Interfaces;
+
+namespace SchoolManagementSystem
 {
     internal class BusinessLogicService
     {
-        public void Execute(ConsoleReaderProvider padhana)
+        public void Execute(IReader reader, IPrinter printer)
         {
-            var injan = new Engine(padhana);
-            injan.BrumBrum();
+            var engine = new Engine(reader, printer);
+            engine.Start();
         }
     }
 }

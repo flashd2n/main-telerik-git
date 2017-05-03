@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using SchoolManagementSystem.Interfaces;
+using System;
 using System.Collections.Generic;
-using SchoolManagementSystem.Interfaces;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SchoolManagementSystem
 {
@@ -12,14 +14,12 @@ namespace SchoolManagementSystem
         private string lastName;
         private Grade grade;
         private ICollection<IMark> marks;
-        private IValidator validator;
 
-        public Student(string firstName, string lastName, Grade grade, IValidator validator)
+        public Student(string firstName, string lastName, Grade grade)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Grade = grade;
-            this.validator = validator;
             this.Marks = new List<IMark>();
         }
 
@@ -32,7 +32,7 @@ namespace SchoolManagementSystem
 
             set
             {
-                validator.ValidateString(value, MinStringLength, MaxStringLength, "The student's first name is not valid");
+                this.ValidateString(value, MinStringLength, MaxStringLength, "The student's first name is not valid");
                 this.firstName = value;
             }
         }
@@ -46,7 +46,7 @@ namespace SchoolManagementSystem
 
             set
             {
-                validator.ValidateString(value, MinStringLength, MaxStringLength, "The student's last name is not valid");
+                this.ValidateString(value, MinStringLength, MaxStringLength, "The student's last name is not valid");
                 this.lastName = value;
             }
         }
@@ -72,6 +72,11 @@ namespace SchoolManagementSystem
 
         public string ListMarks()
         {
+            if (this.Marks.Count == 0)
+            {
+                throw new ArgumentException("This student has no marks.");
+            }
+
             var allMarks = this.Marks
                 .Select(mark => $"{mark.MarkSubject} => {mark.MarkValue}")
                 .ToList();
@@ -79,6 +84,19 @@ namespace SchoolManagementSystem
             var result = string.Join("\n", allMarks);
 
             return result;
+        }
+
+        private void ValidateString(string textToValidate, int minLength, int maxLength, string errorMessage)
+        {
+            var textToVallidateLength = textToValidate.Length;
+
+            var isInvalidLength = textToVallidateLength < minLength || textToVallidateLength > maxLength;
+            var hasNonLatinChars = !Regex.IsMatch(textToValidate, @"^[a-zA-Z]+$");
+
+            if (isInvalidLength || hasNonLatinChars)
+            {
+                throw new ArgumentException(errorMessage);
+            }
         }
     }
 }

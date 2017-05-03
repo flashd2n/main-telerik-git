@@ -1,14 +1,16 @@
-﻿namespace SchoolManagementSystem
+﻿using SchoolManagementSystem.Core;
+
+namespace SchoolManagementSystem
 {
-    class Startup
+    public class Startup
     {
-        static void Main()
+        public static void Main()
         {
-            // TODO: abstract at leest 2 mor provider like thiso ne
             var padhana = new ConsoleReaderProvider();
+            var printer = new ConsolePrinter();
 
             var service = new BusinessLogicService();
-            service.Execute(padhana);
+            service.Execute(padhana, printer);
         }
     }
 }

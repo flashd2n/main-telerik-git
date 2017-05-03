@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SchoolManagementSystem.Interfaces;
+using System;
 
 namespace SchoolManagementSystem
 {
-    public class ConsoleReaderProvider
+    public class ConsoleReaderProvider : IReader
     {
-        // TODO: make ConsoleReaderProvider implement IReader
-        public string PadhanaLine()
+        public string ReadLine()
         {
             return Console.ReadLine();
         }

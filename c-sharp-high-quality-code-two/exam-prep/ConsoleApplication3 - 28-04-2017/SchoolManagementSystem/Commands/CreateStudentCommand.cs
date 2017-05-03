@@ -1,18 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SchoolManagementSystem.Commands
 {
-    internal class CreateStudentCommand
+    internal class CreateStudentCommand : ICommand
     {
-        public static int id = 0;
-        public string Execute(IList<string> para)
+        private static int id = 0;
+
+        public string Execute(IList<string> commandParameters)
         {
-            Engine.students.Add(id, new Student(para[0], para[1], (Grade)int.Parse(para[2])));
-            return $"A new student with name {para[0]} {para[1]}, grade {(Grade)int.Parse(para[2])} and ID {id++} was created.";
+            var firstName = commandParameters[0];
+            var lastName = commandParameters[1];
+            var grade = (Grade)int.Parse(commandParameters[2]);
+            
+            Engine.Students.Add(id, new Student(firstName, lastName, grade));
+
+            var successMessage = $"A new student with name {firstName} {lastName}, grade {grade} and ID {id} was created.";
+
+            ++id;
+            return successMessage;
         }
     }
 }
