@@ -6,11 +6,11 @@ namespace SchoolManagementSystem
     {
         public static void Main()
         {
-            var padhana = new ConsoleReaderProvider();
+            var reader = new ConsoleReaderProvider();
             var printer = new ConsolePrinter();
 
             var service = new BusinessLogicService();
-            service.Execute(padhana, printer);
+            service.Execute(reader, printer);
         }
     }
 }
