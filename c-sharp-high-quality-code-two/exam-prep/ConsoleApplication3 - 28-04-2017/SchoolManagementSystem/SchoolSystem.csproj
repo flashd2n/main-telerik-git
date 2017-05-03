@@ -63,6 +63,7 @@
     <Compile Include="Interfaces\IMark.cs" />
     <Compile Include="Interfaces\IPrinter.cs" />
     <Compile Include="Interfaces\IReader.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Enumerations\Grade.cs" />
     <Compile Include="Enumerations\Subject.cs" />

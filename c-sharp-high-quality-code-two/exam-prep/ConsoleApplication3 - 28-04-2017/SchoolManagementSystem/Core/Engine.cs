@@ -9,7 +9,7 @@ namespace SchoolManagementSystem
 {
     public class Engine
     {
-        private static StringBuilder currentMessages = new StringBuilder();
+        private static StringBuilder currentMessages;
         private IReader reader;
         private IPrinter printer;
         
@@ -27,6 +27,7 @@ namespace SchoolManagementSystem
 
             this.reader = reader;
             this.printer = printer;
+            currentMessages = new StringBuilder();
         }
 
         internal static Dictionary<int, Teacher> Teachers { get; set; } = new Dictionary<int, Teacher>();

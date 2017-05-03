@@ -1,51 +1,17 @@
 ﻿using SchoolManagementSystem.Interfaces;
+using SchoolManagementSystem.Models;
 using System;
-using System.Text.RegularExpressions;
 
 namespace SchoolManagementSystem
 {
-    internal class Teacher
+    internal class Teacher : Person
     {
-        private const int MinStringLength = 2;
-        private const int MaxStringLength = 31;
         private const int MaxNumberOfMarksPerStudent = 20;
-        private string firstName;
-        private string lastName;
         private Subject subject;
 
-        public Teacher(string firstName, string lastName, Subject subject)
+        public Teacher(string firstName, string lastName, Subject subject) : base(firstName, lastName)
         {
-            this.FirstName = firstName;
-            this.LastName = lastName;
             this.Subject = subject;
-        }
-        
-        public string FirstName
-        {
-            get
-            {
-                return this.firstName;
-            }
-
-            set
-            {
-                this.ValidateString(value, MinStringLength, MaxStringLength, "The teacher's first name is not valid");
-                this.firstName = value;
-            }
-        }
-
-        public string LastName
-        {
-            get
-            {
-                return this.lastName;
-            }
-
-            set
-            {
-                this.ValidateString(value, MinStringLength, MaxStringLength, "The teacher's last name is not valid");
-                this.lastName = value;
-            }
         }
 
         public Subject Subject
@@ -64,19 +30,6 @@ namespace SchoolManagementSystem
             }
 
             studentToReceiveMark.Marks.Add(mark);
-        }
-
-        private void ValidateString(string textToValidate, int minLength, int maxLength, string errorMessage)
-        {
-            var textToVallidateLength = textToValidate.Length;
-
-            var isInvalidLength = textToVallidateLength < minLength || textToVallidateLength > maxLength;
-            var hasNonLatinChars = !Regex.IsMatch(textToValidate, @"^[a-zA-Z]+$");
-
-            if (isInvalidLength || hasNonLatinChars)
-            {
-                throw new ArgumentException(errorMessage);
-            }
         }
     }
 }

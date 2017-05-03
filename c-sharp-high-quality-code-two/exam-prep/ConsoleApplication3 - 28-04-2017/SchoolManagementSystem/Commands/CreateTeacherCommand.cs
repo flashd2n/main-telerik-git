@@ -4,7 +4,7 @@ namespace SchoolManagementSystem.Commands
 {
     internal class CreateTeacherCommand : ICommand
     {
-        private int id = 0;
+        private static int id = 0;
 
         public string Execute(IList<string> commandParameters)
         {
@@ -12,11 +12,11 @@ namespace SchoolManagementSystem.Commands
             var lastName = commandParameters[1];
             var subject = (Subject)int.Parse(commandParameters[2]);
 
-            Engine.Teachers.Add(this.id, new Teacher(firstName, lastName, subject));
+            Engine.Teachers.Add(id, new Teacher(firstName, lastName, subject));
             
             var successMessage = $"A new teacher with name {firstName} {lastName}, subject {subject} and ID {id} was created.";
 
-            this.id++;
+            id++;
 
             return successMessage;
         }
