@@ -1,64 +1,36 @@
-﻿using ConsoleApplication3;
-using System.Reflection;
-using System.Threading;
-using ConsoleApplication3;
-using System;
-
-using ConsoleApplication3;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Reflection;using System.Threading;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace ConsoleApplication3
+namespace SchoolManagementSystem
 {
-
-
-    // I am not responsible of this code.
-    // They made me write it, against my will.
-    // - Steven, October 2016, Telerik Academy
-    
-    using System.Linq;
-    using ConsoleApplication3;
-    using System.Collections.Generic;
-    using System.Linq;
-    class Startup
+    public class Engine
     {
-        static void Main()
-        {
-            // TODO: abstract at leest 2 mor provider like thiso ne
-            var padhana = new ConsoleReaderProvider();
+        internal static Dictionary<int, Teachers> teachers { get; set; } = new Dictionary<int, Teachers>();
+        internal static Dictionary<int, Student> students { get; set; } = new Dictionary<int, Student>();
 
-            var service = new BusinessLogicService();
-            service.Execute(padhana);
-        }
-    }
-    class ConsoleReaderProvider
-    {
-        // TODO: make ConsoleReaderProvider implement IReader
-        public string PadhanaLine()
-        {
-            return Console.ReadLine();
-        }
-    }
-    class Engine
-    {
         // TODO: change param to IReader instead ConsoleReaderProvider
-        // mujhe tum par vishvaas hai
         public Engine(ConsoleReaderProvider readed)
         {
             read = readed;
         }
+
         public void BrumBrum()
         {
             while (true)
             {
                 try
                 {
-                    var cmd = System.Console.ReadLine();
+                    var cmd = Console.ReadLine();
                     if (cmd == "End")
                     {
                         break;
                     }
+
                     var aadeshName = cmd.Split(' ')[0];
 
                     // When I wrote this, only God and I understood what it was doing
@@ -104,7 +76,5 @@ namespace ConsoleApplication3
             Console.Write("\n");
             Thread.Sleep(350);
         }
-        internal static Dictionary<int, Teachers> teachers { get; set; } = new Dictionary<int, Teachers>();
-        internal static Dictionary<int, Student> students { get; set; } = new Dictionary<int, Student>();
     }
 }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticClassDependencyInvers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertPlay", "AssertPlay\AssertPlay.csproj", "{71E7E754-3419-4766-BAA4-D64ADA48145C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LatinStuff", "LatinStuff\LatinStuff.csproj", "{01C0BB67-1D44-40D5-BD24-EF3DB5CF582E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{71E7E754-3419-4766-BAA4-D64ADA48145C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71E7E754-3419-4766-BAA4-D64ADA48145C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71E7E754-3419-4766-BAA4-D64ADA48145C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01C0BB67-1D44-40D5-BD24-EF3DB5CF582E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01C0BB67-1D44-40D5-BD24-EF3DB5CF582E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01C0BB67-1D44-40D5-BD24-EF3DB5CF582E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01C0BB67-1D44-40D5-BD24-EF3DB5CF582E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

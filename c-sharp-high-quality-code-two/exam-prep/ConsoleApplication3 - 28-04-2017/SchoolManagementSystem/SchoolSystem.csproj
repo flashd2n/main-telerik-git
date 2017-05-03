@@ -7,8 +7,8 @@
     <ProjectGuid>{03FEAB64-C7D3-4E0D-A5A3-1A26B51C5EEB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleApplication3</RootNamespace>
-    <AssemblyName>ConsoleApplication3</AssemblyName>
+    <RootNamespace>SchoolManagementSystem</RootNamespace>
+    <AssemblyName>SchoolManagementSystem</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -49,8 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CreateStudentCommand.cs" />
+    <Compile Include="Commands\CreateTeacherCommand.cs" />
+    <Compile Include="Commands\RemoveStudentCommand.cs" />
+    <Compile Include="Commands\StudentListMarksCommand.cs" />
+    <Compile Include="Commands\TeacherAddMarkCommand.cs" />
+    <Compile Include="ConsoleReaderProvider.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="ICommand.cs" />
-    <Compile Include="CreateStudentCommand.cs" />
+    <Compile Include="Interfaces\IMark.cs" />
+    <Compile Include="Interfaces\IValidator.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Grade.cs" />
     <Compile Include="Subject.cs" />
@@ -59,6 +67,7 @@
     <Compile Include="Teachers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BusinessLogicService.cs" />
+    <Compile Include="Validation\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
