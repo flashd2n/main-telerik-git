@@ -1,0 +1,11 @@
+﻿Bugs:
+
+#1 Fileologger not loggin error, because the code in error method was commented
+#2 Startup could not create engine, because the logger was passed as a string
+#3 Cannot create user, because not createuser option in commands factory
+#4 Modelsfactory create use method couldn't create a user, because the username and email parameters were swapped
+#5 Task didn't display the owner of the task
+
+Bottleneck:
+
+#1 Buildcommand in CommandsFactory has an unneccesary while loop and the for loop was also totally unneccessary
