@@ -1,0 +1,18 @@
+{
+    "name": "bansheeProject",
+    "version": "1.0.0",
+    "description": "##  App description",
+    "main": "index.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "author": "Kalin Kostov (k.kostov.eu@gmail.com)",
+    "license": "MIT",
+    "dependencies": {
+        "handlebars": "^4.0.8",
+        "jquery": "^3.2.1",
+        "systemjs": "^0.20.12",
+        "systemjs-plugin-babel": "0.0.21",
+        "toastr": "^2.1.2"
+    }
+}

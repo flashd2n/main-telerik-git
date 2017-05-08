@@ -1,0 +1,63 @@
+---- CommonJS (Node.js) -----
+
+--> export module
+
+let calc = {
+    sum(...numbers) {
+        return numbers.reduce((sum, number) => sum + number, 0);
+    },
+    multiply(...numbers) {
+        return numbers.reduce((product, number) => product * number, 1);
+    }
+};
+
+module.exports = {
+    calc
+};
+
+---> require module
+
+let calc = require('./calc.js').calc;
+
+
+let result = calc.sum(1, 2, 3, 4);
+
+console.log(result);
+
+
+---- SystemJS ----
+
+-> install
+	-> npm install systemjs systemjs-plugin-babel
+	-> create system.config.js in project root
+	-> head require system.js in index.html
+	-> head require system.config.js in index.html
+	-> body script -> System.import("main"); ---> inits the starting point of the app
+
+Generic use -> this can be used to export a whole class and I have to make an instance when import
+
+-> export ->
+	export { objectName };
+
+-> import ->
+	import { objectName } from 'path-to-file';
+
+
+For Classes -> this returns directly a new instance of the class !!! CAN ONLY BE ONE !!!
+
+-> export
+	-> export default new MyClass();
+-> import
+	-> import myAwesomeClassInstanceName from 'path-to-file';
+
+
+---- SystemJs Configs ----
+
+transpiler: 'plugin-babel' -> which transpiler to use
+
+map: { ----> tells systemJS where to look for dependencies
+	'plugin-babel': 'path to babel'
+	'systemjs-babel-build': 'path to babel build'
+	'main' : './main.js' ----> sets the starting point of the app
+}
+

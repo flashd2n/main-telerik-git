@@ -1,0 +1,27 @@
+--- get cookies ---
+
+document.cookie ---> returns a string with format: 'cookieName=cookieValue; cookieNameTwo=cookieValueTwo'
+
+--- set/edit cookie ---
+
+document.cookie = 'cookieName=cookieValue; expires=expireDate, path=/'
+
+
+--- get local storage ----
+
+window.localStorage -> returns an object with key-value pairs AND has length
+
+--- set/edit local storage ----
+
+window.localStorage.setItem('key', 'value') ---> sets the specified key-value pair in the local storage
+
+--- get local storage item ---
+
+window.localStorage.getItem('key') -> returns the value of the key as a string
+				   -> returns null of there is no such key
+
+--- delete local storage item ---
+
+window.localStorage.removeItem('key') -> deletes the item
+
+---> sessionStorage works and acts the same as localStorage, but expires when window is closed -> useful for temp info

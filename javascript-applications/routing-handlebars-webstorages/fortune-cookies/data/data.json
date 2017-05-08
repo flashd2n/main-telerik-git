@@ -1,0 +1,195 @@
+{
+  "users": [
+    {
+      "username": "Minkov",
+      "passHash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "usernameToLower": "minkov",
+      "id": "16655985-e510-43d4-ad1c-2388c76d1ef6",
+      "authKey": "16655985-e510-43d4-ad1c-2388c76d1ef6FwHCPd*bP:.;Fu&:evl)RPGg"
+    },
+    {
+      "username": "Minkov3",
+      "passHash": "1234567890123456789012345678901234567890",
+      "usernameToLower": "minkov3",
+      "id": "bd04b3b8-5586-47ad-bf8f-db6c531dbb73",
+      "authKey": "bd04b3b8-5586-47ad-bf8f-db6c531dbb73erxSIAJyVOzIEIrpMFbanscO"
+    },
+    {
+      "username": "mee",
+      "passHash": "123",
+      "usernameToLower": "mee",
+      "id": "b493a681-a20b-404b-9242-a5302ed7f707",
+      "authKey": "b493a681-a20b-404b-9242-a5302ed7f707mIbndHFvDzPrOHnZbwOlHzIE"
+    },
+    {
+      "username": "kalin",
+      "passHash": "1234",
+      "usernameToLower": "kalin",
+      "id": "a46f8637-c866-4e69-b448-af3dc347e951",
+      "authKey": "a46f8637-c866-4e69-b448-af3dc347e951RDniyuFNRVZLYKzzjUgEkdWv"
+    },
+    {
+      "username": "walis",
+      "passHash": "1234",
+      "usernameToLower": "walis",
+      "id": "f425ff7b-807b-412e-a03a-dc37468b9383",
+      "authKey": "f425ff7b-807b-412e-a03a-dc37468b9383tGKoWJVckJLwbRrXOnmpMnAo"
+    },
+    {
+      "username": "walisnew",
+      "passHash": "1234",
+      "usernameToLower": "walisnew",
+      "id": "cc75e9a7-57e7-4647-9b1b-11d901be2088",
+      "authKey": "cc75e9a7-57e7-4647-9b1b-11d901be2088TNBSEoBpWUfqhVMAEDSiHUnA"
+    },
+    {
+      "username": "kalin1",
+      "passHash": "123",
+      "usernameToLower": "kalin1",
+      "id": "f327e431-6703-4f16-b75f-789e2e3f34e3"
+    },
+    {
+      "username": "kalin2",
+      "passHash": "123",
+      "usernameToLower": "kalin2",
+      "id": "d94a94f4-897f-4bd9-99d7-53b47b24ae00"
+    },
+    {
+      "username": "kalin4",
+      "passHash": "123",
+      "usernameToLower": "kalin4",
+      "id": "4285d210-9f54-4447-a067-8be6fc945ac0",
+      "authKey": "4285d210-9f54-4447-a067-8be6fc945ac0xLxmVXqFodsMhTXgfwvHxiFI"
+    },
+    {
+      "username": "kalin9",
+      "passHash": "123",
+      "usernameToLower": "kalin9",
+      "id": "b26dbfcd-df72-47b9-91e0-f6798079a538",
+      "authKey": "b26dbfcd-df72-47b9-91e0-f6798079a538ZRToTDNdrmcTVaWzwIFXsAhu"
+    },
+    {
+      "username": "kalin10",
+      "passHash": "123",
+      "usernameToLower": "kalin10",
+      "id": "b3a66503-8671-4c54-bcae-2b9824c74c30",
+      "authKey": "b3a66503-8671-4c54-bcae-2b9824c74c30yYAmpubDbLdqbRHqXyXReELB"
+    },
+    {
+      "username": "kalin11",
+      "passHash": "123",
+      "usernameToLower": "kalin11",
+      "id": "232893c9-00d0-499d-8d5c-d2258b6f63c2",
+      "authKey": "232893c9-00d0-499d-8d5c-d2258b6f63c2RbeLbtqdIdYzPcUUrYLbpmdY"
+    },
+    {
+      "username": "kalin13",
+      "passHash": "123",
+      "usernameToLower": "kalin13",
+      "id": "ec9d6c85-278f-4c93-8539-4b966526f474"
+    },
+    {
+      "username": "kalin15",
+      "passHash": "123",
+      "usernameToLower": "kalin15",
+      "id": "6ffb1f63-e325-4f79-932a-dcd27a62a087"
+    },
+    {
+      "username": "kalin20",
+      "passHash": "123",
+      "usernameToLower": "kalin20",
+      "id": "f7deb64c-5261-4679-9ffb-bf38f9cc9f5c"
+    },
+    {
+      "username": "kalin42",
+      "passHash": "123",
+      "usernameToLower": "kalin42",
+      "id": "becf7666-5e9e-4780-a45a-f10f3da3008d"
+    },
+    {
+      "username": "kalin99",
+      "passHash": "123",
+      "usernameToLower": "kalin99",
+      "id": "1be9c0f2-f90b-4c22-89eb-e09e73059254"
+    },
+    {
+      "username": "kalin100",
+      "passHash": "123",
+      "usernameToLower": "kalin100",
+      "id": "fa1a04ab-6eef-4664-8d32-e561232a9cd2"
+    },
+    {
+      "username": "",
+      "passHash": "",
+      "usernameToLower": "",
+      "id": "43d70baf-3e9c-4d1c-a3e2-f3333aa290e4"
+    },
+    {
+      "username": "kalin101",
+      "passHash": "123",
+      "usernameToLower": "kalin101",
+      "id": "72ed08c1-b231-4e0b-8b04-1e2e740cbbf8"
+    },
+    {
+      "username": "kalin103",
+      "passHash": "123",
+      "usernameToLower": "kalin103",
+      "id": "bfe94a63-9e91-4836-9434-759409258c06",
+      "authKey": "bfe94a63-9e91-4836-9434-759409258c06AMZKdOjLNXjBtLurwcEivIHo"
+    },
+    {
+      "username": "kalin666",
+      "passHash": "123",
+      "usernameToLower": "kalin666",
+      "id": "439a367c-8e12-4d98-a885-1dca097566f5",
+      "authKey": "439a367c-8e12-4d98-a885-1dca097566f5cMHIPzWSvvRncvqFigalEWca"
+    },
+    {
+      "username": "theForce",
+      "passHash": "123",
+      "usernameToLower": "theforce",
+      "id": "76e5646b-d70e-4785-98aa-a51b2879563b",
+      "authKey": "76e5646b-d70e-4785-98aa-a51b2879563bPfxIMqTBbRBzNbDroSPNpjDV"
+    },
+    {
+      "username": "flash",
+      "passHash": "123",
+      "usernameToLower": "flash",
+      "id": "236dee89-3f15-4cab-b04f-e10c4bb71291",
+      "authKey": "236dee89-3f15-4cab-b04f-e10c4bb71291HRjpSWXsinPykfXpJIrrnVzW"
+    }
+  ],
+  "cookies": [
+    {
+      "text": "Test",
+      "category": "Home",
+      "userId": "16655985-e510-43d4-ad1c-2388c76d1ef6",
+      "likes": 10,
+      "dislikes": 15,
+      "img": "https://dayinthelifeofapurpleminion.files.wordpress.com/2014/12/batman-exam.jpg",
+      "shareDate": "2015-09-09T14:53:30.290Z",
+      "id": "2dae28aa-ee64-4bc1-8591-29284d88c9e9"
+    },
+    {
+      "text": "May the Force with you",
+      "category": "WOrk",
+      "userId": "16655985-e510-43d4-ad1c-2388c76d1ef6",
+      "likes": 16,
+      "dislikes": 0,
+      "img": "https://dayinthelifeofapurpleminion.files.wordpress.com/2014/12/batman-exam.jpg",
+      "shareDate": "2015-09-09T14:53:56.482Z",
+      "id": "e2fdbf82-54c3-488f-add4-9af3262c2572",
+      "hours": 9
+    },
+    {
+      "text": "Hello!",
+      "category": "Home",
+      "userId": "bd04b3b8-5586-47ad-bf8f-db6c531dbb73",
+      "likes": 11,
+      "dislikes": 9,
+      "img": "https://dayinthelifeofapurpleminion.files.wordpress.com/2014/12/batman-exam.jpg",
+      "shareDate": "2015-09-10T06:24:18.743Z",
+      "id": "ea91a233-bcf3-48b6-933f-05857f4aea87"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Firebase</title>
+    <script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <h1>WELCOME TO FIREBASE TUTORIALS APP</h1>
+    <h2>I have made a change!</h2>
+    <h3 id="testJ"></h3>
+
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <!--
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js"></script>
+-->
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyClnsYdwd36zV57MCXMrOnk20CBzZchh8U",
+            authDomain: "demoapp-b19a4.firebaseapp.com",
+            databaseURL: "https://demoapp-b19a4.firebaseio.com",
+            projectId: "demoapp-b19a4",
+            storageBucket: "demoapp-b19a4.appspot.com",
+            messagingSenderId: "818385774613"
+        };
+        firebase.initializeApp(config);
+
+    </script>
+    <script src="index.js" type="text/javascript"></script>
+</body>
+
+</html>
