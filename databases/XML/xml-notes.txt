@@ -1,0 +1,132 @@
+--- XML HEADER
+
+<?xml
+	version="1.0" -> mandatory
+	encoding="UTF-8" -> optional
+	standalone="yes/no" -> optional -> use "yes" if internal DTD, if external DTD use "no"
+?>
+
+
+-> can have only one ROOT!!!
+
+-> elements and attributes
+
+-> can have self-closing elements
+
+
+--- XML schemas
+
+-> loat schemas by namespases -> xmlns="pathtoschema" <- this is an attribute within an element
+
+-> basically a XML which provides validation and structure for our XML so that it follows
+   the same layout, which makes it parseable
+
+-> a schema describes:
+	-> the xml elements we want to use
+	-> the attributes of the xml elements
+	-> a structure of xml elements that we must follow
+
+--- XML parsing methods
+
+-> DOM
+	-> load the entire xml tree in the RAM
+	-> not recommended, because uses a lot of RAM and it is slower
+
+-> SAX / StAX
+	-> linear parsing
+	-> parsing data on demand -> element by element
+
+-> XDocument -> LINQ-to-XML
+	-> slow but easy
+
+
+--- XPath
+
+-> language used for accessing parts of XML
+-> elements:
+	-> / -> root
+	-> /someNode -> gets all someNode-s
+	-> /books/book -> gets all nodes "book" within books
+	-> /books/book[@price<10]/author -> gets all authors within nodes "book" which have price less than 10
+	-> /items/item[@type="food"] -> gets all nodes "item" that have an attribute "type"  with value "food"
+
+
+--- XSL
+
+
+-> dead
+
+
+--- PARSING
+
+
+---> DOM parsing
+
+	1. var doc = new XmlDocument();
+	2. doc.Load() -> accepts string URL or other <- returns XmlElement
+	2. doc.LoadXml(xml) -> accepts a string which is the xml itself <- returns XmlElement
+	3. handle the XmlElement
+
+-> almost like the DOM api in js
+
+-> XmlNode -> abstract base class for all 
+-> XmlAttribute -> name-value
+-> XmlAttributeCollection -> list of Xml Attributes attacked to an element
+-> XmlNodeList -> list of Xml dom nodes
+
+
+---> StAX / SAX
+
+-> XmlReader / XmlWriter
+
+-> opens a stream of data reading or writing of the xml
+
+
+-> usage reading:
+	1. using(var node = XmlReader.Create()) ---> accepts string URL or StreamReader
+	2. while (node.read()) ---> returns fals, where no more nodes to read
+	3. handle data
+
+-> usage writing:
+	1. using(var writer = XmlWriter.Create()) ---> accepts string URL or SteamWriter
+	2. writer.WriteStartDocument(); -> puts the xml open tag with version
+	3. writer.WriteEndDocument(); -> place at the end of the using
+	4. writer.WriteStartElement("book");  --> opens a book tag
+
+           writer.WriteAttributeString("id", book.Id.ToString()); ---> places attribute id="1" in book tag
+
+           writer.WriteElementString("title", book.Title); -> create a title tag with value inside book
+
+           writer.WriteEndElement(); -> closes book
+
+
+---> LINQ-TO-XML
+-->reading
+
+ 	1. var doc = XDocuemnt.Load("path");
+	2. doc.Root
+	      .Elements("book") ---> gets all elements "book" under root
+	      .Select(
+		node.Attribute("value") -> returns XAttribute with key "value" of the current element
+		node.Element("name") -> returns XElement with tag "name" that is child of book
+
+--> writing
+	1. var doc = new XDocument()
+	2. var root = new XElement("books",    ---> creates xelement books with the following content
+                myBooks.Select(book => new XElement("book",  -->
+                    new XAttribute("id", book.Id),
+                    new XElement("title", book.Title)
+                )));
+	3. doc.Add(root);
+	4. doc.Save("destination")
+
+
+
+---> editing
+
+	1. load xml with var doc = XDocuemnt.Load("path");
+	2. make changes with doc.Root.Add or some other linq method
+	3. doc.save("sameDestination") or new destination
+
+
+

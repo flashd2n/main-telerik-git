@@ -1,0 +1,87 @@
+--> if local ->node_modules/mocha/bin/mocha
+--> if global -> just mocha
+
+--> npm install chai -> local
+--> require chai in tests file
+
+----
+
+->chai.assert(true/false, 'error message');
+
+----
+
+->const expected = 4;
+  const actual = 4;
+
+  chai.expect(actual).to.equal(expected);  /////checks values and types and REFERENCES
+
+----
+
+-> chai.expect(() => throwFunction).to.throw(Error, 'error message');
+
+----
+
+-> chai.expect(actual).to.eql(expected);  /////deep equal check for reference types
+-> chai.expect(actual).to.deep.equal(expected); //// same as above
+
+-> chai.expect(NaN).to.be.NaN
+			 .null
+			 .underfined
+
+   .exist
+   .not.exist
+   .to.be.a('function')
+   .to.have.property('name')
+
+
+---- mocha + chai browser setup
+
+1. npm install mocha + chai
+2. <link rel="stylesheet" href="node_modules/mocha/mocha.css" type="text/css" />
+3. <div id="mocha"></div>
+4. <script src="node_modules/mocha/mocha.js"></script>
+5. <script src="node_modules/chai/chai.js"></script>
+6. <script src="tests.js"></script>
+7. tests.js //// 
+8. mocha.setup('bdd');
+9. const expect = chai.expect;
+10. write tests
+11. mocha.run();
+
+**install sinon and sinon-chai
+**chai.use(sinonChai);
+
+
+-> describe -> beforeEach(() => {}); -> runs before each it in this describe
+
+
+--- mocha async tests
+
+-> it('name', function(done){
+	// code
+	done(); -> marks end of test
+
+})
+
+
+-> it('name', function(done){
+	let promise = new Promise((resolve, reject) => {// code; resolve});
+
+	promise.then(done); -> resolves promise and ends test
+
+})
+
+
+---- SINON
+
+
+
+
+
+
+
+
+
+
+
+
