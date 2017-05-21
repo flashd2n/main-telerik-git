@@ -1,1 +1,75 @@
-.
+---- PARSING ----
+
+---> Build-in JSON serializer
+
+-> serializing (object to json)
+
+	1. Add reference -> System.Web.Extensions
+	2. create serializer instance -> var serializer = new JavaScriptSerializer();
+	3. serialize an object -> var json = serializer.Serialize(myBook);
+
+-> serializer cannot access private members
+-> serializer can serialize dictionary
+	-> keys must be string or object (DOES NOT WORK WITH INT)
+	-> values can be anything
+
+
+-> deserializing (json to object)
+
+	1. Add reference -> System.Web.Extensions
+	2. create serializer instance -> var serializer = new JavaScriptSerializer();
+	3. deserialize json -> var myBook = serializer.Deserialize<Book>(json);
+
+-> ! the target object must have a parameterless constructor !
+-> if the object has a private set -> the property is default
+-> if the json contains a proeperty which is not present in the class -> it is ignored
+-> if the json does not provide value for a property defined in the class -> the property is default
+-> generally speaking casing is ignored, but it is not recommended
+
+
+---> JSON.NET
+
+-> faster and better than build-in JSON
+
+-> deserialize
+	1. include json.net nugget (Newtonsoft)
+	2. var myBook = JsonConvert.DeserializeObject<Book>(json);
+
+-> serialize
+	1. include json.net nugget (Newtonsoft)
+	2. var newJson = JsonConvert.SerializeObject(myBook); -> can use formating.indented to prettify while developing
+
+-> working with anon objects
+
+- serializing is the same
+
+- deserializing:
+	    1. var tempate = new { Name = "", Age = 0 }; -> build a template which has all the properties
+
+            2. var personTwo = JsonConvert.DeserializeAnonymousType(personJson, tempate);
+
+-> attributes
+
+- [JsonPRoperty("nameee")] -> can be placed above a class property (for example "Name")
+	-> tells the compiler that "nameee" in json should be put into "Name" of the new object
+	-> tells the compiler that "Name" of the object should be parsed as "nameee" in output json
+
+- [JsonIgnore] -> can be placed above a class property (for example "Name")
+	-> tells the compiler that "Name" from json must be ignored and the new object will have a default value
+	-> tells the compiler not to parse "Name" and the output json will not have "Name" property
+
+-> LINQ to JSON
+
+- need to check if top level is OBJ or ARR ---> best to always work with OBJ
+
+	(JObject)JArray.Parse(json) ---> fires up
+                .Where(jObj => jObj["Title"].Value<string>().Contains("1")) ---> gets all obj whos title contains "1"
+                .Select(jObj => jObj["Title"].ToString()) ----> gets only the titles
+                .ToList()
+                .ForEach(Console.WriteLine);
+
+- !!! use this like associative array from js !!!
+
+-> JSON to XML and XML to JSON
+
+- use serialize with Xnode (linq-to-xml) or XmlNode (DOM)
