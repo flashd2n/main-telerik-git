@@ -13,7 +13,7 @@ namespace CarsTask.Models
             ++id;
             this.Year = year;
             this.TransmissionType = transmissionType;
-            this.ManufacturerName = manufacturerName;
+            this.Manufacturer = manufacturerName;
             this.Model = model;
             this.Price = price;
             this.Dealer = dealer;
@@ -22,7 +22,7 @@ namespace CarsTask.Models
         public int Id { get; private set; }
         public int Year { get; set; }
         public Transmission TransmissionType { get; set; }
-        public string ManufacturerName { get; set; }
+        public string Manufacturer { get; set; }
         public string Model { get; set; }
         public decimal Price { get; set; }
         public IDealer Dealer { get; set; }

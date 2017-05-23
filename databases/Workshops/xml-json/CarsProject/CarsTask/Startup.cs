@@ -43,14 +43,46 @@ namespace CarsTask
 
         private static void ExportXmlResult(List<ICar> resultFromQuery, string outputName)
         {
-            using (var writer = XmlWriter.Create($"../../data/{outputName}"))
+            using (var writer = XmlWriter.Create($"../../Output/{outputName}"))
             {
                 writer.WriteStartDocument();
 
+                writer.WriteStartElement("Cars");
 
+                writer.WriteAttributeString("xmlns", "xsi", null, @"http://www.w3.org/2001/XMLSchema-instance");
+                writer.WriteAttributeString("xmlns", "xsd", null, @"http://www.w3.org/2001/XMLSchema");
+
+                foreach (var car in resultFromQuery)
+                {
+                    WriteCar(writer, car);
+                }
+
+                writer.WriteEndElement();
 
                 writer.WriteEndDocument();
             }
+        }
+
+        private static void WriteCar(XmlWriter writer, ICar car)
+        {
+            writer.WriteStartElement("Car");
+            writer.WriteAttributeString("Manufacturer", car.Manufacturer);
+            writer.WriteAttributeString("Model", car.Model);
+            writer.WriteAttributeString("Year", car.Year.ToString());
+            writer.WriteAttributeString("Price", car.Price.ToString());
+
+            writer.WriteElementString("TransmissionType", car.TransmissionType.ToString());
+
+            writer.WriteStartElement("Dealer");
+            writer.WriteAttributeString("Name", car.Dealer.Name);
+
+            writer.WriteStartElement("Cities");
+
+            writer.WriteElementString("City", car.Dealer.City);
+
+            writer.WriteEndElement();
+            writer.WriteEndElement();
+            writer.WriteEndElement();
         }
 
         private static Query ParseQuery(string pathToFile)
