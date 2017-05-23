@@ -26,8 +26,5 @@ namespace CarsTask.Models
         public string Model { get; set; }
         public decimal Price { get; set; }
         public IDealer Dealer { get; set; }
-
-
-
     }
 }
