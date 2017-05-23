@@ -14,21 +14,17 @@ namespace CarsTask
 
         static void Main()
         {
-            var jsonPath = pathToJson;
-
             var allCars = new List<Car>();
 
             var jsonService = new JsonService();
 
-            var myCars = jsonService.BuildCars(jsonPath, allCars);
-
-            var queryPath = pathToQuery;
+            var myCars = jsonService.BuildCars(pathToJson, allCars);
 
             var whereClauses = new List<IWhereClause>();
 
             var xmlService = new XmlService();
 
-            var query = xmlService.ParseQuery(queryPath, whereClauses);
+            var query = xmlService.ParseQuery(pathToQuery, whereClauses);
 
             var expressionBuilder = new ExpressionBuilder();
 
