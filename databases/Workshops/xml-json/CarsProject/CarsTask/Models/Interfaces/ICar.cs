@@ -4,6 +4,7 @@ namespace CarsTask.Models.Interfaces
 {
     public interface ICar
     {
+        int Id { get; }
         int Year { get; set; }
         Transmission TransmissionType { get; set; }
         string ManufacturerName { get; set; }

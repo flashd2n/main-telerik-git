@@ -28,15 +28,29 @@ namespace CarsTask
 
             var query = ParseQuery(queryPath);
 
-            var expression = ExpressionBuilder.GetExpression<Car>(query.WhereClauses).Compile();
+            var expression = ExpressionBuilder.GetExpression<ICar>(query.WhereClauses).Compile();
 
-            var result = myCars
+            var resultFromQuery = myCars
                 .Where(expression)
+                .OrderBy(query.OrderParameter)
                 .ToList();
 
             // parse output
-            
 
+            ExportXmlResult(resultFromQuery, query.OutputName);
+
+        }
+
+        private static void ExportXmlResult(List<ICar> resultFromQuery, string outputName)
+        {
+            using (var writer = XmlWriter.Create($"../../data/{outputName}"))
+            {
+                writer.WriteStartDocument();
+
+
+
+                writer.WriteEndDocument();
+            }
         }
 
         private static Query ParseQuery(string pathToFile)
