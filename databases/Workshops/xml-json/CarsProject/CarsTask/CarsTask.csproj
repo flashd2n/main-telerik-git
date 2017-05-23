@@ -58,7 +58,7 @@
     <Compile Include="Models\Interfaces\ICar.cs" />
     <Compile Include="Models\Interfaces\IDealer.cs" />
     <Compile Include="Models\Interfaces\IWhereClause.cs" />
-    <Compile Include="Models\Operation.cs" />
+    <Compile Include="Enums\Operation.cs" />
     <Compile Include="Models\Query.cs" />
     <Compile Include="Models\WhereClause.cs" />
     <Compile Include="Startup.cs" />

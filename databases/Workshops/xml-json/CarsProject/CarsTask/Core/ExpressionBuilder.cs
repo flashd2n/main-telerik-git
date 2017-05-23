@@ -51,30 +51,60 @@ namespace CarsTask.Core
 
         private static Expression GetExpression<T>(ParameterExpression param, IWhereClause filter)
         {
-            MemberExpression member = Expression.Property(param, filter.Property);
-            ConstantExpression constant = Expression.Constant(filter.Value);
+            Expression body = param;
 
+            if (filter.Property == "City" || filter.Property == "Name")
+            {
+                body = Expression.PropertyOrField(body, "Dealer");
+                body = Expression.PropertyOrField(body, filter.Property);
+            }
+            else
+            {
+                body = Expression.Property(param, filter.Property);
+            }
+            
+            ConstantExpression constant = GetExpressionConstant(filter.Property, filter.Value);
+            
             switch (filter.Type)
             {
                 case Operation.Equals:
-                    return Expression.Equal(member, constant);
+                    return Expression.Equal(body, constant);
 
                 case Operation.GreaterThan:
-                    return Expression.GreaterThan(member, constant);
+                    return Expression.GreaterThan(body, constant);
 
                 case Operation.LessThan:
-                    return Expression.LessThan(member, constant);
+                    return Expression.LessThan(body, constant);
 
                 case Operation.Contains:
-                    return Expression.Call(member, containsMethod, constant);
-                    
+                    return Expression.Call(body, containsMethod, constant);
+
             }
 
             return null;
         }
 
-        private static BinaryExpression GetExpression<T>
-        (ParameterExpression param, IWhereClause filter1, IWhereClause filter2)
+        private static ConstantExpression GetExpressionConstant(string property, string value)
+        {
+            if (property == "Id" || property == "Year")
+            {
+                var result = 0;
+                int.TryParse(value, out result);
+                return Expression.Constant(result);
+            }
+            else if (property == "Price")
+            {
+                decimal result = 0;
+                decimal.TryParse(value, out result);
+                return Expression.Constant(result);
+            }
+            else
+            {
+                return Expression.Constant(value);
+            }
+        }
+
+        private static BinaryExpression GetExpression<T>(ParameterExpression param, IWhereClause filter1, IWhereClause filter2)
         {
             Expression bin1 = GetExpression<T>(param, filter1);
             Expression bin2 = GetExpression<T>(param, filter2);

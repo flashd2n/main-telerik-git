@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Linq.Dynamic;
+using CarsTask.Core;
+using System.ComponentModel;
 
 namespace CarsTask
 {
@@ -26,14 +28,14 @@ namespace CarsTask
 
             var query = ParseQuery(queryPath);
 
-            // apply query
-
-            var sofia = "Sofia";
+            var expression = ExpressionBuilder.GetExpression<Car>(query.WhereClauses).Compile();
 
             var result = myCars
-                .Where(car => car.Id == 0);
+                .Where(expression)
+                .ToList();
 
             // parse output
+            
 
         }
 
@@ -65,15 +67,32 @@ namespace CarsTask
                         var key = node.GetAttribute("PropertyName");
                         var type = node.GetAttribute("Type");
 
+                        var operation = GetOperation(type);
+
                         node.Read();
 
                         var value = node.Value;
 
-                        whereClauses.Add(new WhereClause(key, type, value));
+                        whereClauses.Add(new WhereClause(key, operation, value));
                     }
                 }
             }
             return new Query(outputName, orderParameter, whereClauses);
+        }
+
+        private static Operation GetOperation(string type)
+        {
+            switch (type)
+            {
+                case "Equals":
+                    return Operation.Equals;
+                case "GreaterThan":
+                    return Operation.GreaterThan;
+                case "LessThan":
+                    return Operation.LessThan;
+                default:
+                    return Operation.Contains;
+            }
         }
 
         private static List<Car> BuildCars(string pathToFile)
