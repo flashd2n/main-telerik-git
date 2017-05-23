@@ -39,6 +39,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,11 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ExpressionBuilder.cs" />
     <Compile Include="Enums\Transmission.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Dealer.cs" />
     <Compile Include="Models\Interfaces\ICar.cs" />
     <Compile Include="Models\Interfaces\IDealer.cs" />
+    <Compile Include="Models\Interfaces\IWhereClause.cs" />
+    <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\Query.cs" />
+    <Compile Include="Models\WhereClause.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

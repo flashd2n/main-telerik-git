@@ -5,8 +5,12 @@ namespace CarsTask.Models
 {
     public class Car : ICar
     {
+        private static int id = 0;
+
         public Car(int year, Transmission transmissionType, string manufacturerName, string model, decimal price, IDealer dealer)
         {
+            this.Id = id;
+            ++id;
             this.Year = year;
             this.TransmissionType = transmissionType;
             this.ManufacturerName = manufacturerName;
@@ -15,6 +19,7 @@ namespace CarsTask.Models
             this.Dealer = dealer;
         }
 
+        public int Id { get; private set; }
         public int Year { get; set; }
         public Transmission TransmissionType { get; set; }
         public string ManufacturerName { get; set; }
