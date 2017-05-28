@@ -1,0 +1,166 @@
+ctrl + shift + r -> clear cache for intellisense 
+
+-> USE DBNAME ---> specify database for the query
+
+--- SELECT -----
+
+-> SELECT * FROM TABLENAME ---> returns everything from the table
+	  ColumnName, ColumnName2 ---> returns all data from selected columns from the table
+-> SELECT FirstName + ' ' + LastName AS [Full Name] -> returns a single column of concat. names, which will be names Full Name
+
+-> SELECT DISTINCT -> removes duplicates
+
+-> SELECT Column as Col from Table
+   UNION [ALL]				// Combines the values of these columns in a single column (if ALL is NOT present -> eliminates duplicates)
+   SELECT Column2 as Col from Table
+
+-> INTERSECT (values equal in both tables)/ EXCEPT (values differenent in both tables)???
+
+--- WHERE -----
+
+-> WHERE EmployeeID BETWEEN 5 AND 10 != WHERE EmployeeID IN (5, 10)
+
+-> WHERE FirstName LIKE '%or' (% = one of more symbols) != WHERE FirstName LIKE '_or' (_ = only one symbol)
+
+-> WHERE FirstName LIKE '%[0-9a-z]%' -> contains numbers and letters
+
+-> ORDER BY FirstName DESC(ASC)
+
+--- JOINING ----
+
+-> INNER JOIN -> directly concatenates two tables with values that satisfy the condition
+	SELECT [columns to display]
+	FROM PrimaryTable [alias]
+	INNER JOIN SecondaryTable [alias]
+	ON [condition]
+
+
+-> LEFT JOIN -> same as inner, but also shows entries from Primary table that do not have the parameter used in the condition
+-> RIGHT JOIN -> same as inner, but also shows entries from Secondary table that do not have the parameter used in the condition
+-> FULL JOIN -> same as inner, but also shows entries from Primary and Secondary table that do not have the parameter used in the condition
+-> CROSS JOIN (without condition) -> all possible combinations
+-> Multiple joins ->
+	SELECT e.FirstName, e.LastName, a.AddressText, t.Name FROM Employees e
+		INNER JOIN Addresses a
+		ON e.AddressID = a.AddressID
+		INNER JOIN Towns t
+		ON a.TownID = t.TownID
+
+
+-> Self join -> used to for self-relations -> for example map employee to manager
+	SELECT e.FirstName, e.LastName, a.AddressText FROM Employees e
+		INNER JOIN Employees m
+		ON e.ManangerID = m.EmployeeID
+-> can add where after joining to filter the displayed results
+	WHERE t.Name = 'Edmonds'
+-> can order after filtering
+-> can chain ON conditions with AND
+
+---- INSERTING ----
+
+-> INSERT INTO [table] VALUES ('...') -> must provide values for each and every column (except ID)
+-> INSERT INTO [table] (list of columns) VALUES ('...') -> if a column is skipped, it will be NULL, if NULL is allowed, otherwise error
+-> INSERT INTO [table] SELECT [list of columns] FROM [source table] WHERE [condition to pick an entry from source] --> the list of columns must match the receiving number of columns and type
+
+---- UPDATING -----
+
+UPDATE Employees
+	SET JobTitle = 'Senior ' + JobTitle ---> makes the change
+	FROM Employees
+	JOIN Departments
+	ON Employees.DepartmentID = Departments.DepartmentID  ---> joins the tables to gain access to the department name
+	WHERE Departments.Name = 'Sales' ---> the consition for the update !! IMPORTANT !!!
+
+---- DELETING ----
+
+DELETE FROM [table] WHERE [condition] ---> deletes all rows that satisfy the condition
+TRUNCATE TABLE [table] --> deletes all rows 
+
+
+---- NESTED -----
+
+->	WHERE Salary = (SELECT MAX(Salary) FROM  Employees)
+=>	WHERE Salary = (SELECT TOP 1 Salary FROM Employees ORDER BY Salary DESC)
+
+
+->	SELECT FirstName, LastName, DepartmentID FROM Employees
+  	WHERE DepartmentID IN (SELECT DepartmentID FROM Departments WHERE Name = 'Sales') // "=" can be used when we are sure there is only one result of the expression
+
+->	SELECT e.FirstName, e.LastName, e.Salary, e.DepartmentID FROM Employees e
+		WHERE Salary IN (SELECT MAX(Salary) FROM Employees
+				       WHERE e.DepartmentID = DepartmentID)
+		ORDER BY DepartmentID
+
+---- EXIST -----
+
+-> 	SELECT e.FirstName, e.LastName, e.EmployeeID, e.ManagerID FROM Employees e
+	WHERE EXISTS (SELECT EmployeeID
+			FROM Employees m
+			WHERE m.EmployeeID = e.ManagerID
+			AND m.DepartmentID = 1)
+
+->	SELECT e.FirstName, e.LastName, e.EmployeeID, e.ManagerID FROM Employees e
+	INNER JOIN Employees m
+	ON e.ManagerID = m.EmployeeID
+	WHERE m.DepartmentID = 1
+
+---- GROUP FUNCTIONS ----
+
+-> COUNT(*) -> returns the number of rows
+-> COUNT(ManagerID) -> returns the number of rows where managerId is not null
+
+->	SELECT SUM(Salary), DepartmentID FROM Employees // groups by department Id that is greater than 10
+  		GROUP BY DepartmentID
+  		HAVING DepartmentID > 10
+
+---- COALESCE ----
+-> ISNULL(<value>, <default value>) ---> if value is null, uses the provided default value
+-> COALESCE(<value>, <value>, <value>, <value>) ---> returns the first value that is not null
+
+
+---- STRING ----
+-> LOWER, UPPER, SUBSTRING, LEN, LEFT, RIGHT
+
+---- MATH -----
+-> ROUND, FLOOR, CEILING, POWER, ABS, SQRT
+
+---- DATE -----
+-> GETDATE, DATEADD, DAY, MONTH, YEAR
+
+---- CONVERT -----
+-> CONVERT()
+
+
+----- DDL -------
+
+-> CREATE
+
+	CREATE TABLE People(
+		Id int IDENTITY,
+		Name nvarchar(100) NOT NULL,
+		CONSTRAINT PK_People PRIMARY KEY(Id)
+	)
+	GO
+
+-> ALTER
+
+	ALTER TABLE Cities
+		ADD CONSTRAINT FK_Cities_Countries
+		FOREIGN KEY (CountryId)
+		REFERENCES Countries
+		
+		ADD Population int ---> adds new column which can be null
+		DROP COLUMN Population -> deletes the column
+
+-> DROP
+
+DROP TABLE <name>
+DROP TRIGGER <name>
+DROP INDEX <name>
+DROP <object> // DROP CONSTRAINT <name>
+
+---- TRANSACTIONS ----
+
+
+
+
