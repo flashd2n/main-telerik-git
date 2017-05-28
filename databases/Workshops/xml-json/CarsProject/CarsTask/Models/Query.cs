@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CarsTask.Models
 {
-    public class Query
+    public class Query : IQuery
     {
         public Query(string outputName, string orderParameter, IList<IWhereClause> whereClauses)
         {

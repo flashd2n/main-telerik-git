@@ -1,4 +1,5 @@
-﻿using CarsTask.Models;
+﻿using CarsTask.Core.Interfaces;
+using CarsTask.Models;
 using CarsTask.Models.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,49 +8,55 @@ using System.Reflection;
 
 namespace CarsTask.Core
 {
-    public static class ExpressionBuilder
+    public class ExpressionBuilder : IExpressionBuilder
     {
         private static MethodInfo containsMethod = typeof(string).GetMethod("Contains");
 
-        public static Expression<Func<T, bool>> GetExpression<T>(IList<IWhereClause> filters)
+        public Expression<Func<T, bool>> GetExpression<T>(IList<IWhereClause> filters)
         {
             if (filters.Count == 0)
+            {
                 return null;
+            }
 
             ParameterExpression param = Expression.Parameter(typeof(T), "t");
-            Expression exp = null;
+            Expression expression = null;
 
             if (filters.Count == 1)
-                exp = GetExpression<T>(param, filters[0]);
+            {
+                expression = GetExpression<T>(param, filters[0]);
+            }
             else if (filters.Count == 2)
-                exp = GetExpression<T>(param, filters[0], filters[1]);
+            {
+                expression = GetExpression<T>(param, filters[0], filters[1]);
+            }
             else
             {
                 while (filters.Count > 0)
                 {
-                    var f1 = filters[0];
-                    var f2 = filters[1];
+                    var filterOne = filters[0];
+                    var filterTwo = filters[1];
 
-                    if (exp == null)
-                        exp = GetExpression<T>(param, filters[0], filters[1]);
+                    if (expression == null)
+                        expression = GetExpression<T>(param, filters[0], filters[1]);
                     else
-                        exp = Expression.AndAlso(exp, GetExpression<T>(param, filters[0], filters[1]));
+                        expression = Expression.AndAlso(expression, GetExpression<T>(param, filters[0], filters[1]));
 
-                    filters.Remove(f1);
-                    filters.Remove(f2);
+                    filters.Remove(filterOne);
+                    filters.Remove(filterTwo);
 
                     if (filters.Count == 1)
                     {
-                        exp = Expression.AndAlso(exp, GetExpression<T>(param, filters[0]));
+                        expression = Expression.AndAlso(expression, GetExpression<T>(param, filters[0]));
                         filters.RemoveAt(0);
                     }
                 }
             }
 
-            return Expression.Lambda<Func<T, bool>>(exp, param);
+            return Expression.Lambda<Func<T, bool>>(expression, param);
         }
 
-        private static Expression GetExpression<T>(ParameterExpression param, IWhereClause filter)
+        private Expression GetExpression<T>(ParameterExpression param, IWhereClause filter)
         {
             Expression body = param;
 
@@ -84,7 +91,7 @@ namespace CarsTask.Core
             return null;
         }
 
-        private static ConstantExpression GetExpressionConstant(string property, string value)
+        private ConstantExpression GetExpressionConstant(string property, string value)
         {
             if (property == "Id" || property == "Year")
             {
@@ -104,12 +111,12 @@ namespace CarsTask.Core
             }
         }
 
-        private static BinaryExpression GetExpression<T>(ParameterExpression param, IWhereClause filter1, IWhereClause filter2)
+        private BinaryExpression GetExpression<T>(ParameterExpression param, IWhereClause filter1, IWhereClause filter2)
         {
-            Expression bin1 = GetExpression<T>(param, filter1);
-            Expression bin2 = GetExpression<T>(param, filter2);
+            Expression expressionOne = GetExpression<T>(param, filter1);
+            Expression expressionTwo = GetExpression<T>(param, filter2);
 
-            return Expression.AndAlso(bin1, bin2);
+            return Expression.AndAlso(expressionOne, expressionTwo);
         }
     }
 }

@@ -52,11 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ExpressionBuilder.cs" />
+    <Compile Include="Core\Interfaces\IExpressionBuilder.cs" />
+    <Compile Include="Core\Interfaces\IJsonService.cs" />
+    <Compile Include="Core\Interfaces\IXmlService.cs" />
+    <Compile Include="Core\JsonService.cs" />
+    <Compile Include="Core\XmlService.cs" />
     <Compile Include="Enums\Transmission.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Dealer.cs" />
     <Compile Include="Models\Interfaces\ICar.cs" />
     <Compile Include="Models\Interfaces\IDealer.cs" />
+    <Compile Include="Models\Interfaces\IQuery.cs" />
     <Compile Include="Models\Interfaces\IWhereClause.cs" />
     <Compile Include="Enums\Operation.cs" />
     <Compile Include="Models\Query.cs" />

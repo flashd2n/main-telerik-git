@@ -3,6 +3,7 @@
   <Query OutputFileName="Result0.xml">
     <OrderBy>Id</OrderBy>
     <WhereClauses>
+      <WhereClause PropertyName="Manufacturer" Type="Contains">aut</WhereClause>
       <WhereClause PropertyName="City" Type="Equals">Sofia</WhereClause>
       <WhereClause PropertyName="Year" Type="GreaterThan">1999</WhereClause>
     </WhereClauses>
