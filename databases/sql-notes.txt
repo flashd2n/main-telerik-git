@@ -127,6 +127,8 @@ TRUNCATE TABLE [table] --> deletes all rows
 ---- DATE -----
 -> GETDATE, DATEADD, DAY, MONTH, YEAR
 
+-> DATEDIFF(Year, HireDate, GETDATE()) -> returns the difference between hiredate and today in years
+
 ---- CONVERT -----
 -> CONVERT()
 
@@ -149,8 +151,12 @@ TRUNCATE TABLE [table] --> deletes all rows
 		FOREIGN KEY (CountryId)
 		REFERENCES Countries
 		
+		ALTER COLUMN Name nvarchar(100) --> edits a column
 		ADD Population int ---> adds new column which can be null
 		DROP COLUMN Population -> deletes the column
+
+	ALTER TABLE Cities
+		
 
 -> DROP
 
@@ -159,8 +165,19 @@ DROP TRIGGER <name>
 DROP INDEX <name>
 DROP <object> // DROP CONSTRAINT <name>
 
+---- VIEWS ----
+
+-> create:
+	CREATE VIEW V_Name AS
+	SELECT column1, column2.....
+	FROM table_name
+	WHERE [condition];
+-> call
+	SELECT * FROM V_Name
+
 ---- TRANSACTIONS ----
 
-
-
-
+BEGIN TRAN
+// do stuff
+ROLLBACK TRAN / COMMIT TRAN -> can be wrapped in if statement to choose one or the other or use COMMIT to accept changes if everything goes well
+or ROLLBACK to undo changes if everything goes well

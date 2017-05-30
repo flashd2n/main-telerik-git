@@ -1,0 +1,134 @@
+---- VARIABLES ----
+
+-> DECLARE @variableName nvarchar(50) = 'awesome string'
+-> can declare a variable and assign value later
+	DECLARE @myvar nvarchar(10)
+	SET @myvar = 'Gosho'
+-> Useful to build query strings and save them in a varianble
+	-> DECLARE @query nvarchar(100) = 'SELECT * FROM MyAwesomeTable'
+	-> Call the query -> EXEC (@query)
+
+---- Stored Procedures ----
+
+-> can make updates to the tables!!!!
+
+-> 	CREATE PROC usp_SelectAllFromTable @table nvarchar(50)
+  	AS
+  	BEGIN	
+	  	DECLARE @query nvarchar(100) = 'SELECT * FROM ' + @table
+	  	EXEC(@query)
+
+		SET NOCOUNT on -> does not display the affected rows in messages
+		PRINT(@@rowcount) -> the number of rows read -> always present
+  	END
+
+  	EXEC usp_SelectAllFromTable @table = 'Departments'
+
+-> when editing an existing PROC:
+	-> just replace CREATE with ALTER and that is it!
+
+-> INPUT AND OUTPUT PARAMS
+
+CREATE PROC usp_AddNumbers
+	@numberOne int,
+	@numberTwo int,
+	@result int OUTPUT
+AS
+	BEGIN
+		SET @result = @numberOne + @numberTwo
+	END
+GO
+
+DECLARE @answer int
+
+EXEC usp_AddNumbers @numberOne = 5, @numberTwo = 10, @result = @answer OUTPUT
+
+SELECT 'The result is: ',  @answer
+
+
+---- CONTROL OF FLOW -----
+
+IF((SELECT COUNT(*) FROM Employees) > 100)
+	BEGIN
+		// execute code
+	END
+ELSE
+	BEGIN
+		// execute code
+	END
+
+---- WHILE
+DECLARE @n INT = 10
+
+WHILE(@n > 1)
+	BEGIN
+		SET @n = @n - 1
+	END
+
+
+----- SWITCH
+SELECT Salary, [Salary Level] = 
+	CASE
+		WHEN Salary BETWEEN 0 AND 9999 THEN 'Low'
+		WHEN Salary BETWEEN 10000 AND 30000 THEN 'Average'
+		WHEN Salary > 30000 THEN 'High'
+		ELSE 'Unknown'
+	END
+	FROM Employees
+
+
+---- TRIGGERS ------
+
+CREATE (ALTER) TRIGGER utr_PrintDeletedRecord ON <tableName>
+AFTER UPDATE -----> can use INSTEAD OF (prevent default and execute code)
+AS
+	BEGIN
+		SELECT * FROM DELETED -> old value
+		SELECT * FROM INSERTED -> new value
+	END
+
+UPDATE Towns SET Name = 'Pernik' WHERE TownID = 3 -> calls the trigger
+
+---- FUNCTIONS -----
+
+-> SCALAR
+
+	CREATE FUNCTION ufn_FuckThisShit(@param int)
+		RETURNS int
+	AS
+	BEGIN
+		//code
+	END
+
+-> use only by calling the function
+	SELECT Salary, dbo.ufn_CalcBonus(Salary) AS [Fucking Bonus] FROM Employees
+
+
+-> TABLE functions
+
+CREATE FUNCTION ufn_GetPernik()
+	RETURNS TABLE
+	AS
+	RETURN(
+		SELECT * FROM Towns
+		WHERE Name = 'Pernik'
+	)
+GO
+
+SELECT * FROM ufn_GetPernik()
+
+----
+
+CREATE FUNCTION ufn_ListEmployees()
+	RETURNS @tbl_Employees TABLE(
+		EmployeeID int PRIMARY KEY,
+		EmployeeName nvarchar(100) NOT NULL
+	)
+	AS
+	BEGIN
+		INSERT @tbl_Employees SELECT EmployeeID, FirstName + ' ' + LastName FROM Employees
+		RETURN
+	END
+
+SELECT * FROM ufn_ListEmployees()
+
