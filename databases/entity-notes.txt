@@ -1,0 +1,115 @@
+--- EF Exception debugging
+
+0. -> Message "Validation failed for one or more entities. See 'EntityValidationErrors' property for more details."
+1. immediate window -> $exception
+2. $exception.EntityValidationErrors
+	2.5 if not recognized
+		0. wrap the code in try catch and breakpoint in the catch(Exception ex)
+		1. get full name from type ex.GetType().FullName
+		2. (ex as FullName).'EntityValidationErrors' 
+3. search down and cast .ToList() untill the real messageis reveiled
+
+---- Read data ----
+
+1. create instance for the context
+2. access tables from context.tableName 
+3. use linq to get the needed data
+
+--- Write data ----
+
+1. get context
+2. create object with needed properties
+3. context.table.add(object)
+4. context.savechanges
+
+--- Edit data ----
+1. get context
+2. get the object with filtering and first or default
+3. edit the object as needed
+4. context.savechanges
+
+--- DELETE data ----
+
+-> same as write, but use context.table.remove(object)
+-> cannot delete object with foreign keys
+
+---FETHCING big data
+
+-> take what you need in one query from the database
+
+-> use select to create a list of objects that contain the needed data
+	.Select(entry => new {propOne = dataOne, propTwo = dataTwo}).....
+
+
+--- Extending classes
+
+-> use partial functionality
+
+-> to make a partial connection
+	-> create two classes public partial in the same namespace
+	-> className.cs and classNameExtended.cs -> different file names
+	-> public partial class className and public partial class className --> same class names
+
+
+---- Execute native SQL
+
+-> context.Database.SqlQuery("SELECT * FROM EMployees");
+
+---- JOINING
+
+-> can use native linq and let EF figure out the joins
+
+-> use .join extention method
+
+	-> db.Towns   // the main table
+		.Join(
+		  db.Addresses, // the secondary table for join
+		  t => t.TownId, a => TownId, // the keys ON which to join th tables
+		  (t, a) => new {  // what should happen with the data
+			  TownName = t.Name
+			  AddressTexts = a.AddressText
+			}
+		)
+
+---- GROUPING
+
+-> use extention methods
+
+	-> var result = db.Employees.GroupBy(e => e.Department.Name) // the grouping key
+				    .GroupBy(e => new { e.Department.Name, e.HireDate}) // first groups y dept name, then by hiredate, this results in 3 nested collections
+	  	      		    .ToList() // returns a list of lists
+
+-> result is a list of IGrouping collections
+-> each IGrouping has a key => the group kriteria
+-> print out the data with nested loops
+
+---- ATTACHING AND DETACHING ---
+
+-> Three ways to detach an object
+	1. db.Dispose() -> kills the connection to the database
+	2. using(....) {.... return somethingCool} --> now somethingCool is detached and is not longer tracked by the dbcontext
+	3. manual state change
+		1. var myObject = db.getMyObjectQuery //get the object
+		2. var myObjectEntry = db.Entry(myObject) // create an entry for the object
+		3. myObjectEntry.State = EntityState.Detached // manually detaches the object
+		3.5 myObjectEntry.State = EntityState.Unchanged // discard the changes on the object so far, but keep on tracking for new changes
+
+-> Attach an object
+	-> use the same steps as above, but EntityState.Modified
+	-> 1. receive and object from somewhere other than the database var model;
+	   2. db.TableName.Attach(model) // this checks and
+						-> if the object has an id that is present in th database -> attackes the object and updates any changes
+						-> if the objest does NOT have an id -> creates a new object in the database
+
+
+
+
+
+
+
+
+
+
+
+
+
