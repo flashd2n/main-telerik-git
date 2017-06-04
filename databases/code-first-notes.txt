@@ -63,7 +63,7 @@
 
 -> Migrations -> contain information about the code to be executed to apply the changes and the code needed to reverse changes
 	-> in db keeps the information about the models
-	-> strategies:
+	-> strategies for AutomaticMigrationsEnabled = true:
 		-> (default) CreateDatabseIfNotExist -> if no db exists -> create, else do nothing
 		-> DropCreateDatabaseIfModelChanges -> if the models change, delete everything and rebuild db -> not good for production
 		-> DropCreateDatabaseAlways -> always delete and create db -> useful for unit testing
@@ -125,10 +125,26 @@
 -> do not set globally, turn off what is needed where is needed, then turn it back on
 
 
+---------- NEW STUFF FROM DONCHO
 
+1. create models
+2. create dbcontext
+3. create connection string
+4. In Package Console
+	-> Enable-Migrations // creates migrations folder
+	-> Add-Migration // manual migration, whever a change is made
+	-> Update-Database // creates or updates databse and runs seed method even on fresh database
+	-> update-database -TargetMigration "name" -> reverts to that migration
 
+-- Mappings
 
+-> [Column(TypeName = "ntext")] --> above a property -> sets the type of the column data
 
-
-
-
+--> Deploy to appHarbour
+	-> register
+	-> new app
+	-> add on -> sql server free
+	-> install
+	-> copy connection string
+	-> add connection string in app.config
+	-> done

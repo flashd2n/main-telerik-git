@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcoleClient", "ConcoleClient\ConcoleClient.csproj", "{5C587537-17E4-4AE0-B1AA-5761ACC8C8DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{C83EC278-F77F-45F8-90E2-C6CA9AD5192A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C587537-17E4-4AE0-B1AA-5761ACC8C8DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C587537-17E4-4AE0-B1AA-5761ACC8C8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C587537-17E4-4AE0-B1AA-5761ACC8C8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C587537-17E4-4AE0-B1AA-5761ACC8C8DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C83EC278-F77F-45F8-90E2-C6CA9AD5192A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C83EC278-F77F-45F8-90E2-C6CA9AD5192A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C83EC278-F77F-45F8-90E2-C6CA9AD5192A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C83EC278-F77F-45F8-90E2-C6CA9AD5192A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
