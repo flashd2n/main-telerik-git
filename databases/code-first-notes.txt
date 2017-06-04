@@ -1,0 +1,134 @@
+--- BUILDING MODELS ---
+
+-> best to arrage the EF models in a separate dll (class library)
+-> best way for identifiers is GUID
+	1. create a public property "public Guid Id { get; set; }"
+	2. create a constructor with "this.Id = Guid.NewGuid();" // this creates a new guid for every entry
+
+-> if I want a nullabe table column
+	-> set the property as nullable -> public int? SomethingImportant {get; set; }
+
+-> using enums
+	-> create an enum file, always insert the int values "Pending = 0, SoldOut = 1..."
+	-> use the enum as usual in the class, EF will insert the ids in the table
+
+-> saving images in the DB
+	1. create an Image class with the folling properties
+		1. id
+		2. byte[] Content
+		3. string FileExtension
+		4. string OriginalFileName
+-> saving images in the HDD
+	1. Same as above, without byte[] and FileExtension
+	2. instead -> string FilePath
+
+-> one to many relation (one album has many songs)
+	-> in Album class add "public virtual ICollection<Song> Songs {get;set;}"
+		-> virtual is IMPORTANT!!!
+	-> in Album ctor -> this.Songs = new HashSet<Song>();
+
+	-> DO NOT MAKE VIRTUAL CALLS IN CTOR
+		-> add a private field and write the long version of the property
+
+	-> it is good practice to go to Song class and
+		1. public int AlbumId {get;set;} // this allows us to search by albumid -> song.albumid == 1
+		2. public virtual Album Album {get;set} // this gives us direk access to the song's album -> song.album.name == "gosho"
+
+--- BUILDING DBCONTEXT ----
+
+1. Place the context class in a new dll (.Data)
+2. Install EF in .Data
+3. Inherit : DbContext
+4. Add reference to the available tables(classes)
+	-> public virtual IDbSet<Album> Albums { get; set; } // use virtual and IDbSet for unit testing purposes!!!
+
+
+--- BUILDING CONNECTION TO SQL SERVER ----
+
+1. Set up the connection string
+	<connectionStrings>
+		<add name="DbName" connectionString="Data Source=.;Initial Catalog=DbName;Integrated Security=True" providerName="System.Data.SqlClient"></add>
+	</connectionStrings>
+		// name => the connection name -> used to differentiate the connection when multiple db are used
+		// Data Source => the connection point for the sql server
+		// Initial Catalog => the name for the Db
+		// Integrated Security => using MS auth, otherwise can use user =  and password = 
+		// providerName => what kind of db is this? sql server? mysql? redis? postgres?
+
+2. ONLY THE APP.CONFIG IN THE STARTUP PROJECT IS REGISTERED. Can delete the others
+
+----------------------------------
+
+--- Migrations
+
+-> Migrations -> contain information about the code to be executed to apply the changes and the code needed to reverse changes
+	-> in db keeps the information about the models
+	-> strategies:
+		-> (default) CreateDatabseIfNotExist -> if no db exists -> create, else do nothing
+		-> DropCreateDatabaseIfModelChanges -> if the models change, delete everything and rebuild db -> not good for production
+		-> DropCreateDatabaseAlways -> always delete and create db -> useful for unit testing
+		-> MigrateDatabaseToLatestVersion -> uses the configuration when changes to the models
+
+
+
+-> Configuration.cs
+	-> constructor -> config options for EF
+		-> this.AutomaticMigrationsEnabled = true; // not production -> auto migrate data
+            	-> this.AutomaticMigrationDataLossAllowed = true; // not production -> auto delete data
+
+	-> Seed() -> runs every time EF makes changes to the database // can import default values in tables
+		-> use .AddOrUpdate
+		->context.Artists.AddOrUpdate(a => a.Name ,new Artist // the expression tells on which parameter to compare existing data -> name in this case
+            {
+                Name = "Seeded Artist"
+            });
+
+1. Open package manager console
+2. Enable-Migrations in the project with the dbcontext (.Data)
+3. In startup tell EF to use the configuration:
+	-> Database.SetInitializer(new MigrateDatabaseToLatestVersion<CFTrainingDbContext(where is the context), Configuration>());
+
+
+--- FINE CONFIGS
+
+-- ANNOTATIONS
+
+-> add reference to System.ComponentModel.DataAnnotations
+
+-> [Key] -> sets a primary key
+-> [Required] -> a column does not accept Null
+-> [MinLength(10)] | [MaxLength(50)] -> length constraint for strings or arrays
+-> [Range(0, 100)] -> range validation for int
+-> [NotMapped] -> marks a property NOT TO BE SEND TO DB
+-> When a model gets too big
+	->  1. make another class in the same dll (Class MoreInfo)
+	->  2. create a property in the master class(public MoreInfo MoreInfo {get;set;}) (NOT ID, if id -> EF will create new column)
+	->  3. instantiate the slave class in master constructor
+	->  4. mark the slave class as [ComplexType] -> forces EF NOT to create new table
+	->  5. mark the properties in slave class as [Column("Proper Name")] in order to give them proper name
+	->  6. result in db is -> one table with merged columns from both classes
+-> [Table("AwesomeName")] -> used above the class definition to give EF a name for the table instead of default
+-> [Index] -> above a property sets a column as an index
+
+--- FLUENT API
+
+-> allows more stuff than attributes
+
+1. In context class -> override the OnModelCreating method
+2. Access models by modelBuilder.Entity<ModelName>()
+3. Use extention methods
+
+
+--- MAPPINGS
+
+-> access from dbContext.Configuration
+-> do not set globally, turn off what is needed where is needed, then turn it back on
+
+
+
+
+
+
+
+
+
