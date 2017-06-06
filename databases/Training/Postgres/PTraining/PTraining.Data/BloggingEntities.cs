@@ -10,7 +10,7 @@ namespace PTraining.Data
 {
     public class BloggingEntities : DbContext
     {
-        public BloggingEntities() : base("PostgresDotNet")
+        public BloggingEntities() : base("PostgresDotNetTwo")
         {
 
         }

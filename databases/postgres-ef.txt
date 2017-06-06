@@ -1,0 +1,29 @@
+Just like normal Sql Server
+
+----> in app config add this after startup ---
+
+<system.data>
+    <DbProviderFactories>
+      <!--for EF4.x and EF6.0.x -->
+      <!--you may need this. if you don't modify machine.config-->
+      <remove invariant="Npgsql" />
+      <add name="Npgsql - .Net Data Provider for PostgreSQL" invariant="Npgsql" description=".Net Data Provider for PostgreSQL" type="Npgsql.NpgsqlFactory, Npgsql, Version=3.0.3.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7" />
+    </DbProviderFactories>
+  </system.data>
+
+
+--- connection string ---
+
+<add name="PgsqlDb"
+         connectionString="Host=localhost; port=5432; user id=flash; password=1234; database=LocalKartsSystem"
+         providerName="Npgsql"/>
+
+!!! USER MUST ALREADY EXIST WITH ALL ROLES
+
+--- in VS ----
+-> create models, create context and link connectionstring
+
+1. Enable-Migrations -ContextTypeName KartRacingManager.Data.KartDbContext -MigrationsDirectory PostgreSqlMigrations
+-> rename the new config
+2. add-migration Initial -ConfigurationTypeName KartsDbConfig
+3. update-database -ConfigurationTypeName KartsDbConfig
