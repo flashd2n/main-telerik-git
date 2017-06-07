@@ -1,22 +1,33 @@
-Just like normal Sql Server
+--- nugget packages ---
 
-----> in app config add this after startup ---
+-> EntityFramework (разбира се :D)
+-> Npgsql (v 3.2.3) (prerelease)
+-> EntityFramework6.Npgsql (v 3.1.1)
+
+--- app config settings ---
 
 <system.data>
     <DbProviderFactories>
-      <!--for EF4.x and EF6.0.x -->
-      <!--you may need this. if you don't modify machine.config-->
       <remove invariant="Npgsql" />
       <add name="Npgsql - .Net Data Provider for PostgreSQL" invariant="Npgsql" description=".Net Data Provider for PostgreSQL" type="Npgsql.NpgsqlFactory, Npgsql, Version=3.0.3.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7" />
     </DbProviderFactories>
   </system.data>
-
-
---- connection string ---
-
-<add name="PgsqlDb"
-         connectionString="Host=localhost; port=5432; user id=flash; password=1234; database=LocalKartsSystem"
-         providerName="Npgsql"/>
+<entityFramework>
+    <providers>
+      <provider invariantName="Npgsql" type="Npgsql.NpgsqlServices, EntityFramework6.Npgsql" />
+    </providers>
+  </entityFramework>
+<connectionStrings>
+    <add name="PostgresDotNet" connectionString="Host=localhost; port=5432; user id=YourUser; password=YouPass; database=myDBName" providerName="Npgsql" />
+</connectionStrings>
+<runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Npgsql" publicKeyToken="5d8b90d52f46fda7" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.2.3.0" newVersion="3.2.3.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
 
 !!! USER MUST ALREADY EXIST WITH ALL ROLES
 
