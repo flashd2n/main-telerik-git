@@ -18,7 +18,7 @@ namespace RPTraining.ConsoleClient
             // --------------------
 
             var authors = db.Authors;
-            
+
             Console.WriteLine(authors.Count());
 
             // --------------------
@@ -26,7 +26,7 @@ namespace RPTraining.ConsoleClient
             var authorsRepository = new EfRepository<Author>(db);
 
             var allAuthors = authorsRepository.All();
-            
+
             Console.WriteLine(allAuthors.Count());
 
             authorsRepository.Add(new Author
@@ -35,7 +35,6 @@ namespace RPTraining.ConsoleClient
             });
 
             authorsRepository.SaveChanges();
-
         }
     }
 }
