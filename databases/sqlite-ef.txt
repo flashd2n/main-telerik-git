@@ -1,0 +1,57 @@
+--- used nuggets ---
+-> entity framework <-
+
+System.data.sqlite
+System.data.sqlite.core
+System.data.sqlite.ef6
+System.data.sqlite.ef6.migrations
+System.data.sqlite.linq
+
+
+--- app config ----
+
+<system.data>
+    <DbProviderFactories>
+      <remove invariant="System.Data.SQLite.EF6" />
+      <add name="SQLite Data Provider" invariant="System.Data.SQLite" description="Data Provider for SQLite" type="System.Data.SQLite.SQLiteFactory, System.Data.SQLite" />
+    </DbProviderFactories>
+  </system.data>
+
+<entityFramework>
+    <providers>
+      <provider invariantName="System.Data.SQLite" type="System.Data.SQLite.EF6.SQLiteProviderServices, System.Data.SQLite.EF6"/>
+    </providers>
+  </entityFramework>
+
+<connectionStrings>
+    <add name="SqliteDb" connectionString="Data Source=C:\MyData\Git\Test.db" providerName="System.Data.SQLite" />
+  </connectionStrings>
+
+<runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Data.SQLite" publicKeyToken="db937bc2d44ff139" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.0.105.1" newVersion="1.0.105.1" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Data.SQLite.EF6" publicKeyToken="db937bc2d44ff139" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.0.105.1" newVersion="1.0.105.1" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+
+
+---- models, context, config ----
+
+models -> standart
+config -> standart with:
+	-> SetSqlGenerator("System.Data.SQLite", new SQLiteMigrationSqlGenerator()); // in ctor
+context -> standart with:
+	-> Database.SetInitializer(new MigrateDatabaseToLatestVersion<ContextFileName, ConfigFileName>(true)); // in ctor
+
+--- PMC commands ---
+
+1. Enable-Migrations -ContextTypeName KartRacingManager.Data.KartDbContext -MigrationsDirectory PostgreSqlMigrations
+-> rename the new config
+2. add-migration Initial -ConfigurationTypeName KartsDbConfig
+3. update-database -ConfigurationTypeName KartsDbConfig
