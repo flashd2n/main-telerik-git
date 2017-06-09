@@ -1,0 +1,11 @@
+--- Open closed
+
+public class RectangleDrawingManager : IDrawingManager
+
+public void Draw(IShape shape)
+{
+	var rectangle = shape as Rectangle;
+	if(rectangle == null)
+	{throw new Exception("Shape is not a rectangle")}
+	// draw the rectangle	
+}
