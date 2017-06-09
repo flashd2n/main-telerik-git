@@ -23,18 +23,23 @@ namespace RPTraining.ConsoleClient
 
             // --------------------
 
-            var authorsRepository = new EfRepository<Author>(db);
+            //var authorsRepository = new EfRepository<Author>(db);
 
-            var allAuthors = authorsRepository.All();
+            //var allAuthors = authorsRepository.All();
 
-            Console.WriteLine(allAuthors.Count());
+            //Console.WriteLine(allAuthors.Count());
 
-            authorsRepository.Add(new Author
-            {
-                FullName = "Gosho"
-            });
+            //authorsRepository.Add(new Author
+            //{
+            //    FullName = "Gosho"
+            //});
 
-            authorsRepository.SaveChanges();
+            //authorsRepository.SaveChanges();
+
+            var unitOfWork = new UnitOfWork(db);
+
+            unitOfWork.GetRepository<EfRepository<Author>>().All();
+
         }
     }
 }

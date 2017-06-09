@@ -17,7 +17,5 @@ namespace RPTraining.Data.Repositories
         void Remove(TEntity entity);
 
         void Update(TEntity entity);
-
-        void SaveChanges();
     }
 }

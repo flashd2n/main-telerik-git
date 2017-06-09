@@ -24,10 +24,7 @@ namespace RPTraining.Data.Repositories
         {
             this.ChangeState(entity, EntityState.Added);
         }
-
-        /// <summary>
-        /// Returns the entire set as IQueryable. The result is equivalent to 'db.mySet'.
-        /// </summary>
+        
         public IQueryable<TEntity> All()
         {
             return this.set;
@@ -46,11 +43,6 @@ namespace RPTraining.Data.Repositories
         public void Update(TEntity entity)
         {
             this.ChangeState(entity, EntityState.Modified);
-        }
-
-        public void SaveChanges()
-        {
-            this.data.SaveChanges();
         }
 
         private void ChangeState(TEntity entity, EntityState state)
