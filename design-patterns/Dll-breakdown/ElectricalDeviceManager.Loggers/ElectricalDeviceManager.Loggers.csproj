@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{775C0D47-4EB3-48CE-A950-A6A295F62620}</ProjectGuid>
+    <ProjectGuid>{5C484400-F263-4C1B-BD70-7B6FB2E78C5A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DecoratorAdapterComposite</RootNamespace>
-    <AssemblyName>DecoratorAdapterComposite</AssemblyName>
+    <RootNamespace>ElectricalDeviceManager.Loggers</RootNamespace>
+    <AssemblyName>ElectricalDeviceManager.Loggers</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,19 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ElectricalDevices\Adapter.cs" />
-    <Compile Include="ElectricalDevices\AmericanLaptop.cs" />
-    <Compile Include="ElectricalDevices\Laptop.cs" />
-    <Compile Include="ElectricalDevices\BulgarianLaptop.cs" />
-    <Compile Include="ElectricalDevices\PowerStrip.cs" />
-    <Compile Include="ElectricalDevices\SurgeProtector.cs" />
-    <Compile Include="ElectricalDevices\Ups.cs" />
-    <Compile Include="Interfaces\IAmericanElectricalDevice.cs" />
-    <Compile Include="Interfaces\IElectricalDevice.cs" />
+    <Compile Include="ConsoleLogger.cs" />
+    <Compile Include="FileLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\ElectricalDeviceManager.Interfaces\ElectricalDeviceManager.Interfaces.csproj">
+      <Project>{e4caab89-a302-4627-9d25-7b8ae44622a4}</Project>
+      <Name>ElectricalDeviceManager.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

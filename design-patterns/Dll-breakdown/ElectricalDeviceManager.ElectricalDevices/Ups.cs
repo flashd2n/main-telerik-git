@@ -1,8 +1,8 @@
 ﻿using Bytes2you.Validation;
-using DecoratorAdapterComposite.Interfaces;
+using ElectricalDeviceManager.Interfaces;
 using System;
 
-namespace DecoratorAdapterComposite.ElectricalDevices
+namespace ElectricalDeviceManager.ElectricalDevices
 {
     public class Ups : IElectricalDevice
     {

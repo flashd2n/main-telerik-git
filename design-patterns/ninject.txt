@@ -12,3 +12,15 @@
 	-> var kernel = new StandardKernel(new MyModule());
 	-> var adapter = kernel.Get<IElectricalDevice>(MyModule.PrimaryAdapter);
 
+
+---- DEFAULT bindings ---
+
+-> works for class name Laptop -> interface ILaptop and that is it
+
+-> add ninject.extensions.conventions
+
+Kernel.Bind(x => {
+	x.FromAssembliesInPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
+	.SelectAllClasses()
+	.BindDefaultInterface();	
+});
