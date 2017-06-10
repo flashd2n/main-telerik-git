@@ -1,0 +1,14 @@
+---- Building Ninject ----
+
+1. get nugget
+2. create custom module
+	-> public class MyModule : NinjectModule
+	-> 2 phases
+		1. bindings
+			var adapter = this.Bind<IElectricalDevice>().To<Adapter>().Named(PrimaryAdapter);
+		2. constructor arguments
+			adapter.WithConstructorArgument(this.Kernel.Get<IAmericanElectricalDevice>(AmericanLaptop));
+3. calling ninject in business logic
+	-> var kernel = new StandardKernel(new MyModule());
+	-> var adapter = kernel.Get<IElectricalDevice>(MyModule.PrimaryAdapter);
+

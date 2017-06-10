@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Training.Launch")]
+[assembly: AssemblyTitle("DecoratorAdapterComposite")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Training.Launch")]
+[assembly: AssemblyProduct("DecoratorAdapterComposite")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("32dc95cb-853a-433c-9a6c-3af9930baa7f")]
+[assembly: Guid("775c0d47-4eb3-48ce-a950-a6a295f62620")]
 
 // Version information for an assembly consists of the following four values:
 //

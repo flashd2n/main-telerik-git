@@ -22,7 +22,7 @@ namespace ChainOfResponsibility.After
         {
             if (item.Sku.StartsWith("SPECIAL"))
             {
-                return true
+                return true;
             }
 
             return false;

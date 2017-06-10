@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{32DC95CB-853A-433C-9A6C-3AF9930BAA7F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{4C19721C-2CBD-4CA8-AE66-604AA7AD7BFC}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Training.Launch</RootNamespace>
-    <AssemblyName>Training.Launch</AssemblyName>
+    <RootNamespace>ChainOfResponsibility</RootNamespace>
+    <AssemblyName>ChainOfResponsibility</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,11 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="After\EachPriceRule.cs" />
+    <Compile Include="After\IPriceRule.cs" />
+    <Compile Include="After\IPricingCalculator.cs" />
+    <Compile Include="After\OrderItem.cs" />
+    <Compile Include="After\PricingCalculator.cs" />
+    <Compile Include="After\ShoppingCart.cs" />
+    <Compile Include="After\SpecialPriceRule.cs" />
+    <Compile Include="Before\OrderItem.cs" />
+    <Compile Include="Before\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

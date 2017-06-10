@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChainOfResponsibility.Before
+namespace ChainOfResponsibility.After
 {
     public class ShoppingCart
     {
