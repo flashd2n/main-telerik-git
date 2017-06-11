@@ -24,3 +24,77 @@ Kernel.Bind(x => {
 	.SelectAllClasses()
 	.BindDefaultInterface();	
 });
+
+--- More than one constructor argument
+
+surgeProtector
+	.WithConstructorArgument(this.Kernel.Get<IElectricalDevice>(Ups))
+        .WithConstructorArgument(new TimeSpan(365, 0, 0, 0, 0));
+
+
+---- FACTORY ---
+
+-> add ninject.extensions.factory
+
+
+this.Bind<IElectricalDevice>().ToMethod(c =>
+            {
+                DeviceType deviceType = (DeviceType)c.Parameters.Single().GetValue(c, null);
+
+                IElectricalDevice device = null;
+
+                switch (deviceType)
+                {
+                    case DeviceType.Gsm:
+                        device = c.Kernel.Get<IElectricalDevice>(GsmName);
+                        break;
+                    case DeviceType.BulgarianLaptop:
+                        device = c.Kernel.Get<IElectricalDevice>(BulgarianLaptop);
+                        break;
+                    default:
+                        break;
+                }
+
+                return device;
+
+            }).NamedLikeFactoryMethod((IDevicesFactory fac) => fac.GetDevice(DeviceType.BulgarianLaptop));
+
+
+
+public interface IDevicesFactory
+    {
+        IElectricalDevice GetDevice(DeviceType deviceType);
+    }
+
+public enum DeviceType
+    {
+        Gsm,
+        BulgarianLaptop
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

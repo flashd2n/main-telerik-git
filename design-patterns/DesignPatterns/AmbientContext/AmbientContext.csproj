@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{775C0D47-4EB3-48CE-A950-A6A295F62620}</ProjectGuid>
+    <ProjectGuid>{431DB10B-CC80-4292-A8FF-6D4EBDF4D131}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DecoratorAdapterComposite</RootNamespace>
-    <AssemblyName>DecoratorAdapterComposite</AssemblyName>
+    <RootNamespace>AmbientContext</RootNamespace>
+    <AssemblyName>AmbientContext</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,17 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ElectricalDevices\Adapter.cs" />
-    <Compile Include="ElectricalDevices\AmericanLaptop.cs" />
-    <Compile Include="ElectricalDevices\Gsm.cs" />
-    <Compile Include="ElectricalDevices\Laptop.cs" />
-    <Compile Include="ElectricalDevices\BulgarianLaptop.cs" />
-    <Compile Include="ElectricalDevices\PowerStrip.cs" />
-    <Compile Include="ElectricalDevices\SurgeProtector.cs" />
-    <Compile Include="ElectricalDevices\Ups.cs" />
-    <Compile Include="Interfaces\IAmericanElectricalDevice.cs" />
-    <Compile Include="Interfaces\IElectricalDevice.cs" />
+    <Compile Include="Example.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DecoratorAdapterComposite\DecoratorAdapterComposite.csproj">
+      <Project>{775C0D47-4EB3-48CE-A950-A6A295F62620}</Project>
+      <Name>DecoratorAdapterComposite</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

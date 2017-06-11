@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{775C0D47-4EB3-48CE-A950-A6A295F62620}</ProjectGuid>
+    <ProjectGuid>{6D8F624D-9C4C-489C-A033-8CDA1518C476}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DecoratorAdapterComposite</RootNamespace>
-    <AssemblyName>DecoratorAdapterComposite</AssemblyName>
+    <RootNamespace>AbstractFactory</RootNamespace>
+    <AssemblyName>AbstractFactory</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -44,17 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ElectricalDevices\Adapter.cs" />
-    <Compile Include="ElectricalDevices\AmericanLaptop.cs" />
-    <Compile Include="ElectricalDevices\Gsm.cs" />
-    <Compile Include="ElectricalDevices\Laptop.cs" />
-    <Compile Include="ElectricalDevices\BulgarianLaptop.cs" />
-    <Compile Include="ElectricalDevices\PowerStrip.cs" />
-    <Compile Include="ElectricalDevices\SurgeProtector.cs" />
-    <Compile Include="ElectricalDevices\Ups.cs" />
-    <Compile Include="Interfaces\IAmericanElectricalDevice.cs" />
-    <Compile Include="Interfaces\IElectricalDevice.cs" />
+    <Compile Include="DevicesFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DecoratorAdapterComposite\DecoratorAdapterComposite.csproj">
+      <Project>{775C0D47-4EB3-48CE-A950-A6A295F62620}</Project>
+      <Name>DecoratorAdapterComposite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Launch\Launch.csproj">
+      <Project>{4425247D-CCE5-49C9-960B-29F8B245C65A}</Project>
+      <Name>Launch</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

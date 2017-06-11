@@ -1,12 +1,18 @@
-﻿using DecoratorAdapterComposite.ElectricalDevices;
-using DecoratorAdapterComposite.Interfaces;
+﻿using ElectricalDeviceManager.ElectricalDevices;
+using ElectricalDeviceManager.Interfaces;
 using Ninject;
 using Ninject.Modules;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
+using Ninject.Extensions.Conventions;
+using System.IO;
+using Ninject.Extensions.Factory;
+using System.Linq;
 
-namespace Launch.NinjectModules
+namespace ElectricalDeviceManager.NinjectModules
 {
-    public class DecoratorAdapterCompositeModule : NinjectModule
+    class ElectricalDevicesModule : NinjectModule
     {
         public const string GsmName = "Gsm";
         public const string BulgarianLaptop = "Bulgarian Laptop";
@@ -18,6 +24,12 @@ namespace Launch.NinjectModules
 
         public override void Load()
         {
+            this.Kernel.Bind(x => {
+                x.FromAssembliesInPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
+                .SelectAllClasses()
+                .BindDefaultInterface();
+            });
+
             var gsm = this.Bind<IElectricalDevice>().To<Gsm>().Named(GsmName);
             var bulgarianLaptop = this.Bind<IElectricalDevice>().To<BulgarianLaptop>().Named(BulgarianLaptop);
             var americanLaptop = this.Bind<IAmericanElectricalDevice>().To<AmericanLaptop>().Named(AmericanLaptop);
@@ -34,7 +46,34 @@ namespace Launch.NinjectModules
             });
 
             ups.WithConstructorArgument(this.Kernel.Get<IElectricalDevice>(PowerStrip));
-            surgeProtector.WithConstructorArgument(this.Kernel.Get<IElectricalDevice>(Ups));
+
+            surgeProtector
+                .WithConstructorArgument(this.Kernel.Get<IElectricalDevice>(Ups))
+                .WithConstructorArgument(new TimeSpan(365, 0, 0, 0, 0));
+
+            this.Bind<IDevicesFactory>().ToFactory();
+
+            this.Bind<IElectricalDevice>().ToMethod(c =>
+            {
+                DeviceType deviceType = (DeviceType)c.Parameters.Single().GetValue(c, null);
+
+                IElectricalDevice device = null;
+
+                switch (deviceType)
+                {
+                    case DeviceType.Gsm:
+                        device = c.Kernel.Get<IElectricalDevice>(GsmName);
+                        break;
+                    case DeviceType.BulgarianLaptop:
+                        device = c.Kernel.Get<IElectricalDevice>(BulgarianLaptop);
+                        break;
+                    default:
+                        break;
+                }
+
+                return device;
+
+            }).NamedLikeFactoryMethod((IDevicesFactory fac) => fac.GetDevice(DeviceType.BulgarianLaptop));
 
         }
     }
