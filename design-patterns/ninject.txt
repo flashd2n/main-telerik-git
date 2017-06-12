@@ -36,7 +36,34 @@ surgeProtector
 
 -> add ninject.extensions.factory
 
+--> simple models factory
 
+> in modules // no need to make separate model bindings in module
+
+this.Bind<IModelFactory>().ToFactory();
+
+> in interfaces
+
+public interface IModelFactory
+    {
+        Gsm CreateGsm(string name);
+        BulgarianLaptop CreateBulgarianLaptop();
+    }
+
+> in code
+
+1. get factory
+	1.1 -> inject from constructor 
+	1.2 -> inject kernel and var factory = kernel.Get<IModelFactory>();
+var gsm = factory.CreateGsm("goshko");
+
+
+--> advanced factory
+> in module
+
+// bind the IElectricaldDevices as usual 
+
+this.Bind<IDevicesFactory>().ToFactory();
 this.Bind<IElectricalDevice>().ToMethod(c =>
             {
                 DeviceType deviceType = (DeviceType)c.Parameters.Single().GetValue(c, null);
@@ -61,16 +88,41 @@ this.Bind<IElectricalDevice>().ToMethod(c =>
 
 
 
+> in interfaces
+
 public interface IDevicesFactory
     {
         IElectricalDevice GetDevice(DeviceType deviceType);
     }
 
+> in code
 public enum DeviceType
     {
         Gsm,
         BulgarianLaptop
     }
+
+> execute
+
+1. get factory
+	1.1 -> inject from constructor 
+	1.2 -> inject kernel and var advancedFactory = kernel.Get<IAdvancedFactory>();
+var gsm = advancedFactory.GetDevice(DeviceType.Gsm);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

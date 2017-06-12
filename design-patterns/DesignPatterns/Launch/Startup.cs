@@ -1,10 +1,7 @@
-﻿using DecoratorAdapterComposite.ElectricalDevices;
-using DecoratorAdapterComposite.Interfaces;
-using Launch.Interfaces;
+﻿using DecoratorAdapterComposite.Interfaces;
 using Launch.NinjectModules;
 using Ninject;
 using System;
-using System.Collections.Generic;
 
 namespace Launch
 {
@@ -34,26 +31,25 @@ namespace Launch
 
             Console.WriteLine(surgeProtector);
 
-
         }
 
-        public class DecoratorAdapterCompositeFactory : IDevicesFactory
-        {
-            public IElectricalDevice CreateDevice()
-            {
-                var laptop = new BulgarianLaptop();
-                var americanLaptop = new AmericanLaptop();
+        //public class DecoratorAdapterCompositeFactory : IDevicesFactory
+        //{
+        //    public IElectricalDevice CreateDevice()
+        //    {
+        //        var laptop = new BulgarianLaptop();
+        //        var americanLaptop = new AmericanLaptop();
 
-                var americanAdapter = new Adapter(americanLaptop);
+        //        var americanAdapter = new Adapter(americanLaptop);
 
-                var powerStrip = new PowerStrip(new List<IElectricalDevice>() { laptop, americanAdapter });
+        //        var powerStrip = new PowerStrip(new List<IElectricalDevice>() { laptop, americanAdapter });
 
-                var ups = new Ups(powerStrip);
+        //        var ups = new Ups(powerStrip);
 
-                var surgeProtector = new SurgeProtector(ups);
+        //        var surgeProtector = new SurgeProtector(ups);
 
-                return surgeProtector;
-            }
-        }
+        //        return surgeProtector;
+        //    }
+        //}
     }
 }

@@ -1,12 +1,12 @@
-﻿using DecoratorAdapterComposite.ElectricalDevices;
-using DecoratorAdapterComposite.Interfaces;
+﻿using Interfaces;
+using ModelsAndCommands.LogicClasses;
 using Ninject;
 using Ninject.Modules;
 using System.Collections.Generic;
 
-namespace Launch.NinjectModules
+namespace NinjectModules
 {
-    public class DecoratorAdapterCompositeModule : NinjectModule
+    public class SimpleBindings : NinjectModule
     {
         public const string GsmName = "Gsm";
         public const string BulgarianLaptop = "Bulgarian Laptop";
