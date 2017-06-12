@@ -1,8 +1,8 @@
 ﻿using Bytes2you.Validation;
-using DecoratorAdapterComposite.Interfaces;
+using ElectricalDeviceManager.Interfaces;
 using System;
 
-namespace AmbientContext
+namespace ElectricalDeviceManager.ElectricalDevices
 {
     public class SurgeProtector : IElectricalDevice
     {
@@ -30,6 +30,7 @@ namespace AmbientContext
         {
             return string.Format($"Defender with: \n{this.electricalConsumer}");
         }
+
     }
 
     public interface IDateTimeProvider
@@ -63,7 +64,7 @@ namespace AmbientContext
             }
         }
 
-        public void Reset()
+        public void ResetProvider()
         {
             instance = new DefaultDateTimeProvider();
         }
@@ -79,4 +80,5 @@ namespace AmbientContext
             }
         }
     }
+
 }

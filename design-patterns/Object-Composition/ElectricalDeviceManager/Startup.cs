@@ -2,6 +2,7 @@
 using ElectricalDeviceManager.NinjectModules;
 using Ninject;
 using System;
+using System.IO;
 
 namespace ElectricalDeviceManager
 {
@@ -23,7 +24,53 @@ namespace ElectricalDeviceManager
             surgeProtector.ConsumeElectricity(500);
 
             Console.WriteLine(surgeProtector);
-            
+
+
+            var serviceFactory = new ServiceFactory();
+
+            using (var serviceConnection = serviceFactory.GetService())
+            {
+                //...
+            }
+
+
+        }
+    }
+
+    public class ServiceFactory
+    {
+        public ServiceFactory()
+        {
+
+        }
+
+        public IServiceConnection GetService()
+        {
+
+            return new ServiceConnection(null);
+        }
+    }
+
+    public interface IServiceConnection : IDisposable
+    {
+        void ConnectToService();
+    }
+
+    public class ServiceConnection : IServiceConnection
+    {
+        public ServiceConnection(ILogger logger)
+        {
+
+        }
+
+        public void ConnectToService()
+        {
+            //..
+        }
+
+        public void Dispose()
+        {
+            // ..
         }
     }
 
