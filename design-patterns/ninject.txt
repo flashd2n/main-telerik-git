@@ -110,17 +110,11 @@ public enum DeviceType
 var gsm = advancedFactory.GetDevice(DeviceType.Gsm);
 
 
+---- INTERCEPTION STUFF ----
 
-
-
-
-
-
-
-
-
-
-
+-> invocation.Request.Method --> full info about the intercepted method
+-> invocation.Request.Method.Name --> name of the intercepted method
+-> invocation.Request.Method.DeclaringType.Name -> name of the intercepted class
 
 
 
