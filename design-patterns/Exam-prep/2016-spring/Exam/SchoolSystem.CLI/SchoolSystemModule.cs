@@ -16,8 +16,6 @@ using System.Reflection;
 using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Extensions.Interception;
 using System.Diagnostics;
-using System.Linq.Expressions;
-using SchoolSystem.Framework.Models.Enums;
 
 namespace SchoolSystem.Cli
 {
@@ -89,7 +87,13 @@ namespace SchoolSystem.Cli
             {
                 Stopwatch stopwatch = new Stopwatch();
 
+                var parameters = invocation.Request.Method.GetParameters();
+
+                var names = parameters.Select(p => p.Name).ToArray();
+                var types = parameters.Select(p => p.ParameterType.Name).ToArray();
+
                 Console.WriteLine($"Method: {invocation.Request.Method.Name} | Type: {invocation.Request.Method.DeclaringType.Name}");
+                Console.WriteLine($"Parameters: {string.Join(", ", names)} | Types: {string.Join(", ", types)}");
 
                 stopwatch.Start();
                 invocation.Proceed();

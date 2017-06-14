@@ -6,6 +6,8 @@
 	-> 2 phases
 		1. bindings
 			var adapter = this.Bind<IElectricalDevice>().To<Adapter>().Named(PrimaryAdapter);
+		1.1
+			this.bind<ICommand>().ToMethod(context => {return (ICommand)null;}); // when ICommand is requested, the method will be executed
 		2. constructor arguments
 			adapter.WithConstructorArgument(this.Kernel.Get<IAmericanElectricalDevice>(AmericanLaptop));
 3. calling ninject in business logic
@@ -114,10 +116,13 @@ var gsm = advancedFactory.GetDevice(DeviceType.Gsm);
 
 -> invocation.Request.Method --> full info about the intercepted method
 -> invocation.Request.Method.Name --> name of the intercepted method
--> invocation.Request.Method.DeclaringType.Name -> name of the intercepted class
+-> invocation.Request.Method.DeclaringType.Name -> name of the intercepted class or interface
+-> invocation.Request.Target.GetType().Name -> is an interface is intercepted -> this returns the class name of the implementation
 
 
-
+var params = invocation.Request.Method.GetParameters();
+var paramNames = parameters.Select(p => p.Name).ToArray();
+var paramTypes = parameters.Select(p => p.ParameterType.Name).ToArray();
 
 
 

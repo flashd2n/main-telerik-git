@@ -4,6 +4,7 @@ using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 using System;
 using System.Diagnostics;
+using System.Linq;
 
 namespace NinjectModules
 {
@@ -11,6 +12,8 @@ namespace NinjectModules
     {
         public override void Load()
         {
+            this.Bind<IAwesome>().ToSelf().Intercept().With<StopWatchInterceptor>(); // always intercepted
+
             var modelsFactoryBinding = this.Bind<IModelsFactory>().ToFactory();
 
             if (true)
@@ -29,7 +32,14 @@ namespace NinjectModules
             {
                 Stopwatch stopwatch = new Stopwatch();
 
+                var parameters = invocation.Request.Method.GetParameters();
+
+                var names = parameters.Select(p => p.Name).ToArray();
+                var types = parameters.Select(p => p.ParameterType.Name).ToArray();
+
                 Console.WriteLine($"Method: {invocation.Request.Method.Name} | Type: {invocation.Request.Method.DeclaringType.Name}");
+                Console.WriteLine($"Parameters: {string.Join(", ", names)} | Types: {string.Join(", ", types)}");
+
 
                 stopwatch.Start();
                 invocation.Proceed();
@@ -42,6 +52,11 @@ namespace NinjectModules
                 invocation.Proceed();
             }
         }
+    }
+
+    public interface IAwesome
+    {
+
     }
 
     public interface IModelsFactory
