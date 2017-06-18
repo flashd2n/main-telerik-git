@@ -1,0 +1,43 @@
+--- Arrays ---
++> Direct indexing -> fast access when you know the index
++> Easy to create and use
+
+-> Poor searching
+-> Poor at inserting and deleting
+
+
+--- Linked Lists ---
++> Good at adding and deleting items
+
+-> Poor direct access -> needs to iterate the list
+-> Poor in searching and sorting
+
+
+--- Stacks and Queues ---
++> LIFO / FIFO
+
+-> direct access
+-> searching and sorting
+
+
+--- HashTables ---
++> insert and deleting
++> fast access
+
+-> a little more space in memory
+-> a little more processing
+-> searhing for specific value
+
+
+--- Sets ---
++> checking membership
++> avoid duplicates
+
+-> bad at everything else
+
+
+--- Binary Search Trees ---
++> fast insert, delete, access
++> maintaining sorted order
+
+-> take some overhead to create and manage

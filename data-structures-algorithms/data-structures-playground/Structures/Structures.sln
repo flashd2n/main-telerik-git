@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStucturesAndArrays", "SimpleStucturesAndArrays\SimpleStucturesAndArrays.csproj", "{9257F4E3-6292-4116-A695-DC8C20B1000B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearch", "BinarySearch\BinarySearch.csproj", "{84B18A66-4FEB-4E6C-B3E1-291F916FEB91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9257F4E3-6292-4116-A695-DC8C20B1000B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9257F4E3-6292-4116-A695-DC8C20B1000B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9257F4E3-6292-4116-A695-DC8C20B1000B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9257F4E3-6292-4116-A695-DC8C20B1000B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84B18A66-4FEB-4E6C-B3E1-291F916FEB91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84B18A66-4FEB-4E6C-B3E1-291F916FEB91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84B18A66-4FEB-4E6C-B3E1-291F916FEB91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84B18A66-4FEB-4E6C-B3E1-291F916FEB91}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
