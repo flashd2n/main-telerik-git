@@ -1,0 +1,23 @@
+--- GLOBALS ---
+
+-> console
+-> __dirname -> get the path of the current directory
+-> __filename -> get the path AND the name of the current file
+-> process.argv > returns an array:
+	0 -> path to node.exe
+	1 -> path to current file + file name
+	1+ -> all other params entered after that as a separate element, except in ""
+
+-> process.stdout.write -> writes to the console -> no new lines natively --> can write only strings and buffers NO OBJECTS
+-> process.stdout.clearLine() -> deletes the current line;
+-> process.stdout.cursorTo(0) -> starts writing from the start of the line
+
+-> process.stdin.on('data', function(data){}) ---> does not end process -> listens for input and fires the event when "enter"
+	-> "data" is the data from input, but use .toString().trim();
+
+-> process.exit() -> kills the process
+-> process.on('exit', function() {}) ---> do stuff right before the process ends
+-> setInterval -> standard
+-> setTimeout -> standard
+-> var myInterval = setInterval()
+	clearInterval(interval) -> kills the setInterval
