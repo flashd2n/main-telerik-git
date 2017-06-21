@@ -21,3 +21,62 @@
 -> setTimeout -> standard
 -> var myInterval = setInterval()
 	clearInterval(interval) -> kills the setInterval
+
+-> require -> inserts a node module in the current module
+	-> var coolness = required('path-to-module');
+	-> module.exports = coolness
+-> module.exports
+	-> can export a class -> module.exports = Person; ---> require receives the class and a new instance can be created
+	-> can export an instance -> module.exports = new Person() -> require receives the instance and work with it
+	-> can export object:
+		-> module.exports = {Person: Person, Name: 'lala'}
+		-> use: let a = require() --> a.Name ---> let newInst = new a.Person();
+
+-> var a = require('path') => loads the 'path' module and assigns it to 'a'
+
+-> var readline = require('readline') => loads readline module -> stdin and stdout wrapper
+	-> let rl = readline.createInterface(process.stdin, process.stdout) --> creates an instance
+	-> rl.question('question', function(answer){}) -> asks a question once and listens for answer
+	-> rl.setPrompt('another question') -> sets up a question to be asked multiple times
+	-> rl.prompt() -> asks the set question
+	-> rl.on('line', function(input){}) -> used to listen for inputs on prompts
+	-> rl.on('close', function(){}) -> used to listed for closing of realine
+	-> rl.close() -> stops listening
+
+
+-> var events = require('events') --> loads events module; can be used in two ways
+	1. let emitter = new events.EventEmitter(); -> creates instance and emitter.on() + emitter.emit();
+	2. let EventEmitter = require('events').EventEmitter -> gets the class, not an instance
+-> event emitter can raise and listen for custom events
+	-> emitter.on('awesomeEvent', function(message, status){})
+	-> emitter.emit('awesomeEvent', 'message', 'status')
+-> can attach emitter fuctionality to any custom class
+	1. let EventEmitter = require('events').EventEmitter
+	2. let util = require('util');
+	3. create custom class (Person)
+	4. util.inherits(Person, EventEmitter) -> Person inherits EventEmitter --> very cool
+	5. now every instance of person can .on(...) AND .emit(....)
+	-> !!! every .emit <-> .on is linked to the specific instance -> gosho.emit('talk') will trigger only gosho.on('talk') NOT stamat.on('talk')
+
+
+-> exec -> used to execute other processes in our environment -> think of it a way to execute terminal commands
+	1. let exec = require('chil_process').exec;
+	2. exec('node -v', function(err, result){//...})
+	-> used for single async process like 'node -v'
+
+-> spawn -> used for heavier, repetitve child commands
+	1. let spawn = require('child_process').spawn;
+	2. let childProcess = spawn('node', ['params']) -> first is command name, in array -> everything after the command name
+	-> get output data from child -> childProcess.stdout.on('data', function(data){//..})
+	-> write data to child -> childProcess.stdin.write('string')
+	-> listen for child events -> childProcess.on('eventName', function(){//..})
+		-> possible case -> 'exit'
+
+
+
+
+
+
+
+
+

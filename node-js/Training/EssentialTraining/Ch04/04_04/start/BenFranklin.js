@@ -1,19 +1,17 @@
-var EventEmitter = require('events').EventEmitter;
-var util = require('util');
+let imp = require('./Person');
 
-var Person = function(name) {
-	this.name = name;
-};
+//console.log(imp.name);
 
-util.inherits(Person, EventEmitter);
+let gosho = new imp.Person('gosho');
 
-var ben = new Person("Ben Franklin");
+let stamat = new imp.Person('stamat');
 
-ben.on('speak', function(said) {
-
-	console.log(`${this.name}: ${said}`);
-
+gosho.on('speak', function(said){
+    console.log('ggosho talks!');
 });
 
+stamat.on('speak', function(said){
+    console.log('stamat talks!');
+});
 
-ben.emit('speak', "You may delay, but time will not.");
+gosho.emit('speak', 'shiiit');
