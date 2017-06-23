@@ -91,7 +91,7 @@
 
     						return new Promise((resolve, reject) => {
 
-        						fs.readdir('directory', (err, data) => {
+        						fs.readdir('path-to-directory', (err, data) => {
 
             							if (err) {
                 							reject(err);
@@ -108,6 +108,7 @@
 -> read the contents of a file
 	-> same as above
 	-> fs.readFile('path-to-file', 'UTF-8', (err, data) => {//..}); // there is Sync version of the command
+	-> let stats = fs.statSync('filename.withExtension'); -> stats.isFile() -> checks if file
 
 
 -> create and append files
@@ -118,16 +119,37 @@
 
 	-> fs.appendFile('name-of-file', contents);
 
+-> create directory
+	-> let fs = require('fs');
+	-> fs.mkdir('name', (err) => {//...}); -> executes when ready (ASYNC) and passes err obj if error
+	-> fs.existsSync('name') -> checks if directory with this name exists -> returns bool
+
+-> rename and move files
+	-> let fs = require('fs');
+	-> fs.rename('path-to-file', 'new-path-to-file', (err) => {//..}) -> can be sync action
+		-> if you keep the same directory -> will rename
+		-> if you give a new directory -> will move (and) rename
+	
+	-> fs.unlink('path-to-file', (err) => {//..}) -> deletes a file, there is a sync option
 
 
+-> move and delete directories
+	-> let fs = require('fs');
+	-> fs.rename('dir-path', 'new-dir-path', (err) => {//..}) -> move or rename a directory, can be Sync
+	-> fs.rmdir('dir-path', (err) => {//..}) -> deletes a directory // cannot delete a non-empty directory
 
+-> read stream -> used to process large files
+	-> let fs = require('fs');
+	-> let stream = fs.createReadStream('path-to-file', 'UTF-8');
+	-> stream.once('data', () => {//..}) -> invoked once when data is read (at the start)
+	-> stream.on('data', (dataBite) => {//..}) -> processes 16 bit information??
+	-> stream.on('end', () => {//..}) -> invoked once when finished reading
 
-
-
-
-
-
-
+-> write stream -> used to write large data to files
+	-> let fs = require('fs');
+	-> let stream = fs.createWriteStream('path-to-file'); // opens stream connection
+	-> stream.write('content');
+	-> stream.close(); // closes the stream connection
 
 
 
