@@ -152,8 +152,30 @@
 	-> stream.close(); // closes the stream connection
 
 
+---- HTTP -----
 
+-> Build http/s request
+	1. let http = require('http'); // can use 'https'
+	2. let options = {} -> an options object to contain the request parameters
+		1. hostname: 'target domain',
+		2. path: 'path-to-resource-after-domain'
+		3. method: 'GET', 'POST', etc
+		4. port: 443 / 80 / 8080, etc
+		5. protocol: 'protocol' -> defaults to http
+		6. headers: {} -> object with request headers
+		7. auth: 'basic auth' -> like 'user:password'
+	3. let request = http.request(options, (res) => {//..})
+	4. INSIDE the callback -> handle the response data inside the callback
+	5. res acts like readStream
+	6. res.setEncoding('UTF-8'); -> sets the encoding -> otherwise it is bytes stream
+	7. events:
+		1. res.once('data', (chunk) => {//...})
+		2. res.on('data', (chunk) => {//..}) -> for every received chunk of data
+		3. res.on('end', () => {//..}) -> when the file is downloaded
+	8. req.on('error', (err) => {//..}) // -> handle request errors
+	9. req.end(); -> kills the request connection
 
+-> can use only http.get('url', callback) -> sets the method to 'GET' and calls request.end() automatically
 
 
 

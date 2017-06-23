@@ -55,21 +55,21 @@ CREATE OR ALTER PROC usp_GetSuperheroInfo @superHeroId int
 AS
 	BEGIN
 		SELECT s.Id, s.Name, s.SecretIdentity, s.Bio, a.Name AS [Alignment], p.Name AS [Planet], pow.Name AS [Power] FROM Superheroes s
-			INNER JOIN Alignments a
+			LEFT JOIN Alignments a
 			ON s.Alignment_Id = a.Id
-			INNER JOIN PlanetSuperheroes psh
+			LEFT JOIN PlanetSuperheroes psh
 			ON psh.Superhero_Id = s.Id
-			INNER JOIN Planets p
+			LEFT JOIN Planets p
 			ON psh.Planet_Id = p.Id
-			INNER JOIN PowerSuperheroes powersh
+			LEFT JOIN PowerSuperheroes powersh
 			ON powersh.Superhero_Id = s.Id
-			INNER JOIN Powers pow
+			LEFT JOIN Powers pow
 			ON powersh.Power_Id = pow.Id
 			WHERE s.Id = @superHeroId
 	END
 GO
 
-EXEC usp_GetSuperheroInfo 1
+EXEC usp_GetSuperheroInfo 16
 GO
 --- 6. Create a stored procedure that prints the number of heroes with Good, Evil and Neutral alignment for each Planet
 
