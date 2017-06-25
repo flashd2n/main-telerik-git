@@ -9,6 +9,9 @@
   "keywords": [
     "Websocket"
   ],
-  "author": "Alex Banks <alex@moonhighway.com> (http://www.moonhighway.com)",
-  "license": "MIT"
+  "author": "flash",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^3.0.0"
+  }
 }

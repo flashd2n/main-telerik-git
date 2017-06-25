@@ -1,9 +1,15 @@
+'use strict';
+
 $(document).ready(function () {
 
     $.getJSON('/dictionary-api', printTerms);
+
     $('form').submit(function (e) {
         e.preventDefault();
-        $.post('/dictionary-api', {term: $('#term').val(), defined: $('#defined').val()}, printTerms);
+        $.post('/dictionary-api', {
+            term: $('#term').val(),
+            defined: $('#defined').val()
+        }, printTerms);
         this.reset();
     });
 
@@ -15,7 +21,7 @@ function printTerms(terms) {
         $('<dt>').text(this.term).appendTo('body>dl');
         $('<dd>').text(this.defined).appendTo('body>dl');
     });
-    $('dt').off('dblclick').dblclick(function() {
+    $('dt').off('dblclick').dblclick(function () {
         $.ajax({
             url: '/dictionary-api/' + $(this).text(),
             type: 'DELETE',

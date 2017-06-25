@@ -1,0 +1,23 @@
+{
+    "name": "ski-dictionary",
+    "version": "1.0.0",
+    "description": "Ski terms and definitions",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+    "node",
+    "training",
+    "ski",
+    "terms",
+    "dictionary"
+  ],
+    "author": "flash",
+    "license": "MIT",
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "cors": "^2.8.3",
+        "express": "^4.15.3"
+    }
+}
