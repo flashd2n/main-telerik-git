@@ -315,6 +315,57 @@
 		4. socket.emit('chat', content) -> send message to server
 
 
+--- TESTING AND DEBUGGING ---
+
+-> test invironment setup
+	1. install mocha globally -> used to run the tests, so you don't need it locally
+	2. setup a test dir to hold all the tests files
+	3. install chai --safe-dev
+	4. require chai in each test file -> const expect = require('chai').expect;
+
+-> DO NOT USE LAMBDA -> fucks up mocha context
+
+-> Test structure
+	-> describe('some cathegory', function() {
+		it('specific test', () => {//...})	
+	   })
+
+	
+-> Testing async actions
+	1. normal structure
+	2. insert a parameter in it function -> it('awesome test name', function (done) {//..})
+	3. place done() after the expect statement of the async operation -> mocha will wait for done to be called to finish the test
+	4. if needed can up the timeout limit by "this.timeout(5000)" inside the closest describe statement of the currect test
+
+-> Mocking http requests
+	1. require 'nock' -> mocks http requests
+	2. setup nock mock before the tests
+		1. before(function() {//..})
+		2. INSIDE -> nock.('domain').get/.post/.etc('path').reply(statusCode, 'response');
+	3. Can use before/beforeEach/after/afterEach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
