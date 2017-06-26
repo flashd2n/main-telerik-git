@@ -1,5 +1,6 @@
 var expect = require("chai").expect;
 var tools = require("../lib/tools");
+const nock = require('nock');
 
 describe("Tools", function() {
 
@@ -14,10 +15,18 @@ describe("Tools", function() {
 
 		this.timeout(5000);
 
+        before(function(){
+           
+            nock('https://en.wikipedia.org')
+                .get('/wiki/Abraham_Lincoln')
+                .reply(200, 'Valid Response');
+            
+        });
+        
 		it("Load Abraham Lincoln's wikipedia page", function(done) {
 
 			tools.loadWiki({ first: "Abraham", last: "Lincoln"}, function(html) {
-				expect(html).to.be.ok;
+				expect(html).to.equal('Valid Response')
 				done();
 			});
 

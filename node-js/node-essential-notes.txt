@@ -344,13 +344,36 @@
 		2. INSIDE -> nock.('domain').get/.post/.etc('path').reply(statusCode, 'response');
 	3. Can use before/beforeEach/after/afterEach
 
+-> Injecting dependencies -> works well when injecting JSON file into a module
+	-> case -> sut gets data by requiring another module, called 'inventory' and then does some work
+	1. install rewire
+	2. const rewire = require('rewire'); -> in test file
+	3. const sut = rewire('path-to-file'); -> use this instead of require so that rewire can inject dependencies
+	4. use beforeEach or before to setup the fake data
+	5. INSIDE beforeEach -> sut.__set__('inventory', testData);
+		-> now rewire will replace the dependency 'inventory' with the test data for every test
+	-> when creating fakes, use this.myFake = {}.... in order to preserve access to the fake in the tests
 
 
+-> Sinon
+	-> spies -> fake functions that provide info about their call count and other details
+	-> stubs -> more powerful spies -> can control return behavior
 
+-> Sinon And Rewire
+	-> Mocking the console
+		1. require chai, rewire, sinon and sut
+		2. beforeEach
+			1. declare fake console -> this.consoleMock = {log: sinon.spy()};
+			2. inject dependency -> sut.__set__('console', this.consoleMock);
+		3. In test class all calls to console will be faked
+		4. be careful not to lose 'this' -> let _this = this;
+		4. Assert against console -> expect(_this.consoleMock.log.callCount).to.equal(n);
 
-
-
-
+	-> can also declare mockConsole and inject it inside a particular test, if you want it done for that test only
+	-> then to undo the injection:
+		-> let revert = sut.__set__('console', consoleMock);
+		-> revert();
+            	-> done();
 
 
 

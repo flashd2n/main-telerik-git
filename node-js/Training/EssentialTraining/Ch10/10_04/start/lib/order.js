@@ -1,4 +1,4 @@
-var inventoryData = require('../data-sample/inventory');
+var inventoryData = require('../data/inventory');
 var warehouse = require('./warehouse');
 
 function findItem(sku) {
@@ -31,4 +31,8 @@ function order(sku, quantity, complete) {
     }
 }
 
-module.exports.orderItem = order;
+module.exports = {
+    order,
+    isInStock,
+    findItem
+};
