@@ -337,7 +337,7 @@
 	3. place done() after the expect statement of the async operation -> mocha will wait for done to be called to finish the test
 	4. if needed can up the timeout limit by "this.timeout(5000)" inside the closest describe statement of the currect test
 
--> Mocking http requests
+-> Mocking http requests -> sending http request to external server
 	1. require 'nock' -> mocks http requests
 	2. setup nock mock before the tests
 		1. before(function() {//..})
@@ -375,12 +375,31 @@
 		-> revert();
             	-> done();
 
+-> Code coverage
+	-> install -g istanbul
+	-> run -> istanbul cover _mocha -> enjoy
+		-> will fail -> istanbul cover full-path
+			     -> istanbul cover C:/Users/Flash/AppData/Roaming/npm/node_modules/mocha/bin/_mocha
 
+-> Supertest -> test http/express server responses -> simulates requests and analyzes responses
+	-> instal supertest --save-dev
+	-> const request = require('supertest');
+	-> const app = require(path-to-server) // needs to be exported
+	-> usage: request(app).get/.post/.etc('route').send(for post/delete/put)
+				.expect('Content-Type', /json/)
+				.expect(200(statusCode))
+				.end(done) -> ends the test
+				.end(function(err, res) {//analyze the response with res.text and done})
+	-> when testing json response
+		-> .end(function(err, res) { let check = JSON.parse(res.text)...expect...deep.equal...})
 
-
-
-
-
+-> Cheerio -> used to check the HTML response from http/express server
+	-> instal cheerio --save-dev
+	-> const cheerio = require('cheerio');
+	-> .end(function(err, res){
+		let $ = cheerio.load(res.text);
+		//...query the response just like a normal jQuery and expect....
+	})
 
 
 

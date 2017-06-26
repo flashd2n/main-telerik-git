@@ -1,10 +1,17 @@
 var expect = require('chai').expect;
+const request = require('supertest');
 var rewire = require('rewire');
 var app = rewire('../app');
 
+
 describe("Dictionary App", function () {
 
-    it("Loads the home page");
+    it("Loads the home page", function(done){
+        
+        request(app).get('/').expect(200).end(done)
+        
+        
+    });
 
     describe("Dictionary API", function () {
 
@@ -24,11 +31,30 @@ describe("Dictionary App", function () {
             app.__set__("skierTerms", this.defs);
         });
 
-        it("GETS dictionary-api");
+        it("GETS dictionary-api", function(done){
+            
+            request(app).get('/dictionary-api')
+                        .expect(200)
+                        .end(done);
+            
+        });
 
-        it("POSTS dictionary-api");
+        it("POSTS dictionary-api", function(done){
+            
+            request(app).post('/dictionary-api')
+                        .send({"term":"Three", "defined":"Three definition"})
+                        .expect(200)
+                        .end(done);
+            
+        });
 
-        it("DELETES dictionary-api");
+        it("DELETES dictionary-api", function(done){
+            
+            request(app).delete('/dictionary-api/One')
+                        .expect(200)
+                        .end(done);
+            
+        });
 
     });
 
