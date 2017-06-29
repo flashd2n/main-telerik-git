@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Lists
 {
@@ -7,20 +8,32 @@ namespace Lists
         public static void Main()
         {
 
-            // ArrayList tested and works
+            // Custom ArrayList tested and works
 
-            var test = new DoublyLinkedList<int>();
+            // Custom Doubly Linked List tested and works
 
-            for (int i = 0; i < 20; i++)
-            {
-                test.Add(i);
-            }
+            //var primes = Examples.GetPrimes(200, 300);
 
-            for (int i = 0; i < test.Count; i++)
-            {
-                Console.Write(test[i] + " ");
-            }
-            Console.WriteLine();
+            //Console.WriteLine(string.Join(" ", primes));
+
+            //var firstList = new List<int>() { 1, 2, 3, 4, 5 };
+
+            //Console.WriteLine($"First List: {string.Join(" ", firstList)}");
+
+            //var secondList = new List<int>() { 2, 4, 6 };
+
+            //Console.WriteLine($"Second List: {string.Join(" ", secondList)}");
+
+            //var union = Examples.Union(firstList, secondList);
+
+            //Console.WriteLine($"Union List: {string.Join(" ", union)}");
+
+            //var intersect = Examples.Intersect(firstList, secondList);
+
+            //Console.WriteLine($"Intersect List: {string.Join(" ", intersect)}");
+
+
+
         }
     }
 }
