@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Lists
 {
-    public class ArrayList<T>
+    public class ArrayList<T> : IEnumerable<T>
     {
         private const int DefaultInitialCapacity = 4;
         private const int ResizeCoeficient = 2;
@@ -87,12 +89,45 @@ namespace Lists
 
         public void Remove(T value)
         {
-            // TODO
+            var indexToRemove = -1;
+
+            for (int i = 0; i < this.count; i++)
+            {
+                if (buffer[i].Equals(value))
+                {
+                    indexToRemove = i;
+                    break;
+                }
+            }
+
+            if (indexToRemove == -1)
+            {
+                throw new ArgumentException("No such element");
+            }
+
+            this.RemoveAt(indexToRemove);
+
         }
 
-        public void RemoveAt(int position, T value)
+        public void RemoveAt(int position)
         {
-            // TODO
+            if (position < 0 || position >= this.count)
+            {
+                throw new ArgumentException("Not a valid position");
+            }
+
+            if (position == this.count - 1)
+            {
+                this.buffer[position] = default(T);
+            }
+
+            for (int i = position; i < this.count - 1; i++)
+            {
+                this.buffer[i] = buffer[i + 1];
+            }
+
+            this.buffer[this.count - 1] = default(T);
+            --this.count;
         }
 
         public int IndexOf(T value)
@@ -114,12 +149,14 @@ namespace Lists
         {
             if (this.Count == this.Capacity)
             {
+
                 var newCapacity = this.Capacity * ResizeCoeficient;
 
                 var newBuffer = new T[newCapacity];
 
                 for (int i = 0; i < this.buffer.Length; i++)
                 {
+
                     newBuffer[i] = buffer[i];
 
                     buffer[i] = default(T);
@@ -129,6 +166,19 @@ namespace Lists
                 this.buffer = newBuffer;
             }
 
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < this.count; i++)
+            {
+                yield return this.buffer[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }
