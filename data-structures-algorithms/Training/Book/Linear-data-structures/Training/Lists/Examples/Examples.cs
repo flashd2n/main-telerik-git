@@ -1,10 +1,65 @@
-﻿using System;
+﻿using Lists.Queue;
+using System;
 using System.Collections.Generic;
 
 namespace Lists
 {
     public static class Examples
     {
+        public static int GetValueIndex(int n, int value)
+        {
+
+            var queue = new StaticQueue<int>();
+
+            queue.Enqueue(n);
+
+            while (true)
+            {
+                var currentNumber = queue.Dequeue();
+
+                Console.WriteLine(currentNumber);
+
+
+                queue.Enqueue(currentNumber + 1);
+                queue.Enqueue(currentNumber * 2);
+
+            }
+
+            return -1;
+        }
+
+
+        public static bool AreBracketsCorrect(string expression)
+        {
+            var bracketsStack = new Stack<char>();
+
+            for (int i = 0; i < expression.Length; i++)
+            {
+                if (expression[i] == '(')
+                {
+                    bracketsStack.Push('(');
+                }
+
+                if (expression[i] == ')')
+                {
+                    if (bracketsStack.Count == 0)
+                    {
+                        return false;
+                    }
+
+                    var bracket = bracketsStack.Pop();
+
+                }
+            }
+
+            if (bracketsStack.Count != 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public static IList<int> GetPrimes(int start, int end)
         {
             var result = new List<int>();

@@ -47,6 +47,8 @@
     <Compile Include="Examples\Examples.cs" />
     <Compile Include="LinkedList\DoublyLinkedList.cs" />
     <Compile Include="LinkedList\Node.cs" />
+    <Compile Include="Queue\StaticQueue.cs" />
+    <Compile Include="Stack\ArrayStack.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

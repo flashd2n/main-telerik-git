@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Lists.Queue;
+using Lists.Stack;
+using System;
 using System.Collections.Generic;
 
 namespace Lists
@@ -32,7 +34,19 @@ namespace Lists
 
             //Console.WriteLine($"Intersect List: {string.Join(" ", intersect)}");
 
+            var test = new StaticQueue<int>();
 
+            test.Enqueue(1);
+            test.Enqueue(2);
+            test.Dequeue();
+            test.Enqueue(3);
+            test.Enqueue(4);
+            test.Enqueue(5);
+            test.Dequeue();
+            test.Enqueue(6);
+            test.Enqueue(7);
+
+            Examples.GetValueIndex(3, 16);
 
         }
     }
