@@ -1,0 +1,14 @@
+--- INSTALLATION ---
+
+1. Download from oficial website
+2. Complete installation
+3. Go to installation dir and copy the path
+4. Add the path to system environment path
+5. Create data directory
+	-> mkdir data
+	-> cd data
+	-> mkdir db
+6. Start DB by "mongod"
+7. Open another cmd and run "mongo" -> enter the mongo shell
+
+
