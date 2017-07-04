@@ -43,8 +43,7 @@ const findDocuments = (dbCollection, searchQuery, db) => {
 //
 //            console.log(err);
 //
-//        });
-//    }
+//        });//    }
 //
 //});
 

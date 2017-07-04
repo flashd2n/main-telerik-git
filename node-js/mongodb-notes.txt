@@ -4,11 +4,126 @@
 2. Complete installation
 3. Go to installation dir and copy the path
 4. Add the path to system environment path
-5. Create data directory
+5. Create data directory in default dir (user)
 	-> mkdir data
 	-> cd data
 	-> mkdir db
 6. Start DB by "mongod"
 7. Open another cmd and run "mongo" -> enter the mongo shell
+
+
+--- WORKING WITH THE MONGO SHELL ---
+
+-> mongo uses javascript interpreter, which means native javascript can be used in the shell for basic operations
+
+-> Startup by "mongod" in one cmd and "mongo" in another
+
+-> Switching databases -> use database_name
+	-> if db doesn't exist, mongo will switch but will finally create it when the first document is inserted
+
+-> Listing databases -> show dbs
+-> Listing Collections (tables) -> show collections // displays collections in the selected database
+
+-> CREATE
+	-> db.collectionName.insert({"key":"value"}) <- acceps an object with key-value pairs to be added to the new entry
+	-> db.collectionName.count() -> returns the total number of entrie in the collection
+
+-> UPDATE
+	-> db.collectionName.update({//.. query pair to find the entry/entries}, {$set: {//.. key-value pairs to set/update}})
+	-> when adding to an entry's array of data
+		-> db...update(...}, {$addToSet: {//.. key-value pairs to set/update}})
+
+-> FIND
+	-> db.collectionName.find({"key":"value"})
+		-> accepts an object which is the search query params as key-value pairs
+		-> returns an object -> the collections entry/entries
+	-> db.collectionName.find({
+		"key":{$lte:500}, /// -> where "key" value is less than or equal to 500
+		"key2":{$lte:3} /// -> where "key2" value is less than or equal to 3
+	})
+
+	-> db.collectionName.find({tourPrice:{$lte:1000,$gte:800}}) -> returns all elements with price [800, 1000]
+
+	-> .find -> returns and array of objects
+	-> .findOne -> returns an object -> the first found element
+
+-> DELETE
+	-> db.collectionName.remove({//.. query pair to find the entry/entries}) // deletes an entry/entries
+	-> db.collectionName.drop() // deletes the entire collection
+
+-> debugging info
+	-> db.collectionName.find(...).explain() -> returns some info about the query planner and server info
+	-> db.collectionName.find(...).explain("executionStats") -> returns more info -> time taken, docs examined, etc
+
+-> importing (basic) -> works with json, csv and some other strange formats
+	-> NOT connected to mongo with client
+	-> mongoimport --db databaseName --collection collectionName (will crea if non exist) --jsonArray (when json is an array and not na object) --file pathToFile
+
+-> CREATING INDEX (simple)
+	-> db.collectionName.createIndex({key:1}) // NO QUOTES -> enhances the search by this key
+	-> db.collectionName.createIndex({key:1, key2:1}) // -> creates compound index from these two keys
+	-> each collection can have up to 64 indexes
+	-> indexing slows down inserting
+
+
+--- MONGO IN NODE ---
+
+-> setup
+	-> 1. npm install --save mongodb
+	-> 2. let MongoClient = require('mongodb').MongoClient // -> creates a database access client
+	-> 3. let url = 'mongodb://localhost:27017/learning_mongo' //-> mongodb://hostname:port/database
+	-> 4. MongoClient.connect(url).then((db) => {//...}).catch((err) => {//..}) // -> this returns a db instance
+	-> 5. let collection = db.collection('collectionName'); //-> this returns the given collection from the db
+	-> 6. collection.find/.update/.....({"key":"value"}).ToArray((err, res) => {//..})
+
+
+--- ADVANCED STUFF ---
+
+
+-> Create unique index
+	-> db.collectionName.createIndex({"key":1},{unique:true})
+
+-> Modify Queries
+	-> db.collectionName.find({},{key:1}) --> works like SELECT key FROM CollectionName + _id is included
+	-> db.collectionName.find({},{key:1,_id:0}) --> works as above but EXCLUES _id
+	-> can add more keys with comma do add to the return "columns"
+
+	-> chainable:
+		.sort({key:-1}) -> sort by the key DESC
+		.sort({key:1}) -> sort by key ASC
+		.limit(N) -> returns only the n-th result...used to return N results
+		.skip(N) -> skips the first N (inclusive) results and returns the rest
+
+-> Create text index
+	-> db.collectionName.createIndex({key:"text",key2:"text"...}) /// can only have ONE text index per collection, but multiple fields
+		
+	-> db.collectionName.find({$text:{$search:"wine"}}) -> returns all elements where "wine exists" in any of the indexed fields
+		-> when multiple fields -> returns elements which contain the query in either field or in all
+
+	-> sort by relevance -> number of occurences of the query (basucally)
+		-> db.collectionName.find({..text search..},{score:{$meta:"textScore"}}).sort({score:{$meta:"textScore"}})
+
+	-> using regex -> cannot use with text index
+		-> db.collectionName.find({key:/backpack/i}) -> performs case insensitive search for "backpack" in the provided field
+
+
+-> Aggregation
+	-> db.collectionName.aggregate([{$group:{_id:"$tourPackage", count: {$sum:1}}}])
+		-> groups the elements by tourPackage -> prints the name of the package under _id and the count of elements in each
+		-> if the key's value is an object -> can group by a subvalue of that key
+			-> "$tourOrganizer.organizerName"
+		-> can add average value to the mix
+			-> average: {$avg:"$tourPrice"}
+		-> can export the result into a new collection
+			-> {$out: "prices"}
+
+	-> everything in one
+		-> db.tours.aggregate([{$group:{_id:"$tourPackage", average: {$avg:"$tourPrice"}, count: {$sum:1}}}, {$out: "prices"}])
+
+
+
+
+
+
 
 
