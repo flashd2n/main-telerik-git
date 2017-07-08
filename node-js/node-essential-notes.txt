@@ -256,6 +256,8 @@
 	-> require cors
 	-> app.use(cors()); // every route after this definition will be open for access from other domains
 
+-> res.sendFile(absolutePath, (err) => {//...}) -> can be used to send file like html
+	-> in err callback can do -> res.stratus(500).send(err) -> sets the status code and returns the error
 
 
 --- WEBSOCKETS ---
