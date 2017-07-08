@@ -257,7 +257,25 @@
 	-> app.use(cors()); // every route after this definition will be open for access from other domains
 
 -> res.sendFile(absolutePath, (err) => {//...}) -> can be used to send file like html
-	-> in err callback can do -> res.stratus(500).send(err) -> sets the status code and returns the error
+	-> in err callback can do -> res.status(500).send(err) -> sets the status code and returns the error
+
+-> Error middleware -> use to handle errors in the server // VERY IMPORTANT
+	-> define function(err, req, res, next) {//...} --> after all routes to handle the error
+	-> from any route call next(new Error('msg')) and this will trigger the error middleware
+
+-> Route level middleware -> triggered only when a route is hit, before the actual callback of the route
+	-> app.get('/users', checkAuth(), (req, res) => {//...})
+		-> the middleware can be used here to respond -> for example if access is not authorized
+							      -> or call next(), if all good
+-> Param middleware
+	-> app.get('/users/:id'......) -> this is the route
+	-> app.param('id', (req, res, next, reqId) => {//...}) // this will fire before(!!!) any route that has 'id' as param
+		and pass the valid of 'id' to reqId...need to do stuff and call next inorder to proceed forward
+
+-> Custom middleware with custom param
+	-> var myMdw = function(options) {return function(req, res, next) {//..}} has access to options and does middleware work
+	-> call -> app.use(myMdw({name: 'lalal'}));
+
 
 
 --- WEBSOCKETS ---
