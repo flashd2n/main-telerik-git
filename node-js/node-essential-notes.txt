@@ -276,6 +276,19 @@
 	-> var myMdw = function(options) {return function(req, res, next) {//..}} has access to options and does middleware work
 	-> call -> app.use(myMdw({name: 'lalal'}));
 
+-> Custom middleware without custom param
+	-> var myMdw = function(req, res, next) {//...}
+	-> call -> app.use(myMdw)
+
+-> Express router -> used to abstract away the handling of certain routes
+	-> require express, get the app, const myrouter = express.Router(); // can be done const router = require('express').Router()
+	-> myrouter.get('/'....)
+	-> app.use('/something', myrouter)
+		-> when something is hit, go and checkout what is happening in myrouter
+
+-> Short-hand for routing
+	-> app.route('/').get((req, res) => {//..}).post(...).put(...)....
+	-> customRoute.route('/').get((req, res) => {//..}).post(...).put(...)....
 
 
 --- WEBSOCKETS ---
