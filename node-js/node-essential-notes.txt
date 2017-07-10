@@ -418,7 +418,9 @@
 	-> instal supertest --save-dev
 	-> const request = require('supertest');
 	-> const app = require(path-to-server) // needs to be exported
-	-> usage: request(app).get/.post/.etc('route').send(for post/delete/put)
+	-> usage: request(app).get/.post/.etc('route')
+				.set(key-value pairs for request headers)
+				.send(for post/delete/put)
 				.expect('Content-Type', /json/)
 				.expect(200(statusCode))
 				.end(done) -> ends the test
@@ -435,11 +437,21 @@
 	})
 
 
---- AUTOMATION AND DEPLOYMENT ---
+--- ORGANIZATION AND STRUCTURE ---
 
+-> service orientated
+	-> config/
+	-> api/
+		-> lions/
+			-> lionModel.js
+			-> lionController.js
+			-> lionRoutes.js
+	-> utils/
+	-> index.js -> entry point -> fires listen on server
  
 
-
+-> environment variables -> useful to set application-level variables -> example -> when in testing env or production env or development env
+	-> env set ->  process.env.NODE_ENV = 'testing', 'production', 'development'
 
 
 
