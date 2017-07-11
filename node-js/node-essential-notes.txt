@@ -283,6 +283,7 @@
 -> Express router -> used to abstract away the handling of certain routes
 	-> require express, get the app, const myrouter = express.Router(); // can be done const router = require('express').Router()
 	-> myrouter.get('/'....)
+		-> can be used like -> myrouter.route('/').get(...).post(....).....
 	-> app.use('/something', myrouter)
 		-> when something is hit, go and checkout what is happening in myrouter
 
