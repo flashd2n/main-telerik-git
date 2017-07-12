@@ -453,7 +453,9 @@
 
 -> environment variables -> useful to set application-level variables -> example -> when in testing env or production env or development env
 	-> env set ->  process.env.NODE_ENV = 'testing', 'production', 'development'
-
+	-> define these env variables in a config file and use it to change behaviour
+	-> do not hard code values for the variables
+	-> use the deployment engine to set them -> like heroku or AWS
 
 
 
