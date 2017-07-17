@@ -65,8 +65,28 @@
 		-> module.exports = {Person: Person, Name: 'lala'}
 		-> use: let a = require() --> a.Name ---> let newInst = new a.Person();
 
+
+-> export
+	-> use this: module.exports = {....} //-> future proof
+
+-> use case
+	-> module.exports = { myClass };
+	-> const { myClass } = require('path-to-module')
+		-> equal to: const imported = require('path-to-module');
+			     const myClass = imported.myClass;
+		-> equal to: const myClass = require('path-to-module').myClass;
+
+-> index.js
+	-> default file for a directory
+	-> use case:
+		-> in dir 'utils' -> file 'index.js'
+		-> in another file -> const something = require('./utils') --> this will load index.js
+	-> used for grouping and mass exporting stuff from a directory
+
+---- CALL ENVIRONMENT PROCESSES
+
 -> exec -> used to execute other processes in our environment -> think of it a way to execute terminal commands
-	1. let exec = require('chil_process').exec;
+	1. let exec = require('child_process').exec;
 	2. exec('node -v', function(err, result){//...})
 	-> used for single async process like 'node -v'
 
@@ -153,6 +173,10 @@
 
 
 ---- HTTP -----
+
+-> node-fetch npm package -> easy way to make http requests, RETURNS A PROMISE
+	-> const fetch = require('node-fetch')
+	-> fetch('full url').then((response) => {//..}).catch((err) => {//..})
 
 -> Build http/s request
 	1. let http = require('http'); // can use 'https'
@@ -370,6 +394,8 @@
 	2. insert a parameter in it function -> it('awesome test name', function (done) {//..})
 	3. place done() after the expect statement of the async operation -> mocha will wait for done to be called to finish the test
 	4. if needed can up the timeout limit by "this.timeout(5000)" inside the closest describe statement of the currect test
+
+	-> if the rest ('it') returns a promise, there is not need for done();
 
 -> Mocking http requests -> sending http request to external server
 	1. require 'nock' -> mocks http requests

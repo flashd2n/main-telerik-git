@@ -1,0 +1,69 @@
+--- NVM ---> Node Version Manager
+
+-> download windows -> https://github.com/coreybutler/nvm-windows
+-> install -> all default -> use C:/nodejs
+-> run from bash/cmd
+	-> nvm list available -> to see all avail versions of node
+	-> nvm install <version>
+	-> nvm use <version>
+-> all nodejs files + npm global packages will be in C:/nodejs and will switch depending on the node version
+
+--- VS CODE PACKAGES ---
+
+-> Auto Import
+-> CSSLint
+-> ESLint -> just install plugin and run from bash "npm install -g eslint babel-eslint eslint-config-google"
+-> Path Autocomplete
+
+--- YARN ---
+
+-> npm install -g yarn
+-> yarn global add http-server -> equal to npm install -g http-server
+-> yarn add http-server -> installs locally and adds to dependencies
+-> yarn add http-server --dev -> installs locally and adds to DEV dependencies
+-> yarn remove http-server -> deleted and removes from all dependencies
+
+--- YEOMAN ---
+
+-> install global
+-> choose generator from yeoman website
+-> not so cool
+
+--- GULP ---
+-> npm install gulp-cli -g
+-> npm install gulp --save-dev
+-> touch gulpfile.js
+
+inside gulpfile.js
+-> require gulp
+-> install --save-dev gulp plugins for tasks
+-> define tasks
+	->gulp.task('name of task', () => {//...})
+
+-> group tasks and run async
+	-> gulp.task('name of big task', ['taskOne', 'tasktwo'], () => {//...})
+
+-> group tasks and some run async, some sync
+	-> gulp.task('name of big task', ['taskOne', 'tasktwo'], () => 
+		['taskThree', 'taskFour'].forEach((task) => {gulp.start(task)});
+	); // -> taskOne and taskTwo will start first and run async, when ready taskThree and taskFour will run async
+
+
+-> gulp-clean -> to delete files
+-> gulp-sync -> to execute tasks sync
+
+
+-> default task -> ran by 'gulp'
+	-> gulp.task('default', () => {//..})
+
+
+-> run mocha tests
+	-> install --dev and require gulp-mocha
+	-> gulp.task('tests:unit', () => {
+		return gulp.src('./test/unit/**/*.js') // take every .js file inside test/unit, regardless of the dir structure after unit
+			.pipe(mocha())
+	});
+
+
+
+
