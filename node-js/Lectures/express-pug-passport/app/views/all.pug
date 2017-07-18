@@ -1,0 +1,10 @@
+extends shared/_master-head
+
+block body
+    h1
+        | This is home
+    ul
+        each item in model
+            li
+                a(href="/" + item.id)
+                    | Go to #{item.name}

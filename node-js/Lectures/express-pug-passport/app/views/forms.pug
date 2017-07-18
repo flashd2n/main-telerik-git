@@ -1,0 +1,21 @@
+extends shared/_master
+
+block content
+    form(action="/items", method="POST")
+        label
+            | Name:
+            input(type="text", name="name")
+        label
+            | Interests
+            select(name="interests" multiple)
+                each value in [1, 2, 3, 4, 5, 6]
+                    option(value=value)
+                        =value
+        label
+            | Interests 2
+            each value in [1, 2, 3, 4, 5, 6]
+                label
+                    =value
+                    input(type="checkbox" value=value, name="int2")
+        button
+            | Create

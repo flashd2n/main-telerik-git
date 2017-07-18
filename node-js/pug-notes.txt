@@ -1,0 +1,89 @@
+--- SETUP ---
+
+-> npm install --save pug
+-> app.set('view engine', 'pug'); // -> inside server.js file
+-> app/router.get('/', (req, res) => {})
+	-> res.render('all') ---> this is a file all.pug INSIDE 'views' dir -> this path i relative to 'views' dir
+
+
+--- SYNTAX ---
+
+-> no opening or closing brackets
+
+h1
+	| content
+
+// equals <h1>content</h1>
+
+-> use tabs to build nesting and structure
+
+-> tag attributes
+	-> a(href="#someLink" style="display:none;") // -> this is how to input attributes in tags
+
+-> loops
+
+	ul
+    		each value, index in [1, 2, 3, 4, 5, 6]
+        		li
+            			a(href="#something-" + value style="color:green;")
+                			| Go to Item #{value} at index #{index}
+
+
+--- PASSING DATA FROM CONTROLLER TO VIEW
+
+-> res.render('all', {options})
+	-> options are custom key-value pairs
+	-> if this object has a property 'model', then the corresponding view can use the value of 'model' as follows:
+		-> res.render('all', {model:items})  ---> inside .js
+		-> each item in model ---> inside .pug
+
+--- SHARING CODE ---
+
+-> write head content
+-> at the end:
+body
+	block body
+
+--> other file
+
+-> extends relative/path/to/shared/code
+
+block body /// -> body is like a named variable -> can be anything else
+.......
+
+
+-> can create nested sharing and structure
+	-> one master, to be extrended by a sub-master, to be extended by a normal pug file
+		-> top master will do its stuff and call block body
+		-> sub master will extend top master and write stuff inside block body AND define another block body
+block body
+	.....
+	.....
+	block body2
+		-> normal pug will extend sub master and write stuff inside block body2
+
+
+--- MIXINS ---
+-> declare
+	-> in separate file
+mixin nav
+	....
+	....
+	....
+
+-> use:
+	-> include path-to-file
+	-> +nav
+
+
+--- FORMS ---
+	
+from(action="/items", method="GET")
+-> action value is the target url
+-> method value can be either GET or POST
+	--> GET -> the form data goes into the url as a query param -> useful for searching or filtering
+	--> POST -> the form data does into the req.body -> useful for sending data to the server
+	-> input(type="text", name="name2")
+		-> the req.body will be => {name2: 'valueOfField'}
+
+
