@@ -1,0 +1,29 @@
+--- SETUP ---
+
+- PACKAGES -
+
+-> npm install --save passport passport-local
+-> npm install --save cookie-parser express-session
+-> npm install --save mongo connect-mongo
+
+LOOKUP express-pug-passport
+
+-> server.js -> app.js -> auth-config.js -> form.pug -> auth.router.js
+
+
+--- FLOW ---
+
+-> For registration
+	-> hit /auth/register -> collect user data, hash password, save in database
+-> For Sign in
+	-> hit /auth/sign-in -> display sign in form and collect username, password
+	-> match the username and password with a user in DB
+	-> if success
+		-> passport attaches req.user
+		-> passport sends a cookie to client
+		-> passport saves the cookie in the database
+	-> while the user is logged -> req.user will NOT be undefined
+	-> if req.user is undefined, then user is NOT logged
+-> For Logout
+	-> hit /auth/logout
+	-> passport detaches the cookie from the user

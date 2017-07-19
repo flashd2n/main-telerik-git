@@ -15,4 +15,4 @@ const configApp = (app) => {
     app.set('view engine', 'pug');
 };
 
-module.exports = { configApp };
+module.exports = configApp;
