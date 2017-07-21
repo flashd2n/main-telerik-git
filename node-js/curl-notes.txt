@@ -1,0 +1,4 @@
+-> curl -X POST -H 'content-type: application/json' -d '{"text":"It works!"}' localhost:3001/entries
+	-> makes a post request to localhost
+	-> request header content-type set to json
+	-> sent data is a json object with the above data

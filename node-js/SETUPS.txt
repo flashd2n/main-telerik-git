@@ -65,5 +65,29 @@ inside gulpfile.js
 	});
 
 
+-- FLASH MESSAGES ---
+-> npm install --save express-messages connect-flash
+-> npm install --save cookie-parser express-session
+-> add as middleware
+
+// after body-parser
+
+app.use(cookieParser());
+app.use(session({ secret: 'Purple Unicorn', cookie: { maxAge: 60000 } }));
+
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+
+-> add in route -> in the catch block
+
+req.flash('error', err);
+
+-> in pug file (on top)
+
+!= messages()
+
 
 
