@@ -4,7 +4,7 @@
 2. Complete installation
 3. Go to installation dir and copy the path
 4. Add the path to system environment path
-5. Create data directory in default dir (user)
+5. Create data directory in c:/
 	-> mkdir data
 	-> cd data
 	-> mkdir db
@@ -46,6 +46,14 @@
 
 	-> .find -> returns and array of objects
 	-> .findOne -> returns an object -> the first found element
+
+
+	-> when searching by ID
+		-> const { MongoClient, ObjectID } = require('mongodb');
+		-> collection.findOne({
+            		_id: new ObjectID('597244ce5da1112af80c79b0'),
+        	   });
+
 
 -> DELETE
 	-> db.collectionName.remove({//.. query pair to find the entry/entries}) // deletes an entry/entries
@@ -105,7 +113,7 @@
 
 	-> using regex -> cannot use with text index
 		-> db.collectionName.find({key:/backpack/i}) -> performs case insensitive search for "backpack" in the provided field
-
+		-> db.collectionName.find({key: new RegExp(username, 'i')}) -> like above, but works with variable
 
 -> Aggregation
 	-> db.collectionName.aggregate([{$group:{_id:"$tourPackage", count: {$sum:1}}}])
