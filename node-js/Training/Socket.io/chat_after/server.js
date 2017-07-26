@@ -61,7 +61,7 @@ io.on('connection', function(socket) {
       return item.nickname !== socket.nickname;
     });
     io.emit('all-users', users);
-  });
+  }); 
 
 });
 
