@@ -1,0 +1,76 @@
+--- BASIC SETUP ----
+
+- SERVER -
+const express = require('express');
+const path = require('path');
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+const port = 4500;
+
+app.use(express.static(path.join(__dirname, '/public')));
+
+io.on('connection', (socket) => {
+    console.log('new connection');
+});
+
+server.listen(port, () => {
+    console.log('server running on port 4500');
+});
+
+- CLIENT -
+
+-> INSIDE
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io('http://localhost:4500');
+	// try var socket = io.connect()
+    </script>
+
+
+---- BASIC SERVER-CLIENT COMMUNICATION ----
+
+- SERVER -
+-> inside io.on(...)
+
+SEND OBJECT    socket.emit('msg-from-server', {
+                 greeting: 'Hello from server!',
+               });
+
+DECLARE FUNC WITH SENT OBJ AS PARAM    socket.on('msg-from-client', (msg) => {
+        				  console.log(msg);
+    				       });
+
+- CLIENT -
+-> after declaring socket
+socket.on('msg-from-server', (evt) => {...evt.greeting....})
+socket.emit('msg-from-server', {greeting: 'Hello from client!'})
+
+-> works the same way on server and client
+
+---- SOME WORKFLOW ----
+
+ideas
+-> save req.user to a variable and pass it
+-> save req.user to localHost and use it
+-> export and pass around the socket?
+
+- client
+-> save username to localstorage and use it to send it to the server on all emits
+-> client -> emit 'join' and send the server the username
+-> try to handshake only with io.connect()
+
+- server
+socket.emit -> sends data only to that socket
+socket.broadcast.emit -> sends data to all connected users EXCEPT the current socket
+socket.broadcast.to(socket.id).emit -> sends data only to the socket with provided id
+io.emit -> sends data to all connected sockets
+
+-> server -> inside on.connection -> on.join -> receive the username
+-> every socket in server has socket.id -> unique string
+-> good idea to store info in socket obj -> socket.user = data.username 
+	-> this was the user can be accessed in another event handler
+
+- grouping
+socket.join('awesome-group') ---> add the socket to a custom group
+socket.broadcast.to('awesome-group').emit(...) --> send data only to that group
