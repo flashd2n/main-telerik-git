@@ -13,8 +13,12 @@
   "license": "ISC",
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "chai": "^4.1.0",
     "eslint": "^4.2.0",
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-google": "^0.9.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2",
+    "sinon": "^2.4.1"
   },
   "dependencies": {
     "body-parser": "^1.17.2",

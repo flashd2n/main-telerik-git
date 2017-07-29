@@ -132,6 +132,9 @@
 
 
 
+db.apartments.find({notPaidFees:{ $size: 0}, notPaidExpenses:{$size: 0}})
+db.apartments.find({ $where: "this.notPaidFees.length > 0 || this.notPaidExpenses.length > 0"}).pretty()
+
 
 
 

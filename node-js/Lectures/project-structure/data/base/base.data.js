@@ -13,15 +13,18 @@ class BaseData {
     }
 
     getAll() {
-        // return this.collection.find({})
-        //     .toArray()
-        //     .then((models) => {
-        //         return models.map((model) => {
-        //             return this.modelClass.createInstance(model);
-        //         });
-        //     });
-            return this.collection.find()
-                .toArray();
+        const result = this.collection.find({})
+            .toArray();
+
+        if (this.modelClass.toViewModel) {
+            result.then((models) => {
+                return models.map((model) => {
+                    return this.modelClass.createInstance(model);
+                });
+            });
+        }
+
+        return result;
     }
 
     create(data) {
