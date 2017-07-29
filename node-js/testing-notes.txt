@@ -1,2 +1,2 @@
 ---- SETUP ----
--> yarn add mocha chai istanbul --dev
+-> yarn add mocha chai sinon istanbul --dev
