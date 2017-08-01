@@ -137,4 +137,4 @@ db.apartments.find({ $where: "this.notPaidFees.length > 0 || this.notPaidExpense
 
 
 
-
+db.expenses.update({name:"expense 3"},{$pull:{notPaid:{number:20}}, $addToSet:{paid: apt}})

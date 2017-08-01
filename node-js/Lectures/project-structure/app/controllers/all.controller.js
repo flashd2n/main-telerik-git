@@ -15,7 +15,6 @@ const validation = (req, res, next) => {
 const getItems = (req, res, data) => {
     return data.items.getAll()
         .then((items) => {
-            console.log(items[0].id);
             return res.render('items/all', { context: items });
         });
 };

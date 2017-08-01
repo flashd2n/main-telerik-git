@@ -1,2 +1,11 @@
 ---- SETUP ----
 -> yarn add mocha chai sinon istanbul --dev
+-> yarn add supertest
+
+--- SELENIUM ----
+
+- SETUP -
+-> dl standalone server from selenium website
+-> java -jar B:\MyGit\selenium-server-standalone-3.4.0.jar // runs the dl-ed file and starts the server
+-> npm install -g chromedriver
+-> npm install --save-dev selenium-webdriver
