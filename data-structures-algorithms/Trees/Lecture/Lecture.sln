@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndexedTrees", "IndexedTrees\IndexedTrees.csproj", "{D7503EC8-5888-4400-8623-597CB770B8D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnionFind", "UnionFind\UnionFind.csproj", "{5D940E59-2384-4D46-B6C3-73507098B218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DfsBfsBinaryHeap", "DfsBfsBinaryHeap\DfsBfsBinaryHeap.csproj", "{62C7A026-4E4A-407F-8D13-533AC23F6791}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7503EC8-5888-4400-8623-597CB770B8D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7503EC8-5888-4400-8623-597CB770B8D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7503EC8-5888-4400-8623-597CB770B8D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7503EC8-5888-4400-8623-597CB770B8D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D940E59-2384-4D46-B6C3-73507098B218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D940E59-2384-4D46-B6C3-73507098B218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D940E59-2384-4D46-B6C3-73507098B218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D940E59-2384-4D46-B6C3-73507098B218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C7A026-4E4A-407F-8D13-533AC23F6791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C7A026-4E4A-407F-8D13-533AC23F6791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C7A026-4E4A-407F-8D13-533AC23F6791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C7A026-4E4A-407F-8D13-533AC23F6791}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
