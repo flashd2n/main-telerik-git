@@ -24,6 +24,10 @@ class Deque {
     }
 
     pushFront(item) {
+        if (this._size === this._buffer.length) {
+            this._resizeBuffer();
+        }
+
         this._head = this._decrementIndex(this._head);
         this._buffer[this._head] = item;
 
