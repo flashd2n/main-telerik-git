@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BellmanFord", "BellmanFord\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloydWarshall", "FloydWarshall\FloydWarshall.csproj", "{C88758B2-7CC4-4390-AA7B-B83EADCC7C65}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopologicalSort", "TopologicalSort\TopologicalSort.csproj", "{CFE52330-C7E7-4149-9287-92A633652679}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{C88758B2-7CC4-4390-AA7B-B83EADCC7C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C88758B2-7CC4-4390-AA7B-B83EADCC7C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C88758B2-7CC4-4390-AA7B-B83EADCC7C65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFE52330-C7E7-4149-9287-92A633652679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFE52330-C7E7-4149-9287-92A633652679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFE52330-C7E7-4149-9287-92A633652679}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFE52330-C7E7-4149-9287-92A633652679}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

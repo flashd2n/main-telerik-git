@@ -29,7 +29,7 @@ namespace GraphTraversal
         static void Main()
         {
             FakeInput();
-
+            var dict = new Dictionary<int, string>();
             //PrintGraphWithAdjacencyMatrix();
             //PrintGraphWithAdjacencyList();
             PrintGraphWithSetOfEdges();
@@ -62,6 +62,55 @@ namespace GraphTraversal
                 edgeTwo.From = to;
                 edgeTwo.To = from;
                 edgeTwo.Weight = vertices[2];
+                graph.Add(edgeTwo);
+            }
+
+            for (int i = 0; i < graph.Count; i++)
+            {
+                graph[i].Print();
+            }
+
+        }
+
+        public static void PrintGraphWithSetOfEdges(Dictionary<int, string> dict)
+        {
+            var verticesCount = int.Parse(Console.ReadLine());
+
+            var edgesCount = int.Parse(Console.ReadLine());
+
+            // * 2 becuase undirectional
+            var graph = new List<Edge>(edgesCount * 2);
+
+            var dictCount = 1;
+
+            for (int i = 0; i < edgesCount; i++)
+            {
+                var vertices = Console.ReadLine().Split(' ').ToArray();
+
+                if (!dict.ContainsValue(vertices[0]))
+                {
+                    dict.Add(dictCount, vertices[0]);
+                    ++dictCount;
+                }
+                if (!dict.ContainsValue(vertices[1]))
+                {
+                    dict.Add(dictCount, vertices[1]);
+                    ++dictCount;
+                }
+
+                var from = dict.First(x => x.Value == vertices[0]).Key;
+                var to = dict.First(x => x.Value == vertices[1]).Key;
+
+                var edge = new Edge();
+                edge.From = from;
+                edge.To = to;
+                //edge.Weight = vertices[2];
+                graph.Add(edge);
+
+                var edgeTwo = new Edge();
+                edgeTwo.From = to;
+                edgeTwo.To = from;
+                //edgeTwo.Weight = vertices[2];
                 graph.Add(edgeTwo);
             }
 
@@ -118,6 +167,48 @@ namespace GraphTraversal
             PrintAdjacencyList(graph);
         }
 
+        public static List<List<Node>> GetGraphWithAdjacencyList(Dictionary<int, string> dict)
+        {
+            // UNDIRECTED!
+            var verticesCount = int.Parse(Console.ReadLine());
+
+            var edgesCount = int.Parse(Console.ReadLine());
+
+            var graph = new List<List<Node>>(verticesCount + 1);
+
+            for (int i = 0; i < verticesCount + 1; i++)
+            {
+                graph.Add(new List<Node>());
+            }
+
+            var dictCount = 1;
+
+            for (int i = 0; i < edgesCount; i++)
+            {
+                var vertices = Console.ReadLine().Split(' ').ToArray();
+
+                if (!dict.ContainsValue(vertices[0]))
+                {
+                    dict.Add(dictCount, vertices[0]);
+                    ++dictCount;
+                }
+                if (!dict.ContainsValue(vertices[1]))
+                {
+                    dict.Add(dictCount, vertices[1]);
+                    ++dictCount;
+                }
+
+                var from = dict.First(x => x.Value == vertices[0]).Key;
+                var to = dict.First(x => x.Value == vertices[1]).Key;
+
+                var node = new Node();
+                node.To = to;
+                graph[from].Add(node);
+            }
+
+            return graph;
+        }
+
         public class Node
         {
             public int To { get; set; }
@@ -136,7 +227,7 @@ namespace GraphTraversal
                 }
                 Console.WriteLine();
             }
-        }
+        }        
 
         public static void PrintGraphWithAdjacencyMatrix()
         {
@@ -157,6 +248,43 @@ namespace GraphTraversal
                 matrix[from, to] = weight;
                 // undirected
                 matrix[to, from] = weight;
+            }
+
+            PrintMatrix(matrix);
+        }
+
+        public static void PrintGraphWithAdjacencyMatrix(Dictionary<int, string> dict)
+        {
+            var verticesCount = int.Parse(Console.ReadLine());
+
+            var matrix = new int[verticesCount + 1, verticesCount + 1];
+
+            var edgesCount = int.Parse(Console.ReadLine());
+
+            var dictCount = 1;
+
+            for (int i = 0; i < edgesCount; i++)
+            {
+                var vertices = Console.ReadLine().Split(' ').ToArray();
+
+                if (!dict.ContainsValue(vertices[0]))
+                {
+                    dict.Add(dictCount, vertices[0]);
+                    ++dictCount;
+                }
+                if (!dict.ContainsValue(vertices[1]))
+                {
+                    dict.Add(dictCount, vertices[1]);
+                    ++dictCount;
+                }
+
+                var from = dict.First(x => x.Value == vertices[0]).Key;
+                var to = dict.First(x => x.Value == vertices[1]).Key;
+                //var weight = vertices[2];
+
+                matrix[from, to] = 1;
+                // undirected
+                matrix[to, from] = 1;
             }
 
             PrintMatrix(matrix);
