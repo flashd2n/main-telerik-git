@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Dijkstra
+namespace AStar
 {
     class Startup
     {
@@ -33,118 +33,22 @@ namespace Dijkstra
 
             //var graph = GetGraphWithAdjacencyList();
             var graph = GetGraphWithMatrix();
-            var distances = RunDijkstraAllDistances(graph, 1);
-            var distanceToEnd = RunDijkstraDistanceToEnd(graph, 1, 6);
-            var paths = RunDijkstraAllPaths(graph, 1);
 
-            Console.WriteLine(string.Join(" ", distances));
+            var heuristicValues = new List<int>() { 0, 10, 4, 2, 2, 0, 7 };
 
-            // print path to 5 from all paths
+            var distanceToEndPoint = AStarToEndPoint(graph, 1, 5, heuristicValues);
 
-            var current = 5;
-
-            while (current != -1)
-            {
-                Console.Write(current + " <- ");
-                current = paths[current];
-            }
-            Console.WriteLine();
+            Console.WriteLine(distanceToEndPoint);
 
             // print path from direct access
 
-            var result = RunDijkstraPathToEnd(graph, 1, 5);
+            var result = AStarPathToEnd(graph, 1, 5, heuristicValues);
             Console.WriteLine(string.Join(" <- ", result));
 
 
         }
 
-        public static int[] RunDijkstraAllDistances(List<List<Node>> graph, int startNode)
-        {
-            var distances = new int[graph.Count];
-            for (int i = 1; i < distances.Length; i++)
-            {
-                distances[i] = int.MaxValue;
-            }
-            distances[startNode] = 0;
-
-            var used = new HashSet<int>();
-
-            var queue = new BinaryHeap<Node>((a, b) => a.Weight < b.Weight);
-            queue.Enqueue(new Node(startNode, 0));
-
-            while (!queue.IsEmpty)
-            {
-                var node = queue.Dequeue();
-
-                if (used.Contains(node.Vertex))
-                {
-                    continue;
-                }
-                used.Add(node.Vertex);
-
-                foreach (var next in graph[node.Vertex])
-                {
-                    var currentDistance = distances[next.Vertex];
-                    var newDistance = distances[node.Vertex] + next.Weight;
-                    if (currentDistance <= newDistance)
-                    {
-                        continue;
-                    }
-                    distances[next.Vertex] = newDistance;
-                    queue.Enqueue(new Node(next.Vertex, newDistance));
-                }
-            }
-            return distances;
-        }
-
-        public static int[] RunDijkstraAllDistances(int[,] graph, int startNode)
-        {
-            var distances = new int[graph.GetLength(0)];
-            for (int i = 1; i < distances.Length; i++)
-            {
-                distances[i] = int.MaxValue;
-            }
-            distances[startNode] = 0;
-
-            var used = new HashSet<int>();
-
-            var queue = new BinaryHeap<Node>((a, b) => a.Weight < b.Weight);
-            queue.Enqueue(new Node(startNode, 0));
-
-            while (!queue.IsEmpty)
-            {
-                var node = queue.Dequeue();
-
-                if (used.Contains(node.Vertex))
-                {
-                    continue;
-                }
-                used.Add(node.Vertex);
-
-                for (int to = 1; to < graph.GetLength(1); to++)
-                {
-                    if (graph[node.Vertex, to] == 0)
-                    {
-                        continue;
-                    }
-
-                    var currentDistance = distances[to];
-                    var newDistance = distances[node.Vertex] + graph[node.Vertex, to];                    
-
-                    if (currentDistance <= newDistance)
-                    {
-                        continue;
-                    }
-                    distances[to] = newDistance;
-                    queue.Enqueue(new Node(to, newDistance));
-
-
-                }
-            }
-            return distances;
-        }
-
-        public static int RunDijkstraDistanceToEnd(List<List<Node>> graph, int startNode, int endNode)
+        public static int AStarToEndPoint(List<List<Node>> graph, int startNode, int endNode, List<int> heuristicValues)
         {
             var distanceToEnd = -1;
             var distances = new int[graph.Count];
@@ -156,8 +60,8 @@ namespace Dijkstra
 
             var used = new HashSet<int>();
 
-            var queue = new BinaryHeap<Node>((a, b) => a.Weight < b.Weight);
-            queue.Enqueue(new Node(startNode, 0));
+            var queue = new BinaryHeap<HeuristicNode>((a, b) => (a.Weight + a.HeuristicValue) < (b.Weight + b.HeuristicValue));
+            queue.Enqueue(new HeuristicNode(startNode, 0, heuristicValues[startNode]));
 
             while (!queue.IsEmpty)
             {
@@ -183,13 +87,13 @@ namespace Dijkstra
                         continue;
                     }
                     distances[next.Vertex] = newDistance;
-                    queue.Enqueue(new Node(next.Vertex, newDistance));
+                    queue.Enqueue(new HeuristicNode(next.Vertex, newDistance, heuristicValues[next.Vertex]));
                 }
             }
             return distanceToEnd;
         }
 
-        public static int RunDijkstraDistanceToEnd(int[,] graph, int startNode, int endNode)
+        public static int AStarToEndPoint(int[,] graph, int startNode, int endNode, List<int> heuristicValues)
         {
             var distanceToEnd = -1;
             var distances = new int[graph.GetLength(0)];
@@ -201,8 +105,8 @@ namespace Dijkstra
 
             var used = new HashSet<int>();
 
-            var queue = new BinaryHeap<Node>((a, b) => a.Weight < b.Weight);
-            queue.Enqueue(new Node(startNode, 0));
+            var queue = new BinaryHeap<HeuristicNode>((a, b) => (a.Weight + a.HeuristicValue) < (b.Weight + b.HeuristicValue));
+            queue.Enqueue(new HeuristicNode(startNode, 0, heuristicValues[startNode]));
 
             while (!queue.IsEmpty)
             {
@@ -236,15 +140,13 @@ namespace Dijkstra
                         continue;
                     }
                     distances[to] = newDistance;
-                    queue.Enqueue(new Node(to, newDistance));
-
-
+                    queue.Enqueue(new HeuristicNode(to, newDistance, heuristicValues[to]));
                 }
             }
             return distanceToEnd;
         }
-
-        public static int[] RunDijkstraAllPaths(List<List<Node>> graph, int startNode)
+        
+        public static int[] AStarPathToEnd(List<List<Node>> graph, int startNode, int endNode, List<int> heuristicValues)
         {
             var path = new int[graph.Count];
             path[startNode] = -1;
@@ -258,106 +160,8 @@ namespace Dijkstra
 
             var used = new HashSet<int>();
 
-            var queue = new BinaryHeap<Node>((a, b) => a.Weight < b.Weight);
-            queue.Enqueue(new Node(startNode, 0));
-
-            while (!queue.IsEmpty)
-            {
-                var node = queue.Dequeue();
-
-                if (used.Contains(node.Vertex))
-                {
-                    continue;
-                }
-
-                used.Add(node.Vertex);
-
-                foreach (var next in graph[node.Vertex])
-                {
-                    var currentDistance = distances[next.Vertex];
-                    var newDistance = distances[node.Vertex] + next.Weight;
-
-                    if (currentDistance <= newDistance)
-                    {
-                        continue;
-                    }
-
-                    path[next.Vertex] = node.Vertex;
-                    distances[next.Vertex] = newDistance;
-                    queue.Enqueue(new Node(next.Vertex, newDistance));
-                }
-            }
-            return path;
-        }
-
-        public static int[] RunDijkstraAllPaths(int[,] graph, int startNode)
-        {
-            var path = new int[graph.GetLength(0)];
-            path[startNode] = -1;
-
-            var distances = new int[graph.GetLength(0)];
-            for (int i = 1; i < distances.Length; i++)
-            {
-                distances[i] = int.MaxValue;
-            }
-            distances[startNode] = 0;
-
-            var used = new HashSet<int>();
-
-            var queue = new BinaryHeap<Node>((a, b) => a.Weight < b.Weight);
-            queue.Enqueue(new Node(startNode, 0));
-
-            while (!queue.IsEmpty)
-            {
-                var node = queue.Dequeue();
-
-                if (used.Contains(node.Vertex))
-                {
-                    continue;
-                }
-
-                used.Add(node.Vertex);
-
-                for (int to = 1; to < graph.GetLength(1); to++)
-                {
-                    if (graph[node.Vertex, to] == 0)
-                    {
-                        continue;
-                    }
-
-                    var currentDistance = distances[to];
-                    var newDistance = distances[node.Vertex] + graph[node.Vertex, to];
-
-                    if (currentDistance <= newDistance)
-                    {
-                        continue;
-                    }
-                    path[to] = node.Vertex;
-                    distances[to] = newDistance;
-                    queue.Enqueue(new Node(to, newDistance));
-
-
-                }
-            }
-            return path;
-        }
-
-        public static int[] RunDijkstraPathToEnd(List<List<Node>> graph, int startNode, int endNode)
-        {
-            var path = new int[graph.Count];
-            path[startNode] = -1;
-
-            var distances = new int[graph.Count];
-            for (int i = 1; i < distances.Length; i++)
-            {
-                distances[i] = int.MaxValue;
-            }
-            distances[startNode] = 0;
-
-            var used = new HashSet<int>();
-
-            var queue = new BinaryHeap<Node>((a, b) => a.Weight < b.Weight);
-            queue.Enqueue(new Node(startNode, 0));
+            var queue = new BinaryHeap<HeuristicNode>((a, b) => (a.Weight + a.HeuristicValue) < (b.Weight + b.HeuristicValue));
+            queue.Enqueue(new HeuristicNode(startNode, 0, heuristicValues[startNode]));
 
             while (!queue.IsEmpty)
             {
@@ -387,7 +191,7 @@ namespace Dijkstra
 
                     path[next.Vertex] = node.Vertex;
                     distances[next.Vertex] = newDistance;
-                    queue.Enqueue(new Node(next.Vertex, newDistance));
+                    queue.Enqueue(new HeuristicNode(next.Vertex, newDistance, heuristicValues[next.Vertex]));
                 }
             }
 
@@ -404,7 +208,7 @@ namespace Dijkstra
             return pathToDestination.ToArray();
         }
 
-        public static int[] RunDijkstraPathToEnd(int[,] graph, int startNode, int endNode)
+        public static int[] AStarPathToEnd(int[,] graph, int startNode, int endNode, List<int> heuristicValues)
         {
             var path = new int[graph.GetLength(0)];
             path[startNode] = -1;
@@ -418,8 +222,8 @@ namespace Dijkstra
 
             var used = new HashSet<int>();
 
-            var queue = new BinaryHeap<Node>((a, b) => a.Weight < b.Weight);
-            queue.Enqueue(new Node(startNode, 0));
+            var queue = new BinaryHeap<HeuristicNode>((a, b) => (a.Weight + a.HeuristicValue) < (b.Weight + b.HeuristicValue));
+            queue.Enqueue(new HeuristicNode(startNode, 0, heuristicValues[startNode]));
 
             while (!queue.IsEmpty)
             {
@@ -453,9 +257,7 @@ namespace Dijkstra
                     }
                     path[to] = node.Vertex;
                     distances[to] = newDistance;
-                    queue.Enqueue(new Node(to, newDistance));
-
-
+                    queue.Enqueue(new HeuristicNode(to, newDistance, heuristicValues[to]));
                 }
             }
 
@@ -522,6 +324,20 @@ namespace Dijkstra
 
             public int Vertex { get; set; }
 
+            public int Weight { get; set; }
+        }
+
+        public class HeuristicNode
+        {
+            public HeuristicNode(int vertex, int weight, int heuristicValue)
+            {
+                this.Vertex = vertex;
+                this.Weight = weight;
+                this.HeuristicValue = heuristicValue;
+            }
+
+            public int Vertex { get; set; }
+            public int HeuristicValue { get; set; }
             public int Weight { get; set; }
         }
 
