@@ -77,7 +77,7 @@ namespace Lecture
             }
 
             Console.WriteLine(string.Join(" ", array));
-            Console.WriteLine(string.Join(" ", sorted));
+            //Console.WriteLine(string.Join(" ", sorted));
 
         }
 
