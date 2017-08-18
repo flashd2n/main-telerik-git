@@ -6,7 +6,7 @@ namespace Structures
     public class BinaryHeap<T>
     {
         private const int DEFAULT_SIZE = 4;
-        private IList<T> heap;
+        private T[] heap;
         private int count;
         private Func<T, T, bool> compareFunc;
 
@@ -17,11 +17,11 @@ namespace Structures
             this.count = 0;
         }
 
-        public BinaryHeap(IList<T> array, Func<T, T, bool> compFunc)
+        public BinaryHeap(T[] array, Func<T, T, bool> compFunc)
         {
             this.compareFunc = compFunc;
 
-            var firstRoot = (array.Count - 2) / 2;
+            var firstRoot = (array.Length - 2) / 2;
 
             for (int i = firstRoot; i >= 0; i--)
             {
@@ -29,14 +29,14 @@ namespace Structures
             }
 
             this.heap = array;
-            this.count = array.Count;
+            this.count = array.Length;
         }
 
         public bool IsEmpty => this.count <= 0;
 
         public void Enqueue(T value)
         {
-            if (this.count == this.heap.Count)
+            if (this.count == this.heap.Length)
             {
                 this.DoubleHeap();
             }
@@ -63,10 +63,10 @@ namespace Structures
 
         private void DoubleHeap()
         {
-            var newSize = this.heap.Count * 2;
+            var newSize = this.heap.Length * 2;
             var newHeap = new T[newSize];
 
-            for (int i = 0; i < this.heap.Count; i++)
+            for (int i = 0; i < this.heap.Length; i++)
             {
                 newHeap[i] = this.heap[i];
             }

@@ -43,11 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graph\AStar.cs" />
+    <Compile Include="Graph\BellmanFord.cs" />
+    <Compile Include="Graph\Dijkstra.cs" />
+    <Compile Include="Graph\FloydWarshall.cs" />
+    <Compile Include="Graph\Kruskal.cs" />
+    <Compile Include="Graph\Prim.cs" />
+    <Compile Include="Graph\TopologicalSort.cs" />
+    <Compile Include="Searching\BinarySearch.cs" />
+    <Compile Include="Searching\Bounds.cs" />
+    <Compile Include="Sorting\AllSorting.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Structures\Structures.csproj">
+      <Project>{42F41890-1AF4-4B26-8AB0-524779782C32}</Project>
+      <Name>Structures</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

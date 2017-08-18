@@ -48,9 +48,12 @@
     <Compile Include="BinaryIndexedTree.cs" />
     <Compile Include="BucketList.cs" />
     <Compile Include="Deque.cs" />
+    <Compile Include="Edge.cs" />
     <Compile Include="Graph.cs" />
+    <Compile Include="HeuristicNode.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="LLNode.cs" />
+    <Compile Include="Node.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnionFind.cs" />

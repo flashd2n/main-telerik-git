@@ -32,6 +32,7 @@ namespace FloydWarshall
 
             var graph = GetGraphWithMatrix();
             var distances = RunFloydWarshall(graph);
+            Console.WriteLine(distances[1, 4]);
         }
 
         public static int[,] RunFloydWarshall(int[,] graph)
