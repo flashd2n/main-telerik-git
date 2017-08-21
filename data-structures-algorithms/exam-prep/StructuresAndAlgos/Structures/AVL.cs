@@ -5,26 +5,18 @@ namespace Structures
     public class AVL<T>
         where T : IComparable<T>
     {
-        class Node<R>
-        {
-            public R data;
-            public Node<R> left;
-            public Node<R> right;
-            public Node(R data)
-            {
-                this.data = data;
-            }
-        }
-
-        Node<T> root;
+        private AvlNode<T> root;
 
         public AVL()
         {
+            this.root = null;
         }
+
+        public AvlNode<T> Root => this.root;
 
         public void Add(T data)
         {
-            var newItem = new Node<T>(data);
+            var newItem = new AvlNode<T>(data);
 
             if (root == null)
             {
@@ -33,37 +25,42 @@ namespace Structures
             else
             {
                 root = RecursiveInsert(root, newItem);
+                root.Parent = null;
             }
         }
 
-        private Node<T> RecursiveInsert(Node<T> current, Node<T> n)
+        private AvlNode<T> RecursiveInsert(AvlNode<T> current, AvlNode<T> newNode)
         {
             if (current == null)
             {
-                current = n;
+                current = newNode;
                 return current;
             }
-            else if (n.data.CompareTo(current.data) < 0)
+            else if (newNode.Data.CompareTo(current.Data) < 0)
             {
-                current.left = RecursiveInsert(current.left, n);
+                var item = RecursiveInsert(current.Left, newNode);
+                item.Parent = current;
+                current.Left = item;
                 current = balance_tree(current);
             }
-            else if (n.data.CompareTo(current.data) > 0)
+            else if (newNode.Data.CompareTo(current.Data) > 0)
             {
-                current.right = RecursiveInsert(current.right, n);
+                var item = RecursiveInsert(current.Right, newNode);
+                item.Parent = current;
+                current.Right = item;
                 current = balance_tree(current);
             }
 
             return current;
         }
 
-        private Node<T> balance_tree(Node<T> current)
+        private AvlNode<T> balance_tree(AvlNode<T> current)
         {
             int b_factor = balance_factor(current);
 
             if (b_factor > 1)
             {
-                if (balance_factor(current.left) > 0)
+                if (balance_factor(current.Left) > 0)
                 {
                     current = RotateLL(current);
                 }
@@ -74,7 +71,7 @@ namespace Structures
             }
             else if (b_factor < -1)
             {
-                if (balance_factor(current.right) > 0)
+                if (balance_factor(current.Right) > 0)
                 {
                     current = RotateRL(current);
                 }
@@ -92,9 +89,9 @@ namespace Structures
             root = Delete(root, target);
         }
 
-        private Node<T> Delete(Node<T> current, T target)
+        private AvlNode<T> Delete(AvlNode<T> current, T target)
         {
-            Node<T> parent;
+            AvlNode<T> parent;
 
             if (current == null)
             {
@@ -102,13 +99,13 @@ namespace Structures
             }
             else
             {
-                if (target.CompareTo(current.data) < 0)
+                if (target.CompareTo(current.Data) < 0)
                 {
-                    current.left = Delete(current.left, target);
+                    current.Left = Delete(current.Left, target);
 
                     if (balance_factor(current) == -2)
                     {
-                        if (balance_factor(current.right) <= 0)
+                        if (balance_factor(current.Right) <= 0)
                         {
                             current = RotateRR(current);
                         }
@@ -118,13 +115,13 @@ namespace Structures
                         }
                     }
                 }
-                else if (target.CompareTo(current.data) > 0)
+                else if (target.CompareTo(current.Data) > 0)
                 {
-                    current.right = Delete(current.right, target);
+                    current.Right = Delete(current.Right, target);
 
                     if (balance_factor(current) == 2)
                     {
-                        if (balance_factor(current.left) >= 0)
+                        if (balance_factor(current.Left) >= 0)
                         {
                             current = RotateLL(current);
                         }
@@ -136,21 +133,21 @@ namespace Structures
                 }
                 else
                 {
-                    if (current.right != null)
+                    if (current.Right != null)
                     {
-                        parent = current.right;
+                        parent = current.Right;
 
-                        while (parent.left != null)
+                        while (parent.Left != null)
                         {
-                            parent = parent.left;
+                            parent = parent.Left;
                         }
 
-                        current.data = parent.data;
-                        current.right = Delete(current.right, parent.data);
+                        current.Data = parent.Data;
+                        current.Right = Delete(current.Right, parent.Data);
 
                         if (balance_factor(current) == 2)
                         {
-                            if (balance_factor(current.left) >= 0)
+                            if (balance_factor(current.Left) >= 0)
                             {
                                 current = RotateLL(current);
                             }
@@ -162,7 +159,7 @@ namespace Structures
                     }
                     else
                     {
-                        return current.left;
+                        return current.Left;
                     }
                 }
             }
@@ -170,39 +167,40 @@ namespace Structures
             return current;
         }
 
-        public bool Find(T key)
+        public AvlNode<T> Find(T key)
         {
-            var foundKey = Find(key, root).data;
+            var foundItem = Find(key, root);
+            var foundKey = foundItem.Data;
 
             if (foundKey.CompareTo(key) == 0)
             {
-                return true;
+                return foundItem;
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
-        private Node<T> Find(T target, Node<T> current)
+        private AvlNode<T> Find(T target, AvlNode<T> current)
         {
-            if (target.CompareTo(current.data) < 0)
+            if (target.CompareTo(current.Data) < 0)
             {
-                if (current.left == null)
+                if (current.Left == null)
                 {
                     return current;
                 }
 
-                return Find(target, current.left);
+                return Find(target, current.Left);
             }
             else
             {
-                if (target.CompareTo(current.data) == 0 || current.right == null)
+                if (target.CompareTo(current.Data) == 0 || current.Right == null)
                 {
                     return current;
                 }
 
-                return Find(target, current.right);
+                return Find(target, current.Right);
             }
 
         }
@@ -220,13 +218,13 @@ namespace Structures
             Console.WriteLine();
         }
 
-        private void InOrderDisplayTree(Node<T> current)
+        private void InOrderDisplayTree(AvlNode<T> current)
         {
             if (current != null)
             {
-                InOrderDisplayTree(current.left);
-                Console.Write("({0}) ", current.data);
-                InOrderDisplayTree(current.right);
+                InOrderDisplayTree(current.Left);
+                Console.Write("({0}) ", current.Data);
+                InOrderDisplayTree(current.Right);
             }
         }
 
@@ -235,55 +233,65 @@ namespace Structures
             return l > r ? l : r;
         }
 
-        private int getHeight(Node<T> current)
+        private int getHeight(AvlNode<T> current)
         {
             int height = 0;
             if (current != null)
             {
-                int l = getHeight(current.left);
-                int r = getHeight(current.right);
+                int l = getHeight(current.Left);
+                int r = getHeight(current.Right);
                 int m = max(l, r);
                 height = m + 1;
             }
             return height;
         }
 
-        private int balance_factor(Node<T> current)
+        private int balance_factor(AvlNode<T> current)
         {
-            int l = getHeight(current.left);
-            int r = getHeight(current.right);
+            int l = getHeight(current.Left);
+            int r = getHeight(current.Right);
             int b_factor = l - r;
             return b_factor;
         }
 
-        private Node<T> RotateRR(Node<T> parent)
+        private AvlNode<T> RotateRR(AvlNode<T> root)
         {
-            Node<T> pivot = parent.right;
-            parent.right = pivot.left;
-            pivot.left = parent;
+            AvlNode<T> pivot = root.Right;
+            root.Right = pivot.Left;
+            if (pivot.Left != null)
+            {
+                pivot.Left.Parent = root;
+            }
+            pivot.Left = root;
+            root.Parent = pivot;
             return pivot;
         }
 
-        private Node<T> RotateLL(Node<T> parent)
+        private AvlNode<T> RotateLL(AvlNode<T> root)
         {
-            Node<T> pivot = parent.left;
-            parent.left = pivot.right;
-            pivot.right = parent;
+            AvlNode<T> pivot = root.Left;
+            root.Left = pivot.Right;
+            if (pivot.Right != null)
+            {
+                pivot.Right.Parent = root;
+            }
+            pivot.Right = root;
+            root.Parent = pivot;
             return pivot;
         }
 
-        private Node<T> RotateLR(Node<T> parent)
+        private AvlNode<T> RotateLR(AvlNode<T> root)
         {
-            Node<T> pivot = parent.left;
-            parent.left = RotateRR(pivot);
-            return RotateLL(parent);
+            AvlNode<T> pivot = root.Left;
+            root.Left = RotateRR(pivot);
+            return RotateLL(root);
         }
 
-        private Node<T> RotateRL(Node<T> parent)
+        private AvlNode<T> RotateRL(AvlNode<T> root)
         {
-            Node<T> pivot = parent.right;
-            parent.right = RotateLL(pivot);
-            return RotateRR(parent);
+            AvlNode<T> pivot = root.Right;
+            root.Right = RotateLL(pivot);
+            return RotateRR(root);
         }
     }
 }
