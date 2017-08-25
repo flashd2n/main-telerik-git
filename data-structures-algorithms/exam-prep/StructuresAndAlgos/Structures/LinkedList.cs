@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace Structures
 {
     public class LinkedList<T> : IEnumerable<T>
+        where T: IComparable<T>
     {
         private int count;
         private LLNode<T> head;
@@ -17,7 +18,10 @@ namespace Structures
             this.count = 0;
         }
 
-        public bool IsEmpty => this.count == 0;
+        public bool IsEmpty
+        {
+            get { return this.count == 0; }
+        }
         public int Count
         {
             get { return this.count; }
@@ -138,6 +142,24 @@ namespace Structures
             return this.GetNode(index);
         }
 
+        public LLNode<T> GetNode(T value)
+        {
+            var returnNode = this.head;
+            var nextNode = default(LLNode<T>);
+
+            for (int i = 0; i < this.count; i++)
+            {
+                if (returnNode.Value.CompareTo(value) == 0)
+                {
+                    return returnNode;
+                }
+                nextNode = returnNode.Next;
+                returnNode = nextNode;
+            }
+
+            return null;
+        }
+
         public void Remove(T value)
         {
             var index = this.IndexOf(value);
@@ -214,6 +236,16 @@ namespace Structures
             if (startInclusive == 0 && endExclusive == this.count)
             {
                 return this;
+            }
+
+            if (startInclusive == this.count)
+            {
+                return null;
+            }
+
+            if (endExclusive == 0)
+            {
+                return null;
             }
 
             var returnList = new LinkedList<T>();
