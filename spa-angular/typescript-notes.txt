@@ -1,0 +1,14 @@
+=== TypeScript Setup ===
+
+-> install: npm install -g typescript -> installs the typescript compiler
+-> install: npm install -g tslint
+
+
+=== VS Code setup for TypeScript ===
+
+-> basic config files
+	-> tsconfig.json -> typescript compilation settings
+		-> generate with tsc --init
+	-> launch.json -> visual studio application settings
+	-> tasks.json -> tasks to be performed before or after compiling
+
