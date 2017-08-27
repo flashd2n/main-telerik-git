@@ -10,5 +10,221 @@
 	-> tsconfig.json -> typescript compilation settings
 		-> generate with tsc --init
 	-> launch.json -> visual studio application settings
+		-> generate with F5 and choose Node
 	-> tasks.json -> tasks to be performed before or after compiling
+
+
+=== Components ===
+
+-> A component consists of:
+	-> View -> html + bindings and directives
+	-> Model -> TS class with data (properties) and logic (methods)
+	-> Metadata -> defined with a decorator
+
+---> @Component()
+	-> selector: 'custom' -> html directive for the component
+	-> template: '<h1></h1>' -> inline template
+	-> templateUrl: 'relative-path' -> html template
+	-> styleUrls: ['relative-path'] -> css style applicable only to this component
+
+=== Directives ===
+
+-> custom or build-in angular html tags and elements that enhance the html
+-> can use a whole component as a directive by giving it a selector property and using it inside another view
+
+-> build-in
+	-> *ngId='conditional'
+		-> inserted as a html attribute
+		-> if evaluated as false, the tag all its children are deleted from the dom
+		-> if eveluated to true, the tag and all its children are inserted in the dom
+		-> example: <table class='table' *ngIf='products && products.length'>
+		-> CONTINUES TO LISTEN FOR CHANGES TO THAT CONDITION EVEN AFTER PAGE IS LOADED
+	-> *ngFor='let item of collection' //-> item is each item from the collection, NOT the index
+		-> used the same way as ngIf
+		-> works pretty much like //each from handlebars and pug/jade
+
+=== Data binding ===
+
+-> interpolation
+	-> one way, works like handlebars
+	-> example
+		-> <h1>{{classPropertyName}}</h1>
+	-> can have simple conditions
+		-> <button>{{showImage ? 'Hide' : 'Show'}} Images</button>
+	
+-> property binding
+	-> one way
+	-> example
+		-> <img [src]='product.imageUrl'
+                        [title]='product.productName' 
+                        [style.width.px]='imageWidth' 
+                        [style.margin.px]='imageWidth'/> // no explicit interpolation, [src] must be a valid attribute
+	-> can be achieved with interpolation, but it is best practice to use property binding
+
+-> event binding
+	-> inside view template
+		-> declare a standard event and a function call
+		-> example
+			<button (click)='myAwesomeFunction()'></button>
+	-> inside model class
+		-> define a standard class method that will be called when event is triggered
+
+-> Two way binding
+	-> achieved by using ngModel directive from angular forms module
+	-> basically when something on the page changes -> a change is reflected in the model code
+	-> example
+		1. html -> <input type='text' [(ngModel)]='filterString' />
+		2. html -> <p>{{filterString}}</p>
+		3. model -> public filterString: string;
+		4. angular module:
+			-> import { FormsModule } from '@angular/forms';
+			-> add FormsModule to imports array
+	-> actions -> user types stuff into input, each change ovewrites the model property
+		   -> then you display the new property in the paragraph
+	-> equivalent to vanilla js
+		-> on input keydown -> trigger event
+		-> take the value of input
+		-> store it somewhere
+		-> update the content of a paragraph with new value
+
+	-> tips and tricks
+		-> bind the ndModel to a Getter and a Setter
+			-> this way some logic can be executed when the event is fired
+
+=== Pipes ===
+
+-> used to transforms data values, like making lowercase, uppercase, adding currency to numbers and so on
+
+-> examples of default pipes:
+	-> {{product.Name | lowercase}}
+	-> <img [title]='propduct.Name | uppercase'>
+	-> {{product.Price | currency | lowercase}}
+	-> {{product.Price | currency:'USD':true:'1.2-2'}} -> used USD as currency, displays the symbol and exactly 1 digit before the '.' and 2 after
+
+-> building a custom pipe
+	-> create a new something.pipe.ts file
+	-> import { Pipe, PipeTransform } from '@angular/core';
+	-> create a class than implements PipeTransform
+	-> decorate with @Pipe({name: 'awesomePipeName'})
+	-> define pipe logic in transform method
+	-> export the class and import it in the parent module, add it to declarations
+	-> use in desired template
+
+
+=== Component Life Cycles ===
+
+-> AFTER a directive/component's constructor is called, agular calls a series of hook methods
+	1. ngOnChanges() -> Requires OnChanges interface -> called first and every time a data-bound input property changes
+	2. ngOnInit() -> Requires OnInit interface -> called once after the constructor and onchanges
+	3. ngAfterViewInit() -> Requires AfterViewInit interface -> called after component views and child view are initialized
+	4. ngOnDestroy() -> just before angular destroys the component
+
+
+=== Nested Components ===
+
+-> basically a component which defines a small portion of another page
+-> creation steps:
+	-> define the component just like a normal component
+	-> import it in the corresponding module
+	-> maybe use hooks like ngOnChanges
+
+	--- receiving data from the parent component
+
+	-> enable properties to be settable from the parent component
+		-> @Input() rating: number;
+	-> set the value of the exposed proeprties from the parent component view
+		-> <pm-smComponent [rating]='somevalue'></pm-smComponent>
+
+	--- sending data to the parent component
+
+	-> from child side
+		-> define a click event on a tag in the view
+		-> define the class method to execute when click is triggered
+		-> define an output notify event emitter
+			-> @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+		-> inside class method
+			-> this.notify.emit('very awesome click!');
+	-> from parent side
+		-> setup even listener in the view
+			-> <pm-star (notify)='onNotify($event)'></pm-star> //$event containes the data from child
+		-> setup onNotify method to hande the payload and do logic
+
+-> communication between child and parent components is done through the parent view
+
+
+
+=== Services ===
+
+-> an abstraction of logic that is shared with multiple components like db CRUD, loggind, etc
+-> angular manages a singleton for each service - niiiice
+-> creating
+	-> create a file awesome.service.ts
+	-> create and export a class with the desired properties and methods
+	-> decorate it with @Injectable()
+	-> register the service with angular injector
+		-> inside the desired component's MetaData: providers: [ProductService]
+		-> when registering like that, the service can be injected in the component and all its children
+	-> injecting the service instance
+		-> inside the constructor -> constructor(private myService: MyService) {...}
+		-> that's it... the angular injector takes care of everything
+
+
+=== HTTP and Observables ===
+
+-> angular uses an abstraction layer called Http Service to hangle the http requests
+	-> we send requests to the layer and the layer sends them to the server
+-> working with http:
+	1. Import the http client module inside the corresponding module
+		-> import {HttpClientModule} from '@angular/common/http';
+		-> add to the imports array
+		-> this injects an instance of the http service
+	2. Inside the service file
+		-> import { HttpClient } from '@angular/common/http';
+		-> import { Observable } from 'rxjs/Observable';
+		-> get an instance for the HttpClient
+			-> constructor(private http: HttpClient) { }
+		-> somehow define a server url as a string
+		-> define the method that will issue the get request and return and observable
+			public getProducts(): Observable<IProduct[]> {
+        			return this.http.get<IProduct[]>(this.productUrl);
+    			}
+	---- now we have the angular http module loaded in the corresponding module
+	---- an instance of the http client is injected in the desired service
+	---- the service has a method that sends a request to the server
+	---- the method returns an obervable of the expected return type
+	---- next we need error handling and to subscribe to the observable data stream
+	3. Error handling
+		-> add a fuckload of imports
+			import 'rxjs/add/observable/throw';
+			import 'rxjs/add/operator/catch';
+			import 'rxjs/add/operator/do';
+		-> define an error handling method
+    			private handleError(err: HttpErrorResponse) {
+        			console.log(err.message);
+        			return Observable.throw(err.message);
+    			}
+		-> chain after the get request
+			.do(x => console.log(JSON.stringify(x))) // good for debuggin to view what comes
+            		.catch(this.handleError);
+	
+	4. subscribing
+		this.productService.getProducts()
+            		.subscribe(products => {
+                		this.products = products;
+                		this.filteredProducts = this.products;
+            		}, error => this.errorMessage = <any>error);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
