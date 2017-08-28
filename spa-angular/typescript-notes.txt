@@ -123,6 +123,8 @@
 === Nested Components ===
 
 -> basically a component which defines a small portion of another page
+-> a nested component is used by giving it a selector name and using it in the parent comp as a html tag
+
 -> creation steps:
 	-> define the component just like a normal component
 	-> import it in the corresponding module
@@ -215,7 +217,88 @@
             		}, error => this.errorMessage = <any>error);
 
 
+=== Routing ===
 
+	1. in head of index.html
+		-> <base href="/"> -> used to define the 'root' of the current module router
+			-> if href="/bla" -> then all urls will be domain.com/bla/route
+	2. in the corresponding module
+		-> import { RouterModule } from '@angular/router';
+		-> add the RouterModule to the imports array
+	3. in the corresponding module register the routes with the RouterModule
+		RouterModule.forRoot([
+      			{ path: 'products', component: ProductListComponent },
+      			{ path: 'products/:id', component: ProductDetailComponent},
+      			{ path: 'welcome', component: WelcomeComponent},
+      			{ path: '', redirectTo: 'welcoime', pathMatch: 'full'},
+      			{ path: '**', redirectTo: 'welcome', pathMatch: 'full'}
+    		])
+	4. in the root component -> define the navigation as html tags
+	5. insert the angular routing directives
+		-> <li><a [routerLink]="['/products']">Products</a></li>
+	6. define the placeholder for the route view in the html
+		-> <router-outlet></router-outlet> -> when a route is activated the contents of the
+							view will be inserted within this tag
+
+
+---> more about routing
+
+-> parameter routes
+	1. register the parameter route in the RouterModule in the corresponding module
+	2. insert the link to the desired place in the html
+		-> <a [routerLink]="['/products', product.productId]">{{product.productName}}</a>
+		-> the values after the first element are added to the URL with '/'
+	3. get the value from the url
+		-> import { ActivatedRoute } from '@angular/router';
+		-> constructor(private route: ActivatedRoute) {}
+		-> const id = +this.route.snapshot.paramMap.get('id');
+
+
+-> calling a route from code
+	-> import { Router } from '@angular/router';
+	-> constructor(private router: Router) {}
+	-> onSomeAction() { this.router.navigate(['/products']) }
+
+
+-> Guards
+
+	-> possible actions:
+		-> CanActivate -> determines if the route can be accessed
+		-> CanDeactivate -> determines if the route can be exited from
+		-> Resolve -> pre-loads data BEFORE activating th route
+	-> create a new service
+	-> add the service in the providers array in the corresponding module
+		-> this is important, this was the Router module can use our service for routing
+	-> the new service class has to implement CanActivate from import { CanActivate } from '@angular/router';
+	-> inside the module route definitions:
+		{ path: 'products/:id',
+        		canActivate: [ProductGuardService],
+        		component: ProductDetailComponent}
+
+
+
+=== Angular CLI ===
+
+-> install -> npm install -g @angular/cli
+
+	-> ng new project-name -> creates a shit ton of files
+	-> ng serve -> compiles and launches the application + auto recompile
+	-> ng g -> used to create directives, components, modules, pipe, and more... use ng g --help for all info
+	-> ng test -> executes unit tests
+	-> ng e2e -> executes functional tests
+	-> ng build -> compiles the code and puts in the dist dir
+	-> ng build --prod -> minifies the code and uses hash in the name
+
+	-> generation shorthands:
+		-> ng g cl -> class
+		-> ng g c -> component
+		-> ng g d -> directive
+		-> ng g e -> enum
+		-> ng g g -> guard
+		-> ng g i -> interface
+		-> ng g m -> module
+		-> ng g p -> pipe
+		-> ng g s -> service
 
 
 
