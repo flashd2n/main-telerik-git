@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuffmanCoding", "HuffmanCod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientHuffmanCodingSortedInput", "EfficientHuffmanCodingSortedInput\EfficientHuffmanCodingSortedInput.csproj", "{2F1601B9-BC4D-4DBF-83CE-4957974B2D68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wtf", "wtf\wtf.csproj", "{89DC666A-B162-43D8-958A-9A42BF8AD634}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2F1601B9-BC4D-4DBF-83CE-4957974B2D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F1601B9-BC4D-4DBF-83CE-4957974B2D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F1601B9-BC4D-4DBF-83CE-4957974B2D68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89DC666A-B162-43D8-958A-9A42BF8AD634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89DC666A-B162-43D8-958A-9A42BF8AD634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89DC666A-B162-43D8-958A-9A42BF8AD634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89DC666A-B162-43D8-958A-9A42BF8AD634}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
