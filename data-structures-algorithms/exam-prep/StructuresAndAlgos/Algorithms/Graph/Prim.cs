@@ -29,6 +29,7 @@ namespace Algorithms.Graph
                     continue;
                 }
                 used.Add(edge.To);
+                // make calc for mst or whatever
                 tree.Add(edge);
 
                 ModifyQueue(queue, graph, edge.To);
@@ -57,6 +58,7 @@ namespace Algorithms.Graph
                     continue;
                 }
                 used.Add(edge.To);
+                // or calc value for mst or whatever
                 tree.Add(edge);
 
                 ModifyQueue(queue, graph, edge.To);
