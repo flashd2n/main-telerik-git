@@ -36,6 +36,7 @@ namespace Algorithms
 
             var edges = ReadEdges();
             var kruskal = Kruskal.RunKruskalMST(edges, 8);
+
         }
 
         private static List<Edge> ReadEdges()
