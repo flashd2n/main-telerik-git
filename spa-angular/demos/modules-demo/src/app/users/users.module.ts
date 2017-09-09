@@ -1,3 +1,5 @@
+import { UsersResolver } from './users-resolver';
+import { UsersRoutingModule } from './users-routing.module';
 import { UsersService } from './users.service';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -6,9 +8,10 @@ import { UserComponent } from './user/user.component';
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
+    UsersRoutingModule
   ],
   declarations: [UsersListComponent, UserComponent],
-  providers: []
+  providers: [UsersResolver]
 })
 export class UsersModule { }

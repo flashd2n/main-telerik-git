@@ -427,10 +427,35 @@
 
 === ROUTING ===
 
--> lazy
--> resolving
--> params subscribe
--> guards
+--> lazy
+
+	1. Create module specific routing module, define paths (users-routing.module.ts)
+	2. Import the routing module in the parent module
+	3. Inside the glocal app-module -> { path: 'users', loadChildren: './users/users.module#UsersModule'}
+		
+
+--> resolving
+
+	1. Generate a service "users-resolver.service.ts"
+	2. add to providers of users.module
+	3. in resolver -> implement Resolve<any>
+	4. in resolver -> method resolve -> should return whatever needs to be pre-loaded // database call
+	5. where the route is defined -> add resolve: {'users': UsersResolver}
+		when the resolver is done, the route will be activated and the data will be in the var 'users'
+	6. in user-list component -> inject ActivatedRoute -> this.users = this.activatedRoute.snapshot.data['users']
+
+--> params subscribe
+
+-> 2 ways // best be used in ngOnInit()
+	-> snapshot
+		-> var id = this.route.snapshot.params['id'];
+
+	-> observable
+		-> this.route.params.subscribe(params => const id = params['id'].......);
+
+--> guards
+
+	
 
 
 

@@ -1,0 +1,8 @@
+<h4> Posts: </h4>
+
+<h4 *ngIf="!!error">{{error}}</h4>
+
+<div class="post-details" *ngFor="let post of posts">
+  <h5 appMydir colorBg="green">{{post?.title | some}}</h5>
+  <p>{{post?.body | some}}</p>
+</div>

@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'users', component: UsersListComponent }
+  { path: 'users', loadChildren: './users/users.module#UsersModule'}
 ];
 
 @NgModule({

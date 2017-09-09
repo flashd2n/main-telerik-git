@@ -1,0 +1,12 @@
+<h4>Edit Post</h4>
+<form [formGroup]="editForm" (ngSubmit)="edit(editPost.value)" #editPost=ngForm>
+  <div>
+    <label for="title">Title</label>
+    <input type="text" name="title" formControlName=title>
+  </div>
+  <div>
+      <label for="body">Body</label>
+      <input type="text" name="body" formControlName=body>
+  </div>
+  <input type="submit" value="Submit">
+</form>

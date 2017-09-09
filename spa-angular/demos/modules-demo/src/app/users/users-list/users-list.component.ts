@@ -1,5 +1,6 @@
 import { UsersService } from './../users.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class UsersListComponent implements OnInit {
 
   private users;
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService, private activatedRoute: ActivatedRoute) { }
 
   addUser(name: string) {
     const id = this.users.length;
@@ -17,7 +18,7 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.users = this.userService.getAll();
+    this.users = this.activatedRoute.snapshot.data['users'];
   }
 
 }

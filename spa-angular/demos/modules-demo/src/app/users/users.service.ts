@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
 export class UsersService {
 
   users = [
-    {id: 1, name: 'Steven'},
-    {id: 2, name: 'Viktor'},
-    {id: 3, name: 'Cuki'},
+    { id: 1, name: 'Steven' },
+    { id: 2, name: 'Viktor' },
+    { id: 3, name: 'Cuki' },
   ];
 
   getAll() {
