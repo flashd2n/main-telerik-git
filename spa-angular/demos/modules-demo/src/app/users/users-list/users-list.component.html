@@ -1,0 +1,8 @@
+<app-header [title]="'Users List Component Title'"></app-header>
+
+<h3 *ngFor="let user of users">
+  <app-user [user]="user"></app-user>
+</h3>
+
+<input type="text" #i>
+<button (click)="addUser(i.value)">Add User</button>
