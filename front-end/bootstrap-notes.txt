@@ -1,0 +1,247 @@
+=== SETUP ===
+
+-> npm install *bootstrap* // chech official page for the correct naming
+-> html script load order
+	-> 1. -> jquery
+	-> 2. -> tether
+	-> 3. -> boostrap
+	-> 4... -> custom JS
+-> load css
+
+=== BAsic Styles ===
+
+--> Typography
+	-> <div class="h1....h6"> -> same visual effect as <h1>..., but not semantic
+	-> <div class="display-1.2.3.."> -> bigger font than h1..for some dramatic effects
+	-> <p class="lead"> -> makes that p a lead p -> bigger with more spacing
+
+--> Text Align
+	-> <p class="text-XX-POS"> -> specifies the alignment for a particular break point
+		-> sm, md, lg, xl; pos => left, center, right
+	-> <p class="text-nowrap"> -> forces the text to stay in one line -> breaks grid
+	-> <p class="text-justify"> -> alignes left and right
+	-> <p class="text-lowercase//text-uppercase//text-capitalize">
+
+--> Lists
+	-> <ul class="list-unstyled"> // removes the bullets
+	-> <ul class="list-inline"> + every <li class="list-inline-item"> // removes bullets and inlines
+
+--> Colors
+	-> <p class="text-info"> // -> changes color
+		-> possible options: info, success, warning, danger, white
+	-> <p class="bg-info"> //-> changes the background color
+
+--> Images
+	-> <img class="fluid"> // makes the img fit its container and resize on break points
+	-> <img class="rounded"> // slight rounded edges // can choose direction (top, left, bottom, right)
+	-> <img class="float left/right"> // floats the image
+	-> <img class="mx-auto"> // centers the image if defined as display:block
+
+
+=== LAYOUT ===
+
+-> 3 parts: container -> row -> columns
+
+--> container
+-> used to hold the rows and columns and provide basic alignment // defines the overall width for the content
+	-> class="container" -> provides 15px padding + centers the content + snaps at break points
+	-> class="container-fluid" -> provides 15px padding + extends edge to edge, no snapping
+
+
+--> rows
+-> used to prepare content for layout
+-> provide grouping of elements to be structured
+-> creates the 12 column grid
+
+
+--> columns
+-> provide the actual structure of the layout
+-> syntax -> "col-BP-SIZE"
+	BP: sm, md, lg, xl
+	SIZE: 1-12 ==> 12 == 100% viewport, 6 == 50% of the viewport, etc....
+-> examples:
+	-> "col" -> will try to fix everything on one row and only when content is too wide, then it will break on the next line
+	-> "col-md" -> will act as a normal "col", when viewport is equal to or less than md, content will be forced on a single row
+	-> "col-md-6" -> content will take 50% of viewport when screen is bigger than md, equal to or less than md -> single row
+-> can combine to achieve screen-width versatility
+	-> "col-md-6 col-lg-3"
+		-> when screen is bigger than lg -> content will take 3/12 spaces
+		-> when screen is between md and lg -> content will take 6/12 spaces
+		-> when screen is less than md -> content will take the full row -> 12/12 spaces
+
+-> column offset
+-> used to push columns from left to right
+-> example
+	"offset-md-1" -> will push the column one space to the right starting from the md break point
+
+
+->nexting
+-> used to fine tune column layout
+-> inside a column, place a new row and inside that row I have a fresh 12 column layout
+
+
+-> reordering columns
+-> push & pull
+	-> "push-md-4" -> moves the column 4 units to the right at md+
+	-> "pull-md-4" -> moves the column 4 units to the left at md+
+
+-> flex -> for simpler tasks, easier
+	-> "flex-md-last" -> the column is moved to the last position at md+
+	-> can use first, last, unordered
+
+-> alignment
+
+-> row-level
+	-> "align-items-center/start/end" -> vertical alignment for all columns in relation to the row height
+	-> "justify-content-center/start/end/around/between" -> horizontal alignment for all colums in relation to the row widht
+		-> make sure not all 12 column spaces are used
+
+-> col-level
+	-> "align-self-center/start/end" -> vertical alignment for indv colums in relation to the row height
+
+
+-> positioning
+-> "fixed-top/bottom" -> sticks the element to the top or bottom of the page
+	-> takes it out of the html flow
+	-> will cover other elements under it
+	-> will stick to the position even when scrolling
+-> "sticky-top" -> sticks the element to the top/current position, but does not take it out of the html flow
+		-> does not cover elements under it
+		-> remains at the top when scrolling
+
+
+-> "d-inline/block/inline-block" // works just like display: block/inline/inline-block
+-> "d-flex" // defines flex container -> used on the wrapper or container of items
+		-> the child elements can now be controlled by flex
+		-> can add break points "d-sm-flex"
+		-> can make the parent element inline: "d-sm-inline-flex"
+
+
+-> flex container options
+
+-> "d-BP-flex" applied in a parent div, for example, with child divs for the elements, for example
+
+-> "flex-BP-row/column" -> row -> default, forces the children to arrange in a single row
+		        -> column -> forces the children to arrange beneath each other
+
+
+
+-> "justify-content-BG-ALG" // aligns the items relative to the flex container
+	-> ALG: start, end, center, between, around
+
+
+-> "flex-wrap/nowrap" -> wierd... + align-content-ALG ... also wierd
+
+-> "align-self-BP-ALG" -> aligns individual elements within the flex container
+	-> "align-self-end" -> for parent flex-column will send the element to the end horizontally
+			    -> for parent flex-row will send the element ot the bottom vertically
+
+-> other layout options
+
+-> "float-BP-left/right/none" -> works just like normal float
+	-> "clearfix" -> clears the floating
+
+
+-> "p/m+t/l/b/r/x/y-BP-1/2/3/4/5/auto" -> applies padding/margin
+	-> example "mt-1" -> applies 0.25 rem margin top
+
+-> "w/h/mh/mw-25/50/75/100" -> width, height, max height, max width + 25/50/75/100% of the container
+
+-> "invisible" -> equivalent to making the element with opacity 0 => hides, but keeps the space
+
+-> "hidden-BP-up/down" -> removes the element from the page and doesn't keep space
+	-> "hidden-md-up" -> will remove the element from md and higher
+	-> "hidden-md-down" -> will remove the element from md and lower
+
+
+=== NAV ===
+
+
+--> basic structure
+	-> <nav class="nav">
+		<a class="nav-item nav-link" href="">Link</a>
+
+
+--> basic styles
+	-> "active", "disabled" -> straight forward, disabled does not disable the link, only visual
+	-> inside <nav> "nav-tabs/nav-pills" -> basic styling
+	-> inside <nav> "justify-content-ALG" -> aligns the entire nav, useful for centering
+	-> inside <nav> "nav-justified" -> makes all nav-items the same width
+	-> inside <nav> "nav-fill" -> makes all nav-items, but allows longer content to expand the item
+	-> inside <nav> "flex-column" -> makes the nav vertical -> can add BP for hamburger menu prep
+
+
+=== NAVBAR ===
+
+--> pretty much the same as simple nav with flex-column set
+
+<nav class="navbar navbar-toggleable-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#">Some Branding</a>
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home</a>
+      <a class="nav-item nav-link" href="#">Mission</a>
+      <a class="nav-item nav-link" href="#">Services</a>
+      <a class="nav-item nav-link" href="#">Staff</a>
+      <a class="nav-item nav-link disabled" href="#">Testimonials</a>
+    </div>
+  </div>
+</nav>
+
+
+
+= DROPDOWN SETUP =
+
+      <div class="dropdown">
+        <a class="nav-item nav-link dropdown-toggle" href="#" data-toggle="dropdown">Services</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Item One</a>
+          <a class="dropdown-item" href="#">Item Two</a>
+          <a class="dropdown-item" href="#">Item Three</a>
+        </div>
+      </div>
+
+= NAV FORMS =
+
+-> between navbar and navbar-nav
+
+    <form class="form-inline">
+      <input class="form-control" type="text">
+      <button class="btn btn-info">GO</button>
+    </form> 
+
+
+= NAV PLACEMENT =
+
+-> using "fixed-top/bottom", "sticky-top" --> same as before
+
+= HAMBURGER
+
+  <nav class="navbar navbar-inverse bg-primary navbar-toggleable-sm">
+
+    <a href="#" class="navbar-brand">Wisdom Pet Medicine</a>
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#hamburger">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="hamburger">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#">Home</a>
+        <a class="nav-item nav-link" href="#">Mission</a>
+        <a class="nav-item nav-link" href="#">Services</a>
+        <a class="nav-item nav-link" href="#">Staff</a>
+        <a class="nav-item nav-link" href="#">Testimonials</a>
+      </div>
+    </div>
+
+    <!-- navbar-nav -->
+  </nav>
+
+
+
+
+
+
+
+
