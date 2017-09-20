@@ -10,10 +10,11 @@ import { ModalDialogService, SimpleModalComponent, IModalDialogButton } from 'ng
 export class SomethingCleverComponent implements OnInit {
 
   private fromModal;
+  private subscription;
 
   constructor(private modalService: ModalDialogService, private viewRef: ViewContainerRef, private emitter: EmitterServiceService) {
     this.openNewDialog();
-    this.fromModal = this.emitter.subscribe(data => {
+    this.subscription = this.emitter.subscribe(data => {
       this.fromModal = data;
       this.processData();
     });
