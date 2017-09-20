@@ -239,6 +239,224 @@
   </nav>
 
 
+=== BASIC STYLES
+
+
+--> buttons
+	-> "btn" - base class
+	-> can be added to <a>, <button>, <input>
+	-> "btn-(outline)-COLOR", like info, primary, secondary, success, warning, danger
+	->"btn-block" -> full width
+	-> "btn-lg/sm" -> different sizes
+	-> "active/disabled"
+
+-> button group -> div wrapper around several buttons: "btn-group"/"btn-group-vertical"/"btn-group-sm/lg"
+-> button toolbar -> div wrapper around btn-groups: "btn-toolbar"
+
+--> badges
+
+-> visually the same as btns
+-> used inside spans
+-> use cases: "badge badge-COLOR badge-pill"
+
+
+--> progress bars
+
+
+    <div class="progress">
+      <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 85%">85%</div>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar bg-info" style="width: 15%">15%</div>
+      <div class="progress-bar bg-warning" style="width: 30%">30%</div>
+    </div>
+
+
+--> list groups
+
+-> useful for grouping <a>, <li>, <button> -> cool style, vertical
+-> wrap the items in a div with "list-group"
+-> each item should have:
+	-> "list-group-item" -> basic requirement
+	-> "list-group-item-action" -> adds hover and visual efect that the item can be clicked
+	-> "justify-content-ALG" -> used to align the elements of the individual item
+	-> commonly used with badges inside the item content
+
+
+--> Breadcrumbs
+
+        <nav class="breadcrumb">
+          <a class="breadcrumb-item" href="#">Home</a>
+          <a class="breadcrumb-item" href="#">Exotic Pets</a>
+          <span class="breadcrumb-item active">Nutrition</span>
+        </nav>
+
+// change the separator
+
+    .breadcrumb-item+.breadcrumb-item::before {
+        content: '>';
+    }
+
+
+=== LAYOUT COMPONENTS ===
+
+--> jumbotron
+-> useful for making main homepage info element
+
+<div class="jumbotron">....content...</div>
+
+-> good combo is "jumbotron jumbotron-fluid" -> deletes the rounded edges and extra spacing
+
+
+--> tables
+
+-> classes for <table>
+	-> "table" -> main, required!
+	-> "table-responsive"
+	-> "table-inverse" -> kind of ugly (blank on white)
+	-> "table-striped" -> cool
+	-> "table-hover"
+	-> "table-sm" -> deleted spaces
+-> classes for <thead>
+	-> "thead-inverse"
+-> classes for <tr>
+	-> "table-success" -> applied to entire row
+	-> "table-active...warning...danger...info..."
+
+
+
+--> Cards
+
+    <section class="card card-outline-danger">
+      <img class="img-fluid card-img-top card-img-bottom" src="" alt="">
+      <div class="card-block card-img-overlay">
+        <h2 class="card-title">Dr. Stanley Winthrop</h2>
+        <h5 class="card-subtitle">Behaviorist</h5>
+        <p class="card-text">Dr. Winthrop is the guardian of Missy, a three-year old Llaso mix, who he adopted at the shelter. Dr. Winthrop is
+          passionate about spay and neuter and pet adoption, and works tireless hours outside the clinic, performing free
+          spay and neuter surgeries for the shelter.</p>
+        <a class="card-link" href="#">About Me</a>
+        <a class="card-link" href="#">My Pets</a>
+        <a class="card-link" href="#">Client Slideshow</a>
+      </div>
+    </section>
+
+
+-> more styles for cards
+
+    <section class="mb-5 card card-outline-danger" id="drwinthrop">
+      <header class="card-header">Stanley Winthrop</header>
+      <header class="card-header">
+        <nav class="nav nav-tabs ">
+          <a class="nav-link nav-item active" href="#">About Me</a>
+          <a class="nav-link nav-item" href="#">My Pets</a>
+          <a class="nav-link nav-item" href="#">Client Slideshow</a>
+        </nav>
+      </header>
+      <img class="img-fluid" src="images/doctor-winthrop.jpg" alt="Doctor Winthrop Photo">
+      <div class="card-block">
+        <h5 class="card-subtitle">Behaviorist</h5>
+        <p class="card-text">Dr. Winthrop is the guardian of Missy, a three-year old Llaso mix, who he adopted at the shelter. Dr. Winthrop is
+          passionate about spay and neuter and pet adoption, and works tireless hours outside the clinic, performing free
+          spay and neuter surgeries for the shelter.</p>
+      </div>
+      <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action" class="card-link" href="#">About Me</a>
+        <a class="list-group-item list-group-item-action" class="card-link" href="#">My Pets</a>
+        <a class="list-group-item list-group-item-action" class="card-link" href="#">Client Slideshow</a>
+      </div>
+      <footer class="card-footer">
+        <a class="card-link" href="#">About Me</a>
+        <a class="card-link" href="#">My Pets</a>
+        <a class="card-link" href="#">Client Slideshow</a>
+      </footer>
+    </section>
+
+--> card layouts
+
+-> option 1 -> wrap all card in a row and wrap individual cards in col each
+-> option 2 -> <div class="container d-flex flex-wrap justify-content-between"> + widths for each card
+-> option 3 -> <div class="container card-group">
+	    -> <div class="container card-deck">
+	    -> <div class="container card-columns"> ---> pinterest-style -> I like it 
+
+
+--> media
+
+    <section class="media" id="drwinthrop">
+      <img class="img-fluid d-flex align-self-center mr-3 rounded w-25" src="images/doctor-winthrop.jpg" alt="Doctor Winthrop Photo">
+      <div class="media-body">
+        <h2>Dr. Stanley Winthrop</h2>
+        <h5>Behaviorist</h5>
+        <p>Dr. Winthrop is the guardian of Missy, a three-year old Llaso mix, who he adopted at the shelter. Dr. Winthrop is
+          passionate about spay and neuter and pet adoption, and works tireless hours outside the clinic, performing free
+          spay and neuter surgeries for the shelter.</p>
+      </div>
+    </section>
+
+
+=== FORMS ===
+
+-> for fieldsets and general div wrappers
+	-> "form-group"
+	-> "form-inline"
+	-> "has-danger/success/warning"
+-> for inputs (text, email, number), textareas, selects
+	-> "form-control"
+	-> "form-control-sm/lg"
+	-> "form-control-danger/success"
+-> for labels
+	-> "form-control-label"
+-> for smalls
+	-> "form-text text-muted"
+--> checkboxes and radio buttons
+
+-> "form-check" -> for div wrappers of checkboxes and radio buttons
+-> "form-check-inline" -> for div wrappers of checkboxes and radio buttons -> makes inline
+-> "form-check-input" -> for inputs(radio and checkbox)
+-> "form-check-label" -> for labels of radio and checkbox
+
+--> layout
+
+-> use normal container > row > col layout options 
+-> add "col-form-label" for labels
+
+
+--> input groups 
+
+      <div class="form-group">
+        <label class="form-control-label" for="donationamt">Donation Amount</label>
+        <div class="input-group">
+          <span class="input-group-addon">$</span>
+          <input type="text" class="form-control" id="donationamt" placeholder="Amount">
+        </div>
+      </div>
+
+
+// can use <span class="input-group-btn"><button.....
+
+
+=== INTERACTIVE ===
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
