@@ -440,6 +440,195 @@
 === INTERACTIVE ===
 
 
+---> Tooltips
+
+-> tether.min.js should be loaded before bootstrap.js
+
+-> html:
+	-> <a href="#" data-toggle="tooltip" title="Very Awesome Title" id="activate-me">
+-> JS:
+	-> need to activate the tooltip
+		-> can activate all tooltips by $('[data-toggle="tooltip"]').tooltip();
+		-> can activate specific tooltip by $('#activate-me').tooltip();
+
+
+
+---> Popovers
+
+-> very similar to tooltips. Popovers by default support title and content
+
+-> html:
+	-> <button type="button" class="btn btn-info" data-toggle="popover" title="Awesome Title" data-content="Very many long text to display">
+-> JS:
+	-> same as with tooltips
+	-> $('[data-toggle="popover"]').popover();
+
+
+---> Alerts
+
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
+    //... content
+  </div>
+
+
+---> Dropdowns
+
+-> normal dropdown
+
+  <div class="dropdown mb-3">
+    <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Services</button>
+    <div class="dropdown-menu">
+      <div class="dropdown-header">Vaccinations</div>
+      <a class="dropdown-item" href="#">Grooming</a>
+      <a class="dropdown-item" href="#">General Health</a>
+      <a class="dropdown-item" href="#">Nutrition</a>
+      <a class="dropdown-item" href="#">Pest Control</a>
+      <a class="dropdown-item" href="#">Vaccinations</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Other</a>
+    </div>
+  </div>
+
+-> dropdown split
+
+  <div class="btn-group mb-3">
+    <button type="button" class="btn btn-primary">Services</button>
+    <button class="btn btn-primary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown"><span class="sr-only">Toggle Dropdown</span></button>
+    <div class="dropdown-menu">
+      <div class="dropdown-header">Vaccinations</div>
+      <a class="dropdown-item" href="#">Grooming</a>
+      <a class="dropdown-item" href="#">General Health</a>
+      <a class="dropdown-item" href="#">Nutrition</a>
+      <a class="dropdown-item" href="#">Pest Control</a>
+      <a class="dropdown-item" href="#">Vaccinations</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Other</a>
+    </div>
+  </div>
+
+
+=== COLLAPSE ===
+
+      <button type="button" class="btn btn-success mb-3" data-toggle="collapse" data-target="#pestControl">Title</button>
+-> in case of a links -->      <!-- <a href="#pestControl" data-toggle="collapse">Pest Control</a> -->
+      <div id="pestControl" class="collapse mb-3">
+        // content
+      </div>
+
+
+
+=== ACCORDION ===
+
+
+      <div class="container" id="servicesAccordion">
+
+        <div class="card">
+          <div class="card-header">
+            <a href="#grooming" data-toggle="collapse" data-parent="#servicesAccordion">Grooming</a>
+          </div>
+
+          <div id="grooming" class="collapse show">
+            <div class="card-block">
+              // content
+            </div>
+          </div>
+        </div>
+
+
+=== MODALS ===
+
+
+      <button type="button" class="btn btn-success mt-4" data-toggle="modal" data-target="#servicesModal">More Info</button>
+-> in case of a links -->      <!-- <a class="mt-4" data-toggle="modal" href="#servicesModal">More Info</a> -->
+      <div id="servicesModal" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">TITLE</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              // CONTENT
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+=== CAROUSEL ===
+
+            <div class="carousel slide" id="featured" data-ride="carousel">
+              <div class="carousel-inner">
+
+                <ol class="carousel-indicators">
+                  <li data-target="#featured" data-slide-to="0" class="active"></li>
+                  <li data-target="#featured" data-slide-to="1"></li>
+                </ol>
+
+                <div class="carousel-item active">
+                  <img class="d-block img-fluid" src="images/carousel-lifestyle.jpg" alt="Lifestyle Photo">
+                </div>
+
+                <div class="carousel-item">
+                  <img class="d-block img-fluid" src="images/carousel-fish.jpg" alt="Mission">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3>Pete, <small>owner of McAllister</small></h3>
+                    <p>"Wisdom Pet Medicine is the only clinic around that will even book pet fish for appointments."</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <a href="#featured" class="carousel-control-prev" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a href="#featured" class="carousel-control-next" data-slide="next">
+                  <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+
+
+=== SCROLL SPY ===
+
+<body data-spy="scroll" data-target="#navbar-site" data-offset="80">
+
+  <style>
+    body {
+      position: relative;
+      padding-top: 80px;
+    }
+  </style>
+
+  <nav id="navbar-site" class="fixed-top navbar navbar-inverse bg-primary navbar-toggleable-sm">
+    <div class="container">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#staff">Staff</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+    </div>
+    <!-- navbar-nav -->
+    </ul>
+    <!-- container -->
+  </nav>
+
+// ... content
+
+</body>
+
+
+
+
 
 
 
