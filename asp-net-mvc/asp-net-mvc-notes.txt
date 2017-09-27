@@ -1,0 +1,119 @@
+=== Routing ===
+
+-> configured in the RouteConfig in App_Start
+
+
+=== Controllers ===
+
+--> ActionResult -> the product of a controller method, can return http response code, redirect, json, string, view
+	-> View(*"viewName") -> returns a view (in case of no parameters, return the view that matches the name of the method)
+	-> PartialView() -> same as above, but does not load the layout of the view, only the view itself
+	-> Json(//data...) -> returns a json
+	-> RedirectToRoute -> redirects to another route
+--> Selectors
+	-> [HttpPost] or other verbs
+	-> [ActionName("my-custom-name")] -> replaces the method name with this in the url
+					  -> needs to specify the view correctly -> View("About") // for About method
+--> Filters
+	-> Authorization filter // what users or groups have access
+		->[Authorize(Roles="administrator", Users="gosho")] // -> administrators and user gosho can access that controller action
+		->[Authorize] // any logged in user can access this action
+		-> can be used to decorate the controller or a controller method
+	-> Action filter // applied after or before or both the action is executed
+		1. create a class and inherit from ActionfilterAttribute class
+		2. Override OnActionExecution for before action logic or OnActionExecuted for after action logic
+		3. use the custom filter as default filters
+	-> Exception filter // handles exception within the execution of the action
+		-> [HandleError(View="MyErrorView")] // show my view, not the default
+		-> [HandleError(View="MyAwesomeErrorView", ExceptionType=typeof(ArgumentException))] // shows my view, when specified exception happens
+
+=== Views ===
+
+--> Razor and helpers
+
+@{ 
+    var amounts = new List<decimal> { 100, 25.00m, -23, 42.42m };
+}
+
+<ul>
+    @foreach(var am in amounts)
+    {
+        <li>@formatAmount(am)</li>
+    }
+</ul>
+
+
+@helper formatAmount(decimal amount) {
+    var color = "green";
+    if (amount < 0)
+    {
+        color = "red";
+    }
+    <span style="color: @color">@String.Format("{0:c}", amount)</span>
+}
+
+--> Layouts
+
+-> define common partial html code to be reused (like headers and footers)
+-> _ViewStart.cshtml -> called before each view in /Views -> used to extract Layout setting and/or other more complicated UI logic
+
+-> @RenderBody() -> the place where the html code from the View will be injected
+-> @RenderSection("sectionName", required: bool) -> the place where a section from the View will be injected, if present
+	-> will throw HttpException if section is required, but not defined in the View
+
+
+
+---> Helpers
+
+
+-> @Html.ActionLink("display name", "controller action name", "controller name", "routing data?", "html attributes")
+	-> example: <p>@Html.ActionLink("Log in", "Login", "Account", null, new { @class = "btn btn-default" })</p>
+-> @Html.Partial("_LoginPartial") // -> injects html code from another common file
+	-> useful to extract more complex logic -> like auth checking for UI rendering
+-> @Html.BeginForm() -> builds a form
+	-> example: using(Html.BeginForm(//..)){ //... } // using is necessary because it will place the closing tag at the closing curly brace
+-> @Html.Action() -> renders a parial view, but NOT by calling the view itself. Calls a method within a controller
+	-> example: @Html.Action("Serial", "Home", new { letterCase = "lower" })
+	-> calls Serial action from Home controller and passes letterCase
+	-> the action returns a string, which is then inserted in the page
+
+
+---> Bundles
+
+-> used for bundling and minification of css and js files
+1. Register the bundles in the BundleConfig
+	-> for JS -> bundles.add(new ScriptBundle("runtime relative path", "cdn path").Include("current relative path"))
+	-> for CSS -> bundles.add(new StyleBundle("runtime relative path", "cdn path").Include("current relative path"))
+	-> inside Include cann list multime files for bundling
+	-> current relative path options:
+		-> "~/Scripts/jquery-{version}.js" -> {version} is a placeholder for the jquery version -> will work when version number is changed
+		-> "~/Scripts/jquery.validate*" -> * will ignore whatever follows after * and take the file
+	-> BundleTable.EnableOptimizations = true; -> forces the bundling and minification even when in debug mode
+	-> bundles.UseCdn = true; -> must be enabled if using cdn links
+
+2. Use in Views
+	-> for JS -> @Scripts.Render("~/bundles/jquery") -> will search the runtime relative path for the registered js bundle
+	-> for CSS -> @Styles.Render("~/Content/css") -> will search the runtime relative path for the registered css bundle
+
+
+
+=== Models ===
+
+--> basic creation
+	1. Create model like a normal .cs file, like a regular db model
+	2. right-click controllers and create controller with settings
+	3. right-click controller method for get and generate view with settings
+	4. pass the model to the View() in the controller
+
+
+
+
+
+
+
+
+
+
+
+
+
