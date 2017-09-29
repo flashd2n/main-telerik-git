@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace ATM.Controllers
 {
@@ -18,15 +20,31 @@ namespace ATM.Controllers
         // GET: CheckingAccount/Details
         public ActionResult Details()
         {
-            var checkingAccount = new CheckingAccount
-            {
-                AccountNumber = "0000012345",
-                Balance = 0,
-                FirstName = "Gosho",
-                LastName = "Goshev"
-            };
+            var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+
+            var userId = User.Identity.GetUserId();
+
+            var checkingAccount = db.CheckingAccounts.FirstOrDefault(x => x.ApplicationUserId == userId);
 
             return View(checkingAccount);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DetailsForAdmin(int id)
+        {
+            var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+
+            var checkingAccount = db.CheckingAccounts.FirstOrDefault(x => x.Id == id);
+
+            return View("Details", checkingAccount);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult List()
+        {
+            var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+
+            return View(db.CheckingAccounts.ToList());
         }
 
         // GET: CheckingAccount/Create

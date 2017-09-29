@@ -105,6 +105,104 @@
 	3. right-click controller method for get and generate view with settings
 	4. pass the model to the View() in the controller
 
+=== Security and Identity ===
+
+--> Program initialization path:
+	1. Global.asax.cs -> configures the bundles, the filters, the areas and the routes
+	2. Startup.cs -> calls authconfig
+	3. Startup.Auth.cs -> configures app authentication by defining or attaching objects
+		-> app.CreatePerOwinContext<T>();
+			-> accepts a Func callback that returns some object and can be accessed from the Owin context
+		-> app.CreatePerOwinContext(ApplicationDbContext.Create); // -> gives a db context when called
+		-> app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create); // -> gets a UserNamager when called
+			-> UserManager -> can be configured:
+				-> how to validate username/email
+				-> how to validate password
+				-> sms/email services for two factor auth
+				-> Uses an instance of ApplicationUser, which inherits from IdentityUser, which is basically a model for the user with props
+				-> used to create users in the DB + validates User properties AND hashes the password
+			-> can be accessed by:
+				-> HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
+---> Claims
+-> statements for a user, created by the identity provider inside SignInManager, called by SignInAsync
+	-> a statement can contain a lot of things like email, role, username, etc
+	-> this information is stored in the auth cooker, created by the SignInManager
+	-> the idea is to have access to this info from the cookie and not make DB calls
+
+-> Creating a claim:
+	-> when registering a new user
+		1. After the user is created in the DB and an id is assigned
+		2. UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName, model.FirstName));
+			-> good idea is to use the constants ClaimTypes... because they contain schemas
+		3. When the execution of the registration proceeds, the SignInManager will be called to SignInAsync the user
+			-> this is where the identity is created, which issues the cookie and adds the info about the claim to the cookie
+
+-> Accessing a claim:
+	-> inside the appropriate view:
+		-> @using System.Security.Claims
+		-> var identity = (ClaimsIdentity)User.Identity;
+		-> var name = identity.FindFirstValue(ClaimTypes.GivenName) ?? User.Identity.GetUserId();
+
+---> ApplicationUser properties
+-> another way to add more info to the identity object, but this (unlike claims) will be persisten in the DB
+
+-> Creating a persistent identity property
+	1. Inside ApplicationUser
+	2. Add a new property public string Pin { get; set; }
+	3. Add-Migration
+	4. Update-Database
+
+-> Accessing the custom property
+
+	    var userId = User.Identity.GetUserId();
+            var manager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = manager.FindById(userId);
+            var userPin = user.Pin;
+	-> maybe this is more convenient whan writing a standard Db EF query 
+
+
+---> Roles and Assignments
+
+->  Restricting access by role
+	-> decorate an action with [Authorize(Roles = "Admin")]
+
+-> Creating a role and decorating a user
+	1. var role = new IdentityRole { Name = "Admin" };
+	2. DbContext.Roles.AddOrUpdate(x => x.Name, role);
+	3. userManager.AddToRole(user.Id, "Admin");
+
+-> Full Custom User Creation With Roles Assignment
+
+	    var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+// do not use ApplicationUserManager in Configuration DB Seed
+// UserManager uses the default password validation
+
+            if (!context.Users.Any(x => x.UserName == "admin@test.com"))
+            {
+                var user = new ApplicationUser { UserName = "admin@test.com", Email = "admin@test.com" };
+                userManager.Create(user, "passW0rd!");
+
+                var service = new CheckingAccountService(context);
+                service.CreateCheckingAccount("Admin", "Pesho", user.Id, 1500m);
+
+                var role = new IdentityRole { Name = "Admin" };
+
+                context.Roles.AddOrUpdate(x => x.Name, role);
+                context.SaveChanges();
+
+                userManager.AddToRole(user.Id, "Admin");
+            }
+
+
+
+
+
+
+
+
 
 
 

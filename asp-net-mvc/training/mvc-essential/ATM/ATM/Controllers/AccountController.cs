@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ATM.Models;
+using System.Data.Entity.Validation;
+using System.Text;
+using ATM.Services;
 
 namespace ATM.Controllers
 {
@@ -151,10 +154,42 @@ namespace ATM.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };                
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
+                    UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName, model.FirstName));
+
+                    var service = new CheckingAccountService(HttpContext.GetOwinContext().Get<ApplicationDbContext>());
+
+                    service.CreateCheckingAccount(model.FirstName, model.LastName, user.Id, 0.00m);
+
+                    //var db = new ApplicationDbContext();
+                    //var totalAccounts = db.CheckingAccounts.Count();
+                    //var checkingAccount = new CheckingAccount
+                    //{
+                    //    FirstName = model.FirstName,
+                    //    LastName = model.LastName,
+                    //    AccountNumber = String.Format($"{totalAccounts}").PadLeft(10, '0'),
+                    //    Balance = 0.00m,
+                    //    ApplicationUserId = user.Id
+                    //};
+
+                    //db.CheckingAccounts.Add(checkingAccount);
+                    //db.SaveChanges();
+
+                    //try
+                    //{
+                    //    db.CheckingAccounts.Add(checkingAccount);
+                    //    db.SaveChanges();
+                    //}
+                    //catch (DbEntityValidationException e)
+                    //{
+                    //    var newException = new FormattedDbEntityValidationException(e);
+                    //    throw newException;
+                    //}
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -482,4 +517,44 @@ namespace ATM.Controllers
         }
         #endregion
     }
+
+    //public class FormattedDbEntityValidationException : Exception
+    //{
+    //    public FormattedDbEntityValidationException(DbEntityValidationException innerException) :
+    //        base(null, innerException)
+    //    {
+    //    }
+
+    //    public override string Message
+    //    {
+    //        get
+    //        {
+    //            var innerException = InnerException as DbEntityValidationException;
+    //            if (innerException != null)
+    //            {
+    //                StringBuilder sb = new StringBuilder();
+
+    //                sb.AppendLine();
+    //                sb.AppendLine();
+    //                foreach (var eve in innerException.EntityValidationErrors)
+    //                {
+    //                    sb.AppendLine(string.Format("- Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+    //                        eve.Entry.Entity.GetType().FullName, eve.Entry.State));
+    //                    foreach (var ve in eve.ValidationErrors)
+    //                    {
+    //                        sb.AppendLine(string.Format("-- Property: \"{0}\", Value: \"{1}\", Error: \"{2}\"",
+    //                            ve.PropertyName,
+    //                            eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName),
+    //                            ve.ErrorMessage));
+    //                    }
+    //                }
+    //                sb.AppendLine();
+
+    //                return sb.ToString();
+    //            }
+
+    //            return base.Message;
+    //        }
+    //    }
+    //}
 }

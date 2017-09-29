@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +12,17 @@ namespace ATM.Controllers
     {
         public ActionResult Index()
         {
+            var userId = User.Identity.GetUserId();
+            string userPin = null;
+
+            if (userId != null)
+            {
+                var manager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var user = manager.FindById(userId);
+            }            
+
+            ViewBag.Pin = userPin ?? "No Pin";
+
             return View();
         }
 
@@ -34,7 +47,7 @@ namespace ATM.Controllers
             ViewBag.Message = "Your contact page.";
             ViewBag.FormMessage = "Thanks, we got your message!";
 
-            return View();
+            return PartialView("_ContactThanks");
         }
 
         public ActionResult Serial(string letterCase)

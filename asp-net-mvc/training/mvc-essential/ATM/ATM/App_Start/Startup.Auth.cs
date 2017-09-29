@@ -54,9 +54,9 @@ namespace ATM
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "118367385498032",
+               appSecret: "d8e4dafb3de5a01cc099d0b2b62caf06");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

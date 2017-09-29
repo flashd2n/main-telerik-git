@@ -17,8 +17,24 @@
 </address>
 
 <h3>@ViewBag.FormMessage</h3>
-<form method="post">
-    <textarea name="message"></textarea>
-    <input type="text" name="name" placeholder="Name" />
+<div id="container-form">
+<form method="post" id="contact-form">
+    <textarea name="message" id="message-form"></textarea>
+    <input type="text" name="name" placeholder="Name" id="name-form" />
     <input type="submit" value="Send" />
 </form>
+</div>
+
+@section scripts{
+    <script>
+        $("#contact-form").submit((ev) => {
+            ev.preventDefault();
+
+            $.post('', { message: $("#message-form").val(), name: $("#name-form").val() }).done((response) => {
+                $("#container-form").html(response);
+            });
+            return false;
+        });
+    </script>    
+    
+}
