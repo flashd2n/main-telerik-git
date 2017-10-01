@@ -2,8 +2,45 @@
 
 -> configured in the RouteConfig in App_Start
 
+-> routes.LowercaseUrls = true;
+	-> generates lower case urls!!!
+
+-> .MapRoute -> registers routes
+	-> parameters:
+		-> name -> maditory, unique, can access the route from controllers with this name
+		-> url -> the pattern for the defined route
+-> examples:
+	-> pattern: "{controller}/{action}/{id}"
+	-> url: /Home/Index/123
+	-> resolving:
+		-> HomeController -> Index Action -> receives int id == 123
+	-> pattern: "{controller}/{action}"
+	-> url: /Home/Index?int=123
+	-> resolving:
+		-> HomeController -> Index Action -> receives int id == 123
+
+	-> pattern: "awesome/cool/{id}"
+	-> defaults: new {controller: "Home", action: "Coolness", id: UrlParameter.Optional}
+	-> url: /awesome/cool
+	-> resolving:
+		-> HomeController -> Coolness Action
+
+	-> pattern: "{year}/{month}/{day}"
+	-> defaults: new {controller: "Home", action: "ParseDate"}
+	-> constraints: new {year: @"\d{4}", month: @"\d{2}", day: @"\d{2}"}
+	-> url: /2017/11/11
+	-> resolving:
+		-> HomeController -> ParseDate Action -> receives int year, int month, int day
+
+// if the url fails the constraints, the route is ignored and MVC moves to the next defined route
+
 
 === Controllers ===
+--> Must inherit Controller
+	-> gives all the build-in goodies like HttpContext
+
+--> Must have parameterless constructor
+	-> use ninject to override the default factory to allow ctor with parameters and dependency injection
 
 --> ActionResult -> the product of a controller method, can return http response code, redirect, json, string, view
 	-> View(*"viewName") -> returns a view (in case of no parameters, return the view that matches the name of the method)
@@ -14,20 +51,32 @@
 	-> [HttpPost] or other verbs
 	-> [ActionName("my-custom-name")] -> replaces the method name with this in the url
 					  -> needs to specify the view correctly -> View("About") // for About method
+	-> [ChildActionOnly] -> the decorated action cannot be accesses by url -> accesses only from code (view or controller)
 --> Filters
 	-> Authorization filter // what users or groups have access
 		->[Authorize(Roles="administrator", Users="gosho")] // -> administrators and user gosho can access that controller action
 		->[Authorize] // any logged in user can access this action
 		-> can be used to decorate the controller or a controller method
 	-> Action filter // applied after or before or both the action is executed
-		1. create a class and inherit from ActionfilterAttribute class
-		2. Override OnActionExecution for before action logic or OnActionExecuted for after action logic
+		1. create a class and inherit from ActionFilterAttribute class
+		2. possible overrides:
+			-> OnActionExecuting // before action start
+			-> OnActionExecuted // after action end
+			-> OnResultExecuting // after action end, before mvc request packaging
+			-> OnResultExecuted // after action end, after mvc request packaging
 		3. use the custom filter as default filters
+		4. if the custom filter is registered in the FilterConfig --> will be applied on all actions and all controllers
 	-> Exception filter // handles exception within the execution of the action
 		-> [HandleError(View="MyErrorView")] // show my view, not the default
 		-> [HandleError(View="MyAwesomeErrorView", ExceptionType=typeof(ArgumentException))] // shows my view, when specified exception happens
 
 === Views ===
+
+--> Definition stuff:
+	-> @using ModelNamespace
+	-> @model MyModel
+		-> now the view understands this model and I can pass an instance to it from the controller
+
 
 --> Razor and helpers
 
