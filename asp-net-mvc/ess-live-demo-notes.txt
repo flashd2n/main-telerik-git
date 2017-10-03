@@ -1,0 +1,61 @@
+=== APPLICATION SCAFOLD ===
+
+-> Best to create a solution {CompanyName}.{SystemName}
+-> Add new project {CompanyName}.{SystemName}.Web
+
+--> Data layer extraction
+
+-> create solution-level Data directory
+-> add class library for .Data (context)
+-> add class library for .Models (data models)
+-> add references to Identity.EntityFramework
+-> edit connection name from the db context and setup the connection string in the web.config file
+-> In global.asax
+	-> Database.SetInitializer(new MigrateDatabaseToLatestVersion<MsSqlDbContext, Configuration>());
+	-> when app is run, the database will be updated to the latest migration -> no need to type in Update-Database 
+
+--> Models Abstractions
+
+-> Every model should have IsDeleted, Id, ModifiedOn, CreatedOn and so on
+	-> Extract IDeletable and IModifieably interfaces
+	-> Extract a base Model class
+	-> [Index] for IsDeleted, because we will always filter by it
+
+--> Seeding
+
+-> Seed admin account
+
+-----> Repository pattern
+
+-> Best Checkout Kart racing manager
+
+
+----> Override savechanges in dbContext to apply auditing info
+
+-----> Ninject
+-> Add nugget ninject mvc5 to web project
+-> configure NinjectWebCommon
+
+
+
+
+
+
+NOTES: Services should return ICollection
+	-> Best not to give the view a collection of models, but a model that has a collection of other models
+
+
+=== AREAS ===
+
+-> right-click .web project and create area, nothis special
+
+=== AUTOMAPPER ===
+
+
+
+
+
+
+
+
+
