@@ -6,6 +6,7 @@ using GoshoSoft.ForumSystem.Web.Models.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -54,6 +55,29 @@ namespace GoshoSoft.ForumSystem.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult GetPosts()
+        {
+            //returns html
+            //Thread.Sleep(2000);
+            //var posts = this.postsService.GetAll()
+            //    .ProjectTo<PostViewModel>()
+            //    .ToList();
+
+            //return this.PartialView("_PostsListTitle", posts);
+
+            //returns json
+            if (this.Request.IsAjaxRequest())
+            {
+                var posts = this.postsService.GetAll()
+                    .ProjectTo<PostViewModel>()
+                    .ToList();
+
+                return this.Json(posts, JsonRequestBehavior.AllowGet);
+            }
+
+            return this.Content("No data for you");
         }
     }
 }

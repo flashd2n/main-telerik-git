@@ -246,6 +246,95 @@
             }
 
 
+=== AJAX ===
+
+=== DATA ===
+
+controller works with services
+
+
+=== DisplayFor, EditorFor ===
+
+-> used for default visualization
+
+-> useage:
+	1. Create dir "EditorTemplates" or "DisplayTemplates" in /Views/{Controller} for that controller or /Views/Shared for Global or area
+	2. inside MyModel.cshtml
+		-> @using....
+		-> @model MyModel
+		-> //...html visualization
+	3. using in view:
+		-> @Html.DisplayForModel()
+-> useage primitive types
+	same but:
+	-> @model string
+	-> @Html.DisplayFor(x => x.MyProp) // MyProp must be a string
+
+
+=== Data Validation ===
+
+
+=== Session ===
+
+-> used to store and access settings and stuff per user/client
+-> used as a dictionary and it is linked to the client sessionId
+-> can be accessed from the controller and the view
+
+=== TempData ===
+
+-> a way to send data from one request to the next
+-> used as a dictionary
+-> can be accessed from the controller and the view
+
+
+=== Caching ===
+
+-> basic use
+	-> [OutputCache(Duration = 10)] // -> decorates an action, caches the action result for 10 seconds globally
+
+> caching profiles
+	-> configure in webconfig
+	-> create custom attribute which inherits from OutputCacheAttribute
+	-> define the profile in ctor
+	-> reuse in app
+
+-> page fragment caching
+	-> define a child action that returns a partial view for a page element
+	-> decorate with OutputCache
+	-> call the child action from the page cshtml with @{Html.RenderAction(...)} or @Html.Action(....)
+
+-> data-level caching
+	-> uses a dictionary-like property of HttpContext
+	-> this.HttpContext.Cache.Insert(...)
+	-> access -> this.HttpContext.Cache["myKey"]
+	-> clearing cache -> this.HttpContext.Cache.Remove
+
+=== SECURITY ===
+
+-> SQL injection
+	-> protected by default by ORMs
+	-> not ORM -> escape spacial characters
+
+-> XSS
+	-> protected by MVC
+	-> Razor escapes html and js code
+	-> ASP has default basic input validation for dangerous stuff like script tags
+		-> can be disabled [ValidateInput(false)]
+
+-> CSRF
+	-> controller -> [ValidateAntiForgeryToken]
+	-> inside view form -> @Html.AntiForgeryTocken()
+	-> inside view ajax:
+		var form = $('#__AjaxAntiForgeryForm')
+		var  token = $('input[name="__RequestVerificationToken"]', form).val()
+		$ajax({
+			type: 'POST',
+			data:{__RequestVerificationToken: token, someValue: 'some value'}
+		});
+		
+-> Parameter tampering
+	-> data validation
+	-> usage of viewModels NOT data models
 
 
 

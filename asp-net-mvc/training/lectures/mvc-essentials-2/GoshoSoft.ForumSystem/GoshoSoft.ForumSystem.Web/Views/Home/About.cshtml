@@ -1,7 +1,22 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿<div id="posts"></div>
 
-<p>Use this area to provide additional information.</p>
+<div id="loading" style="display: none">Loading...</div>
+
+@Ajax.ActionLink("Get All Post Titles",
+    "GetPosts",
+    null,
+    new AjaxOptions()
+    {
+        HttpMethod = "GET",
+        UpdateTargetId = "posts",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "loading",
+        OnSuccess = "iDidIt"
+    },
+    new { @class = "btn btn-success" })
+
+<script type="text/javascript">
+    function iDidIt(res) {
+        console.log(res);
+    }
+</script>
