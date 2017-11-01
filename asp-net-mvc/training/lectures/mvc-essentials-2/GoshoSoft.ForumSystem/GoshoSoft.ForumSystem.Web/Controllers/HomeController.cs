@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using GoshoSoft.ForumSystem.Models;
 using GoshoSoft.ForumSystem.Services;
 using GoshoSoft.ForumSystem.Web.Infrastructure;
 using GoshoSoft.ForumSystem.Web.Models.Home;
@@ -25,6 +26,14 @@ namespace GoshoSoft.ForumSystem.Web.Controllers
 
         public ActionResult Index()
         {
+            var newPost = new Post()
+            {
+                Title = "awesome title",
+                Content = "veryawesome content"
+            };
+
+            this.postsService.AddPost(newPost);
+
             var posts = this.postsService.GetAll()
                 .ProjectTo<PostViewModel>()
                 .ToList();

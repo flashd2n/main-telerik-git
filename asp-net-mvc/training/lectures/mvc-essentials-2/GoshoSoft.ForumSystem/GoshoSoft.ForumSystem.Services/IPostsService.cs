@@ -6,5 +6,6 @@ namespace GoshoSoft.ForumSystem.Services
     public interface IPostsService
     {
         IQueryable<Post> GetAll();
+        void AddPost(Post post);
     }
 }

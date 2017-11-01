@@ -30,5 +30,11 @@ namespace GoshoSoft.ForumSystem.Services
             this.postsRepostory.Update(post);
             this.saveContext.Commit();
         }
+
+        public void AddPost(Post post)
+        {
+            this.postsRepostory.Add(post);
+            this.saveContext.Commit();
+        }
     }
 }
